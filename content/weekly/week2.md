@@ -30,13 +30,13 @@ draft: false
 
 > [!info] 基于obsidian + hugo + github pages搭建个人博客
 
-- obsidian编写md文件
-	- 通过obsidian插件一键同步文件到本地github目录：[参考链接](https://dev.to/4rkal/my-obsidian-hugo-blogging-setup-auto-publishing-with-hotkeys-365d)，[插件连接](https://github.com/Taitava/obsidian-shellcommands)
-- hugo是和hexo类似的工具
+- obsidian编写md文件，hugo是和hexo类似的cms工具
 	- 调研hugo的theme，包括paper、paperMod、terminal和relearn
-	- 重点学习relearn逻辑：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
-	- **如何处理obsidian的内部链接？**
-	- 类似的方式，页面搭建在github pages中的项目页面中：
+	- 处理obsidian的内部链接，转化为hugo可接受链接
+	- 通过obsidian插件一键同步文件到本地github目录：[参考链接](https://dev.to/4rkal/my-obsidian-hugo-blogging-setup-auto-publishing-with-hotkeys-365d)，[插件连接](https://github.com/Taitava/obsidian-shellcommands)，再push到github远程仓库，触发github pages更新部署
+		- 整体仓库push到main
+		- 网页代码通过”git subtree“ push到deploy分支
+	- 页面搭建在github pages中的项目页面中：
 
 > [!info] 基于notion + notion next + vercel搭建个人博客
 
@@ -59,6 +59,7 @@ draft: false
 > 	- 服务托管平台：github pages、cloudflare pages、vercel等
 
 > [!warning] 待办
+> - 学习relearn基本功能：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
 > - 学习css、html、javascript基础知识
 
   
