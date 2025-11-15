@@ -40,7 +40,7 @@ draft: false
 
 > [!info] 基于notion + notion next + vercel搭建个人博客
 
-- notion负责内容
+- notion负责内容哈哈哈
 - notionnext负责从notion拉取内容+修改模版样式
 - vercel负责托管部署
 	- [参考链接](https://www.youtube.com/watch?v=fz77TeUTkPE)
