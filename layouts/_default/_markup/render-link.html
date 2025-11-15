@@ -1,0 +1,13 @@
+<!-- layouts/_default/_markup/render-link.html -->
+{{ $link := .Destination }}
+{{ $isRemote := strings.HasPrefix $link "http" }}
+<!-- 如果不是外部链接，就进行转换 -->
+{{- if not $isRemote -}}
+  {{ $url := urls.Parse .Destination }}
+  {{- with .Page.GetPage $url.Path -}}
+    <!-- 通过Hugo的.GetPage方法找到目标页面，并使用其永久链接 -->
+    {{ $link = .RelPermalink }}
+  {{- end -}}
+{{- end -}}
+<!-- 输出最终处理好的链接 -->
+<a href="{{ $link | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if $isRemote }} target="_blank"{{ end }}>{{ .Text | safeHTML }}</a>
