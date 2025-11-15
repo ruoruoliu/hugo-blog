@@ -40,7 +40,7 @@ draft: false
 
 > [!info] 基于notion + notion next + vercel搭建个人博客
 
-- notion负责内容哈哈哈
+- notion负责内容
 - notionnext负责从notion拉取内容+修改模版样式
 - vercel负责托管部署
 	- [参考链接](https://www.youtube.com/watch?v=fz77TeUTkPE)
@@ -59,7 +59,7 @@ draft: false
 > 	- 服务托管平台：github pages、cloudflare pages、vercel等
 
 > [!warning] 待办
-> - 学习relearn基本功能：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
+> - 在网页更新过程中不断学习relearn基本功能：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
 > - 学习css、html、javascript基础知识
 
   

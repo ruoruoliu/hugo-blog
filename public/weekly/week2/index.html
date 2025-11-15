@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容哈哈哈 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
+    <meta name="description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 在网页更新过程中不断学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Week2 个人博客搭建 :: My New Hugo Site">
-    <meta name="twitter:description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容哈哈哈 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
-    <meta property="og:url" content="http://localhost:1313/weekly/week2/index.html">
+    <meta name="twitter:description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 在网页更新过程中不断学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
+    <meta property="og:url" content="https://example.org/weekly/week2/index.html">
     <meta property="og:site_name" content="My New Hugo Site">
     <meta property="og:title" content="Week2 个人博客搭建 :: My New Hugo Site">
-    <meta property="og:description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容哈哈哈 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
+    <meta property="og:description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 在网页更新过程中不断学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Weekly">
@@ -21,40 +21,40 @@
     <meta property="article:modified_time" content="2025-11-14T00:00:00+00:00">
     <meta property="article:tag" content="周记">
     <meta itemprop="name" content="Week2 个人博客搭建 :: My New Hugo Site">
-    <meta itemprop="description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容哈哈哈 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
+    <meta itemprop="description" content="总结 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian和notion基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 &#43; piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo &#43; github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian &#43; hugo &#43; github pages搭建个人博客 obsidian编写md文件，hugo是和hexo类似的cms工具 调研hugo的theme，包括paper、paperMod、terminal和relearn 处理obsidian的内部链接，转化为hugo可接受链接 通过obsidian插件一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到deploy分支 页面搭建在github pages中的项目页面中： 基于notion &#43; notion next &#43; vercel搭建个人博客 notion负责内容 notionnext负责从notion拉取内容&#43;修改模版样式 vercel负责托管部署 参考链接 知识 obsidian 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 无内置AI 参考链接， 参考链接 notion 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 在网页更新过程中不断学习relearn基本功能： 主题官网 学习css、html、javascript基础知识">
     <meta itemprop="datePublished" content="2025-11-14T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-14T00:00:00+00:00">
     <meta itemprop="wordCount" content="73">
     <meta itemprop="keywords" content="周记">
     <title>Week2 个人博客搭建 :: My New Hugo Site</title>
-    <link href="/css/auto-complete/auto-complete.min.css?1763219240" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1763219240" defer></script>
-    <script src="/js/search-lunr.js?1763219240" defer></script>
-    <script src="/js/search.js?1763219240" defer></script>
+    <link href="/css/auto-complete/auto-complete.min.css?1763219519" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1763219519" defer></script>
+    <script src="/js/search-lunr.min.js?1763219519" defer></script>
+    <script src="/js/search.min.js?1763219519" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.en.js?1763219240";
+      window.relearn.index_js_url="/searchindex.en.js?1763219519";
     </script>
-    <script src="/js/lunr/lunr.min.js?1763219240" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1763219240" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1763219240" defer></script>
-    <script src="/js/lunr/lunr.en.min.js?1763219240" defer></script>
+    <script src="/js/lunr/lunr.min.js?1763219519" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1763219519" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1763219519" defer></script>
+    <script src="/js/lunr/lunr.en.min.js?1763219519" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763219240" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763219240" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1763219240" rel="stylesheet">
-    <link href="/css/theme.css?1763219240" rel="stylesheet">
-    <link href="/css/format-html.css?1763219240" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763219519" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/fontawesome-all.min.css?1763219519" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1763219519" rel="stylesheet">
+    <link href="/css/theme.min.css?1763219519" rel="stylesheet">
+    <link href="/css/format-html.min.css?1763219519" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
-      window.relearn.min = ``;
+      window.relearn.min = `.min`;
       window.relearn.path='\/weekly\/week2\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313';
+      window.relearn.absBaseUri='https:\/\/example.org';
       window.relearn.disableInlineCopyToClipboard=false;
       window.relearn.enableBlockCodeWrap=true;
       // legal
@@ -295,7 +295,7 @@
   </summary>
 </details>
 <ul>
-<li>notion负责内容哈哈哈</li>
+<li>notion负责内容</li>
 <li>notionnext负责从notion拉取内容+修改模版样式</li>
 <li>vercel负责托管部署
 <ul>
@@ -351,7 +351,7 @@
   </summary>
   <div class="box-content">
 <ul>
-<li>学习relearn基本功能：
+<li>在网页更新过程中不断学习relearn基本功能：
 
 
 
@@ -430,8 +430,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1763219240" defer></script>
-    <script src="/js/theme.js?1763219240" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1763219519" defer></script>
+    <script src="/js/theme.min.js?1763219519" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
