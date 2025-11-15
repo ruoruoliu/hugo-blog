@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>First Day :: My New Hugo Site</title>
-    <link>http://localhost:1313/log/first-day/index.html</link>
+    <link>https://example.org/log/first-day/index.html</link>
     <description>hello from first day</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 14 Nov 2025 22:03:36 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/log/first-day/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/log/first-day/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First Day Things</title>
-      <link>http://localhost:1313/log/first-day/first-day-things/index.html</link>
+      <link>https://example.org/log/first-day/first-day-things/index.html</link>
       <pubDate>Fri, 14 Nov 2025 22:03:36 +0800</pubDate>
-      <guid>http://localhost:1313/log/first-day/first-day-things/index.html</guid>
+      <guid>https://example.org/log/first-day/first-day-things/index.html</guid>
       <description>first day things</description>
     </item>
   </channel>
