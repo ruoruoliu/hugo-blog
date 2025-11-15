@@ -25,7 +25,7 @@ jobs:
 
       # 3. 构建网站
       - name: Build
-        run: hugo --minify  # 构建并压缩输出文件
+        run: hugo  # 构建并压缩输出文件
 
       # 4. 部署到GitHub Pages
       - name: Deploy
