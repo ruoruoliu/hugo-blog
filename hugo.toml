@@ -1,4 +1,4 @@
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'hugo-theme-relearn'
-baseURL = 'https://ruoruoliu.github.io/'
+baseURL = 'https://ruoruoliu.github.io/hugo-blog/'
