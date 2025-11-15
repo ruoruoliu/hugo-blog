@@ -5,7 +5,7 @@ var relearn_searchindex = [
     "description": "This is weekly reports.",
     "tags": [],
     "title": "Weekly",
-    "uri": "/weekly/index.html"
+    "uri": "/hugo-blog/weekly/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site",
@@ -13,7 +13,7 @@ var relearn_searchindex = [
     "description": "This is tech blogs.",
     "tags": [],
     "title": "Techs",
-    "uri": "/techs/index.html"
+    "uri": "/hugo-blog/techs/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site",
@@ -21,7 +21,7 @@ var relearn_searchindex = [
     "description": "This is a log.",
     "tags": [],
     "title": "Log",
-    "uri": "/log/index.html"
+    "uri": "/hugo-blog/log/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Techs",
@@ -31,7 +31,7 @@ var relearn_searchindex = [
       "技术笔记"
     ],
     "title": "OSI模型",
-    "uri": "/techs/osi%E6%A8%A1%E5%9E%8B/index.html"
+    "uri": "/hugo-blog/techs/osi%E6%A8%A1%E5%9E%8B/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site",
@@ -39,7 +39,7 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Tags",
-    "uri": "/tags/index.html"
+    "uri": "/hugo-blog/tags/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Tags",
@@ -47,7 +47,7 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Tag :: 技术笔记",
-    "uri": "/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Log \u003e First Day",
@@ -55,7 +55,7 @@ var relearn_searchindex = [
     "description": "first day things",
     "tags": [],
     "title": "First Day Things",
-    "uri": "/log/first-day/first-day-things/index.html"
+    "uri": "/hugo-blog/log/first-day/first-day-things/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Log",
@@ -63,7 +63,7 @@ var relearn_searchindex = [
     "description": "hello from third day",
     "tags": [],
     "title": "Third Day",
-    "uri": "/log/third-day/index.html"
+    "uri": "/hugo-blog/log/third-day/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Log",
@@ -71,7 +71,7 @@ var relearn_searchindex = [
     "description": "hello from second day",
     "tags": [],
     "title": "Second Day",
-    "uri": "/log/second-day/index.html"
+    "uri": "/hugo-blog/log/second-day/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Log",
@@ -79,7 +79,7 @@ var relearn_searchindex = [
     "description": "hello from first day",
     "tags": [],
     "title": "First Day",
-    "uri": "/log/first-day/index.html"
+    "uri": "/hugo-blog/log/first-day/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Weekly",
@@ -89,7 +89,7 @@ var relearn_searchindex = [
       "周记"
     ],
     "title": "Week2 个人博客搭建",
-    "uri": "/weekly/week2/index.html"
+    "uri": "/hugo-blog/weekly/week2/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Tags",
@@ -97,7 +97,7 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Tag :: 周记",
-    "uri": "/tags/%E5%91%A8%E8%AE%B0/index.html"
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Weekly",
@@ -107,7 +107,7 @@ var relearn_searchindex = [
       "周记"
     ],
     "title": "Week1 开发环境配置",
-    "uri": "/weekly/week1/index.html"
+    "uri": "/hugo-blog/weekly/week1/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site",
@@ -115,6 +115,6 @@ var relearn_searchindex = [
     "description": "",
     "tags": [],
     "title": "Categories",
-    "uri": "/categories/index.html"
+    "uri": "/hugo-blog/categories/index.html"
   }
 ]

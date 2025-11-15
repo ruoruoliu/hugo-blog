@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术笔记 :: Tag :: My New Hugo Site</title>
-    <link>http://localhost:1313/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</link>
+    <link>http://localhost:1313/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</link>
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 15 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OSI模型</title>
-      <link>http://localhost:1313/techs/osi%E6%A8%A1%E5%9E%8B/index.html</link>
+      <link>http://localhost:1313/hugo-blog/techs/osi%E6%A8%A1%E5%9E%8B/index.html</link>
       <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/techs/osi%E6%A8%A1%E5%9E%8B/index.html</guid>
+      <guid>http://localhost:1313/hugo-blog/techs/osi%E6%A8%A1%E5%9E%8B/index.html</guid>
       <description>OSI模型是计算机通信网络的抽象模型</description>
     </item>
   </channel>
