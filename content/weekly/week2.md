@@ -31,9 +31,10 @@ draft: false
 
 > [!info] 基于obsidian + hugo + github pages搭建个人博客
 
-- obsidian编写md文件，hugo是和hexo类似的cms工具
+- hugo将md文件转化为html页面，并进行部署
 	- 调研hugo的theme，包括paper、paperMod、terminal和relearn
 	- 后续需要在博客更新过程中不断学习relearn基本功能：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
+- [obsidian](../Techs/obsidian.md)编写md文件，hugo是和hexo类似的cms工具
 	- 处理obsidian的内部链接，转化为hugo可接受链接
 	- 使用obsidian插件“image auto upload”，插入图片时自动上传图床
 	- 通过obsidian插件“shell commands”一键同步文件到本地github目录：[参考链接](https://dev.to/4rkal/my-obsidian-hugo-blogging-setup-auto-publishing-with-hotkeys-365d)，[插件连接](https://github.com/Taitava/obsidian-shellcommands)，再push到github远程仓库，触发github pages更新部署
@@ -41,13 +42,8 @@ draft: false
 		- 网页代码通过”git subtree“ push到gh-pages分支
 	- 页面搭建在github pages中的项目页面中：[博客链接](https://ruoruoliu.github.io/hugo-blog/)
 
+
 > [!tip] 知识
-> - obsidian
-> 	- 可以对笔记及内部元素进行双向连接，从而形成关系图谱
-> 	- 支持插件、模版、定制化的markdown格式等
-> 	- 数据本地化，方便离线操作
-> 	- 无内置AI
-> 	- [参考链接](https://www.youtube.com/watch?v=9oh9hGE9LsY&t=92s)，[参考链接](https://www.youtube.com/watch?v=z4AbijUCoKU)
 > - 个人博客平台化搭建范式
 > 	- 内容编辑：通常是md格式，可以基于obsidian、notion等
 > 	- 内容到页面转化工具：hexo、hugo、nextjs等
