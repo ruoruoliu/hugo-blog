@@ -6,8 +6,9 @@ tags:
 draft: false
 ---
 > [!note] 总结
+> - 域名注册 & 图床搭建
 > - 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发
-> - 学习obsidian和notion基本功能
+> - 学习obsidian基本功能
 
 > [!info]+ cloudflare域名注册
 
@@ -34,18 +35,11 @@ draft: false
 	- 调研hugo的theme，包括paper、paperMod、terminal和relearn
 	- 后续需要在博客更新过程中不断学习relearn基本功能：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
 	- 处理obsidian的内部链接，转化为hugo可接受链接
-	- 通过obsidian插件一键同步文件到本地github目录：[参考链接](https://dev.to/4rkal/my-obsidian-hugo-blogging-setup-auto-publishing-with-hotkeys-365d)，[插件连接](https://github.com/Taitava/obsidian-shellcommands)，再push到github远程仓库，触发github pages更新部署
+	- 使用obsidian插件“image auto upload”，插入图片时自动上传图床
+	- 通过obsidian插件“shell commands”一键同步文件到本地github目录：[参考链接](https://dev.to/4rkal/my-obsidian-hugo-blogging-setup-auto-publishing-with-hotkeys-365d)，[插件连接](https://github.com/Taitava/obsidian-shellcommands)，再push到github远程仓库，触发github pages更新部署
 		- 整体仓库push到main
 		- 网页代码通过”git subtree“ push到gh-pages分支
 	- 页面搭建在github pages中的项目页面中：[博客链接](https://ruoruoliu.github.io/hugo-blog/)
-	- 如何插入图片，并利用图床在github pages中展示？
-
-> [!info] 基于notion + notion next + vercel搭建个人博客
-
-- notion负责内容
-- notionnext负责从notion拉取内容+修改模版样式
-- vercel负责托管部署
-	- [参考链接](https://www.youtube.com/watch?v=fz77TeUTkPE)
 
 > [!tip] 知识
 > - obsidian
@@ -54,13 +48,12 @@ draft: false
 > 	- 数据本地化，方便离线操作
 > 	- 无内置AI
 > 	- [参考链接](https://www.youtube.com/watch?v=9oh9hGE9LsY&t=92s)，[参考链接](https://www.youtube.com/watch?v=z4AbijUCoKU)
-> - notion
 > - 个人博客平台化搭建范式
 > 	- 内容编辑：通常是md格式，可以基于obsidian、notion等
 > 	- 内容到页面转化工具：hexo、hugo、nextjs等
 > 	- 服务托管平台：github pages、cloudflare pages、vercel等
 
 > [!warning] 待办
+> - 学习notion基本功能，并基于notion搭建个人博客
 > - 学习css、html、javascript基础知识
 
-  
