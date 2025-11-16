@@ -6,8 +6,15 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Week3 个人博客搭建</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week3/index.html</link>
+      <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week3/index.html</guid>
+      <description>总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion负责内容 notionnext负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native</description>
+    </item>
     <item>
       <title>Week2 个人博客搭建</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week2/index.html</link>
