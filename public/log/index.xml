@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Log :: My New Hugo Site</title>
+    <title>Log :: Ruoruoliu 2.0</title>
     <link>https://ruoruoliu.github.io/hugo-blog/log/index.html</link>
     <description>This is a log.</description>
     <generator>Hugo</generator>

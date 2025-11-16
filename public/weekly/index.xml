@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Weekly :: My New Hugo Site</title>
+    <title>Weekly :: Ruoruoliu 2.0</title>
     <link>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</link>
     <description>This is weekly reports.</description>
     <generator>Hugo</generator>
@@ -13,7 +13,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week3/index.html</link>
       <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week3/index.html</guid>
-      <description>总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion 负责内容 notionnext负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native</description>
+      <description>总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion 负责内容 notionnext 负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native</description>
     </item>
     <item>
       <title>Week2 个人博客搭建</title>

@@ -1,6 +1,6 @@
 var relearn_searchindex = [
   {
-    "breadcrumb": "My New Hugo Site",
+    "breadcrumb": "Ruoruoliu 2.0",
     "content": "This is weekly reports.",
     "description": "This is weekly reports.",
     "tags": [],
@@ -8,7 +8,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/weekly/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site",
+    "breadcrumb": "Ruoruoliu 2.0",
     "content": "This is tech blogs.",
     "description": "This is tech blogs.",
     "tags": [],
@@ -16,7 +16,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/techs/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site",
+    "breadcrumb": "Ruoruoliu 2.0",
     "content": "This is a log.",
     "description": "This is a log.",
     "tags": [],
@@ -24,7 +24,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site",
+    "breadcrumb": "Ruoruoliu 2.0",
     "content": "",
     "description": "",
     "tags": [],
@@ -32,9 +32,9 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Weekly",
-    "content": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion 负责内容 notionnext负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native",
-    "description": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion 负责内容 notionnext负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
+    "content": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion 负责内容 notionnext 负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native",
+    "description": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion 负责内容 notionnext 负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native",
     "tags": [
       "周记"
     ],
@@ -42,7 +42,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/weekly/week3/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Tags",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
     "content": "",
     "description": "",
     "tags": [],
@@ -50,7 +50,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Techs",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Techs",
     "content": "OSI模型是计算机通信网络的抽象模型",
     "description": "OSI模型是计算机通信网络的抽象模型",
     "tags": [
@@ -60,7 +60,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/techs/osi%E6%A8%A1%E5%9E%8B/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Techs",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Techs",
     "content": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 暂不支持AI功能 参考链接： 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
     "description": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 暂不支持AI功能 参考链接： 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
     "tags": [
@@ -70,7 +70,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/techs/obsidian/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Tags",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
     "content": "",
     "description": "",
     "tags": [],
@@ -78,7 +78,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Log \u003e First Day",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Log \u003e First Day",
     "content": "first day things",
     "description": "first day things",
     "tags": [],
@@ -86,7 +86,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/first-day/first-day-things/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Log",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Log",
     "content": "hello from third day",
     "description": "hello from third day",
     "tags": [],
@@ -94,7 +94,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/third-day/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Log",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Log",
     "content": "hello from second day",
     "description": "hello from second day",
     "tags": [],
@@ -102,7 +102,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/second-day/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Log",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Log",
     "content": "hello from first day",
     "description": "hello from first day",
     "tags": [],
@@ -110,7 +110,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/first-day/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Weekly",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
     "content": "总结 域名注册 \u0026 图床搭建 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 + piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo + github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian + hugo + github pages搭建个人博客 hugo将md文件转化为html页面，并进行部署 调研hugo的theme，包括paper、paperMod、terminal和relearn 后续需要在博客更新过程中不断学习relearn基本功能： 主题官网 obsidian编写md文件，hugo是和hexo类似的cms工具 处理obsidian的内部链接，转化为hugo可接受链接 使用obsidian插件“image auto upload”，插入图片时自动上传图床 通过obsidian插件“shell commands”一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到gh-pages分支 页面搭建在github pages中的项目页面中： 博客链接 知识 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识",
     "description": "总结 域名注册 \u0026 图床搭建 尝试利用现有平台进行个人博客的搭建部署，不涉及具体框架或代码开发 学习obsidian基本功能 cloudflare域名注册 ruoruoliu.com，每年10刀左右 cloudflare账户 基于clodflare R2 + piclist搭建免费图床 由于picgo的S3插件上传有问题，替换为piclist 参考链接 基于hexo + github pages搭建个人博客 hexo主要是基于模版的页面生成和部署工具，可以命令行生成并部署到github pages中 每次修改source中的md文件，hexo在generate过程中更新public中对应的部分 github.io作为个人主页，对于仓库名有要求：ruoruoliu.github.io 页面搭建在github pages中的项目页面中： 博客链接 是否需要nginx解决网址栏输入最后没有/导致访问不同的问题？ 参考链接 基于obsidian + hugo + github pages搭建个人博客 hugo将md文件转化为html页面，并进行部署 调研hugo的theme，包括paper、paperMod、terminal和relearn 后续需要在博客更新过程中不断学习relearn基本功能： 主题官网 obsidian编写md文件，hugo是和hexo类似的cms工具 处理obsidian的内部链接，转化为hugo可接受链接 使用obsidian插件“image auto upload”，插入图片时自动上传图床 通过obsidian插件“shell commands”一键同步文件到本地github目录： 参考链接， 插件连接，再push到github远程仓库，触发github pages更新部署 整体仓库push到main 网页代码通过”git subtree“ push到gh-pages分支 页面搭建在github pages中的项目页面中： 博客链接 知识 个人博客平台化搭建范式 内容编辑：通常是md格式，可以基于obsidian、notion等 内容到页面转化工具：hexo、hugo、nextjs等 服务托管平台：github pages、cloudflare pages、vercel等 待办 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识",
     "tags": [
@@ -120,7 +120,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/weekly/week2/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site \u003e Weekly",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
     "content": "总结 完成科学上网环境搭建 完成远程开发环境搭建 科学上网配置 购买vps节点： 尝试了vultr和bandwagon两个服务商 vultr按小时收费，最低每月5刀，搬瓦工按quarter收费，三个月50刀 节点选择： 考虑是否支持运营商vip骨干网络，比如移动为cmi 搬瓦工可以使用日本节点，延迟控制在100ms以内，vscode响应时间可接受 参考链接 vscode remote配置 github copilot配置 免费试用 pro 1个月，后续切换到 free plan 后续可以尝试cursor以及claude code 知识 科学上网流程 购买vps节点 vps节点安装并配置代理客户端（s-ui）的tls 本地v2ray配置vps的tls 计算机网络 OSI模型 计算机网络通讯的【系统性】扫盲——从“基本概念”到“OSI 模型” 待办 搭建个人博客，方便后续记笔记",
     "description": "总结 完成科学上网环境搭建 完成远程开发环境搭建 科学上网配置 购买vps节点： 尝试了vultr和bandwagon两个服务商 vultr按小时收费，最低每月5刀，搬瓦工按quarter收费，三个月50刀 节点选择： 考虑是否支持运营商vip骨干网络，比如移动为cmi 搬瓦工可以使用日本节点，延迟控制在100ms以内，vscode响应时间可接受 参考链接 vscode remote配置 github copilot配置 免费试用 pro 1个月，后续切换到 free plan 后续可以尝试cursor以及claude code 知识 科学上网流程 购买vps节点 vps节点安装并配置代理客户端（s-ui）的tls 本地v2ray配置vps的tls 计算机网络 OSI模型 计算机网络通讯的【系统性】扫盲——从“基本概念”到“OSI 模型” 待办 搭建个人博客，方便后续记笔记",
     "tags": [
@@ -130,7 +130,7 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/weekly/week1/index.html"
   },
   {
-    "breadcrumb": "My New Hugo Site",
+    "breadcrumb": "Ruoruoliu 2.0",
     "content": "",
     "description": "",
     "tags": [],

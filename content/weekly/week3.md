@@ -13,7 +13,8 @@ draft: false
 
 - notion
 	- 负责内容
-- notionnext负责从notion拉取内容+修改模版样式
+- notionnext
+	- 负责从notion拉取内容+修改模版样式
 - vercel负责托管部署
 	- [参考链接](https://www.youtube.com/watch?v=fz77TeUTkPE)
 
