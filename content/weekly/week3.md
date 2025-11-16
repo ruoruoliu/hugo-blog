@@ -1,5 +1,5 @@
 ---
-title: Week3 个人博客开发
+title: Week3 个人博客搭建
 date: 2025-11-17
 tags:
   - 周记
