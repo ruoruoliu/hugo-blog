@@ -6,12 +6,12 @@
     <description>This is your new home page.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Weekly</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</link>
-      <pubDate>Fri, 14 Nov 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 16 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</guid>
       <description>This is weekly reports.</description>
     </item>

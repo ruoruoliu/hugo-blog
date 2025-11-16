@@ -24,6 +24,32 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/index.html"
   },
   {
+    "breadcrumb": "My New Hugo Site",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tags",
+    "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "My New Hugo Site \u003e Weekly",
+    "content": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion负责内容 notionnext负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native",
+    "description": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html基础知识 基于notion + notion next + vercel搭建个人博客 notion负责内容 notionnext负责从notion拉取内容+修改模版样式 vercel负责托管部署 参考链接 知识 notion css html 待办 学习javascript、typescript以及react native",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week3 个人博客搭建",
+    "uri": "/hugo-blog/weekly/week3/index.html"
+  },
+  {
+    "breadcrumb": "My New Hugo Site \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 周记",
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
     "breadcrumb": "My New Hugo Site \u003e Techs",
     "content": "OSI模型是计算机通信网络的抽象模型",
     "description": "OSI模型是计算机通信网络的抽象模型",
@@ -32,14 +58,6 @@ var relearn_searchindex = [
     ],
     "title": "OSI模型",
     "uri": "/hugo-blog/techs/osi%E6%A8%A1%E5%9E%8B/index.html"
-  },
-  {
-    "breadcrumb": "My New Hugo Site",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tags",
-    "uri": "/hugo-blog/tags/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Tags",
@@ -90,14 +108,6 @@ var relearn_searchindex = [
     ],
     "title": "Week2 个人博客搭建",
     "uri": "/hugo-blog/weekly/week2/index.html"
-  },
-  {
-    "breadcrumb": "My New Hugo Site \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 周记",
-    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "My New Hugo Site \u003e Weekly",
