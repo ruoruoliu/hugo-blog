@@ -12,8 +12,16 @@ var relearn_searchindex = [
     "content": "This is tech blogs.",
     "description": "This is tech blogs.",
     "tags": [],
-    "title": "Techs",
-    "uri": "/hugo-blog/techs/index.html"
+    "title": "Blogs",
+    "uri": "/hugo-blog/blogs/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "This is a new chapter.",
+    "description": "This is a new chapter.",
+    "tags": [],
+    "title": "Projects",
+    "uri": "/hugo-blog/projects/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0",
@@ -50,14 +58,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Blogs",
-    "uri": "/hugo-blog/blogs/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接： # 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） # Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
     "description": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接： # 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） # Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
@@ -78,24 +78,14 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Techs",
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "OSI模型是计算机通信网络的抽象模型",
     "description": "OSI模型是计算机通信网络的抽象模型",
     "tags": [
       "技术笔记"
     ],
     "title": "OSI模型",
-    "uri": "/hugo-blog/techs/osi%E6%A8%A1%E5%9E%8B/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Techs",
-    "content": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 暂不支持AI功能 参考链接： 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
-    "description": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 暂不支持AI功能 参考链接： 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
-    "tags": [
-      "技术笔记"
-    ],
-    "title": "什么是obsidian？",
-    "uri": "/hugo-blog/techs/obsidian/index.html"
+    "uri": "/hugo-blog/blogs/techs/osi%E6%A8%A1%E5%9E%8B/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
