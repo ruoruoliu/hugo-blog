@@ -33,6 +33,14 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）整理方式\nACE\nAtlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 # Create Your Digital Home: Obsidian Walkthrough PARA\nProjects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Aarchive：过时的内容，暂存 # Organize Your ENTIRE Digital Life in Seconds (The PARA Method)",
+    "description": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）整理方式\nACE\nAtlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 # Create Your Digital Home: Obsidian Walkthrough PARA\nProjects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Aarchive：过时的内容，暂存 # Organize Your ENTIRE Digital Life in Seconds (The PARA Method)",
+    "tags": [],
+    "title": "内容整理方式",
+    "uri": "/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）的方式\nACE\nAtlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 # Create Your Digital Home: Obsidian Walkthrough PARA\nProjects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Aarchive：过时的内容，暂存 # Organize Your ENTIRE Digital Life in Seconds (The PARA Method)",
     "description": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）的方式\nACE\nAtlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 # Create Your Digital Home: Obsidian Walkthrough PARA\nProjects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Aarchive：过时的内容，暂存 # Organize Your ENTIRE Digital Life in Seconds (The PARA Method)",
     "tags": [],
