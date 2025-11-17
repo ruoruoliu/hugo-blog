@@ -2,7 +2,6 @@
 title: obsidian是什么？
 date: 2025-11-15
 tags:
-  - 技术笔记
 draft: false
 ---
 > [!note] 优点

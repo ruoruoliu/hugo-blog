@@ -69,9 +69,7 @@ var relearn_searchindex = [
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接： # 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） # Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
     "description": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接： # 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） # Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
-    "tags": [
-      "技术笔记"
-    ],
+    "tags": [],
     "title": "obsidian是什么？",
     "uri": "/hugo-blog/blogs/obsidian/index.html"
   },

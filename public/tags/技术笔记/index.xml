@@ -9,13 +9,6 @@
     <lastBuildDate>Sat, 15 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>obsidian是什么？</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/obsidian/index.html</link>
-      <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/obsidian/index.html</guid>
-      <description>优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接： # 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） # Give Me 15 Minutes. I’ll Teach You 80% of Obsidian</description>
-    </item>
-    <item>
       <title>OSI模型</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/osi%E6%A8%A1%E5%9E%8B/index.html</link>
       <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
