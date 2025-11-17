@@ -33,11 +33,19 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）整理方式\nACE # Create Your Digital Home: Obsidian Walkthrough\nAtlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 PARA # Organize Your ENTIRE Digital Life in Seconds (The PARA Method) Projects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Archives：过时的内容，暂存",
-    "description": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）整理方式\nACE # Create Your Digital Home: Obsidian Walkthrough\nAtlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 PARA # Organize Your ENTIRE Digital Life in Seconds (The PARA Method) Projects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Archives：过时的内容，暂存",
+    "content": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）整理方式\nACE Atlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 参考链接：\n# Create Your Digital Home: Obsidian Walkthrough\nPARA Projects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Archives：过时的内容，暂存 参考链接：\n# Organize Your ENTIRE Digital Life in Seconds (The PARA Method)",
+    "description": "这里汇总了不同的内容（主要是文档，如obsidian和notion中）整理方式\nACE Atlas：与时间无关的想法，笔记 Calendar：按时间例行化的内容，如日记、周记 Efforts：项目进度 参考链接：\n# Create Your Digital Home: Obsidian Walkthrough\nPARA Projects：项目进展，有时间节点限制，有任务要求 Areas：某一方面的计划和记录，不像projects那样有任物属性（时间节点或ddl），比如健康，某个领域的学习进展等 Resources：可以理解成与时间无关的ideas，例如blog、来自某本书的quote等 Archives：过时的内容，暂存 参考链接：\n# Organize Your ENTIRE Digital Life in Seconds (The PARA Method)",
     "tags": [],
     "title": "内容整理方式",
     "uri": "/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "内容管理系统（CMS）方便记录各种信息，包括文章、想法、日程、计划等\nObsidian 优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件，包括built-in和自定义，例如图片上传等 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持高级markdown格式，如callout等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接：\n# 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學）\n# Give Me 15 Minutes. I’ll Teach You 80% of Obsidian\nNotion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进行任务规划，例如对database进行table或calendar格式的view 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持丰富的页面可视化，例如icon等 目前notion 3.0提供 Notion Agent的AI功能 缺点 对于纯粹的内容管理系统而言，功能冗余 对于每日行程规律的人友好，但反之就会有很多冗余操作 参考链接：\n# 全世界在学的软件，到底怎么用？Notion十分钟入门指南。 # How to Get Started with Notion (without losing your mind)\nNotion Agent 通过添加不同的agent为你工作，他们的工作包括：\n创建、查询和编辑database 创作和更新内容 在Notion、外部工具（如gmail、slack等）和网络中查询分析信息 参考链接：\n# Getting started with Notion Agent # Notion’s AI Agent is a Game-Changer (Notion made EASY!)",
+    "description": "内容管理系统（CMS）方便记录各种信息，包括文章、想法、日程、计划等\nObsidian 优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件，包括built-in和自定义，例如图片上传等 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持高级markdown格式，如callout等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接：\n# 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學）\n# Give Me 15 Minutes. I’ll Teach You 80% of Obsidian\nNotion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进行任务规划，例如对database进行table或calendar格式的view 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持丰富的页面可视化，例如icon等 目前notion 3.0提供 Notion Agent的AI功能 缺点 对于纯粹的内容管理系统而言，功能冗余 对于每日行程规律的人友好，但反之就会有很多冗余操作 参考链接：\n# 全世界在学的软件，到底怎么用？Notion十分钟入门指南。 # How to Get Started with Notion (without losing your mind)",
+    "tags": [],
+    "title": "内容管理系统",
+    "uri": "/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0",
@@ -64,14 +72,6 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: 周记",
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接： # 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） # Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
-    "description": "优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件、模版、定制化的markdown格式等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接： # 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學） # Give Me 15 Minutes. I’ll Teach You 80% of Obsidian",
-    "tags": [],
-    "title": "obsidian是什么？",
-    "uri": "/hugo-blog/blogs/obsidian/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
