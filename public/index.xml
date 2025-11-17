@@ -29,5 +29,12 @@
       <guid>https://ruoruoliu.github.io/hugo-blog/log/index.html</guid>
       <description>This is a log.</description>
     </item>
+    <item>
+      <title>Blogs</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</link>
+      <pubDate>Sat, 15 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

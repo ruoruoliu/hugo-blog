@@ -10,7 +10,6 @@ draft: false
 > - 学习css、html基础知识
 
 > [!info] 基于notion + notion next + vercel搭建个人博客
-
 - notion
 	- 负责内容
 - notionnext
