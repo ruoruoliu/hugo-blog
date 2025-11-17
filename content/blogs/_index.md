@@ -1,5 +1,5 @@
 +++
-title = "Techs"
+title = "Blogs"
 type = "chapter"
 weight = 2
 +++

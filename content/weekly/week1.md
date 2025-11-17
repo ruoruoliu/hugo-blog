@@ -31,7 +31,7 @@ draft: false
 > 	- 购买vps节点
 > 	- vps节点安装并配置代理客户端（s-ui）的tls
 > 	- 本地v2ray配置vps的tls
-> - 计算机网络[OSI模型](../Blogs/OSI模型.md)
+> - 计算机网络[OSI模型](../Blogs/Techs/OSI模型.md)
 > 	- [计算机网络通讯的【系统性】扫盲——从“基本概念”到“OSI 模型”](https://program-think.blogspot.com/2021/03/Computer-Networks-Overview.html)
 
 > [!warning] 待办
