@@ -25,12 +25,13 @@ draft: false
 	- 配置域名等与github pages类似
 - [博客链接](https://notion-blog-delta-pied.vercel.app/)
 
+> [!iinfo] 学习css、html基础知识并简单搭建github.io
+- css&html课程学习
+	- [# 成為網頁設計師的第一步！快速上手 HTML & CSS 展開你的網頁設計之旅！](https://www.youtube.com/watch?v=6HHN0G2cwBM&list=PL7enJ2-v6SPkJxL_qO4bBYGR-QViDFxGf&index=8)
+- [github.io](https://ruoruoliu.github.io/)
+
 > [!tip] 知识
 > - 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录
-> - css
-> - html
 
 > [!warning] 待办
 > - 学习javascript、typescript以及react native
-
-
