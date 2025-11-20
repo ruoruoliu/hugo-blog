@@ -27,8 +27,12 @@ draft: false
 > [!info] 学习css、html基础知识并简单搭建github.io
 - css&html课程学习
 	- [# 成為網頁設計師的第一步！快速上手 HTML & CSS 展開你的網頁設計之旅！](https://www.youtube.com/watch?v=6HHN0G2cwBM&list=PL7enJ2-v6SPkJxL_qO4bBYGR-QViDFxGf&index=8)
+	- [# HTML & CSS Full Course for free](https://www.youtube.com/watch?v=HGTJBPNC-Gw&list=PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3)
+	- [# HTML & CSS Full Course - Beginner to Pro](https://www.youtube.com/watch?v=G3e-cpL7ofc)
 - javascript课程学习
 	- [# JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！](https://www.youtube.com/watch?v=0FLkwZ-PH2I&list=PL7enJ2-v6SPkJxL_qO4bBYGR-QViDFxGf&index=2)
+	- [# JavaScript Full Course for free](https://www.youtube.com/watch?v=lfmg-EJ8gm4&list=PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3&index=2)
+	- [# JavaScript Tutorial Full Course - Beginner to Pro](https://www.youtube.com/watch?v=EerdGm-ehJQ)
 - [github.io](https://ruoruoliu.github.io/)
 
 > [!tip] 知识
@@ -47,4 +51,6 @@ draft: false
 > 	- 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单等）
 
 > [!warning] 待办
-> - 学习typescript以及react
+> - javascript进阶：ES6+新特性
+> - 学习react或者vue
+
