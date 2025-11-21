@@ -39,12 +39,14 @@ draft: false
 > - 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录
 > - html
 > 	- 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化）
-> 	- 在html里可以直接添加css style，但是为了避免每个元素单独添加，才将css文件提出来实现共用
+> 	- 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用
 > - css
 > 	- 对同一类元素（比如p、h2、header等）加格式时，可以加class单独定义格式（比如.about p）
-> 	- 对某一类元素加细粒度格式时（比如p的第一行），可以用::（比如p::first-line）
-> 	- 对一个section里面的元素进行分组，比如abc三个元素合成ab和c，可以加div，从而对各组或整体进行排版
-> 	- 想象给文字加一个边框，padding就是字和边框的距离，margin就是边框和其他元素的距离
+> 	- 对某一类元素加细粒度格式时（比如p的第一行），可以用::（比如p::first-line），或者采用id的方式（比如\<p id="p1"\>），可以用#（比如#p1）
+> 	- 对一个section里面的元素进行分组，比如abc三个元素合成ab和c，可以加span或者div（称为container），从而对各组或整体进行排版
+> 		- span是inline的，只对内容生效，div是block的，对整体block生效（如果对一个p操作，div会分block后生效，而span直接在p内部生效）
+> 	- padding就是字和border的距离，margin就是border和其他元素的距离  
+> 	![image.png](https://images.ruoruoliu.com/2025/11/243150c0e34a8d1294d09b4570d6db81.png)
 > 	- diplay: flexbox可以方便地对一个div内的元素进行水平和垂直布局
 > - javascript
 > 	- 在body中加入script可以插入js代码，页面f12可以看到console.log的打印
