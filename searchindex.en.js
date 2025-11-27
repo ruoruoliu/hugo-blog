@@ -33,11 +33,45 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "Zapier 官网 自动化流程配置工具，将你的多种不同的app的信息串联起来 gmail邮箱收到邮件，在whatsapp上设置bot提醒 stripe收到货款，导入google sheet新建一行 等等 支持AI辅助新建工作流 参考链接：\n# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧",
-    "description": "Zapier 官网 自动化流程配置工具，将你的多种不同的app的信息串联起来 gmail邮箱收到邮件，在whatsapp上设置bot提醒 stripe收到货款，导入google sheet新建一行 等等 支持AI辅助新建工作流 参考链接：\n# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧",
+    "content": "背景 全称terminal multiplexer 通过tmux一个session可以包含多个子进程，可以切换显示多个子进程 一个session保存了多个子进程信息，并在后台运行，关闭terminal后可以重新恢复session 可以使用tmux运行长时间任务，后台运行防止关闭terminal导致杀死进程 可以在不同session间切换 使用说明 session操作 tmux：自动创建session tmux new -s 名字：创建命名session tmux ls：列出tmux全部session tmux a -t 数字：进入指定session，如果只有一个session，可以省略-t参数 tmux kill-session -t 数字或名字：退出指定session tmux has-session -t 数字或名字：是否运行着指定session\n分屏操作 前缀（control+b）+：\n%：向右分屏 “：向下分屏 方向键：切换分屏 c：新建window 数字：切换window编号 d：关闭window exit：退出分屏 配置文件 在home目录新建~/.tmux.conf文件： set -g mouse on：开启鼠标支持（调整窗口大小） set -g prefix C-s：tmux默认前缀改为control+s\n启动脚本示例 #!/bin/bash # tmux 开发环境启动脚本 # 检查是否已经在 tmux 会话中 if [ -n \"$TMUX\" ]; then echo \"Error: Already in a tmux session\" exit 1 fi # 检查会话是否已存在 tmux has-session -t dev 2\u003e/dev/null if [ $? != 0 ]; then # 创建新会话 tmux new-session -d -s dev -n \"editor\" # 第一个窗口：代码编辑器 tmux send-keys -t dev:1 \"cd ~/projects/myapp\" Enter tmux send-keys -t dev:1 \"vim\" Enter # 创建第二个窗口：服务器 tmux new-window -t dev:2 -n \"server\" tmux send-keys -t dev:2 \"cd ~/projects/myapp\" Enter tmux send-keys -t dev:2 \"npm run dev\" Enter # 创建第三个窗口：数据库 tmux new-window -t dev:3 -n \"database\" tmux send-keys -t dev:3 \"docker ps\" Enter tmux send-keys -t dev:3 \"docker exec -it postgres psql -U user mydb\" Enter # 创建第四个窗口：日志 tmux new-window -t dev:4 -n \"logs\" tmux send-keys -t dev:4 \"cd ~/projects/myapp/logs\" Enter tmux send-keys -t dev:4 \"tail -f app.log\" Enter # 创建第五个窗口：系统监控 tmux new-window -t dev:5 -n \"monitor\" tmux send-keys -t dev:5 \"htop\" Enter # 水平分割第二个窗口（服务器窗口） tmux split-window -h -t dev:2 tmux send-keys -t dev:2.1 \"cd ~/projects/myapp\" Enter tmux send-keys -t dev:2.1 \"git status\" Enter # 设置初始窗口 tmux select-window -t dev:1 fi # 附加到会话 tmux attach -t dev 参考链接： # tmux 使用和基礎配置 從入門到加班 一個視頻全搞定！",
+    "description": "背景 全称terminal multiplexer 通过tmux一个session可以包含多个子进程，可以切换显示多个子进程 一个session保存了多个子进程信息，并在后台运行，关闭terminal后可以重新恢复session 可以使用tmux运行长时间任务，后台运行防止关闭terminal导致杀死进程 可以在不同session间切换 使用说明 session操作 tmux：自动创建session tmux new -s 名字：创建命名session tmux ls：列出tmux全部session tmux a -t 数字：进入指定session，如果只有一个session，可以省略-t参数 tmux kill-session -t 数字或名字：退出指定session tmux has-session -t 数字或名字：是否运行着指定session",
     "tags": [],
-    "title": "效率工具",
-    "uri": "/hugo-blog/blogs/%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/index.html"
+    "title": "Tmux使用教程",
+    "uri": "/hugo-blog/blogs/tmux/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tags",
+    "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
+    "content": "总结 完成javascript基础知识学习 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 学习javascript进阶知识：ES6+新特性 ES6+新特性课程学习 知识 javascript 待办 了解javscript进阶知识：ES6+新特性",
+    "description": "总结 完成javascript基础知识学习 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 学习javascript进阶知识：ES6+新特性 ES6+新特性课程学习 知识 javascript 待办 了解javscript进阶知识：ES6+新特性",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week4 javascript基础与进阶",
+    "uri": "/hugo-blog/weekly/week4/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 周记",
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "Zapier官网 自动化流程配置工具，将你的多种不同的app的信息串联起来 gmail邮箱收到邮件，在whatsapp上设置bot提醒 stripe收到货款，导入google sheet新建一行 等等 支持AI辅助新建工作流 参考链接：\n# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧",
+    "description": "Zapier官网 自动化流程配置工具，将你的多种不同的app的信息串联起来 gmail邮箱收到邮件，在whatsapp上设置bot提醒 stripe收到货款，导入google sheet新建一行 等等 支持AI辅助新建工作流 参考链接：\n# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧",
+    "tags": [],
+    "title": "Zapier",
+    "uri": "/hugo-blog/blogs/zapier/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -56,30 +90,14 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tags",
-    "uri": "/hugo-blog/tags/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
-    "content": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion + notion next + vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css\u0026html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML \u0026 CSS 展開你的網頁設計之旅！ # HTML \u0026 CSS Full Course for free # HTML \u0026 CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如\u003cp id=“p1”\u003e），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“\u003e” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“+”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对block进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6+新特性",
-    "description": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion + notion next + vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css\u0026html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML \u0026 CSS 展開你的網頁設計之旅！ # HTML \u0026 CSS Full Course for free # HTML \u0026 CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如\u003cp id=“p1”\u003e），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“\u003e” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“+”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对block进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6+新特性",
+    "content": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion + notion next + vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css \u0026 html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML \u0026 CSS 展開你的網頁設計之旅！ # HTML \u0026 CSS Full Course for free # HTML \u0026 CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如\u003cp id=“p1”\u003e），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“\u003e” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“+”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对block进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6+新特性",
+    "description": "总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion + notion next + vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css \u0026 html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML \u0026 CSS 展開你的網頁設計之旅！ # HTML \u0026 CSS Full Course for free # HTML \u0026 CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如\u003cp id=“p1”\u003e），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“\u003e” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“+”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对block进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6+新特性",
     "tags": [
       "周记"
     ],
     "title": "Week3 个人博客搭建",
     "uri": "/hugo-blog/weekly/week3/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 周记",
-    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
