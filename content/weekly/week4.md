@@ -7,7 +7,6 @@ draft: false
 ---
 > [!note] 总结
 > - 完成javascript基础知识学习
-> - 了解javscript进阶知识：ES6+新特性
 
 > [!info]+ 学习javascript基础知识
 
@@ -25,6 +24,5 @@ draft: false
 
 
 > [!warning] 待办
-> - 学习obsidian和notion功能
-> - 基于notion作为内容编辑器搭建个人博客
+> - 了解javscript进阶知识：ES6+新特性
 

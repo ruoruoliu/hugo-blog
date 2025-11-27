@@ -27,7 +27,7 @@ draft: false
 
 > [!info] 学习css、html基础知识并简单搭建github.io
 
-- css&html课程学习
+- css & html课程学习
 	- 课程链接
 		- [# 成為網頁設計師的第一步！快速上手 HTML & CSS 展開你的網頁設計之旅！](https://www.youtube.com/watch?v=6HHN0G2cwBM&list=PL7enJ2-v6SPkJxL_qO4bBYGR-QViDFxGf&index=8)
 		- [# HTML & CSS Full Course for free](https://www.youtube.com/watch?v=HGTJBPNC-Gw&list=PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3)
