@@ -16,12 +16,12 @@ draft: false
 
 ## session操作
 
-tmux：自动创建session
-tmux new -s 名字：创建命名session
-tmux ls：列出tmux全部session
-tmux a -t 数字：进入指定session，如果只有一个session，可以省略-t参数
-tmux kill-session -t 数字或名字：退出指定session
-tmux has-session -t 数字或名字：是否运行着指定session
+- tmux：自动创建session
+- tmux new -s 名字：创建命名session
+- tmux ls：列出tmux全部session
+- tmux a -t 数字：进入指定session，如果只有一个session，可以省略-t参数
+- tmux kill-session -t 数字或名字：退出指定session
+- tmux has-session -t 数字或名字：是否运行着指定session
 
 ## 分屏操作
 前缀（control+b）+：
@@ -35,8 +35,10 @@ exit：退出分屏
 
 ## 配置文件
 在home目录新建~/.tmux.conf文件：
-set -g mouse on：开启鼠标支持（调整窗口大小）
-set -g prefix C-s：tmux默认前缀改为control+s
+- set -g mouse on：开启鼠标支持（调整分屏大小）
+- set -g prefix C-s：tmux默认前缀改为control+s
+- bind | split-window -h：水平分屏
+- bind - split-window -v：垂直分屏
 
 # 启动脚本示例
 
