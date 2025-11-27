@@ -13,7 +13,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</link>
       <pubDate>Thu, 27 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</guid>
-      <description>背景 全称terminal multiplexer 通过tmux一个session可以包含多个子进程，可以切换显示多个子进程 一个session保存了多个子进程信息，并在后台运行，关闭terminal后可以重新恢复session 可以使用tmux运行长时间任务，后台运行防止关闭terminal导致杀死进程 可以在不同session间切换 使用说明 session操作 tmux：自动创建session tmux new -s 名字：创建命名session tmux ls：列出tmux全部session tmux a -t 数字：进入指定session，如果只有一个session，可以省略-t参数 tmux kill-session -t 数字或名字：退出指定session tmux has-session -t 数字或名字：是否运行着指定session 分屏操作 前缀（control+b）+：</description>
+      <description>背景 全称terminal multiplexer 一个session可以包含多个子进程window，可以切换显示多个子进程 一个window又可以分割成多个分屏pane，方便编辑和后台运行任务 一个session保存了多个子进程信息，关闭terminal后可以重新恢复session 可以使用tmux运行长时间任务，后台运行防止关闭terminal导致杀死进程 可以在不同session、window和pane之间切换 使用说明 session操作 tmux：自动创建session tmux new -s 名字：创建命名session tmux ls：列出tmux全部session tmux a -t 数字：进入指定session，如果只有一个session，可以省略-t参数 tmux kill-session -t 数字或名字：退出指定session tmux has-session -t 数字或名字：是否运行着指定session window操作 前缀（control+b）+：</description>
     </item>
     <item>
       <title>Zapier</title>

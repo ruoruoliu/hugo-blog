@@ -7,10 +7,11 @@ draft: false
 # 背景
 
 - 全称terminal multiplexer
-- 通过tmux一个session可以包含多个子进程，可以切换显示多个子进程
-- 一个session保存了多个子进程信息，并在后台运行，关闭terminal后可以重新恢复session
+- 一个session可以包含多个子进程window，可以切换显示多个子进程
+- 一个window又可以分割成多个分屏pane，方便编辑和后台运行任务
+- 一个session保存了多个子进程信息，关闭terminal后可以重新恢复session
 - 可以使用tmux运行长时间任务，后台运行防止关闭terminal导致杀死进程
-- 可以在不同session间切换
+- 可以在不同session、window和pane之间切换
 
 # 使用说明
 
@@ -23,15 +24,24 @@ draft: false
 - tmux kill-session -t 数字或名字：退出指定session
 - tmux has-session -t 数字或名字：是否运行着指定session
 
+## window操作
+前缀（control+b）+：
+- c：新建window
+- 数字：切换window编号
+- d：关闭window
+- n/p：切换到下一个/上一个window
+- $：对当前session重命名
+- ,：对当前window重命名
+- w：查看当前整体window层级结构
+	- /：显示层级结构后，输入斜杠，进行进一步搜索
+
 ## 分屏操作
 前缀（control+b）+：
 - %：向右分屏
 - “：向下分屏
 - 方向键：切换分屏
-- c：新建window
-- 数字：切换window编号
-- d：关闭window
-exit：退出分屏
+- z：全屏/恢复当前分屏
+exit：退出分屏，当window的全部分屏退出后，自动关闭session
 
 ## 配置文件
 在home目录新建~/.tmux.conf文件：
@@ -99,3 +109,4 @@ tmux attach -t dev
 ---
 参考链接：
 [# tmux 使用和基礎配置 從入門到加班 一個視頻全搞定！](https://www.youtube.com/watch?v=QGnjSccjDck)
+[# Tmux + Vim 工作流! 同时操作多个项目, 追求极致的丝滑流畅!](https://www.youtube.com/watch?v=vwmDIaWLbRQ)
