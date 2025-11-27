@@ -40,7 +40,7 @@ exit：退出分屏
 - bind | split-window -h：水平分屏
 - bind - split-window -v：垂直分屏
 
-# 启动脚本示例
+## 启动脚本示例
 
 ```
 #!/bin/bash
