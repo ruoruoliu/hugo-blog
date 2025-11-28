@@ -127,5 +127,16 @@ uv --system run script.py
 uv --with-venv /path/to/venv run script.py
 ```
 
+通过tool install命令可以安装虚拟环境外的工具库，整个系统可用
+```
+uv tool install ruff
+```
+
+通过build命令可以进行项目打包成whl文件
+```
+uv build
+```
+
 参考链接：  
 [# 从pip到uv：一口气梳理现代Python项目管理全流程！](https://www.youtube.com/watch?v=jd1aRE5pJWc)
+[# 用uv管理Python的一切！](https://www.youtube.com/watch?v=aVXs8lb7i9U)

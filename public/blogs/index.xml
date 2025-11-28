@@ -16,6 +16,13 @@
       <description>pip 一般通过freeze的命令记录目前全部环境依赖&#xA;pip freeze &gt; requirements.txt 其他人可以通过pip的方式一键安装全部环境以来&#xA;pip install -r requirements.txt 缺陷 pip install会将库安装到全局目录，多用户共享，导致版本依赖和兼容性问题 pip freeze的问题在于无法明确区分哪些是项目的直接依赖，只是一股脑的记录 pip uninstall后，对应的间接依赖不会被卸载掉 venv 在项目目录里执行，创建.venv虚拟python环境，名称推荐叫.venv，因为vscode等可以自动识别&#xA;python3 -m venv .venv 通过active激活环境，并通过deactivate关闭环境&#xA;// 激活环境 source .venv/bin/activate // 关闭环境 deactivate pyproject.toml 目标就是统一不同的配置文件，把所有与项目构建（打包、依赖管理）和工具配置相关的设置都放在这一个文件里</description>
     </item>
     <item>
+      <title>Vim和NeoVim</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html</link>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Tmux使用教程</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</link>
       <pubDate>Thu, 27 Nov 2025 00:00:00 +0000</pubDate>
