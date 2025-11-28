@@ -6,7 +6,7 @@
     <description>This is your new home page.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Weekly</title>
@@ -18,7 +18,7 @@
     <item>
       <title>Blogs</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</link>
-      <pubDate>Thu, 27 Nov 2025 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</guid>
       <description>This is tech blogs.</description>
     </item>

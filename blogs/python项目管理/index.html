@@ -5,46 +5,42 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="内容管理系统（CMS）方便记录各种信息，包括文章、想法、日程、计划等
-Obsidian 优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件，包括built-in和自定义，例如图片上传等 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持高级markdown格式，如callout等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接：
-# 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學）
-# Give Me 15 Minutes. I’ll Teach You 80% of Obsidian
-Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进行任务规划，例如对database进行table或calendar格式的view 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持丰富的页面可视化，例如icon等 支持团队协作编辑文档，可以给外部分享并评论 目前notion 3.0提供 Notion Agent的AI功能 缺点 对于纯粹的内容管理系统而言，功能冗余 对于每日行程规律的人友好，但反之就会有很多冗余操作 页面之间的关系是上下级，缺乏obsidian点对点的联系 可以通过@方式实现页面的跳转，但是不是概念（单词）粒度的联系 参考链接：
-# 全世界在学的软件，到底怎么用？Notion十分钟入门指南。 # How to Get Started with Notion (without losing your mind)">
+    <meta name="description" content="pip 一般通过freeze的命令记录目前全部环境依赖
+pip freeze &gt; requirements.txt 其他人可以通过pip的方式一键安装全部环境以来
+pip install -r requirements.txt 缺陷 pip install会将库安装到全局目录，多用户共享，导致版本依赖和兼容性问题 pip freeze的问题在于无法明确区分哪些是项目的直接依赖，只是一股脑的记录 pip uninstall后，对应的间接依赖不会被卸载掉 venv 在项目目录里执行，创建.venv虚拟python环境，名称推荐叫.venv，因为vscode等可以自动识别
+python3 -m venv .venv 通过active激活环境，并通过deactivate关闭环境
+// 激活环境 source .venv/bin/activate // 关闭环境 deactivate pyproject.toml 目标就是统一不同的配置文件，把所有与项目构建（打包、依赖管理）和工具配置相关的设置都放在这一个文件里">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="内容管理系统 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="内容管理系统（CMS）方便记录各种信息，包括文章、想法、日程、计划等
-Obsidian 优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件，包括built-in和自定义，例如图片上传等 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持高级markdown格式，如callout等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接：
-# 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學）
-# Give Me 15 Minutes. I’ll Teach You 80% of Obsidian
-Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进行任务规划，例如对database进行table或calendar格式的view 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持丰富的页面可视化，例如icon等 支持团队协作编辑文档，可以给外部分享并评论 目前notion 3.0提供 Notion Agent的AI功能 缺点 对于纯粹的内容管理系统而言，功能冗余 对于每日行程规律的人友好，但反之就会有很多冗余操作 页面之间的关系是上下级，缺乏obsidian点对点的联系 可以通过@方式实现页面的跳转，但是不是概念（单词）粒度的联系 参考链接：
-# 全世界在学的软件，到底怎么用？Notion十分钟入门指南。 # How to Get Started with Notion (without losing your mind)">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
+    <meta name="twitter:title" content="python项目管理 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="pip 一般通过freeze的命令记录目前全部环境依赖
+pip freeze &gt; requirements.txt 其他人可以通过pip的方式一键安装全部环境以来
+pip install -r requirements.txt 缺陷 pip install会将库安装到全局目录，多用户共享，导致版本依赖和兼容性问题 pip freeze的问题在于无法明确区分哪些是项目的直接依赖，只是一股脑的记录 pip uninstall后，对应的间接依赖不会被卸载掉 venv 在项目目录里执行，创建.venv虚拟python环境，名称推荐叫.venv，因为vscode等可以自动识别
+python3 -m venv .venv 通过active激活环境，并通过deactivate关闭环境
+// 激活环境 source .venv/bin/activate // 关闭环境 deactivate pyproject.toml 目标就是统一不同的配置文件，把所有与项目构建（打包、依赖管理）和工具配置相关的设置都放在这一个文件里">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="内容管理系统 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="内容管理系统（CMS）方便记录各种信息，包括文章、想法、日程、计划等
-Obsidian 优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件，包括built-in和自定义，例如图片上传等 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持高级markdown格式，如callout等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接：
-# 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學）
-# Give Me 15 Minutes. I’ll Teach You 80% of Obsidian
-Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进行任务规划，例如对database进行table或calendar格式的view 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持丰富的页面可视化，例如icon等 支持团队协作编辑文档，可以给外部分享并评论 目前notion 3.0提供 Notion Agent的AI功能 缺点 对于纯粹的内容管理系统而言，功能冗余 对于每日行程规律的人友好，但反之就会有很多冗余操作 页面之间的关系是上下级，缺乏obsidian点对点的联系 可以通过@方式实现页面的跳转，但是不是概念（单词）粒度的联系 参考链接：
-# 全世界在学的软件，到底怎么用？Notion十分钟入门指南。 # How to Get Started with Notion (without losing your mind)">
+    <meta property="og:title" content="python项目管理 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="pip 一般通过freeze的命令记录目前全部环境依赖
+pip freeze &gt; requirements.txt 其他人可以通过pip的方式一键安装全部环境以来
+pip install -r requirements.txt 缺陷 pip install会将库安装到全局目录，多用户共享，导致版本依赖和兼容性问题 pip freeze的问题在于无法明确区分哪些是项目的直接依赖，只是一股脑的记录 pip uninstall后，对应的间接依赖不会被卸载掉 venv 在项目目录里执行，创建.venv虚拟python环境，名称推荐叫.venv，因为vscode等可以自动识别
+python3 -m venv .venv 通过active激活环境，并通过deactivate关闭环境
+// 激活环境 source .venv/bin/activate // 关闭环境 deactivate pyproject.toml 目标就是统一不同的配置文件，把所有与项目构建（打包、依赖管理）和工具配置相关的设置都放在这一个文件里">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-11-17T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-11-17T00:00:00+00:00">
-    <meta itemprop="name" content="内容管理系统 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="内容管理系统（CMS）方便记录各种信息，包括文章、想法、日程、计划等
-Obsidian 优点 可以对笔记及内部元素进行双向连接，从而形成关系图谱 支持插件，包括built-in和自定义，例如图片上传等 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持高级markdown格式，如callout等 数据本地化，方便离线操作 缺点 相比notion，缺少日程表类似的功能 不支持AI功能 参考链接：
-# 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學）
-# Give Me 15 Minutes. I’ll Teach You 80% of Obsidian
-Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进行任务规划，例如对database进行table或calendar格式的view 支持自定义模版，方便新建笔记时快速初始化properties和格式 支持丰富的页面可视化，例如icon等 支持团队协作编辑文档，可以给外部分享并评论 目前notion 3.0提供 Notion Agent的AI功能 缺点 对于纯粹的内容管理系统而言，功能冗余 对于每日行程规律的人友好，但反之就会有很多冗余操作 页面之间的关系是上下级，缺乏obsidian点对点的联系 可以通过@方式实现页面的跳转，但是不是概念（单词）粒度的联系 参考链接：
-# 全世界在学的软件，到底怎么用？Notion十分钟入门指南。 # How to Get Started with Notion (without losing your mind)">
-    <meta itemprop="datePublished" content="2025-11-17T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-11-17T00:00:00+00:00">
-    <meta itemprop="wordCount" content="81">
-    <title>内容管理系统 :: Ruoruoliu 2.0</title>
+    <meta property="article:published_time" content="2025-11-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-11-28T00:00:00+00:00">
+    <meta itemprop="name" content="python项目管理 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="pip 一般通过freeze的命令记录目前全部环境依赖
+pip freeze &gt; requirements.txt 其他人可以通过pip的方式一键安装全部环境以来
+pip install -r requirements.txt 缺陷 pip install会将库安装到全局目录，多用户共享，导致版本依赖和兼容性问题 pip freeze的问题在于无法明确区分哪些是项目的直接依赖，只是一股脑的记录 pip uninstall后，对应的间接依赖不会被卸载掉 venv 在项目目录里执行，创建.venv虚拟python环境，名称推荐叫.venv，因为vscode等可以自动识别
+python3 -m venv .venv 通过active激活环境，并通过deactivate关闭环境
+// 激活环境 source .venv/bin/activate // 关闭环境 deactivate pyproject.toml 目标就是统一不同的配置文件，把所有与项目构建（打包、依赖管理）和工具配置相关的设置都放在这一个文件里">
+    <meta itemprop="datePublished" content="2025-11-28T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-11-28T00:00:00+00:00">
+    <meta itemprop="wordCount" content="182">
+    <title>python项目管理 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1764307378" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764307378" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764307378" defer></script>
@@ -70,7 +66,7 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F\/index.html';
+      window.relearn.path='\/blogs\/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -118,7 +114,7 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -145,17 +141,12 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
 
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
-<nav class="TableOfContents">
-  <ul>
-    <li><a href="#notion-agent">Notion Agent</a></li>
-  </ul>
-</nav>
+                <div class="topbar-content-wrapper"> 
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">内容管理系统</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">python项目管理</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -166,7 +157,7 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html" title="内容整理方式 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -176,7 +167,7 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/techs/osi%E6%A8%A1%E5%9E%8B/index.html" title="OSI模型 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html" title="Tmux使用教程 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -204,13 +195,10 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
   <header class="headline">
   </header>
 
-<h1 id="内容管理系统">内容管理系统</h1>
+<h1 id="python项目管理">python项目管理</h1>
 
-<blockquote>
-<p>内容管理系统（CMS）方便记录各种信息，包括文章、想法、日程、计划等</p>
-</blockquote>
-<h1 id="obsidian">
-  Obsidian
+<h1 id="pip">
+  pip
 
 
 
@@ -220,48 +208,26 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-
-<details open class="box cstyle notices tip">
-  <summary class="box-label" tabindex="-1">
-    <i class="fa-fw fas fa-lightbulb"></i> 
-    优点
-  </summary>
-  <div class="box-content">
-<ul>
-<li>可以对笔记及内部元素进行双向连接，从而形成关系图谱</li>
-<li>支持插件，包括built-in和自定义，例如图片上传等</li>
-<li>支持自定义模版，方便新建笔记时快速初始化properties和格式</li>
-<li>支持高级markdown格式，如callout等</li>
-<li>数据本地化，方便离线操作</li>
-</ul>
-  </div>
-</details>
+<p>一般通过freeze的命令记录目前全部环境依赖</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>pip freeze &gt; requirements.txt</code></pre></div>
+<p>其他人可以通过pip的方式一键安装全部环境以来</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>pip install -r requirements.txt</code></pre></div>
 
 <details open class="box cstyle notices warning">
   <summary class="box-label" tabindex="-1">
     <i class="fa-fw fas fa-exclamation-triangle"></i> 
-    缺点
+    缺陷
   </summary>
   <div class="box-content">
 <ul>
-<li>相比notion，缺少日程表类似的功能</li>
-<li>不支持AI功能</li>
+<li>pip install会将库安装到全局目录，多用户共享，导致版本依赖和兼容性问题</li>
+<li>pip freeze的问题在于无法明确区分哪些是项目的直接依赖，只是一股脑的记录</li>
+<li>pip uninstall后，对应的间接依赖不会被卸载掉</li>
 </ul>
   </div>
 </details>
-<p>参考链接：<br>
-
-
-
-
-<a href="https://www.youtube.com/watch?v=9oh9hGE9LsY&amp;t=92s" target="_blank"># 39分鐘上手Obsidian！基礎操作介紹（電腦、平板、手機全面教學）</a><br>
-
-
-
-
-<a href="https://www.youtube.com/watch?v=z4AbijUCoKU" target="_blank"># Give Me 15 Minutes. I&rsquo;ll Teach You 80% of Obsidian</a></p>
-<h1 id="notion">
-  Notion
+<h1 id="venv">
+  venv
 
 
 
@@ -271,61 +237,15 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-
-<details open class="box cstyle notices tip">
-  <summary class="box-label" tabindex="-1">
-    <i class="fa-fw fas fa-lightbulb"></i> 
-    优点
-  </summary>
-  <div class="box-content">
-<ul>
-<li>页面UI丰富，支持各种拖拽、增减等操作</li>
-<li>方便地进行任务规划，例如对database进行table或calendar格式的view</li>
-<li>支持自定义模版，方便新建笔记时快速初始化properties和格式</li>
-<li>支持丰富的页面可视化，例如icon等</li>
-<li>支持团队协作编辑文档，可以给外部分享并评论</li>
-<li>目前notion 3.0提供
-
-
-
-<a href="Notion%20Agent.md">Notion Agent</a>的AI功能</li>
-</ul>
-  </div>
-</details>
-
-<details open class="box cstyle notices warning">
-  <summary class="box-label" tabindex="-1">
-    <i class="fa-fw fas fa-exclamation-triangle"></i> 
-    缺点
-  </summary>
-  <div class="box-content">
-<ul>
-<li>对于纯粹的内容管理系统而言，功能冗余
-<ul>
-<li>对于每日行程规律的人友好，但反之就会有很多冗余操作</li>
-</ul>
-</li>
-<li>页面之间的关系是上下级，缺乏obsidian点对点的联系
-<ul>
-<li>可以通过@方式实现页面的跳转，但是不是概念（单词）粒度的联系</li>
-</ul>
-</li>
-</ul>
-  </div>
-</details>
-<p>参考链接：<br>
-
-
-
-
-<a href="https://www.youtube.com/watch?v=odR_g_J-8Aw" target="_blank"># 全世界在学的软件，到底怎么用？Notion十分钟入门指南。</a>
-
-
-
-
-<a href="https://www.youtube.com/watch?v=cYbcgtK0v_Q" target="_blank"># How to Get Started with Notion (without losing your mind)</a></p>
-<h2 id="notion-agent">
-  Notion Agent
+<p>在项目目录里执行，创建.venv虚拟python环境，名称推荐叫.venv，因为vscode等可以自动识别</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>python3 -m venv .venv</code></pre></div>
+<p>通过active激活环境，并通过deactivate关闭环境</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>// 激活环境
+source .venv/bin/activate
+// 关闭环境
+deactivate</code></pre></div>
+<h1 id="pyprojecttoml">
+  pyproject.toml
 
 
 
@@ -334,28 +254,105 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><hr>
-<p>也称为notion 3.0，1.0为document，2.0为database，3.0加入AI agent
-通过添加不同的agent为你工作，他们的工作包括：</p>
+</h1><hr>
+<p>目标就是统一不同的配置文件，把所有与项目构建（打包、依赖管理）和工具配置相关的设置都放在这一个文件里</p>
+<p>完整示例：</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code># 指定构建项目的工具
+[build-system]
+requires = [&#34;setuptools&gt;=45&#34;, &#34;wheel&#34;]
+build-backend = &#34;setuptools.build_meta&#34;
+
+[project]
+name = &#34;my-cli-tool&#34;
+version = &#34;0.1.0&#34;
+description = &#34;一个强大的命令行工具&#34;
+authors = [{name = &#34;王五&#34;, email = &#34;wangwu@example.com&#34;}]
+readme = &#34;README.md&#34;
+license = {text = &#34;MIT&#34;}
+requires-python = &#34;&gt;=3.8&#34;
+# 运行时依赖
+dependencies = [
+    &#34;requests&gt;=2.25.1&#34;,
+    &#34;rich&gt;=10.0.0&#34;,
+]
+classifiers = [
+    &#34;License :: OSI Approved :: MIT License&#34;,
+    &#34;Programming Language :: Python :: 3&#34;,
+]
+
+# 可选依赖
+[project.optional-dependencies]
+dev = [&#34;pytest&#34;, &#34;black&#34;, &#34;flake8&#34;]
+# 命令行运行模块函数
+[project.scripts]
+my-tool = &#34;my_tool.main:cli&#34;
+# 工具配置参数
+[tool.black]
+line-length = 88
+
+[tool.pytest.ini_options]
+addopts = &#34;-v&#34;
+testpaths = [&#34;tests&#34;]</code></pre></div>
+<p>通过以下命令可以一键安装</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>pip install -e .</code></pre></div>
+
+<details open class="box cstyle notices warning">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-triangle"></i> 
+    缺陷
+  </summary>
+  <div class="box-content">
 <ul>
-<li>创建、查询和编辑database</li>
-<li>创作和更新内容</li>
-<li>在Notion、外部工具（如gmail、slack等）和网络中查询分析信息</li>
+<li>通过venv和pyproject.toml的方式管理和安装库，导致每次安装新库，需要查找对应的版本号，并手动添加到toml配置文件中</li>
 </ul>
+  </div>
+</details>
+<h1 id="uv">
+  UV
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>为用户封装了管理项目的库安装和配置过程
+<a href="#R-image-a3ab7ea28364e1cf1e75db1fad055005" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/11/4d661c338fc8290708ee74b7a03b1bfd.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a3ab7ea28364e1cf1e75db1fad055005"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/11/4d661c338fc8290708ee74b7a03b1bfd.png"></a></p>
+<p>安装uv</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre></div>
+<p>通过uv add命令替代pip install</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>uv add flask</code></pre></div>
+<ul>
+<li>可以对目录下的pyproject.toml进行自动更新</li>
+<li>检查并自动创建.venv虚拟环境</li>
+<li>将库和所有依赖均安装到.venv环境中</li>
+</ul>
+<p>通过sync命令搭建虚拟环境并安装项目全部依赖</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>uv sync</code></pre></div>
+<p>通过run命令可以自动找到venv环境，并省略手动activate环境这步，直接运行代码</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code># 直接运行
+uv run main.py
+
+# 使用特定目录作为虚拟环境
+uv --python 3.11 run script.py
+
+# 使用系统Python
+uv --system run script.py
+
+# 指定虚拟环境路径
+uv --with-venv /path/to/venv run script.py</code></pre></div>
 <p>参考链接：<br>
 
 
 
 
-<a href="https://www.youtube.com/watch?v=yasGTeAsV6s" target="_blank"># Getting started with Notion Agent</a>
-
-
-
-
-<a href="https://www.youtube.com/watch?v=SM_nXOBRje4" target="_blank"># Notion&rsquo;s AI Agent is a Game-Changer (Notion made EASY!)</a></p>
+<a href="https://www.youtube.com/watch?v=jd1aRE5pJWc" target="_blank"># 从pip到uv：一口气梳理现代Python项目管理全流程！</a></p>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Nov 17, 2025
+              <i class='fa-fw fas fa-calendar'></i> Nov 28, 2025
   </footer>
 </article>
         </div>
@@ -403,11 +400,11 @@ Notion 优点 页面UI丰富，支持各种拖拽、增减等操作 方便地进
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weekly</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
-            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">python项目管理</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">python项目管理</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/zapier/index.html"><a class="padding" href="/hugo-blog/blogs/zapier/index.html">Zapier</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/techs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/techs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
             <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
