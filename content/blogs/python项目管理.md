@@ -1,5 +1,5 @@
 ---
-title: python项目管理
+title: Python项目管理
 date: 2025-11-28
 tags:
 draft: false

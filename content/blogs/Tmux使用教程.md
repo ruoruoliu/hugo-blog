@@ -5,7 +5,7 @@ tags:
 draft: false
 ---
 # 背景
-
+---
 - 全称terminal multiplexer
 - 一个session可以包含多个子进程window，可以切换显示多个子进程
 - 一个window又可以分割成多个分屏pane，方便编辑和后台运行任务
@@ -14,7 +14,7 @@ draft: false
 - 可以在不同session、window和pane之间切换
 
 # 使用说明
-
+---
 ## 命令行操作
 
 - tmux：自动创建session
@@ -26,7 +26,7 @@ draft: false
 
 ## 内部操作
 
-前缀（control+b）+：
+前缀（ctrl+b）+：
 - c：新建window
 - 数字：切换window编号
 - d：退出当前session，但不杀死（后台运行）
@@ -41,6 +41,7 @@ draft: false
 - 方向键：切换分屏
 - z：全屏/恢复当前分屏
 - x：关闭分屏（exit），当window的全部分屏退出后，自动关闭session
+- { } ctrl+up ctrl+down：将当前pane移动到左/右/上/下
 
 ## 配置文件
 
