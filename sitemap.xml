@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</loc>
-    <lastmod>2025-11-24T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</loc>
@@ -16,7 +16,27 @@
     <lastmod>2025-11-14T22:03:36+08:00</lastmod>
   </url>
   <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/tags/index.html</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week4/index.html</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html</loc>
+    <lastmod>2025-11-30T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</loc>
+    <lastmod>2025-11-29T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/lua/index.html</loc>
+    <lastmod>2025-11-29T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html</loc>
     <lastmod>2025-11-29T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -34,18 +54,6 @@
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html</loc>
     <lastmod>2025-11-27T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/tags/index.html</loc>
-    <lastmod>2025-11-24T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week4/index.html</loc>
-    <lastmod>2025-11-24T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html</loc>
-    <lastmod>2025-11-24T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/zapier/index.html</loc>

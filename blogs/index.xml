@@ -16,6 +16,20 @@
       <description>背景 Aerospace是linux系统上i3窗口管理器应用的macOS系统上的替代应用&#xA;支持设置多个workspace，在workspace内管理（平铺或者移动）窗口 支持给每个workspace设定快捷键，进行快速切入 使用说明 配置文件：~/.config/aerospace/aerospace.toml&#xA;main mode： 设置workspace快捷键：alt+数字/字母 切换窗口：alt+hjkl 移动窗口：alt+shift+hjkl 放大/缩小窗口：alt+shift+（=-） 切换横竖分割：alt+/ 切换横竖全屏：alt+, service mode： reload config：alt+shift+; 相关链接： # Aerospace Is The Best Tiling Window Manager I’ve Tried On macOS</description>
     </item>
     <item>
+      <title>Lua</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/lua/index.html</link>
+      <pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/lua/index.html</guid>
+      <description>参考链接： Learn X in Y minutes # Lua, the simplest language to learn</description>
+    </item>
+    <item>
+      <title>Terminal配置</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html</link>
+      <pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html</guid>
+      <description>iTerm2 color themes 下载iterm2的色彩主题，可以选择以下颜色组合，搭配neovim使用 # Iterm2-color-schemes Oh My Zsh 安装oh my zsh，一键配置zsh的.zshrc github链接&#xA;fonts 下载字体以支持一些开发相关的符号 nerd fonts</description>
+    </item>
+    <item>
       <title>Context Rot</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/context-rot/index.html</link>
       <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
@@ -34,7 +48,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html</link>
       <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html</guid>
-      <description>Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r</description>
+      <description>Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua</description>
     </item>
     <item>
       <title>Tmux使用教程</title>
