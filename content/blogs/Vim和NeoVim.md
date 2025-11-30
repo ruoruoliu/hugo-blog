@@ -5,7 +5,7 @@ tags:
 draft: false
 ---
 # Vim
-
+---
 ## 基础操作
 
 - 按字符移动：
@@ -23,3 +23,8 @@ draft: false
 	- control+r
 
 
+# NeoVim
+----
+- neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大
+- neovim支持LSP语言服务器协议，可以进行代码补全等
+- 配置文件：~/.config/nvim/init.lua

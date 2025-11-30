@@ -5,47 +5,47 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r">
+    <meta name="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r">
+    <meta name="twitter:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r">
+    <meta property="og:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
     <meta property="article:published_time" content="2025-11-28T00:00:00+00:00">
     <meta property="article:modified_time" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="name" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r">
+    <meta itemprop="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
     <meta itemprop="datePublished" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-28T00:00:00+00:00">
-    <meta itemprop="wordCount" content="15">
+    <meta itemprop="wordCount" content="19">
     <title>Vim和NeoVim :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1764418339" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764418339" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764418339" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1764418339" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1764418339" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1764471968" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764471968" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1764471968" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764418339";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764471968";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1764418339" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764418339" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764418339" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764418339" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764471968" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764418339" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764418339" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764418339" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1764418339" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1764418339" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764471968" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764471968" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764471968" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1764471968" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1764471968" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -196,7 +196,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><h2 id="基础操作">
+</h1><hr>
+<h2 id="基础操作">
   基础操作
 
 
@@ -238,6 +239,22 @@
 <li>control+r</li>
 </ul>
 </li>
+</ul>
+<h1 id="neovim">
+  NeoVim
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<ul>
+<li>neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大</li>
+<li>neovim支持LSP语言服务器协议，可以进行代码补全等</li>
+<li>配置文件：~/.config/nvim/init.lua</li>
 </ul>
 
   <footer class="footline">
@@ -290,6 +307,8 @@
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weekly</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua/index.html"><a class="padding" href="/hugo-blog/blogs/lua/index.html">Lua</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/techs/context-rot/index.html"><a class="padding" href="/hugo-blog/blogs/techs/context-rot/index.html">Context Rot</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
             <li class="active " data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
@@ -317,8 +336,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764418339" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1764418339" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1764471968" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -32,12 +32,54 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tags",
+    "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
+    "content": "总结 优化本地开发环境 练习vim基本操作 tmux配置 [[Tmux使用教程]] aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 neovim配置 学习lua的基础知识： Lua 配置Neovim环境： Vim和NeoVim 练习vim操作熟练度 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 准备面试",
+    "description": "总结 优化本地开发环境 练习vim基本操作 tmux配置 [[Tmux使用教程]] aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 neovim配置 学习lua的基础知识： Lua 配置Neovim环境： Vim和NeoVim 练习vim操作熟练度 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 准备面试",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week4 开发环境优化",
+    "uri": "/hugo-blog/weekly/week4/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 周记",
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "背景 Aerospace是linux系统上i3窗口管理器应用的macOS系统上的替代应用\n支持设置多个workspace，在workspace内管理（平铺或者移动）窗口 支持给每个workspace设定快捷键，进行快速切入 使用说明 配置文件：~/.config/aerospace/aerospace.toml\nmain mode： 设置workspace快捷键：alt+数字/字母 切换窗口：alt+hjkl 移动窗口：alt+shift+hjkl 放大/缩小窗口：alt+shift+（=-） 切换横竖分割：alt+/ 切换横竖全屏：alt+, service mode： reload config：alt+shift+; 相关链接： # Aerospace Is The Best Tiling Window Manager I’ve Tried On macOS",
     "description": "背景 Aerospace是linux系统上i3窗口管理器应用的macOS系统上的替代应用\n支持设置多个workspace，在workspace内管理（平铺或者移动）窗口 支持给每个workspace设定快捷键，进行快速切入 使用说明 配置文件：~/.config/aerospace/aerospace.toml\nmain mode： 设置workspace快捷键：alt+数字/字母 切换窗口：alt+hjkl 移动窗口：alt+shift+hjkl 放大/缩小窗口：alt+shift+（=-） 切换横竖分割：alt+/ 切换横竖全屏：alt+, service mode： reload config：alt+shift+; 相关链接： # Aerospace Is The Best Tiling Window Manager I’ve Tried On macOS",
     "tags": [],
     "title": "Aerospace使用教程",
     "uri": "/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "参考链接： Learn X in Y minutes # Lua, the simplest language to learn",
+    "description": "参考链接： Learn X in Y minutes # Lua, the simplest language to learn",
+    "tags": [],
+    "title": "Lua",
+    "uri": "/hugo-blog/blogs/lua/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "iTerm2 color themes 下载iterm2的色彩主题，可以选择以下颜色组合，搭配neovim使用 # Iterm2-color-schemes Oh My Zsh 安装oh my zsh，一键配置zsh的.zshrc github链接\nfonts 下载字体以支持一些开发相关的符号 nerd fonts\n插件 语法高亮： zsh-syntax-highlighting 语义补全： zsh-autosuggestions\n参考链接：\n# How to setup your Mac Terminal to be beautiful",
+    "description": "iTerm2 color themes 下载iterm2的色彩主题，可以选择以下颜色组合，搭配neovim使用 # Iterm2-color-schemes Oh My Zsh 安装oh my zsh，一键配置zsh的.zshrc github链接\nfonts 下载字体以支持一些开发相关的符号 nerd fonts",
+    "tags": [],
+    "title": "Terminal配置",
+    "uri": "/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -57,8 +99,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r",
-    "description": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r",
+    "content": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua",
+    "description": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua",
     "tags": [],
     "title": "Vim和NeoVim",
     "uri": "/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"
@@ -70,32 +112,6 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tmux使用教程",
     "uri": "/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tags",
-    "uri": "/hugo-blog/tags/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
-    "content": "总结 完成javascript基础知识学习 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 学习javascript进阶知识：ES6+新特性 ES6+新特性课程学习 知识 javascript 待办 了解javscript进阶知识：ES6+新特性",
-    "description": "总结 完成javascript基础知识学习 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 学习javascript进阶知识：ES6+新特性 ES6+新特性课程学习 知识 javascript 待办 了解javscript进阶知识：ES6+新特性",
-    "tags": [
-      "周记"
-    ],
-    "title": "Week4 javascript基础与进阶",
-    "uri": "/hugo-blog/weekly/week4/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 周记",
-    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
