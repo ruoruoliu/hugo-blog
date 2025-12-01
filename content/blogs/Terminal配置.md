@@ -19,7 +19,7 @@ draft: false
 
 ## fonts
 
-下载字体以支持一些开发相关的符号
+下载字体以支持一些开发相关的图标
 [nerd fonts](https://www.nerdfonts.com/)
 
 ## 插件

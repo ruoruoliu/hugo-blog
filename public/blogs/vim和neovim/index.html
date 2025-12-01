@@ -5,47 +5,47 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
+    <meta name="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
+    <meta name="twitter:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
+    <meta property="og:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
     <meta property="article:published_time" content="2025-11-28T00:00:00+00:00">
     <meta property="article:modified_time" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="name" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 撤销： u 重做： control&#43;r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua">
+    <meta itemprop="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
     <meta itemprop="datePublished" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-28T00:00:00+00:00">
-    <meta itemprop="wordCount" content="19">
+    <meta itemprop="wordCount" content="85">
     <title>Vim和NeoVim :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1764471968" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764471968" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764471968" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1764471968" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1764471968" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1764602070" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764602070" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764602070" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1764602070" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1764602070" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764471968";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764602070";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1764471968" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764471968" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764471968" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1764602070" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764602070" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764602070" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764602070" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764471968" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764471968" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764471968" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1764471968" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1764471968" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764602070" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764602070" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764602070" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1764602070" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1764602070" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -129,6 +129,19 @@
 <nav class="TableOfContents">
   <ul>
     <li><a href="#基础操作">基础操作</a></li>
+    <li><a href="#重要概念">重要概念</a>
+      <ul>
+        <li><a href="#text-object">Text Object</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#重要概念-1">重要概念</a>
+      <ul>
+        <li><a href="#lsp">LSP</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
                 </div>
@@ -229,6 +242,11 @@
 <li>d</li>
 </ul>
 </li>
+<li>修改：
+<ul>
+<li>c</li>
+</ul>
+</li>
 <li>撤销：
 <ul>
 <li>u</li>
@@ -236,10 +254,39 @@
 </li>
 <li>重做：
 <ul>
-<li>control+r</li>
+<li>ctrl+r</li>
 </ul>
 </li>
 </ul>
+<h2 id="重要概念">
+  重要概念
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="text-object">
+  Text Object
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-ee7667c141aa98464d205115e2bec37e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ee7667c141aa98464d205115e2bec37e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a>
+vim对文本操作的公式：动作 + 选中类型 + text object</p>
+<p>参考链接：<br>
+
+
+
+
+<a href="https://www.bilibili.com/video/BV1Ze4y1E7Sk/?spm_id_from=333.337.search-card.all.click&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># Vim中的重要概念 Text Object</a></p>
 <h1 id="neovim">
   NeoVim
 
@@ -255,7 +302,76 @@
 <li>neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大</li>
 <li>neovim支持LSP语言服务器协议，可以进行代码补全等</li>
 <li>配置文件：~/.config/nvim/init.lua</li>
+<li>neovim里面:Tutor来进行基本操作学习</li>
+<li>可以使用lazy.nvim来帮助安装插件</li>
 </ul>
+<h2 id="重要概念-1">
+  重要概念
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="lsp">
+  LSP
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>代码编辑过程中，需要和ls（language server）进行交互，来获取当前代码的状态（定义、引用、诊断等），两者之间的交互基于LSP（language server protocol）</p>
+<h4 id="lspconfig">
+  lspconfig
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>每次编辑器启动ls的时候，需要给出配置（包括什么时候启动、当前语言等），这时候就需要lspconfig插件：
+
+
+
+<a href="https://github.com/neovim/nvim-lspconfig" target="_blank">nvim-lspconfig</a></p>
+<ul>
+<li>对每一种语言安装对应的插件，来支持对应语言的lsp
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=bTWWFQZqzyI" target="_blank"># LSP in Neovim (with like 3 lines of code)</a></li>
+</ul>
+</li>
+<li>nvim在0.11之后可以更方便的安装配置lsp
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=oBiBEx7L000" target="_blank"># How to Setup Neovim LSP Like A Pro in 2025 (v0.11+)</a></li>
+</ul>
+</li>
+</ul>
+<p>参考链接：<br>
+
+
+
+
+<a href="https://www.youtube.com/watch?v=m8C0Cq9Uv9o" target="_blank"># The Only Video You Need to Get Started with Neovim</a>
+
+
+
+
+<a href="https://www.youtube.com/watch?v=Qp71mD7Eex0&amp;list=PLlYlfdIF0BKcSMqYr2dxsQNTCLJFQ_hMI&amp;index=1" target="_blank"># NeoVim 从平凡到非凡</a></p>
 
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> Nov 28, 2025
@@ -336,8 +452,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764471968" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1764471968" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764602070" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1764602070" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
