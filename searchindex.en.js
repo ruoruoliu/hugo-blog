@@ -75,8 +75,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "iTerm2 color themes 下载iterm2的色彩主题，可以选择以下颜色组合，搭配neovim使用 # Iterm2-color-schemes Oh My Zsh 安装oh my zsh，一键配置zsh的.zshrc github链接\nfonts 下载字体以支持一些开发相关的符号 nerd fonts\n插件 语法高亮： zsh-syntax-highlighting 语义补全： zsh-autosuggestions\n参考链接：\n# How to setup your Mac Terminal to be beautiful",
-    "description": "iTerm2 color themes 下载iterm2的色彩主题，可以选择以下颜色组合，搭配neovim使用 # Iterm2-color-schemes Oh My Zsh 安装oh my zsh，一键配置zsh的.zshrc github链接\nfonts 下载字体以支持一些开发相关的符号 nerd fonts",
+    "content": "iTerm2 color themes 下载iterm2的色彩主题，可以选择以下颜色组合，搭配neovim使用 # Iterm2-color-schemes Oh My Zsh 安装oh my zsh，一键配置zsh的.zshrc github链接\nfonts 下载字体以支持一些开发相关的图标 nerd fonts\n插件 语法高亮： zsh-syntax-highlighting 语义补全： zsh-autosuggestions\n参考链接：\n# How to setup your Mac Terminal to be beautiful",
+    "description": "iTerm2 color themes 下载iterm2的色彩主题，可以选择以下颜色组合，搭配neovim使用 # Iterm2-color-schemes Oh My Zsh 安装oh my zsh，一键配置zsh的.zshrc github链接\nfonts 下载字体以支持一些开发相关的图标 nerd fonts",
     "tags": [],
     "title": "Terminal配置",
     "uri": "/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"
@@ -99,8 +99,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua",
-    "description": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 撤销： u 重做： control+r NeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua",
+    "content": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl+r 重要概念 Text Object vim对文本操作的公式：动作 + 选中类型 + text object\n参考链接：\n# Vim中的重要概念 Text Object\nNeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 neovim支持LSP语言服务器协议，可以进行代码补全等 配置文件：~/.config/nvim/init.lua neovim里面:Tutor来进行基本操作学习 可以使用lazy.nvim来帮助安装插件 重要概念 LSP 代码编辑过程中，需要和ls（language server）进行交互，来获取当前代码的状态（定义、引用、诊断等），两者之间的交互基于LSP（language server protocol）\nlspconfig 每次编辑器启动ls的时候，需要给出配置（包括什么时候启动、当前语言等），这时候就需要lspconfig插件： nvim-lspconfig\n对每一种语言安装对应的插件，来支持对应语言的lsp # LSP in Neovim (with like 3 lines of code) nvim在0.11之后可以更方便的安装配置lsp # How to Setup Neovim LSP Like A Pro in 2025 (v0.11+) 参考链接：\n# The Only Video You Need to Get Started with Neovim # NeoVim 从平凡到非凡",
+    "description": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl+r 重要概念 Text Object vim对文本操作的公式：动作 + 选中类型 + text object",
     "tags": [],
     "title": "Vim和NeoVim",
     "uri": "/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"
