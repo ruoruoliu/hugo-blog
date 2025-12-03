@@ -23,29 +23,29 @@
     <meta itemprop="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
     <meta itemprop="datePublished" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-28T00:00:00+00:00">
-    <meta itemprop="wordCount" content="108">
+    <meta itemprop="wordCount" content="140">
     <title>Vim和NeoVim :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1764602176" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764602176" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764602176" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1764602176" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1764602176" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1764751096" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764751096" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1764751096" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764602176";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764751096";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1764602176" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764602176" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764602176" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764602176" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764751096" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764602176" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764602176" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764602176" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1764602176" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1764602176" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764751096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764751096" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764751096" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1764751096" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1764751096" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -140,6 +140,15 @@
     <li><a href="#重要概念-1">重要概念</a>
       <ul>
         <li><a href="#lsp">LSP</a></li>
+      </ul>
+    </li>
+    <li><a href="#插件">插件</a>
+      <ul>
+        <li><a href="#neo-tree">neo-tree</a></li>
+        <li><a href="#telescope">telescope</a></li>
+        <li><a href="#treesitter">treesitter</a></li>
+        <li><a href="#nvim-cmp">nvim-cmp</a></li>
+        <li><a href="#mason">mason</a></li>
       </ul>
     </li>
   </ul>
@@ -278,8 +287,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-7d35bd1dcf8d60dfdbdfbd72989fb4bc" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7d35bd1dcf8d60dfdbdfbd72989fb4bc"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a>
+</h3><p><a href="#R-image-8eea89fb75dc9feb3fa9abb459ae9aac" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8eea89fb75dc9feb3fa9abb459ae9aac"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a>
 vim对文本操作的公式：动作 + 选中类型 + text object</p>
 <p>参考链接：<br>
 
@@ -300,10 +309,7 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 </h1><hr>
 <ul>
 <li>neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大</li>
-<li>neovim支持LSP语言服务器协议，可以进行代码补全等</li>
-<li>配置文件：~/.config/nvim/init.lua</li>
-<li>neovim里面:Tutor来进行基本操作学习</li>
-<li>可以使用lazy.nvim来帮助安装插件</li>
+<li>配置文件位置：~/.config/nvim/init.lua</li>
 </ul>
 <h2 id="重要概念-1">
   重要概念
@@ -361,6 +367,111 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 </ul>
 </li>
 </ul>
+<h2 id="插件">
+  插件
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>可以使用lazy.nvim来帮助安装插件，其中重要的包括：</p>
+<h3 id="neo-tree">
+  neo-tree
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>提供左侧文件目录，可以浏览目录结构，进行文件的增删改</li>
+<li>通过ctrl-w + 方向键可以切换目录和文件窗口
+<a href="#R-image-9d04dd6772727791067b7aa5adc1aba9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d04dd6772727791067b7aa5adc1aba9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png"></a></li>
+</ul>
+<h3 id="telescope">
+  telescope
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>方便在目录内查找文件，字符串等</li>
+<li>leader + ff（find files） 进行文件查找</li>
+<li>leader + fg（live grep） 进行关键词查找
+<a href="#R-image-6769b570014687d852bb82adf0af8cf8" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6769b570014687d852bb82adf0af8cf8"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png"></a></li>
+</ul>
+<h3 id="treesitter">
+  treesitter
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>基于语言将文本进行结构化理解</li>
+<li>实现语法高亮，支持text object、incremental selection等能力
+<ul>
+<li>text object支持diw（internal delete word）、vap（visual around paragraph）等操作</li>
+<li>incremental selection：ctrl+space</li>
+</ul>
+</li>
+</ul>
+<p><a href="#R-image-831f34d36346a3c670863b762bd5dda7" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-831f34d36346a3c670863b762bd5dda7"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png"></a></p>
+<h3 id="nvim-cmp">
+  nvim-cmp
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>基于treesitter的理解，实现代码补全</li>
+<li>另外autopair实现引号等配对补全，autotag实现html标签配对补全
+<a href="#R-image-42361d6941c6b7cb1362de5b0e0a84e9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-42361d6941c6b7cb1362de5b0e0a84e9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png"></a></li>
+</ul>
+<h3 id="mason">
+  mason
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>mason是一个管理lsp下载、安装的工具</li>
+<li>通过ui完成lsp、包括linter、formatter的安装</li>
+<li>mason-lspconfig可以帮助nvim找到nvim-lspconfig的配置，传给lsp</li>
+<li>最终lsp实现代码的定义、引用等跳转，并可以进行代码错误识别，给出诊断和code action
+<ul>
+<li>定义跳转：gd</li>
+<li>引用跳转：gR</li>
+<li>显示诊断：leader+d（当前行），leader+D（当前文件）
+<a href="#R-image-324e89d00230b64168724f8e975dbf9f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-324e89d00230b64168724f8e975dbf9f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png"></a></li>
+</ul>
+</li>
+</ul>
 <p>参考链接：<br>
 
 
@@ -376,12 +487,7 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 
 
 
-<a href="https://www.youtube.com/watch?v=6pAG3BHurdM" target="_blank"># How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide</a><br>
-
-
-
-
-<a href="https://www.youtube.com/watch?v=w7i4amO_zaE&amp;list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&amp;index=10" target="_blank"># 0 to LSP : Neovim RC From Scratch</a></p>
+<a href="https://www.youtube.com/watch?v=6pAG3BHurdM" target="_blank"># How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide</a></p>
 
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> Nov 28, 2025
@@ -462,8 +568,8 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764602176" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1764602176" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1764751096" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
