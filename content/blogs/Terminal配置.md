@@ -26,6 +26,9 @@ draft: false
 
 语法高亮：[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 语义补全：[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+fzf：
+- ctrl + t：进行目录下的文件查找（目前限制在home目录下的dir）
+- ctrl + r：显示history
 
 参考链接：  
 [# How to setup your Mac Terminal to be beautiful](https://www.youtube.com/watch?v=wNQpDWLs4To)
