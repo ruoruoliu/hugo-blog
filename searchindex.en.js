@@ -41,13 +41,13 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
-    "content": "总结 优化本地开发环境 练习vim基本操作 tmux配置 [[Tmux使用教程]] aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 neovim配置 学习lua的基础知识： Lua 配置Neovim环境： Vim和NeoVim 练习vim操作熟练度 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 准备面试",
-    "description": "总结 优化本地开发环境 练习vim基本操作 tmux配置 [[Tmux使用教程]] aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 neovim配置 学习lua的基础知识： Lua 配置Neovim环境： Vim和NeoVim 练习vim操作熟练度 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 准备面试",
+    "content": "总结 完成neovim环境搭建 熟练vim操作 完成javascript基础知识学习 neovim配置 学习lua的基础知识： Lua 配置Neovim环境： Vim和NeoVim 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 待办 了解javscript进阶知识：ES6+新特性",
+    "description": "总结 完成neovim环境搭建 熟练vim操作 完成javascript基础知识学习 neovim配置 学习lua的基础知识： Lua 配置Neovim环境： Vim和NeoVim 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 待办 了解javscript进阶知识：ES6+新特性",
     "tags": [
       "周记"
     ],
-    "title": "Week4 开发环境优化",
-    "uri": "/hugo-blog/weekly/week4/index.html"
+    "title": "Week5 Vim环境配置及javascript学习",
+    "uri": "/hugo-blog/weekly/week5/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
@@ -56,6 +56,34 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: 周记",
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "",
+    "description": "",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "Agent",
+    "uri": "/hugo-blog/blogs/techs/agent/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
+    "content": "总结 优化本地开发环境 tmux配置 [[Tmux使用教程]] aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 配置neovim环境 熟练vim操作",
+    "description": "总结 优化本地开发环境 tmux配置 [[Tmux使用教程]] aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 配置neovim环境 熟练vim操作",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week4 开发环境优化",
+    "uri": "/hugo-blog/weekly/week4/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -99,8 +127,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl+r 重要概念 Text Object vim对文本操作的公式：动作 + 选中类型 + text object\n参考链接：\n# Vim中的重要概念 Text Object\nNeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 配置文件位置：~/.config/nvim/init.lua 重要概念 LSP 代码编辑过程中，需要和ls（language server）进行交互，来获取当前代码的状态（定义、引用、诊断等），两者之间的交互基于LSP（language server protocol）\nlspconfig 每次编辑器启动ls的时候，需要给出配置（包括什么时候启动、当前语言等），这时候就需要lspconfig插件： nvim-lspconfig\n对每一种语言安装对应的插件，来支持对应语言的lsp # LSP in Neovim (with like 3 lines of code) nvim在0.11之后可以更方便的安装配置lsp # How to Setup Neovim LSP Like A Pro in 2025 (v0.11+) 插件 可以使用lazy.nvim来帮助安装插件，其中重要的包括：\nneo-tree 提供左侧文件目录，可以浏览目录结构，进行文件的增删改 通过ctrl-w + 方向键可以切换目录和文件窗口 telescope 方便在目录内查找文件，字符串等 leader + ff（find files） 进行文件查找 leader + fg（live grep） 进行关键词查找 treesitter 基于语言将文本进行结构化理解 实现语法高亮，支持text object、incremental selection等能力 text object支持diw（internal delete word）、vap（visual around paragraph）等操作 incremental selection：ctrl+space nvim-cmp 基于treesitter的理解，实现代码补全 另外autopair实现引号等配对补全，autotag实现html标签配对补全 mason mason是一个管理lsp下载、安装的工具 通过ui完成lsp、包括linter、formatter的安装 mason-lspconfig可以帮助nvim找到nvim-lspconfig的配置，传给lsp 最终lsp实现代码的定义、引用等跳转，并可以进行代码错误识别，给出诊断和code action 定义跳转：gd 引用跳转：gR 显示诊断：leader+d（当前行），leader+D（当前文件） 参考链接：\n# The Only Video You Need to Get Started with Neovim\n# NeoVim 从平凡到非凡\n# How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide",
-    "description": "Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数+上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl+r 重要概念 Text Object vim对文本操作的公式：动作 + 选中类型 + text object",
+    "content": "Vim Vim分为两个概念，编辑器和motion\n编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl+r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数+上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl+u：向上半页；ctrl+d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：\u003c；向右：\u003e； 可以同时缩进多行，在首行\u003e4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）+选中类型（i/a）+object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object 参考链接：\n# Vim As Your Editor # Vim中的重要概念 Text Object\nNeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 配置文件位置：~/.config/nvim/init.lua 重要概念 LSP 代码编辑过程中，需要和ls（language server）进行交互，来获取当前代码的状态（定义、引用、诊断等），两者之间的交互基于LSP（language server protocol）\nlspconfig 每次编辑器启动ls的时候，需要给出配置（包括什么时候启动、当前语言等），这时候就需要lspconfig插件： nvim-lspconfig\n对每一种语言安装对应的插件，来支持对应语言的lsp # LSP in Neovim (with like 3 lines of code) nvim在0.11之后可以更方便的安装配置lsp # How to Setup Neovim LSP Like A Pro in 2025 (v0.11+) 插件 可以使用lazy.nvim来帮助安装插件，其中重要的包括：\nneo-tree 提供左侧文件目录，可以浏览目录结构，进行文件的增删改 通过ctrl-w + 方向键可以切换目录和文件窗口 telescope 方便在目录内查找文件，字符串等 leader + ff（find files） 进行文件查找 leader + fg（live grep） 进行关键词查找 treesitter 基于语言将文本进行结构化理解 实现语法高亮，支持text object、incremental selection等能力 text object支持diw（internal delete word）、vap（visual around paragraph）等操作 incremental selection：ctrl+space nvim-cmp 基于treesitter的理解，实现代码补全 另外autopair实现引号等配对补全，autotag实现html标签配对补全 mason mason是一个管理lsp下载、安装的工具 通过ui完成lsp、包括linter、formatter的安装 mason-lspconfig可以帮助nvim找到nvim-lspconfig的配置，传给lsp 最终lsp实现代码的定义、引用等跳转，并可以进行代码错误识别，给出诊断和code action 定义跳转：gd 引用跳转：gR 显示诊断：leader+d（当前行），leader+D（当前文件） lazygit 在nvim中进行git操作，支持add、commit、push等 减少从nvim出来进入命令行git的操作 参考链接：\n# The Only Video You Need to Get Started with Neovim\n# NeoVim 从平凡到非凡\n# How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide",
+    "description": "Vim Vim分为两个概念，编辑器和motion\n编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl+r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数+上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl+u：向上半页；ctrl+d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：\u003c；向右：\u003e； 可以同时缩进多行，在首行\u003e4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）+选中类型（i/a）+object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object",
     "tags": [],
     "title": "Vim和NeoVim",
     "uri": "/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"
@@ -156,14 +184,6 @@ var relearn_searchindex = [
     ],
     "title": "OSI模型",
     "uri": "/hugo-blog/blogs/techs/osi%E6%A8%A1%E5%9E%8B/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Log \u003e First Day",
