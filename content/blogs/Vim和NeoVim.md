@@ -6,31 +6,51 @@ draft: false
 ---
 # Vim
 ---
-## 基础操作
-
-- 按字符移动：
-	- 上：k；下：j；左：h；右：l
-- 按词移动：
-	- 向前：b；向后：w
-- 按相对行号移动：
-	- 行号设置为相对
-	- 行数+上下：例如向上8行是8k
-- 删除：
-	- d
-- 修改：
-	- c
-- 撤销：
-	- u
-- 重做：
-	- ctrl+r
+Vim分为两个概念，编辑器和motion
+- 编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化
+- motion指vim的基础操作命令，这部分在neovim中通用
+## 操作命令
+- 删除：d
+- 修改：c
+- 替换：r
+- 撤销：u
+- 重做：ctrl+r
+- 移动：
+	- 按字符移动：上：k；下：j；左：h；右：l
+		- 行数+上下：例如向上8行是8k
+	- 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e
+	- 到行首：0，到行首非空字符：_ ，到行尾：$
+	- 到指定字符：
+		- 到下一个指定字符：f，例如ft到下一个t；F到上一个
+		- 到下一个指定字符前：t，例如ta到下一个a前；T到上一个
+		- 重复到下一个：;
+		- 重复到上一个：,
+	- 按paragraph移动：上：{；下：};
+	- 按页移动：ctrl+u：向上半页；ctrl+d：向下半页
+	- 进入insert mode：
+		- 到下一个字符：a
+		- 到最后一个字符后面：A
+		- 到第一个字符前面：I
+		- 新建下一行：o
+		- 新建上一行：O
+	- 手动缩进：向左：<；向右：>；
+		- 可以同时缩进多行，在首行>4j：包括首行一共缩进5行
+- 搜索：
+	- /：搜索下一个；？：默认搜索上一个
+	- \*：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词
+- 光标居中（中间行）：zz
+- text object：动作（v/y/d）+选中类型（i/a）+object类型（w/W/s/p）
+	- 例如：viw（选中当前单词）；viW（选中当前连续字符）
+- 将下一行拼接到当前行，用空格分割：
+	- J
+- 重复上一次操作：.
 
 ## 重要概念
 ### Text Object
 ![image.png](https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png)
-vim对文本操作的公式：动作 + 选中类型 + text object
-
 
 参考链接：  
+[# Vim As Your Editor](https://www.youtube.com/watch?v=X6AR2RMB5tE&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=1)
 [# Vim中的重要概念 Text Object](https://www.bilibili.com/video/BV1Ze4y1E7Sk/?spm_id_from=333.337.search-card.all.click&vd_source=c8a3c83e361aa2a357093342a046ceed)
 
 # NeoVim
@@ -80,6 +100,12 @@ vim对文本操作的公式：动作 + 选中类型 + text object
 	- 引用跳转：gR
 	- 显示诊断：leader+d（当前行），leader+D（当前文件）
 ![image.png](https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png)
+
+### lazygit
+- 在nvim中进行git操作，支持add、commit、push等
+- 减少从nvim出来进入命令行git的操作
+![image.png](https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png)
+
 
 参考链接：  
 [# The Only Video You Need to Get Started with Neovim](https://www.youtube.com/watch?v=m8C0Cq9Uv9o)  

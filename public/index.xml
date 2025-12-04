@@ -6,19 +6,19 @@
     <description>This is your new home page.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Weekly</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</link>
-      <pubDate>Sun, 30 Nov 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</guid>
       <description>This is weekly reports.</description>
     </item>
     <item>
       <title>Blogs</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</link>
-      <pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 03 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</guid>
       <description>This is tech blogs.</description>
     </item>

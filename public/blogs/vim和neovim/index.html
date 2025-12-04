@@ -5,47 +5,51 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
+    <meta name="description" content="Vim Vim分为两个概念，编辑器和motion
+编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl&#43;r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数&#43;上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl&#43;u：向上半页；ctrl&#43;d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：&lt;；向右：&gt;； 可以同时缩进多行，在首行&gt;4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）&#43;选中类型（i/a）&#43;object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
+    <meta name="twitter:description" content="Vim Vim分为两个概念，编辑器和motion
+编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl&#43;r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数&#43;上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl&#43;u：向上半页；ctrl&#43;d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：&lt;；向右：&gt;； 可以同时缩进多行，在首行&gt;4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）&#43;选中类型（i/a）&#43;object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
+    <meta property="og:description" content="Vim Vim分为两个概念，编辑器和motion
+编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl&#43;r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数&#43;上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl&#43;u：向上半页；ctrl&#43;d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：&lt;；向右：&gt;； 可以同时缩进多行，在首行&gt;4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）&#43;选中类型（i/a）&#43;object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
     <meta property="article:published_time" content="2025-11-28T00:00:00+00:00">
     <meta property="article:modified_time" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="name" content="Vim和NeoVim :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Vim 基础操作 按字符移动： 上：k；下：j；左：h；右：l 按词移动： 向前：b；向后：w 按相对行号移动： 行号设置为相对 行数&#43;上下：例如向上8行是8k 删除： d 修改： c 撤销： u 重做： ctrl&#43;r 重要概念 Text Object vim对文本操作的公式：动作 &#43; 选中类型 &#43; text object">
+    <meta itemprop="description" content="Vim Vim分为两个概念，编辑器和motion
+编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl&#43;r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数&#43;上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl&#43;u：向上半页；ctrl&#43;d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：&lt;；向右：&gt;； 可以同时缩进多行，在首行&gt;4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）&#43;选中类型（i/a）&#43;object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object">
     <meta itemprop="datePublished" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-28T00:00:00+00:00">
-    <meta itemprop="wordCount" content="140">
+    <meta itemprop="wordCount" content="167">
     <title>Vim和NeoVim :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1764751096" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764751096" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764751096" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1764751096" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1764751096" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1764856295" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764856295" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1764856295" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764751096";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764856295";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1764751096" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764751096" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764751096" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764856295" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764751096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764751096" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764751096" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1764751096" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1764751096" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764856295" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764856295" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764856295" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1764856295" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1764856295" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -128,7 +132,7 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#基础操作">基础操作</a></li>
+    <li><a href="#操作命令">操作命令</a></li>
     <li><a href="#重要概念">重要概念</a>
       <ul>
         <li><a href="#text-object">Text Object</a></li>
@@ -149,6 +153,7 @@
         <li><a href="#treesitter">treesitter</a></li>
         <li><a href="#nvim-cmp">nvim-cmp</a></li>
         <li><a href="#mason">mason</a></li>
+        <li><a href="#lazygit">lazygit</a></li>
       </ul>
     </li>
   </ul>
@@ -219,8 +224,13 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<h2 id="基础操作">
-  基础操作
+<p>Vim分为两个概念，编辑器和motion</p>
+<ul>
+<li>编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化</li>
+<li>motion指vim的基础操作命令，这部分在neovim中通用</li>
+</ul>
+<h2 id="操作命令">
+  操作命令
 
 
 
@@ -230,42 +240,64 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><ul>
-<li>按字符移动：
+<li>删除：d</li>
+<li>修改：c</li>
+<li>替换：r</li>
+<li>撤销：u</li>
+<li>重做：ctrl+r</li>
+<li>移动：
 <ul>
-<li>上：k；下：j；左：h；右：l</li>
-</ul>
-</li>
-<li>按词移动：
+<li>按字符移动：上：k；下：j；左：h；右：l
 <ul>
-<li>向前：b；向后：w</li>
-</ul>
-</li>
-<li>按相对行号移动：
-<ul>
-<li>行号设置为相对</li>
 <li>行数+上下：例如向上8行是8k</li>
 </ul>
 </li>
-<li>删除：
+<li>按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e</li>
+<li>到行首：0，到行首非空字符：_ ，到行尾：$</li>
+<li>到指定字符：
 <ul>
-<li>d</li>
+<li>到下一个指定字符：f，例如ft到下一个t；F到上一个</li>
+<li>到下一个指定字符前：t，例如ta到下一个a前；T到上一个</li>
+<li>重复到下一个：;</li>
+<li>重复到上一个：,</li>
 </ul>
 </li>
-<li>修改：
+<li>按paragraph移动：上：{；下：};</li>
+<li>按页移动：ctrl+u：向上半页；ctrl+d：向下半页</li>
+<li>进入insert mode：
 <ul>
-<li>c</li>
+<li>到下一个字符：a</li>
+<li>到最后一个字符后面：A</li>
+<li>到第一个字符前面：I</li>
+<li>新建下一行：o</li>
+<li>新建上一行：O</li>
 </ul>
 </li>
-<li>撤销：
+<li>手动缩进：向左：&lt;；向右：&gt;；
 <ul>
-<li>u</li>
+<li>可以同时缩进多行，在首行&gt;4j：包括首行一共缩进5行</li>
 </ul>
 </li>
-<li>重做：
-<ul>
-<li>ctrl+r</li>
 </ul>
 </li>
+<li>搜索：
+<ul>
+<li>/：搜索下一个；？：默认搜索上一个</li>
+<li>*：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词</li>
+</ul>
+</li>
+<li>光标居中（中间行）：zz</li>
+<li>text object：动作（v/y/d）+选中类型（i/a）+object类型（w/W/s/p）
+<ul>
+<li>例如：viw（选中当前单词）；viW（选中当前连续字符）</li>
+</ul>
+</li>
+<li>将下一行拼接到当前行，用空格分割：
+<ul>
+<li>J</li>
+</ul>
+</li>
+<li>重复上一次操作：.</li>
 </ul>
 <h2 id="重要概念">
   重要概念
@@ -287,10 +319,14 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-8eea89fb75dc9feb3fa9abb459ae9aac" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8eea89fb75dc9feb3fa9abb459ae9aac"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a>
-vim对文本操作的公式：动作 + 选中类型 + text object</p>
+</h3><p><a href="#R-image-3cbe5f9209dfee6b2380377269f3fa29" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3cbe5f9209dfee6b2380377269f3fa29"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a></p>
 <p>参考链接：<br>
+
+
+
+
+<a href="https://www.youtube.com/watch?v=X6AR2RMB5tE&amp;list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&amp;index=1" target="_blank"># Vim As Your Editor</a>
 
 
 
@@ -391,8 +427,8 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 </h3><ul>
 <li>提供左侧文件目录，可以浏览目录结构，进行文件的增删改</li>
 <li>通过ctrl-w + 方向键可以切换目录和文件窗口
-<a href="#R-image-9d04dd6772727791067b7aa5adc1aba9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d04dd6772727791067b7aa5adc1aba9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png"></a></li>
+<a href="#R-image-9d34b46bb7a6e241ee59c469e803e977" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d34b46bb7a6e241ee59c469e803e977"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png"></a></li>
 </ul>
 <h3 id="telescope">
   telescope
@@ -408,8 +444,8 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 <li>方便在目录内查找文件，字符串等</li>
 <li>leader + ff（find files） 进行文件查找</li>
 <li>leader + fg（live grep） 进行关键词查找
-<a href="#R-image-6769b570014687d852bb82adf0af8cf8" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6769b570014687d852bb82adf0af8cf8"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png"></a></li>
+<a href="#R-image-0e415c6856d4227a0ead93079da26679" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0e415c6856d4227a0ead93079da26679"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png"></a></li>
 </ul>
 <h3 id="treesitter">
   treesitter
@@ -430,8 +466,8 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 </ul>
 </li>
 </ul>
-<p><a href="#R-image-831f34d36346a3c670863b762bd5dda7" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-831f34d36346a3c670863b762bd5dda7"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png"></a></p>
+<p><a href="#R-image-ad404e1206733dee508dcc2baab9bed6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ad404e1206733dee508dcc2baab9bed6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png"></a></p>
 <h3 id="nvim-cmp">
   nvim-cmp
 
@@ -445,8 +481,8 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 </h3><ul>
 <li>基于treesitter的理解，实现代码补全</li>
 <li>另外autopair实现引号等配对补全，autotag实现html标签配对补全
-<a href="#R-image-42361d6941c6b7cb1362de5b0e0a84e9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-42361d6941c6b7cb1362de5b0e0a84e9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png"></a></li>
+<a href="#R-image-cb8364511f5a1ffe94b236f6ccfbb9a9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cb8364511f5a1ffe94b236f6ccfbb9a9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png"></a></li>
 </ul>
 <h3 id="mason">
   mason
@@ -467,10 +503,26 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 <li>定义跳转：gd</li>
 <li>引用跳转：gR</li>
 <li>显示诊断：leader+d（当前行），leader+D（当前文件）
-<a href="#R-image-324e89d00230b64168724f8e975dbf9f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-324e89d00230b64168724f8e975dbf9f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png"></a></li>
+<a href="#R-image-e4027dd1f14cd4d33a5499da62c4c0bf" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e4027dd1f14cd4d33a5499da62c4c0bf"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png"></a></li>
 </ul>
 </li>
+</ul>
+<h3 id="lazygit">
+  lazygit
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>在nvim中进行git操作，支持add、commit、push等</li>
+<li>减少从nvim出来进入命令行git的操作
+<a href="#R-image-6b7b97c5277281091df60681d042b372" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6b7b97c5277281091df60681d042b372"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png"></a></li>
 </ul>
 <p>参考链接：<br>
 
@@ -538,6 +590,7 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weekly</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/techs/agent/index.html"><a class="padding" href="/hugo-blog/blogs/techs/agent/index.html">Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/lua/index.html"><a class="padding" href="/hugo-blog/blogs/lua/index.html">Lua</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
@@ -568,8 +621,8 @@ vim对文本操作的公式：动作 + 选中类型 + text object</p>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764751096" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1764751096" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1764856295" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

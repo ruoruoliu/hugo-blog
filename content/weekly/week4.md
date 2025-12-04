@@ -7,7 +7,6 @@ draft: false
 ---
 > [!note] 总结
 > - 优化本地开发环境
-> - 练习vim基本操作
 
 > [!info]+ tmux配置
 
@@ -21,12 +20,6 @@ draft: false
 
 - [Terminal配置](../Blogs/Terminal配置.md)
 
-> [!info]+ neovim配置
-
-- 学习lua的基础知识：[Lua](../Blogs/Lua.md)
-- 配置Neovim环境：[Vim和NeoVim](../Blogs/Vim和NeoVim.md)
-- 练习vim操作熟练度
-
 > [!tip] 知识
 > - 通过tmux解决同一个shell下多开进程的操作方式
 > 	- tmux分为session、window、pane，每个session下可以快速切换window和pane
@@ -39,6 +32,7 @@ draft: false
 > 	- 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮
 
 > [!warning] 待办
-> - 准备面试
+> - 配置neovim环境
+> - 熟练vim操作
 
 
