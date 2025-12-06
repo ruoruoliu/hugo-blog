@@ -26,7 +26,7 @@ draft: false
 
 ## 内部操作
 
-前缀（ctrl+b）+：
+前缀（ctrl+s）+：
 - c：新建window
 - 数字：切换window编号
 - d：退出当前session，但不杀死（后台运行）

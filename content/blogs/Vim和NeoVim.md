@@ -73,8 +73,12 @@ Vim分为两个概念，编辑器和motion
 ### neo-tree
 - 提供左侧文件目录，可以浏览目录结构，进行文件的增删改
 - 通过ctrl-w + 方向键可以切换目录和文件窗口
+- 在目录中文件上按t可以在新的tab中打开
 ![image.png](https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png)
-
+### bufferline
+- 管理buffer的工具，可以方便在buffer之间切换：
+	- 上一个buffer：\[b
+	- 下一个buffer：\]b
 ### telescope
 - 方便在目录内查找文件，字符串等
 - leader + ff（find files） 进行文件查找
@@ -85,7 +89,6 @@ Vim分为两个概念，编辑器和motion
 - 实现语法高亮，支持text object、incremental selection等能力
 	- text object支持diw（internal delete word）、vap（visual around paragraph）等操作
 	- incremental selection：ctrl+space
-
 ![image.png](https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png)
 ### nvim-cmp
 - 基于treesitter的理解，实现代码补全
@@ -100,7 +103,6 @@ Vim分为两个概念，编辑器和motion
 	- 引用跳转：gR
 	- 显示诊断：leader+d（当前行），leader+D（当前文件）
 ![image.png](https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png)
-
 ### lazygit
 - 在nvim中进行git操作，支持add、commit、push等
 - 减少从nvim出来进入命令行git的操作

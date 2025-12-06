@@ -60,7 +60,7 @@ draft: false
 			- sticky：跟着scroll走
 		- z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上）
 		- grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整
-		- flexbox：可以方便地对block进行动态的水平和垂直布局
+		- flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局
 			- 可以解决两个div之间由于html换行导致的空格间隙
 			- 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小
 		- transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑
