@@ -27,29 +27,29 @@
 编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl&#43;r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数&#43;上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl&#43;u：向上半页；ctrl&#43;d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：&lt;；向右：&gt;； 可以同时缩进多行，在首行&gt;4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）&#43;选中类型（i/a）&#43;object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object">
     <meta itemprop="datePublished" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-28T00:00:00+00:00">
-    <meta itemprop="wordCount" content="167">
+    <meta itemprop="wordCount" content="172">
     <title>Vim和NeoVim :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1764856295" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764856295" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764856295" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1764856295" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1764856295" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1764993325" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1764993325" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1764993325" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1764993325" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1764993325" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764856295";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1764993325";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1764856295" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764856295" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764856295" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1764993325" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1764993325" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1764993325" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1764993325" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764856295" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764856295" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764856295" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1764856295" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1764856295" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764993325" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1764993325" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1764993325" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1764993325" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1764993325" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -149,6 +149,7 @@
     <li><a href="#插件">插件</a>
       <ul>
         <li><a href="#neo-tree">neo-tree</a></li>
+        <li><a href="#bufferline">bufferline</a></li>
         <li><a href="#telescope">telescope</a></li>
         <li><a href="#treesitter">treesitter</a></li>
         <li><a href="#nvim-cmp">nvim-cmp</a></li>
@@ -319,8 +320,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-3cbe5f9209dfee6b2380377269f3fa29" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3cbe5f9209dfee6b2380377269f3fa29"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a></p>
+</h3><p><a href="#R-image-2b0b74256c499d63d5a8a0df7990c4c2" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2b0b74256c499d63d5a8a0df7990c4c2"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a></p>
 <p>参考链接：<br>
 
 
@@ -426,9 +427,28 @@
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><ul>
 <li>提供左侧文件目录，可以浏览目录结构，进行文件的增删改</li>
-<li>通过ctrl-w + 方向键可以切换目录和文件窗口
-<a href="#R-image-9d34b46bb7a6e241ee59c469e803e977" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d34b46bb7a6e241ee59c469e803e977"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png"></a></li>
+<li>通过ctrl-w + 方向键可以切换目录和文件窗口</li>
+<li>在目录中文件上按t可以在新的tab中打开
+<a href="#R-image-2490fb0cdcbf37fa7335bb62f9074612" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2490fb0cdcbf37fa7335bb62f9074612"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png"></a></li>
+</ul>
+<h3 id="bufferline">
+  bufferline
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>管理buffer的工具，可以方便在buffer之间切换：
+<ul>
+<li>上一个buffer：[b</li>
+<li>下一个buffer：]b</li>
+</ul>
+</li>
 </ul>
 <h3 id="telescope">
   telescope
@@ -444,8 +464,8 @@
 <li>方便在目录内查找文件，字符串等</li>
 <li>leader + ff（find files） 进行文件查找</li>
 <li>leader + fg（live grep） 进行关键词查找
-<a href="#R-image-0e415c6856d4227a0ead93079da26679" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0e415c6856d4227a0ead93079da26679"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png"></a></li>
+<a href="#R-image-cae76e7df81aa5df397494f8146a8c17" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cae76e7df81aa5df397494f8146a8c17"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png"></a></li>
 </ul>
 <h3 id="treesitter">
   treesitter
@@ -462,12 +482,12 @@
 <li>实现语法高亮，支持text object、incremental selection等能力
 <ul>
 <li>text object支持diw（internal delete word）、vap（visual around paragraph）等操作</li>
-<li>incremental selection：ctrl+space</li>
+<li>incremental selection：ctrl+space
+<a href="#R-image-8580459109928215bf693968a2f7b5a3" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8580459109928215bf693968a2f7b5a3"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png"></a></li>
 </ul>
 </li>
 </ul>
-<p><a href="#R-image-ad404e1206733dee508dcc2baab9bed6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ad404e1206733dee508dcc2baab9bed6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png"></a></p>
 <h3 id="nvim-cmp">
   nvim-cmp
 
@@ -481,8 +501,8 @@
 </h3><ul>
 <li>基于treesitter的理解，实现代码补全</li>
 <li>另外autopair实现引号等配对补全，autotag实现html标签配对补全
-<a href="#R-image-cb8364511f5a1ffe94b236f6ccfbb9a9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cb8364511f5a1ffe94b236f6ccfbb9a9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png"></a></li>
+<a href="#R-image-824469dc82d4323727200dd9a700c645" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-824469dc82d4323727200dd9a700c645"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png"></a></li>
 </ul>
 <h3 id="mason">
   mason
@@ -503,8 +523,8 @@
 <li>定义跳转：gd</li>
 <li>引用跳转：gR</li>
 <li>显示诊断：leader+d（当前行），leader+D（当前文件）
-<a href="#R-image-e4027dd1f14cd4d33a5499da62c4c0bf" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e4027dd1f14cd4d33a5499da62c4c0bf"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png"></a></li>
+<a href="#R-image-711810a2eb1db1fae92137f25744fe04" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-711810a2eb1db1fae92137f25744fe04"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png"></a></li>
 </ul>
 </li>
 </ul>
@@ -521,8 +541,8 @@
 </h3><ul>
 <li>在nvim中进行git操作，支持add、commit、push等</li>
 <li>减少从nvim出来进入命令行git的操作
-<a href="#R-image-6b7b97c5277281091df60681d042b372" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6b7b97c5277281091df60681d042b372"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png"></a></li>
+<a href="#R-image-191ae106f4d4da6069db5d82a81c237c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-191ae106f4d4da6069db5d82a81c237c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png"></a></li>
 </ul>
 <p>参考链接：<br>
 
@@ -621,8 +641,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764856295" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1764856295" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1764993325" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1764993325" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
