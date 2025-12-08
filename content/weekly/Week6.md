@@ -96,6 +96,10 @@ draft: false
 - 课程链接：  
 	- [# ES6 Tutorial: Learn Modern JavaScript in 1 Hour](https://www.youtube.com/watch?v=NCwa_xi0Uuc)
 
+> [!info] 开发Flappy Bird
+
+- [从零开始构建Flappy Bird](../Blogs/Techs/从零开始构建Flappy%20Bird.md)
+
 > [!tip] 知识
 > - Javascript ES6 2015年发布，主要引入let、const、class、module等
 

@@ -10,7 +10,7 @@ draft: false
 
 > [!info]+ tmux配置
 
-- [[Tmux使用教程]]
+- [Tmux使用教程](../Blogs/Tmux使用教程.md)
 
 > [!info]+ aerospace配置
 

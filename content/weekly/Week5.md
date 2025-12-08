@@ -1,5 +1,5 @@
 ---
-title: Week5 Vim环境配置及javascript学习
+title: Week5 nvim配置和javascript学习
 date: 2025-12-04
 tags:
   - 周记
