@@ -27,8 +27,14 @@ draft: false
 语法高亮：[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 语义补全：[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 fzf：
-- ctrl + t：进行目录下的文件查找（目前限制在home目录下的dir）
+- ctrl + f：进行目录下的文件查找（目前扩展为在home目录下的dir）
+- ctrl + t：进行目录下的目录查找（同上）
 - ctrl + r：显示history
+- \*\*：会根据当前命令前缀查找候选
+	- cd \*\*：列出目录，仅限当前目录下，和上面的生效区域不同
+	- export \*\*：列出环境变量
+	- ssh \*\*：列出最近访问过的hostname
+	- kill -9 \*\*：列出进程
 
 参考链接：  
 [# How to setup your Mac Terminal to be beautiful](https://www.youtube.com/watch?v=wNQpDWLs4To)

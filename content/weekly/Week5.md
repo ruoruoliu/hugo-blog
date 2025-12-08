@@ -13,21 +13,24 @@ draft: false
 > [!info]+ neovim配置
 
 - 学习lua的基础知识：[Lua](../Blogs/Lua.md)
-- 配置Neovim环境：[Vim和NeoVim](../Blogs/Vim和NeoVim.md)
+- 配置Neovim环境，安装所需插件：[Vim和NeoVim](../Blogs/Vim和NeoVim.md)
 
 > [!info]+ 学习javascript基础知识
 
 - javascript课程学习
-	- 可变参数：...，比如function foo (a, b, ...c)，c获取剩余可变参数
+	- \=\=\=：三个等号是全等，即对象类型和值均相等，两个等号只代表值相等
+	- ...：可变参数，比如function foo (a, b, ...c)，c获取剩余可变参数
+	- typeof：类型判断，如typeof xxx !== 'function'
 	- for循环：
-		- 对array可以用of
+		- 对array（可迭代对象，包括map）可以用of
 			```
 			for(ele of elements) {...}
 			```
-		- 对object可以用in
+		- 对object属性可以用in
 			```
 			for(property in element) {...}
 			```
+		![image.png](https://images.ruoruoliu.com/2025/12/72333d4b946a4cdb3172ec780548ad1f.png)
 	- forEach函数接受的callback可以最多包含element、index、array三个参数
 		- map函数相比forEach的区别：返回新的array；类似的还有filter
 		- reduce函数接受accumulator和element两个参数，最终返回一个element
@@ -37,7 +40,7 @@ draft: false
 			fruits.forEach(fruit => console.log(fruit.calories));
 			```
 	- this：使用当前对象作为this
-		- 不能在arrow function中使用，会忽略当前对象
+		- arrow function中的this的指向是代码位置确定的（词法定义域，Lexical Scope），而不是他被调用时确定的，因此在回调函数函数中可以绑定到当前对象（如果是普通函数作为回调函数，this在运行时才确定，已经和对象失联，只会绑定到global object）
 		- 可以用来实现constructor（ES6新特性支持class）
 	- super：使用父类方法
 		- 在子类中定义constructor时要首先使用父类的constructor，即super(xxx)
@@ -134,8 +137,10 @@ draft: false
 > 	- 通过LazyNvim插件配置
 > 	- 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能
 > 	- 基本替代vscode，熟练掌握vim操作后，效率提升
+> -  html负责内容、css负责样式、javascript负责交互
 > - 通过nodejs的live-server可以同步更新目录内的网页状态，类似vscode里的go live插件
-> - html负责内容、css负责样式、javascript负责交互
+> - node开启javascript命令行
 
 > [!warning] 待办
 > - 了解javscript进阶知识：ES6+新特性
+> - Flappy Bird开发
