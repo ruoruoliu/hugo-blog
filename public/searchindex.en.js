@@ -51,8 +51,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点\n开始！ html \u003ccanvas\u003e元素 游戏循环（game loop）",
-    "description": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点\n开始！ html \u003ccanvas\u003e元素 游戏循环（game loop）",
+    "content": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点\n在线玩Flappy Bird\n精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中",
+    "description": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点\n在线玩Flappy Bird\n精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中",
     "tags": [
       "技术笔记"
     ],
