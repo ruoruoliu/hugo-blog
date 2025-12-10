@@ -6,14 +6,35 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTML Canvas</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/html-canvas/index.html</link>
+      <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/techs/html-canvas/index.html</guid>
+      <description>Canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context&#xA;const ctx = canvas.getContext(&#34;2d&#34;); 绘制API 矩形 ctx.fillRect(x, y, width, height); 直线 ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); 图像 参数包括（可以分别选择前3、5、9个参数）： image、paste坐标（x1、y1）、paste大小（w1、h1）、原图坐标（x2、y2）、原图大小（w2、h2）</description>
+    </item>
+    <item>
+      <title>像素工具Asperite</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/asperite/index.html</link>
+      <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/asperite/index.html</guid>
+      <description>官网链接</description>
+    </item>
+    <item>
+      <title>游戏编程基本概念</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html</link>
+      <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/techs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html</guid>
+      <description>Game Loop Game Loop的结构通常是以下三步的循环：&#xA;Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right</description>
+    </item>
     <item>
       <title>从零开始构建Flappy Bird</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html</link>
       <pubDate>Mon, 08 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/techs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html</guid>
-      <description>背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点&#xA;在线玩Flappy Bird&#xA;精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中</description>
+      <description>背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点 预备知识： HTML Canvas 游戏编程基本概念#Game Loop 在线玩Flappy Bird&#xA;精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中</description>
     </item>
     <item>
       <title>Agent</title>
