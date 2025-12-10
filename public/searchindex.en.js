@@ -32,12 +32,50 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "Canvas创建 \u003ccanvas width=\"300\" height=\"200\"\u003e\u003c/canvas\u003e context 设置使用2D canvas，获取canvas的context，后续操作都是通过context\nconst ctx = canvas.getContext(\"2d\"); 绘制API 矩形 ctx.fillRect(x, y, width, height); 直线 ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); 图像 参数包括（可以分别选择前3、5、9个参数）： image、paste坐标（x1、y1）、paste大小（w1、h1）、原图坐标（x2、y2）、原图大小（w2、h2）\nconst img = new Image(); img.src = 'xxx.png'; ctx.drawImage(img, x1, y1, w1, h1, x2, y2, w2, h2); # How to Draw Images to HTML Canvas (JavaScript Tutorial)\n更多链接： # Canvas HTML5 JavaScript Full Tutorial # HTML Canvas DEEP DIVE",
+    "description": "Canvas创建 \u003ccanvas width=\"300\" height=\"200\"\u003e\u003c/canvas\u003e context 设置使用2D canvas，获取canvas的context，后续操作都是通过context\nconst ctx = canvas.getContext(\"2d\"); 绘制API 矩形 ctx.fillRect(x, y, width, height); 直线 ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); 图像 参数包括（可以分别选择前3、5、9个参数）： image、paste坐标（x1、y1）、paste大小（w1、h1）、原图坐标（x2、y2）、原图大小（w2、h2）",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "HTML Canvas",
+    "uri": "/hugo-blog/blogs/techs/html-canvas/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Tags",
     "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "官网链接",
+    "description": "官网链接",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "像素工具Asperite",
+    "uri": "/hugo-blog/blogs/asperite/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "Game Loop Game Loop的结构通常是以下三步的循环：\nProcess Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right",
+    "description": "Game Loop Game Loop的结构通常是以下三步的循环：\nProcess Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "游戏编程基本概念",
+    "uri": "/hugo-blog/blogs/techs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
@@ -51,8 +89,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点\n在线玩Flappy Bird\n精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中",
-    "description": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点\n在线玩Flappy Bird\n精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中",
+    "content": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点 预备知识： HTML Canvas 游戏编程基本概念#Game Loop 在线玩Flappy Bird\n精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中",
+    "description": "背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点 预备知识： HTML Canvas 游戏编程基本概念#Game Loop 在线玩Flappy Bird\n精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中",
     "tags": [
       "技术笔记"
     ],
@@ -66,14 +104,6 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: 周记",
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weekly",
@@ -147,7 +177,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "Vim Vim分为两个概念，编辑器和motion\n编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl+r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数+上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl+u：向上半页；ctrl+d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：\u003c；向右：\u003e； 可以同时缩进多行，在首行\u003e4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）+选中类型（i/a）+object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object 参考链接：\n# Vim As Your Editor # Vim中的重要概念 Text Object\nNeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 配置文件位置：~/.config/nvim/init.lua 重要概念 LSP 代码编辑过程中，需要和ls（language server）进行交互，来获取当前代码的状态（定义、引用、诊断等），两者之间的交互基于LSP（language server protocol）\nlspconfig 每次编辑器启动ls的时候，需要给出配置（包括什么时候启动、当前语言等），这时候就需要lspconfig插件： nvim-lspconfig\n对每一种语言安装对应的插件，来支持对应语言的lsp # LSP in Neovim (with like 3 lines of code) nvim在0.11之后可以更方便的安装配置lsp # How to Setup Neovim LSP Like A Pro in 2025 (v0.11+) 插件 可以使用lazy.nvim来帮助安装插件，其中重要的包括：\nneo-tree 提供左侧文件目录，可以浏览目录结构，进行文件的增删改 通过ctrl-w + 方向键可以切换目录和文件窗口 在目录中文件上按t可以在新的tab中打开 bufferline 管理buffer的工具，可以方便在buffer之间切换： 上一个buffer：[b 下一个buffer：]b telescope 方便在目录内查找文件，字符串等 leader + ff（find files） 进行文件查找 leader + fg（live grep） 进行关键词查找 treesitter 基于语言将文本进行结构化理解 实现语法高亮，支持text object、incremental selection等能力 text object支持diw（internal delete word）、vap（visual around paragraph）等操作 incremental selection：ctrl+space nvim-cmp 基于treesitter的理解，实现代码补全 另外autopair实现引号等配对补全，autotag实现html标签配对补全 mason mason是一个管理lsp下载、安装的工具 通过ui完成lsp、包括linter、formatter的安装 mason-lspconfig可以帮助nvim找到nvim-lspconfig的配置，传给lsp 最终lsp实现代码的定义、引用等跳转，并可以进行代码错误识别，给出诊断和code action 定义跳转：gd 引用跳转：gR 显示诊断：leader+d（当前行），leader+D（当前文件） lazygit 在nvim中进行git操作，支持add、commit、push等 减少从nvim出来进入命令行git的操作 参考链接：\n# The Only Video You Need to Get Started with Neovim\n# NeoVim 从平凡到非凡\n# How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide",
+    "content": "Vim Vim分为两个概念，编辑器和motion\n编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl+r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数+上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl+u：向上半页；ctrl+d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：\u003c；向右：\u003e； 可以同时缩进多行，在首行\u003e4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）+选中类型（i/a）+object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object 参考链接：\n# Vim As Your Editor # Vim中的重要概念 Text Object\nNeoVim neovim内置lua引擎，可以用lua编写插件和配置，易读且功能强大 配置文件位置：~/.config/nvim/init.lua 重要概念 LSP 代码编辑过程中，需要和ls（language server）进行交互，来获取当前代码的状态（定义、引用、诊断等），两者之间的交互基于LSP（language server protocol）\nlspconfig 每次编辑器启动ls的时候，需要给出配置（包括什么时候启动、当前语言等），这时候就需要lspconfig插件： nvim-lspconfig\n对每一种语言安装对应的插件，来支持对应语言的lsp # LSP in Neovim (with like 3 lines of code) nvim在0.11之后可以更方便的安装配置lsp # How to Setup Neovim LSP Like A Pro in 2025 (v0.11+) 插件 可以使用lazy.nvim来帮助安装插件，其中重要的包括：\nneo-tree 提供左侧文件目录，可以浏览目录结构，进行文件的增删改 通过ctrl-w + 方向键可以切换目录和文件窗口 在目录中文件上按t可以在新的tab中打开 bufferline 管理buffer的工具，可以方便在buffer之间切换： 上一个buffer：[b 下一个buffer：]b telescope 方便在目录内查找文件，字符串等 leader + ff（find files） 进行文件查找 leader + fg（live grep） 进行关键词查找 treesitter 基于语言将文本进行结构化理解 实现语法高亮，支持text object、incremental selection等能力 text object支持diw（internal delete word）、vap（visual around paragraph）等操作 incremental selection：ctrl+space nvim-cmp 基于treesitter的理解，实现代码补全 另外autopair实现引号等配对补全，autotag实现html标签配对补全 mason mason是一个管理lsp下载、安装的工具 通过ui完成lsp、包括linter、formatter的安装 mason-lspconfig可以帮助nvim找到nvim-lspconfig的配置，传给lsp 最终lsp实现代码的定义、引用等跳转，并可以进行代码错误识别，给出诊断和code action 定义跳转：gd 引用跳转：gR 显示诊断：leader+d（当前行），leader+D（当前文件） lazygit 在nvim中进行git操作，支持add、commit、push等 减少从nvim出来进入命令行git的操作 参考链接： # Lazygit - The Best Way To Use Git On The Terminal \u0026 Neovim 参考链接：\n# The Only Video You Need to Get Started with Neovim\n# NeoVim 从平凡到非凡\n# How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide",
     "description": "Vim Vim分为两个概念，编辑器和motion\n编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl+r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数+上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl+u：向上半页；ctrl+d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：\u003c；向右：\u003e； 可以同时缩进多行，在首行\u003e4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）+选中类型（i/a）+object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object",
     "tags": [],
     "title": "Vim和NeoVim",

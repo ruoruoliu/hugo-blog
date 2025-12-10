@@ -106,6 +106,7 @@ Vim分为两个概念，编辑器和motion
 ### lazygit
 - 在nvim中进行git操作，支持add、commit、push等
 - 减少从nvim出来进入命令行git的操作
+- 参考链接：[# Lazygit - The Best Way To Use Git On The Terminal & Neovim](https://www.youtube.com/watch?v=Ihg37znaiBo)
 ![image.png](https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png)
 
 
