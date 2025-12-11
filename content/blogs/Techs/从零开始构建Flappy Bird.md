@@ -193,3 +193,8 @@ draft: false
 	    game_state = "ready"; 
 	});
 	```
+
+
+> [!NOTE] 代码仓库
+
+- github链接：[flappy-bird](https://github.com/ruoruoliu/flappy-bird) 

@@ -8,6 +8,7 @@ draft: false
 > [!note] 总结
 > - Javascript进阶学习
 > - 尝试利用原生js搭建Flappy Bird
+> - 了解javascript的包管理器
 
 > [!info] Javascript面向对象编程
 
@@ -99,6 +100,12 @@ draft: false
 > [!info] 开发Flappy Bird
 
 - [从零开始构建Flappy Bird](../Blogs/Techs/从零开始构建Flappy%20Bird.md)
+
+
+> [!info] 了解javascript的包管理器
+
+- 
+
 
 > [!tip] 知识
 > - Javascript ES6 2015年发布，主要引入let、const、class、module等
