@@ -102,7 +102,10 @@ draft: false
 
 > [!tip] 知识
 > - Javascript ES6 2015年发布，主要引入let、const、class、module等
+> - 游戏图标经常通过精灵图集的方式获取，配合backgroundPosition实现
+> - 依赖requestAnimationFrame方法，基于窗口刷新不断调用游戏逻辑函数，实现Game Loop
 
 > [!warning] 待办
 > - 学习react框架基础知识
+> - 学习强化学习基础知识，在Flappy Bird中实现bot
 

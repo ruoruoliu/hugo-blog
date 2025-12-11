@@ -54,7 +54,7 @@ draft: false
 		- padding就是字和border的距离，margin就是border和其他元素的距离  		![image.png](https://images.ruoruoliu.com/2025/11/243150c0e34a8d1294d09b4570d6db81.png)
 		- position：
 			- static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位
-			- relative：元素原本位置加上left、right、top、bottom的影响
+			- relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素
 			- fixed：基于窗口（即browser view）作为基准定位的位置
 			- absolute：基于上级（如果没有上级，即page）作为基准定位的位置
 			- sticky：跟着scroll走
