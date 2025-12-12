@@ -54,57 +54,9 @@ draft: false
 - shuffle：没有内置的shuffle，需要自己实现Fisher-Yates算法
 	![image.png](https://images.ruoruoliu.com/2025/12/e0a03510793f0986df35c231671c4f28.png)
 - setTimeout：等待一段时间（毫秒）后执行函数，可以通过clearTimeout取消
-- module：代码通过模块载入，类似python的import
-	- 在html的script标签里加上type=“module”，将index.js当作module载入
-	- 变量和函数前需要加上export关键字
-	- 在index.js头部加上import {变量名、函数名} from '文件路径'
-- async：
-	- setTimeout就是一个异步函数的例子，不阻碍主线程
-	- 一般通过callback、promise、async/await实现
-	- 当使用callback来串联异步函数时，会出现callback hell现象，即callback嵌套过度让代码可读性变差，可以通过promise或者async/await解决
-	![image.png](https://images.ruoruoliu.com/2025/12/a57fe6d0b8ca7a3f8e2574437045f220.png)
-	- promise：用来管理异步操作的对象
-		- 异步函数foo()返回promise对象，new Promise((resolve, reject)) => {异步逻辑}
-		- 用.then来承接异步函数，即foo().then(value => {...})，then里面写resolve处理逻辑
-			- resolve函数可以返回另一个promise，用来串联下一个异步函数
-		- 用.catch来承接异步函数，即foo().catch(error => {...})，catch里面写reject处理逻辑
-			- reject函数指定失败的逻辑，对整体异步链生效，无法针对其中的某个异步函数单独指定reject
-			- 如果想对某个异步函数实现单独失败处理，有如下两种方案：
-				- 方法一：.then中加入(error => {...})的部分
-				- 方法二：在异步函数中的reject参数中给出类型，在后续统一的catch中按类型实现单独逻辑
-	- async/await：用同步的方式写异步
-		- async让一个函数返回promise
-			- 是个语法糖，自动将函数返回结果包装在Promise.resolve()中
-		- await让一个异步函数等待一个promise
-		- 通过写一个async关键词的函数来包含多个异步函数，每个异步函数用await来等待结果，用try/catch来捕获异步过程中的error，可以将上述promise的链式调用改写为同步风格的函数：
-			```
-			function bar() {
-				return new Promise((...))
-			}
-			function fuz() {
-				return new Promise((...))
-			}
-			async function foo() {
-				xxx = await bar();
-				yyy = await fuz();
-			}
-			```
 - 异常捕获：
 	- 使用try、catch、finally拦截异常
 	- 使用throw new Error()抛出异常
-- DOM：Document Object Model
-	- 浏览器加载html构建DOM，将元素以树形结构展示
-	- javascript可以通过DOM动态改变网页的内容、结构和样式
-		- 动态（live）获取，指查询后的改变能实时更新，类似于引用：
-			- getElementById：精准获取element
-			- getElementsClassName返回html collection，注意不等同于array，比如不支持forEach操作，可以用Array.from(XXX)来转化为array
-			- getElementsByTagName返回所有tag（如h2）下面的html collection
-		- 静态（static）获取，指查一次，子元素不再改变，类似于快照、拷贝：
-			- querySelector/querySelectorAll通过类似css的获取方式（./#）
-				- querySelector获取第一个element
-				- querySelectorAll获取nodelist，一般用forEach遍历
-	- 可以用console.dir(document)来显示结构
-	![image.png|400](https://images.ruoruoliu.com/2025/12/02e3ae41b12114cf75dc2cc5c744f031.png)
 - 修改html：
 	- 添加三部曲：构建element、添加属性、插入DOM（基于父节点）
 	- 删除：removeChild，基于父节点
@@ -116,6 +68,59 @@ draft: false
 	- 支持add、remove、toggle、replace、contains操作
 - JSON：stringify和parse实现js obect和json string的相互转换
 - fetch：异步函数，通过路径（本地或远程连接）读取数据
+
+# Module
+- module：代码通过模块载入，类似python的import
+	- 在html的script标签里加上type=“module”，将index.js当作module载入
+	- 变量和函数前需要加上export关键字
+	- 在index.js头部加上import {变量名、函数名} from '文件路径'
+
+# 异步
+- setTimeout就是一个异步函数的例子，不阻碍主线程
+- 一般通过callback、promise、async/await实现
+- 当使用callback来串联异步函数时，会出现callback hell现象，即callback嵌套过度让代码可读性变差，可以通过promise或者async/await解决
+	![image.png](https://images.ruoruoliu.com/2025/12/a57fe6d0b8ca7a3f8e2574437045f220.png)
+- promise：用来管理异步操作的对象
+	- 异步函数foo()返回promise对象，new Promise((resolve, reject)) => {异步逻辑}
+	- 用.then来承接异步函数，即foo().then(value => {...})，then里面写resolve处理逻辑
+		- resolve函数可以返回另一个promise，用来串联下一个异步函数
+	- 用.catch来承接异步函数，即foo().catch(error => {...})，catch里面写reject处理逻辑
+		- reject函数指定失败的逻辑，对整体异步链生效，无法针对其中的某个异步函数单独指定reject
+		- 如果想对某个异步函数实现单独失败处理，有如下两种方案：
+			- 方法一：.then中加入(error => {...})的部分
+			- 方法二：在异步函数中的reject参数中给出类型，在后续统一的catch中按类型实现单独逻辑
+- async/await：用同步的方式写异步
+	- async让一个函数返回promise
+		- 是个语法糖，自动将函数返回结果包装在Promise.resolve()中
+	- await让一个异步函数等待一个promise
+	- 通过写一个async关键词的函数来包含多个异步函数，每个异步函数用await来等待结果，用try/catch来捕获异步过程中的error，可以将上述promise的链式调用改写为同步风格的函数：
+		```
+		function bar() {
+			return new Promise((...))
+		}
+		function fuz() {
+			return new Promise((...))
+		}
+		async function foo() {
+			xxx = await bar();
+			yyy = await fuz();
+		}
+		```
+
+# DOM的概念
+- DOM：Document Object Model
+- 浏览器加载html构建DOM，将元素以树形结构展示
+- javascript可以通过DOM动态改变网页的内容、结构和样式
+	- 动态（live）获取，指查询后的改变能实时更新，类似于引用：
+		- getElementById：精准获取element
+		- getElementsClassName返回html collection，注意不等同于array，比如不支持forEach操作，可以用Array.from(XXX)来转化为array
+		- getElementsByTagName返回所有tag（如h2）下面的html collection
+	- 静态（static）获取，指查一次，子元素不再改变，类似于快照、拷贝：
+		- querySelector/querySelectorAll通过类似css的获取方式（./#）
+			- querySelector获取第一个element
+			- querySelectorAll获取nodelist，一般用forEach遍历
+- 可以用console.dir(document)来显示结构
+	![image.png|400](https://images.ruoruoliu.com/2025/12/02e3ae41b12114cf75dc2cc5c744f031.png)
 
 # ES6新特性
  - let和const替代var：

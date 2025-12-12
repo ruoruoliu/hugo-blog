@@ -1,5 +1,5 @@
 ---
-title: Week5 javascript学习
+title: Week5 Javascript学习
 date: 2025-12-04
 tags:
   - 周记
