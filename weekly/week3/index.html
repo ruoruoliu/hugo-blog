@@ -5,15 +5,15 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如&lt;p id=“p1”&gt;），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“&gt;” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“&#43;”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
+    <meta name="description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 HTML学习手册-基础概念 CSS学习手册-基础用法 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 在html的body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Week3 个人博客搭建 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如&lt;p id=“p1”&gt;），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“&gt;” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“&#43;”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
+    <meta name="twitter:description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 HTML学习手册-基础概念 CSS学习手册-基础用法 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 在html的body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/weekly/week3/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="Week3 个人博客搭建 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如&lt;p id=“p1”&gt;），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“&gt;” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“&#43;”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
+    <meta property="og:description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 HTML学习手册-基础概念 CSS学习手册-基础用法 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 在html的body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Weeklies">
@@ -21,33 +21,33 @@
     <meta property="article:modified_time" content="2025-11-16T00:00:00+00:00">
     <meta property="article:tag" content="周记">
     <meta itemprop="name" content="Week3 个人博客搭建 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro html知识点 本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化） 在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用 css知识点 id：采用id的方式（比如&lt;p id=“p1”&gt;），可以用#（比如#p1） class：给元素在html里加上class，在css里面可以针对class加格式，比如.class combinators descendant：使用“ ”，对所有子节点加格式，比如.class p child：使用“&gt;” ，对儿子节点加格式（不包括孙子及更远下属） general sibling：使用“～”，兄弟节点 adjacent sibling：使用“&#43;”，相邻兄弟节点 伪class：定义元素在特殊状态时的格式，比如： 悬浮：hover（li:hover，li:not(:hover)） 选中：active 某个：nth-child（li:nth-child(2)，li:nth-child(even)） 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection） span或者div（称为container）用来分组，从而对各组或整体进行排版 span是inline的，只对内容生效，div是block的，对整体block生效 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果 padding就是字和border的距离，margin就是border和其他元素的距离 position： static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位 relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素 fixed：基于窗口（即browser view）作为基准定位的位置 absolute：基于上级（如果没有上级，即page）作为基准定位的位置 sticky：跟着scroll走 z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上） grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整 flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局 可以解决两个div之间由于html换行导致的空格间隙 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小 transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑 @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版 @keyframes：利用transform、opacity、background-color等实现简单的动画效果 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ javascript知识点 在body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
+    <meta itemprop="description" content="总结 学习notion基本功能，并基于notion搭建个人博客 学习css、html、javascript基础知识，搭建简单的github.io主页 基于notion &#43; notion next &#43; vercel搭建个人博客 调研notion建站方案 原生publish：直接点击页面的publish，notion原生样式 开源notion next： 通过next js实现notion内容拉取和前端渲染，可以定制化页面样式 参考链接 notion next fork仓库后可以修改配置 复制notion next作者的模版页面到自己的notion主页中，编辑内容进行博客编写 官网 vercel负责托管部署 关联github账号，import上述仓库，填写NOTION_PAGE_ID，部署 配置域名等与github pages类似 博客链接 学习css、html基础知识并简单搭建github.io css &amp; html课程学习 HTML学习手册-基础概念 CSS学习手册-基础用法 课程链接 # 成為網頁設計師的第一步！快速上手 HTML &amp; CSS 展開你的網頁設計之旅！ # HTML &amp; CSS Full Course for free # HTML &amp; CSS Full Course - Beginner to Pro 搭建简单静态网页 github.io 学习javascript基础知识 javascript课程学习 课程链接 # JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！ 知识 作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录 在html的body中加入script可以插入js代码，页面f12可以看到console.log的打印 通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等） 待办 javascript基础知识 javascript进阶：ES6&#43;新特性">
     <meta itemprop="datePublished" content="2025-11-16T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-16T00:00:00+00:00">
-    <meta itemprop="wordCount" content="117">
+    <meta itemprop="wordCount" content="73">
     <meta itemprop="keywords" content="周记">
     <title>Week3 个人博客搭建 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1765530466" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1765530466" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1765530466" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1765530466" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1765530466" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1765533056" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1765533056" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1765533056" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1765533056" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1765533056" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1765530466";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1765533056";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1765530466" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1765530466" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1765530466" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1765530466" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1765533056" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1765533056" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1765533056" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1765533056" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765530466" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765530466" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1765530466" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1765530466" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1765530466" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765533056" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765533056" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1765533056" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1765533056" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1765533056" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -258,6 +258,18 @@
 <ul>
 <li>css &amp; html课程学习
 <ul>
+<li>
+
+
+
+    
+<a href="/hugo-blog/blogs/techs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">HTML学习手册-基础概念</a></li>
+<li>
+
+
+
+    
+<a href="/hugo-blog/blogs/techs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">CSS学习手册-基础用法</a></li>
 <li>课程链接
 <ul>
 <li>
@@ -275,62 +287,6 @@
 
 
 <a href="https://www.youtube.com/watch?v=G3e-cpL7ofc" target="_blank"># HTML &amp; CSS Full Course - Beginner to Pro</a></li>
-</ul>
-</li>
-<li>html知识点
-<ul>
-<li>本质上就是和markdown一样的标记语言，用于给文本添加格式（markdown的设计是对应markup做的简化）</li>
-<li>在html里可以直接添加css style，但是为了避免每个元素单独添加，可以将css文件提出来实现共用</li>
-</ul>
-</li>
-<li>css知识点
-<ul>
-<li>id：采用id的方式（比如&lt;p id=&ldquo;p1&rdquo;&gt;），可以用#（比如#p1）</li>
-<li>class：给元素在html里加上class，在css里面可以针对class加格式，比如.class</li>
-<li>combinators
-<ul>
-<li>descendant：使用“ ”，对所有子节点加格式，比如.class p</li>
-<li>child：使用“&gt;” ，对儿子节点加格式（不包括孙子及更远下属）</li>
-<li>general sibling：使用“～”，兄弟节点</li>
-<li>adjacent sibling：使用“+”，相邻兄弟节点</li>
-</ul>
-</li>
-<li>伪class：定义元素在特殊状态时的格式，比如：
-<ul>
-<li>悬浮：hover（li:hover，li:not(:hover)）</li>
-<li>选中：active</li>
-<li>某个：nth-child（li:nth-child(2)，li:nth-child(even)）</li>
-</ul>
-</li>
-<li>伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection）</li>
-<li>span或者div（称为container）用来分组，从而对各组或整体进行排版
-<ul>
-<li>span是inline的，只对内容生效，div是block的，对整体block生效</li>
-<li>通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果</li>
-</ul>
-</li>
-<li>padding就是字和border的距离，margin就是border和其他元素的距离  		<a href="#R-image-ab4a624bf7b026180f15c456b45e2647" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/11/243150c0e34a8d1294d09b4570d6db81.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ab4a624bf7b026180f15c456b45e2647"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/11/243150c0e34a8d1294d09b4570d6db81.png"></a></li>
-<li>position：
-<ul>
-<li>static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位</li>
-<li>relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素</li>
-<li>fixed：基于窗口（即browser view）作为基准定位的位置</li>
-<li>absolute：基于上级（如果没有上级，即page）作为基准定位的位置</li>
-<li>sticky：跟着scroll走</li>
-</ul>
-</li>
-<li>z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上）</li>
-<li>grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整</li>
-<li>flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局
-<ul>
-<li>可以解决两个div之间由于html换行导致的空格间隙</li>
-<li>相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小</li>
-</ul>
-</li>
-<li>transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑</li>
-<li>@media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版</li>
-<li>@keyframes：利用transform、opacity、background-color等实现简单的动画效果</li>
 </ul>
 </li>
 </ul>
@@ -364,12 +320,6 @@
 <a href="https://www.youtube.com/watch?v=0FLkwZ-PH2I&amp;list=PL7enJ2-v6SPkJxL_qO4bBYGR-QViDFxGf&amp;index=2" target="_blank"># JavaScript 快速上手！用一個實戰範例迅速掌握所有重點語法！</a></li>
 </ul>
 </li>
-<li>javascript知识点
-<ul>
-<li>在body中加入script可以插入js代码，页面f12可以看到console.log的打印</li>
-<li>通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等）</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -382,6 +332,8 @@
   <div class="box-content">
 <ul>
 <li>作为CMS，notion更偏向于项目管理，而obsidian更偏向于文档记录</li>
+<li>在html的body中加入script可以插入js代码，页面f12可以看到console.log的打印</li>
+<li>通过在元素上添加listener来捕捉用户行为（点击、输入等），实现相应逻辑（如添加表单元素等）</li>
 </ul>
   </div>
 </details>
@@ -473,9 +425,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1765530466" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1765530466" defer></script><script src="/hugo-blog/js/menu-toggle.js"></script>
-
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1765533056" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1765533056" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
