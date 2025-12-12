@@ -1,5 +1,5 @@
 ---
-title: Lua
+title: Lua学习手册
 date: 2025-11-29
 tags:
 draft: false

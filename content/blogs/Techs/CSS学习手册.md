@@ -1,0 +1,38 @@
+---
+title: CSS学习手册
+date: 2025-12-12
+tags:
+  - 技术笔记
+draft: false
+---
+# 基础用法
+- id：采用id的方式（比如\<p id="p1"\>），可以用#（比如#p1）
+- class：给元素在html里加上class，在css里面可以针对class加格式，比如.class
+- combinators
+	- descendant：使用“ ”，对所有子节点加格式，比如.class p
+	- child：使用“>” ，对儿子节点加格式（不包括孙子及更远下属）
+	- general sibling：使用“～”，兄弟节点
+	- adjacent sibling：使用“+”，相邻兄弟节点
+- 伪class：定义元素在特殊状态时的格式，比如：
+	- 悬浮：hover（li:hover，li:not(:hover)）
+	- 选中：active
+	- 某个：nth-child（li:nth-child(2)，li:nth-child(even)）
+- 伪元素：对某一类元素加细粒度格式（比如p的第一行），可以用::（比如p::first-line、p::selection）
+- span或者div（称为container）用来分组，从而对各组或整体进行排版
+	- span是inline的，只对内容生效，div是block的，对整体block生效
+	- 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果
+- padding就是字和border的距离，margin就是border和其他元素的距离  		![image.png](https://images.ruoruoliu.com/2025/11/243150c0e34a8d1294d09b4570d6db81.png)
+- position：
+	- static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位
+	- relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素
+	- fixed：基于窗口（即browser view）作为基准定位的位置
+	- absolute：基于上级（如果没有上级，即page）作为基准定位的位置
+	- sticky：跟着scroll走
+- z-index：在html中的出现顺序决定了元素的默认渲染顺序，即后出现的在上面。可以通过设置z-index解决谁覆盖谁的问题（越大越靠上）
+- grid：可以实现行列m x n布局，m和n也可以根据页面大小自适应调整
+- flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局
+	- 可以解决两个div之间由于html换行导致的空格间隙
+	- 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小
+- transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑
+- @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版
+- @keyframes：利用transform、opacity、background-color等实现简单的动画效果

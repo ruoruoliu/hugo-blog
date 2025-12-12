@@ -5,6 +5,10 @@ tags:
   - 技术笔记
 draft: false
 ---
+# 基础概念
+HTML本质上就是和markdown一样的标记语言，用于给文本添加格式。
+> markdown的设计目标是对应markup做的简化版本
+
 # Canvas
 ## canvas创建
 ```
