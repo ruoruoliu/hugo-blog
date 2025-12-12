@@ -2,3 +2,6 @@ languageCode = 'en-us'
 title = 'Ruoruoliu 2.0'
 theme = 'hugo-theme-relearn'
 baseURL = 'https://ruoruoliu.github.io/hugo-blog/'
+
+[params]
+  collapsibleMenu = true
