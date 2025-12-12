@@ -8,11 +8,11 @@ draft: false
 > [!note] 总结
 > - 完成neovim环境搭建
 > - 熟练vim操作
-> - 完成javascript基础知识学习
+> - 完成Javascript基础知识学习
 
 > [!info]+ neovim配置
 
-- 学习lua的基础知识：[Lua学习手册](../Blogs/Lua学习手册.md)
+- 学习Lua的基础知识：[Lua学习手册](../Blogs/Lua学习手册.md)
 - 配置Neovim环境，安装所需插件：[Vim和NeoVim](../Blogs/Vim和NeoVim.md)
 
 > [!info]+ 学习javascript基础知识
@@ -32,5 +32,5 @@ draft: false
 > - node开启javascript命令行
 
 > [!warning] 待办
-> - 了解javscript进阶知识：ES6+新特性
+> - 了解Javscript进阶知识：ES6+新特性
 > - Flappy Bird开发

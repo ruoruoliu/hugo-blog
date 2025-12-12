@@ -7,8 +7,8 @@ draft: false
 ---
 > [!note] 总结
 > - Javascript进阶学习
-> - 利用原生js搭建Flappy Bird
-> - 了解javascript的包管理器
+> - 利用原生JS搭建Flappy Bird
+> - 了解Javascript的包管理器
 
 > [!info] Javascript面向对象编程
 
@@ -26,7 +26,7 @@ draft: false
 
 - [从零开始构建Flappy Bird](../Blogs/Techs/从零开始构建Flappy%20Bird.md)
 
-> [!info] 了解javascript的包管理器
+> [!info] 了解Javascript的包管理器
 
 - [Javascript学习手册-包管理](../Blogs/Techs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%8C%85%E7%AE%A1%E7%90%86)
 
@@ -35,6 +35,6 @@ draft: false
 > - Javascript的包管理器有npm、yarn等
 
 > [!warning] 待办
-> - 学习react框架基础知识
+> - 学习React框架基础知识
 > - 学习强化学习基础知识，在Flappy Bird中实现bot
 

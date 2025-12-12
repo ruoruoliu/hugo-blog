@@ -13,14 +13,14 @@
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week6/index.html</link>
       <pubDate>Mon, 08 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week6/index.html</guid>
-      <description>总结 Javascript进阶学习 利用原生js搭建Flappy Bird 了解javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象&#x9;``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解javascript的包管理器 Javascript学习手册-包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习react框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot</description>
+      <description>总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象&#x9;``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript学习手册-包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习React框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot</description>
     </item>
     <item>
       <title>Week5 javascript学习</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week5/index.html</link>
       <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week5/index.html</guid>
-      <description>总结 完成neovim环境搭建 熟练vim操作 完成javascript基础知识学习 neovim配置 学习lua的基础知识： Lua学习手册 配置Neovim环境，安装所需插件： Vim和NeoVim 学习javascript基础知识 Javascript学习手册-基础用法 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 html负责内容、css负责样式、javascript负责交互 通过nodejs的live-server可以同步更新目录内的网页状态，类似vscode里的go live插件 node开启javascript命令行 待办 了解javscript进阶知识：ES6+新特性 Flappy Bird开发</description>
+      <description>总结 完成neovim环境搭建 熟练vim操作 完成Javascript基础知识学习 neovim配置 学习Lua的基础知识： Lua学习手册 配置Neovim环境，安装所需插件： Vim和NeoVim 学习javascript基础知识 Javascript学习手册-基础用法 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 html负责内容、css负责样式、javascript负责交互 通过nodejs的live-server可以同步更新目录内的网页状态，类似vscode里的go live插件 node开启javascript命令行 待办 了解Javscript进阶知识：ES6+新特性 Flappy Bird开发</description>
     </item>
     <item>
       <title>Week4 开发环境优化</title>
