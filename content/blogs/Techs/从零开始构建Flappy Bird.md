@@ -9,6 +9,7 @@ draft: false
 > - 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点
 > - 预备知识：
 > 	- [Canvas](HTML学习手册.md#Canvas)
+> 	- [[HTML学习手册#Canvas|HTML学习手册-Canvas]]
 > 	- [Game Loop](游戏编程基本概念.md#Game%20Loop)
 
 ![image.png](https://images.ruoruoliu.com/2025/12/5db8e874317fc8393d44e970865c17be.png)
