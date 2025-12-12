@@ -40,6 +40,9 @@ draft: false
 	- 通过obsidian插件“shell commands”一键同步文件到本地github目录：[参考链接](https://dev.to/4rkal/my-obsidian-hugo-blogging-setup-auto-publishing-with-hotkeys-365d)，[插件连接](https://github.com/Taitava/obsidian-shellcommands)，再push到github远程仓库，触发github pages更新部署
 		- 整体仓库push到main
 		- 网页代码通过”git subtree“ push到gh-pages分支
+		- 加入obsidian内部链接转化为markdown格式的处理
+			![image.png](https://images.ruoruoliu.com/2025/12/857ffabd482d616254269f42839fc6ed.png)
+
 	- 页面搭建在github pages中的项目页面中：[博客链接](https://ruoruoliu.github.io/hugo-blog/)
 
 
