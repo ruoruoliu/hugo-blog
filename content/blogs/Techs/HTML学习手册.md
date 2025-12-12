@@ -5,9 +5,6 @@ tags:
   - 技术笔记
 draft: false
 ---
-
-
-
 # Canvas
 ## canvas创建
 ```

@@ -2,6 +2,7 @@
 title: Context Rot
 date: 2025-11-28
 tags:
+  - 技术笔记
 draft: false
 ---
 

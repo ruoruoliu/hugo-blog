@@ -105,6 +105,11 @@ draft: false
 > [!info] 了解javascript的包管理器
 
 - [包管理](../Blogs/Techs/Javascript学习手册.md#包管理)
+- [包管理](../Blogs/Techs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%8C%85%E7%AE%A1%E7%90%86)
+- [Javascript学习手册](../Blogs/Techs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%8C%85%E7%AE%A1%E7%90%86)
+- [包管理](../Blogs/Techs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%8C%85%E7%AE%A1%E7%90%86)
+- [Javascript学习手册](../Blogs/Techs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%8C%85%E7%AE%A1%E7%90%86)
+- 
 
 > [!tip] 知识
 > - Javascript ES6 2015年发布，主要引入let、const、class、module等
