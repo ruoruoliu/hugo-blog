@@ -20,7 +20,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Fri, 12 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/techs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
-      <description>基础概念 HTML本质上就是和markdown一样的标记语言，用于给文本添加格式。&#xA;markdown的设计目标是对应markup做的简化版本&#xA;Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context</description>
+      <description>基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。&#xA;markdown的设计目标是对应markup做的简化版本&#xA;Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context</description>
     </item>
     <item>
       <title>Javascript学习手册</title>
@@ -31,10 +31,10 @@
     </item>
     <item>
       <title>像素工具Asperite</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/asperite/index.html</link>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html</link>
       <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/asperite/index.html</guid>
-      <description>官网链接&#xA;游戏编程基本概念 Terminal配置-iTerm2 HTML学习手册 Techs/HTML学习手册-Canvas</description>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html</guid>
+      <description>官网链接</description>
     </item>
     <item>
       <title>游戏编程基本概念</title>
@@ -51,10 +51,10 @@
       <description>背景 在完成css、html、javascript的基础上，构建Flappy Bird游戏，以巩固以上知识点 预备知识： HTML学习手册-Canvas 游戏编程基本概念-Game Loop Flappy Bird Game Loop Flappy Bird的游戏逻辑设计 home：主页，显示标题和两个button（start、score），目前只实现了start ready：主页点击start进入ready页面，给出游戏提示“tap” play：在ready页面tap后进入游戏页面，包含： 初始化：小鸟、pipe和实时分数 监听用户tap： 没有tap的话有向下加速度，模拟重力 有tap行为则直接给一个向上的速度 记分：小鸟每次经过一个pipe，score加1，score超过best则覆盖best 结束：小鸟和pipe的碰撞检测，碰到上下边缘或者pipe则结束，进入结束页面 over： 结束页面显示记分牌，显示奖牌（是best则金牌，不然白牌），显示score和best 给出ok和menu按钮，其中ok回到ready页，menu回到home页 技术细节 精灵图集 Sprite 精灵图集将游戏中所有的小图片（如小鸟、管道、背景、按钮等）集中在一个大文件里 在网页中获取的时候，可以使用CSS Sprites技术：使用 background-image 和 background-position 两个属性来在网页元素中显示精灵图集上的某一个图标或图片 可以使用 Sprite Cow对精灵图集进行分割处理，得到每个图标的position 注意图标推荐放在div或者span中，而不是img中 如何实现游戏基本逻辑 利用requestAnimationFrame（简单来说，rAF告诉浏览器：“我要执行一个动画，请在下一次重绘（Repaint）之前调用我的回调函数。”），将Game Loop函数作为callback，从而不断刷新游戏状态，实现元素的移动，以及整体Game Loop function GameLoop() { //移动小鸟 ... // 更新游戏分数 updateGameScore(); // 更新pipes的状态 updatePipes(); // 边界碰撞检测 if (birdPosY &lt; 0 || birdPosY + 22 &gt; 400) { console.log(&#34;Hit Boundary&#34;); game_state = &#34;ended&#34;; } // pipe碰撞检测 ... if (game_state === &#34;ended&#34;) { ... console.log(&#34;Game Over!&#34;); return; } requestAnimationFrame(GameLoop); } 如何实现背景的移动 css中将背景设置为精灵图集中的一部分，且repeat-x，水平循环 #scene { position: relative; /* 改为相对定位，由 flex 控制居中 */ border: 5px solid red; box-sizing: border-box; /* 让 border 包含在宽高内 */ display: flex; align-items: center; justify-content: center; flex-direction: column; background: url(&#39;../images/flappy-bird-sprite.png&#39;) repeat-x 0 0; image-rendering: pixelated; width: 225px; /* 原始宽度 */ height: 400px; /* 原始高度 */ overflow: hidden; /* 确保内容不溢出游戏画面 */ } 在js中设置scene的backgroundPostion可以整体移动 scene.style.backgroundPosition = `-${backgroundX}px 0px`; 如何实现小鸟的移动 水平方向上不移动，固定在屏幕30%位置上 #bird { position: absolute; background: url(&#39;../images/flappy-bird-sprite.png&#39;) no-repeat -179px -513px; width: 28px; height: 22px; top: 200px; left: 30%; transform: translateX(-50%); } 垂直方向上，根据游戏逻辑，确定位置后，通过top来实现移动 // 重力加速度下降 birdSpeedY += 0.1; birdPosY = birdPosY + birdSpeedY; bird.style.top = `${birdPosY}px`; 如何实现小鸟扇动翅膀 对于小鸟这个div，根据时间不断切换精灵图集中的backgroundPosition，从而切换不同图片 // 小鸟扇翅膀动画 birdFrameTimer++; if (birdFrameTimer % birdWingRate === 0) { // 每10帧切换一次图片，数字越小越快 birdFrameIndex = (birdFrameIndex + 1) % birdFrames.length; bird.style.backgroundPosition = birdFrames[birdFrameIndex]; if (birdFrameTimer === birdWingRate) { birdFrameTimer = 0; } } 如何实现管道的平移 在html中写三组pipe元素 在js中通过transform水平移动，如果移动超过屏幕，则从最左侧重置到最右侧 // 如果移出屏幕左侧，移动到最右侧 if (pipe.x &lt; -pipeWidth) { // 找到当前最右边的管道的 x 坐标 let maxX = Math.max(...pipesData.map(p =&gt; p.x)); pipe.x = maxX + pipeDistance; // 重新随机高度 pipe.y = Math.floor(Math.random() * (300 - 100)) + 100; pipe.scored = false; } 如何实现页面切换 在html中写在一起 &lt;div id=&#34;scene&#34;&gt; &lt;!-- 首页场景 --&gt; &lt;div id=&#34;scene_home&#34;&gt; ... &lt;/div&gt; &lt;!-- 游戏准备场景 (默认隐藏) --&gt; &lt;div id=&#34;scene_ready&#34; style=&#34;display: none;&#34;&gt; ... &lt;/div&gt; &lt;!-- 游戏场景 (默认隐藏) --&gt; &lt;div id=&#34;scene_play&#34; style=&#34;display: none;&#34;&gt; ... &lt;/div&gt; &lt;!-- 游戏结束场景（默认隐藏）--&gt; &lt;div id=&#34;scene_over&#34; style=&#34;display: none;&#34;&gt; ... &lt;/div&gt; &lt;/div&gt; 然后通过在js中设定某一个部分（div）的display是否为none，来切换显示不同部分 document.getElementById(&#34;ok_button&#34;).addEventListener(&#39;click&#39;, function(){ // 隐藏首页场景 document.getElementById(&#34;scene_over&#34;).style.display = &#39;none&#39;; // 隐藏游戏层 document.getElementById(&#34;scene_play&#34;).style.display = &#39;none&#39;; // 显示游戏场景 document.getElementById(&#34;scene_ready&#34;).style.display = &#39;flex&#39;; // 游戏状态进入ready game_state = &#34;ready&#34;; }); 代码仓库 github链接： flappy-bird</description>
     </item>
     <item>
-      <title>Agent</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/agent/index.html</link>
+      <title>LLM Agent</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/techs/llm-agent/index.html</link>
       <pubDate>Wed, 03 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/techs/agent/index.html</guid>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/techs/llm-agent/index.html</guid>
       <description></description>
     </item>
     <item>
@@ -107,10 +107,10 @@
       <description>背景 全称terminal multiplexer 一个session可以包含多个子进程window，可以切换显示多个子进程 一个window又可以分割成多个分屏pane，方便编辑和后台运行任务 一个session保存了多个子进程信息，关闭terminal后可以重新恢复session 可以使用tmux运行长时间任务，后台运行防止关闭terminal导致杀死进程 可以在不同session、window和pane之间切换 使用说明 命令行操作 tmux：自动创建session tmux new -s 名字：创建命名session tmux ls：列出tmux全部session tmux a -t 数字：进入指定session，如果只有一个session，可以省略-t参数 tmux kill-session -t 数字或名字：退出指定session tmux has-session -t 数字或名字：是否运行着指定session 内部操作 前缀（ctrl+s）+：</description>
     </item>
     <item>
-      <title>Zapier</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/zapier/index.html</link>
+      <title>自动化流程平台Zapier</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html</link>
       <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/zapier/index.html</guid>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html</guid>
       <description>Zapier官网 自动化流程配置工具，将你的多种不同的app的信息串联起来 gmail邮箱收到邮件，在whatsapp上设置bot提醒 stripe收到货款，导入google sheet新建一行 等等 支持AI辅助新建工作流 参考链接：&#xA;# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧</description>
     </item>
     <item>

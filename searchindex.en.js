@@ -27,8 +27,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "基础概念 HTML本质上就是和markdown一样的标记语言，用于给文本添加格式。\nmarkdown的设计目标是对应markup做的简化版本\nCanvas canvas创建 \u003ccanvas width=\"300\" height=\"200\"\u003e\u003c/canvas\u003e context 设置使用2D canvas，获取canvas的context，后续操作都是通过context\nconst ctx = canvas.getContext(\"2d\"); 绘制API 矩形 ctx.fillRect(x, y, width, height); 直线 ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); 图像 参数包括（可以分别选择前3、5、9个参数）： image、paste坐标（x1、y1）、paste大小（w1、h1）、原图坐标（x2、y2）、原图大小（w2、h2）\nconst img = new Image(); img.src = 'xxx.png'; ctx.drawImage(img, x1, y1, w1, h1, x2, y2, w2, h2); # How to Draw Images to HTML Canvas (JavaScript Tutorial)\n更多链接： HTML5 Canvas Tutorials for Beginners # Canvas HTML5 JavaScript Full Tutorial # HTML Canvas DEEP DIVE",
-    "description": "基础概念 HTML本质上就是和markdown一样的标记语言，用于给文本添加格式。\nmarkdown的设计目标是对应markup做的简化版本\nCanvas canvas创建 \u003ccanvas width=\"300\" height=\"200\"\u003e\u003c/canvas\u003e context 设置使用2D canvas，获取canvas的context，后续操作都是通过context",
+    "content": "基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。\nmarkdown的设计目标是对应markup做的简化版本\nCanvas canvas创建 \u003ccanvas width=\"300\" height=\"200\"\u003e\u003c/canvas\u003e context 设置使用2D canvas，获取canvas的context，后续操作都是通过context\nconst ctx = canvas.getContext(\"2d\"); 绘制API 矩形 ctx.fillRect(x, y, width, height); 直线 ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); 图像 参数包括（可以分别选择前3、5、9个参数）： image、paste坐标（x1、y1）、paste大小（w1、h1）、原图坐标（x2、y2）、原图大小（w2、h2）\nconst img = new Image(); img.src = 'xxx.png'; ctx.drawImage(img, x1, y1, w1, h1, x2, y2, w2, h2); # How to Draw Images to HTML Canvas (JavaScript Tutorial)\n更多链接： HTML5 Canvas Tutorials for Beginners # Canvas HTML5 JavaScript Full Tutorial # HTML Canvas DEEP DIVE",
+    "description": "基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。\nmarkdown的设计目标是对应markup做的简化版本\nCanvas canvas创建 \u003ccanvas width=\"300\" height=\"200\"\u003e\u003c/canvas\u003e context 设置使用2D canvas，获取canvas的context，后续操作都是通过context",
     "tags": [
       "技术笔记"
     ],
@@ -63,13 +63,13 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "官网链接\n游戏编程基本概念 Terminal配置-iTerm2 HTML学习手册 Techs/HTML学习手册-Canvas",
-    "description": "官网链接\n游戏编程基本概念 Terminal配置-iTerm2 HTML学习手册 Techs/HTML学习手册-Canvas",
+    "content": "官网链接",
+    "description": "官网链接",
     "tags": [
       "技术笔记"
     ],
     "title": "像素工具Asperite",
-    "uri": "/hugo-blog/blogs/asperite/index.html"
+    "uri": "/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -83,8 +83,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 Javascript进阶学习 利用原生js搭建Flappy Bird 了解javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解javascript的包管理器 Javascript学习手册-包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习react框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot",
-    "description": "总结 Javascript进阶学习 利用原生js搭建Flappy Bird 了解javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解javascript的包管理器 Javascript学习手册-包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习react框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot",
+    "content": "总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript学习手册-包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习React框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot",
+    "description": "总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript学习手册-包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习React框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot",
     "tags": [
       "周记"
     ],
@@ -119,8 +119,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 完成neovim环境搭建 熟练vim操作 完成javascript基础知识学习 neovim配置 学习lua的基础知识： Lua学习手册 配置Neovim环境，安装所需插件： Vim和NeoVim 学习javascript基础知识 Javascript学习手册-基础用法 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 html负责内容、css负责样式、javascript负责交互 通过nodejs的live-server可以同步更新目录内的网页状态，类似vscode里的go live插件 node开启javascript命令行 待办 了解javscript进阶知识：ES6+新特性 Flappy Bird开发",
-    "description": "总结 完成neovim环境搭建 熟练vim操作 完成javascript基础知识学习 neovim配置 学习lua的基础知识： Lua学习手册 配置Neovim环境，安装所需插件： Vim和NeoVim 学习javascript基础知识 Javascript学习手册-基础用法 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 html负责内容、css负责样式、javascript负责交互 通过nodejs的live-server可以同步更新目录内的网页状态，类似vscode里的go live插件 node开启javascript命令行 待办 了解javscript进阶知识：ES6+新特性 Flappy Bird开发",
+    "content": "总结 完成neovim环境搭建 熟练vim操作 完成Javascript基础知识学习 neovim配置 学习Lua的基础知识： Lua学习手册 配置Neovim环境，安装所需插件： Vim和NeoVim 学习javascript基础知识 Javascript学习手册-基础用法 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 html负责内容、css负责样式、javascript负责交互 通过nodejs的live-server可以同步更新目录内的网页状态，类似vscode里的go live插件 node开启javascript命令行 待办 了解Javscript进阶知识：ES6+新特性 Flappy Bird开发",
+    "description": "总结 完成neovim环境搭建 熟练vim操作 完成Javascript基础知识学习 neovim配置 学习Lua的基础知识： Lua学习手册 配置Neovim环境，安装所需插件： Vim和NeoVim 学习javascript基础知识 Javascript学习手册-基础用法 课程链接 # JavaScript Full Course for free # JavaScript Tutorial Full Course - Beginner to Pro 知识 NeoVim是Vim的新版本重构 通过LazyNvim插件配置 支持语法高亮、语义补全、代码跳转、git等几乎全部所需功能 基本替代vscode，熟练掌握vim操作后，效率提升 html负责内容、css负责样式、javascript负责交互 通过nodejs的live-server可以同步更新目录内的网页状态，类似vscode里的go live插件 node开启javascript命令行 待办 了解Javscript进阶知识：ES6+新特性 Flappy Bird开发",
     "tags": [
       "周记"
     ],
@@ -134,8 +134,8 @@ var relearn_searchindex = [
     "tags": [
       "技术笔记"
     ],
-    "title": "Agent",
-    "uri": "/hugo-blog/blogs/techs/agent/index.html"
+    "title": "LLM Agent",
+    "uri": "/hugo-blog/blogs/techs/llm-agent/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
@@ -210,8 +210,8 @@ var relearn_searchindex = [
     "content": "Zapier官网 自动化流程配置工具，将你的多种不同的app的信息串联起来 gmail邮箱收到邮件，在whatsapp上设置bot提醒 stripe收到货款，导入google sheet新建一行 等等 支持AI辅助新建工作流 参考链接：\n# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧",
     "description": "Zapier官网 自动化流程配置工具，将你的多种不同的app的信息串联起来 gmail邮箱收到邮件，在whatsapp上设置bot提醒 stripe收到货款，导入google sheet新建一行 等等 支持AI辅助新建工作流 参考链接：\n# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧",
     "tags": [],
-    "title": "Zapier",
-    "uri": "/hugo-blog/blogs/zapier/index.html"
+    "title": "自动化流程平台Zapier",
+    "uri": "/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
