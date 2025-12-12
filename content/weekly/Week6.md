@@ -7,7 +7,7 @@ draft: false
 ---
 > [!note] 总结
 > - Javascript进阶学习
-> - 尝试利用原生js搭建Flappy Bird
+> - 利用原生js搭建Flappy Bird
 > - 了解javascript的包管理器
 
 > [!info] Javascript面向对象编程
@@ -104,7 +104,7 @@ draft: false
 
 > [!info] 了解javascript的包管理器
 
-- 
+- [包管理](../Blogs/Techs/Javascript学习手册.md#包管理)
 
 
 > [!tip] 知识

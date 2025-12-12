@@ -33,7 +33,7 @@ draft: false
 
 - hugo将md文件转化为html页面，并进行部署
 	- 调研hugo的theme，包括paper、paperMod、terminal和relearn
-	- 后续需要在博客更新过程中不断学习relearn基本功能：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
+	- 后续可以在博客更新过程中不断学习relearn基本功能：[主题官网](https://mcshelby.github.io/hugo-theme-relearn/introduction/index.html)
 - [Obsidian](../Blogs/Obsidian.md)编写md文件，hugo是和hexo类似的cms工具
 	- 处理obsidian的内部链接，转化为hugo可接受链接
 	- 使用obsidian插件“image auto upload”，插入图片时自动上传图床
