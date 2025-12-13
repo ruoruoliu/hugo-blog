@@ -5,37 +5,61 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。
-markdown的设计目标是对应markup做的简化版本
-Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context">
+    <meta name="description" content="什么是 Bundler（打包器）？ Bundler（打包器）在现代软件开发中，尤其是在 JavaScript 生态系统中，是一个至关重要的工具。它负责将应用程序中的各种代码片段、依赖项和资源（如 JavaScript、CSS、HTML、图片等）打包成一个或一组较小的、优化的文件，以便浏览器能够高效地加载和运行。
+📌 主要作用 文件整合与优化： 将多个模块化的文件合并成更少的数量，从而减少浏览器向服务器发出的 HTTP 请求次数 ，显著提高网站或应用的加载速度和性能。
+依赖管理和解析： 自动跟踪代码文件之间的依赖关系，并确保所有必需的模块和库都以正确的顺序包含在最终的打包文件中。
+代码优化：
+压缩 (Minification)： 移除不必要的空格、注释和格式，减小文件体积。
+摇树优化 (Tree-Shaking)： 删除代码中未使用的部分（死代码），确保只有必要的代码被发送到浏览器。
+兼容性与转换： Bundler 通常与 转译器 (Transpiler) 协同工作，将新的 JavaScript 语法（如 ES6&#43;）、TypeScript 或 JSX 转换为浏览器能够理解的、向后兼容的格式。
+简而言之，Bundler 自动化并简化了工作流程，使得开发者可以专注于编写模块化的代码，同时保证最终交付给用户的应用是高性能且易于部署的。
+Module Bundlers Explained… Webpack, Rollup, Parcel, and Snowpack 这个视频解释了什么是模块打包器，以及像 Webpack、Rollup 和 Parcel 这样的工具是如何将代码打包成可用于生产环境的 Web 应用的。">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="HTML学习手册 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。
-markdown的设计目标是对应markup做的简化版本
-Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <meta name="twitter:title" content="Javascript中的bundler和transpiler :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="什么是 Bundler（打包器）？ Bundler（打包器）在现代软件开发中，尤其是在 JavaScript 生态系统中，是一个至关重要的工具。它负责将应用程序中的各种代码片段、依赖项和资源（如 JavaScript、CSS、HTML、图片等）打包成一个或一组较小的、优化的文件，以便浏览器能够高效地加载和运行。
+📌 主要作用 文件整合与优化： 将多个模块化的文件合并成更少的数量，从而减少浏览器向服务器发出的 HTTP 请求次数 ，显著提高网站或应用的加载速度和性能。
+依赖管理和解析： 自动跟踪代码文件之间的依赖关系，并确保所有必需的模块和库都以正确的顺序包含在最终的打包文件中。
+代码优化：
+压缩 (Minification)： 移除不必要的空格、注释和格式，减小文件体积。
+摇树优化 (Tree-Shaking)： 删除代码中未使用的部分（死代码），确保只有必要的代码被发送到浏览器。
+兼容性与转换： Bundler 通常与 转译器 (Transpiler) 协同工作，将新的 JavaScript 语法（如 ES6&#43;）、TypeScript 或 JSX 转换为浏览器能够理解的、向后兼容的格式。
+简而言之，Bundler 自动化并简化了工作流程，使得开发者可以专注于编写模块化的代码，同时保证最终交付给用户的应用是高性能且易于部署的。
+Module Bundlers Explained… Webpack, Rollup, Parcel, and Snowpack 这个视频解释了什么是模块打包器，以及像 Webpack、Rollup 和 Parcel 这样的工具是如何将代码打包成可用于生产环境的 Web 应用的。">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="HTML学习手册 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。
-markdown的设计目标是对应markup做的简化版本
-Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context">
+    <meta property="og:title" content="Javascript中的bundler和transpiler :: Ruoruoliu 2.0">
+    <meta property="og:description" content="什么是 Bundler（打包器）？ Bundler（打包器）在现代软件开发中，尤其是在 JavaScript 生态系统中，是一个至关重要的工具。它负责将应用程序中的各种代码片段、依赖项和资源（如 JavaScript、CSS、HTML、图片等）打包成一个或一组较小的、优化的文件，以便浏览器能够高效地加载和运行。
+📌 主要作用 文件整合与优化： 将多个模块化的文件合并成更少的数量，从而减少浏览器向服务器发出的 HTTP 请求次数 ，显著提高网站或应用的加载速度和性能。
+依赖管理和解析： 自动跟踪代码文件之间的依赖关系，并确保所有必需的模块和库都以正确的顺序包含在最终的打包文件中。
+代码优化：
+压缩 (Minification)： 移除不必要的空格、注释和格式，减小文件体积。
+摇树优化 (Tree-Shaking)： 删除代码中未使用的部分（死代码），确保只有必要的代码被发送到浏览器。
+兼容性与转换： Bundler 通常与 转译器 (Transpiler) 协同工作，将新的 JavaScript 语法（如 ES6&#43;）、TypeScript 或 JSX 转换为浏览器能够理解的、向后兼容的格式。
+简而言之，Bundler 自动化并简化了工作流程，使得开发者可以专注于编写模块化的代码，同时保证最终交付给用户的应用是高性能且易于部署的。
+Module Bundlers Explained… Webpack, Rollup, Parcel, and Snowpack 这个视频解释了什么是模块打包器，以及像 Webpack、Rollup 和 Parcel 这样的工具是如何将代码打包成可用于生产环境的 Web 应用的。">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-12-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-12-12T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-11-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-11-27T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta property="article:tag" content="HTML">
-    <meta itemprop="name" content="HTML学习手册 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。
-markdown的设计目标是对应markup做的简化版本
-Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context">
-    <meta itemprop="datePublished" content="2025-12-12T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-12-12T00:00:00+00:00">
-    <meta itemprop="wordCount" content="78">
-    <meta itemprop="keywords" content="技术笔记,HTML">
-    <title>HTML学习手册 :: Ruoruoliu 2.0</title>
+    <meta property="article:tag" content="Javascript">
+    <meta itemprop="name" content="Javascript中的bundler和transpiler :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="什么是 Bundler（打包器）？ Bundler（打包器）在现代软件开发中，尤其是在 JavaScript 生态系统中，是一个至关重要的工具。它负责将应用程序中的各种代码片段、依赖项和资源（如 JavaScript、CSS、HTML、图片等）打包成一个或一组较小的、优化的文件，以便浏览器能够高效地加载和运行。
+📌 主要作用 文件整合与优化： 将多个模块化的文件合并成更少的数量，从而减少浏览器向服务器发出的 HTTP 请求次数 ，显著提高网站或应用的加载速度和性能。
+依赖管理和解析： 自动跟踪代码文件之间的依赖关系，并确保所有必需的模块和库都以正确的顺序包含在最终的打包文件中。
+代码优化：
+压缩 (Minification)： 移除不必要的空格、注释和格式，减小文件体积。
+摇树优化 (Tree-Shaking)： 删除代码中未使用的部分（死代码），确保只有必要的代码被发送到浏览器。
+兼容性与转换： Bundler 通常与 转译器 (Transpiler) 协同工作，将新的 JavaScript 语法（如 ES6&#43;）、TypeScript 或 JSX 转换为浏览器能够理解的、向后兼容的格式。
+简而言之，Bundler 自动化并简化了工作流程，使得开发者可以专注于编写模块化的代码，同时保证最终交付给用户的应用是高性能且易于部署的。
+Module Bundlers Explained… Webpack, Rollup, Parcel, and Snowpack 这个视频解释了什么是模块打包器，以及像 Webpack、Rollup 和 Parcel 这样的工具是如何将代码打包成可用于生产环境的 Web 应用的。">
+    <meta itemprop="datePublished" content="2025-11-27T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-11-27T00:00:00+00:00">
+    <meta itemprop="wordCount" content="147">
+    <meta itemprop="keywords" content="技术笔记,Javascript">
+    <title>Javascript中的bundler和transpiler :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1765636914" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1765636914" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1765636914" defer></script>
@@ -61,7 +85,7 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
+      window.relearn.path='\/blogs\/javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -109,7 +133,7 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -139,13 +163,15 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#canvas创建">canvas创建</a></li>
-    <li><a href="#context">context</a></li>
-    <li><a href="#绘制api">绘制API</a>
+    <li><a href="#什么是-bundler打包器">什么是 Bundler（打包器）？</a>
       <ul>
-        <li><a href="#矩形">矩形</a></li>
-        <li><a href="#直线">直线</a></li>
-        <li><a href="#图像">图像</a></li>
+        <li><a href="#-主要作用">📌 主要作用</a></li>
+      </ul>
+    </li>
+    <li><a href="#什么是-transpiler-转译器">什么是 Transpiler (转译器)？</a>
+      <ul>
+        <li><a href="#-在-javascript-生态中的作用">💻 在 JavaScript 生态中的作用</a></li>
+        <li><a href="#transpiler-vs-compiler-转译器-vs-编译器">Transpiler vs. Compiler (转译器 vs. 编译器)</a></li>
       </ul>
     </li>
   </ul>
@@ -154,7 +180,7 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">HTML学习手册</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Javascript中的bundler和transpiler</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -165,7 +191,7 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="CSS学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html" title="Vim和NeoVim (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -175,7 +201,7 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html" title="Javascript包管理 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html" title="Tmux使用教程 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -204,30 +230,16 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
 <div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
   <i class="fa-fw fas fa-layer-group"></i>
   <ul>
-    <li><a class="term-link" href="/hugo-blog/tags/html/index.html">HTML</a></li>
+    <li><a class="term-link" href="/hugo-blog/tags/javascript/index.html">Javascript</a></li>
     <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
   </ul>
 </div>
   </header>
 
-<h1 id="html学习手册">HTML学习手册</h1>
+<h1 id="javascript中的bundler和transpiler">Javascript中的bundler和transpiler</h1>
 
-<h1 id="基础概念">
-  基础概念
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><p>HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。</p>
-<blockquote>
-<p>markdown的设计目标是对应markup做的简化版本</p>
-</blockquote>
-<h1 id="canvas">
-  Canvas
+<h2 id="什么是-bundler打包器">
+  什么是 Bundler（打包器）？
 
 
 
@@ -236,8 +248,9 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><h2 id="canvas创建">
-  canvas创建
+</h2><p><strong>Bundler</strong>（打包器）在现代软件开发中，尤其是在 <strong>JavaScript</strong> 生态系统中，是一个至关重要的工具。它负责将应用程序中的各种代码片段、依赖项和资源（如 JavaScript、CSS、HTML、图片等）<strong>打包</strong>成一个或一组较小的、优化的文件，以便浏览器能够高效地加载和运行。</p>
+<h3 id="-主要作用">
+  📌 主要作用
 
 
 
@@ -246,96 +259,123 @@ Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>&lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt;</code></pre></div>
-<h2 id="context">
-  context
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p>设置使用2D canvas，获取canvas的context，后续操作都是通过context</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>const ctx = canvas.getContext(&#34;2d&#34;);</code></pre></div>
-<h2 id="绘制api">
-  绘制API
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><h3 id="矩形">
-  矩形
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>ctx.fillRect(x, y, width, height);</code></pre></div>
-<h3 id="直线">
-  直线
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>ctx.beginPath();
-ctx.moveTo(x1, y1);
-ctx.lineTo(x2, y2);
-ctx.stroke();</code></pre></div>
-<h3 id="图像">
-  图像
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>参数包括（可以分别选择前3、5、9个参数）：
-image、paste坐标（x1、y1）、paste大小（w1、h1）、原图坐标（x2、y2）、原图大小（w2、h2）</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>const img = new Image();
-img.src = &#39;xxx.png&#39;;
-ctx.drawImage(img, x1, y1, w1, h1, x2, y2, w2, h2);</code></pre></div>
-<p>参考链接：</p>
+</h3><ul>
+<li>
+<p><strong>文件整合与优化：</strong> 将多个模块化的文件合并成更少的数量，从而<strong>减少浏览器向服务器发出的 HTTP 请求次数</strong> ，显著提高网站或应用的加载速度和性能。</p>
+</li>
+<li>
+<p><strong>依赖管理和解析：</strong> 自动跟踪代码文件之间的依赖关系，并确保所有必需的模块和库都以正确的顺序包含在最终的打包文件中。</p>
+</li>
+<li>
+<p><strong>代码优化：</strong></p>
 <ul>
 <li>
-
-
-
-<a href="https://www.youtube.com/watch?v=jEUuM5bRAzw" target="_blank"># How to Draw Images to HTML Canvas (JavaScript Tutorial)</a>
-更多链接：</li>
+<p><strong>压缩 (Minification)：</strong> 移除不必要的空格、注释和格式，减小文件体积。</p>
+</li>
 <li>
-
-
-
-<a href="https://www.youtube.com/playlist?list=PLpPnRKq7eNW3We9VdCfx9fprhqXHwTPXL" target="_blank">HTML5 Canvas Tutorials for Beginners</a></li>
+<p><strong>摇树优化 (Tree-Shaking)：</strong> 删除代码中未使用的部分（死代码），确保只有必要的代码被发送到浏览器。</p>
+</li>
+</ul>
+</li>
 <li>
+<p><strong>兼容性与转换：</strong> Bundler 通常与 <strong>转译器 (Transpiler)</strong> 协同工作，将新的 JavaScript 语法（如 ES6+）、TypeScript 或 JSX 转换为浏览器能够理解的、向后兼容的格式。</p>
+</li>
+</ul>
+<p>简而言之，Bundler <strong>自动化并简化了工作流程</strong>，使得开发者可以专注于编写模块化的代码，同时保证最终交付给用户的应用是高性能且易于部署的。</p>
+<hr>
+<p>
 
 
 
-<a href="https://www.youtube.com/playlist?list=PLN0tvDAN1yvSNbkHAwPzJ5O4pP_e2vyme" target="_blank"># Canvas HTML5 JavaScript Full Tutorial</a></li>
+<a href="https://www.youtube.com/watch?v=5IG4UmULyoA" target="_blank">Module Bundlers Explained&hellip; Webpack, Rollup, Parcel, and Snowpack</a> 这个视频解释了什么是模块打包器，以及像 Webpack、Rollup 和 Parcel 这样的工具是如何将代码打包成可用于生产环境的 Web 应用的。</p>
+<h2 id="什么是-transpiler-转译器">
+  什么是 Transpiler (转译器)？
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>Transpiler 是 <strong>Source-to-Source Compiler</strong>（源代码到源代码编译器）的简称。它的核心功能是：</p>
+<blockquote>
+<p>接受用<strong>一种编程语言</strong>编写的源代码作为输入，然后生成用**另一种（或同一语言的另一个版本）**编程语言编写的、功能等效的源代码作为输出。</p>
+</blockquote>
+<h3 id="-在-javascript-生态中的作用">
+  💻 在 JavaScript 生态中的作用
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>在现代 JavaScript 开发中，Transpiler 扮演着至关重要的角色，因为 JavaScript 语言标准（如 ES2015/ES6 及更高版本）更新非常快。</p>
+<ol>
 <li>
+<p><strong>使用新特性：</strong> 开发者可以使用最新的、更高效的 JavaScript 语法和特性（例如箭头函数 <code>=&gt;</code>、<code>class</code>、<code>async/await</code> 等）来编写代码。</p>
+</li>
+<li>
+<p><strong>保证兼容性：</strong> 但并不是所有的旧版浏览器或运行环境都能完全支持这些最新的特性。</p>
+</li>
+<li>
+<p><strong>进行转译：</strong> Transpiler 介入，将这些新的语法结构<strong>转换</strong>成旧版环境（通常是 ES5）能够理解和执行的代码。</p>
+<ul>
+<li><strong>例子：</strong> 它可以将 ES6 的 <code>class</code> 语法转换为 ES5 的 <code>function</code> 和原型链操作。</li>
+</ul>
+</li>
+</ol>
+<h3 id="transpiler-vs-compiler-转译器-vs-编译器">
+  Transpiler vs. Compiler (转译器 vs. 编译器)
 
 
 
-<a href="https://www.youtube.com/watch?v=uCH1ta5OUHw" target="_blank"># HTML Canvas DEEP DIVE</a></li>
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>虽然 Transpiler 本质上是一种编译器，但它们之间有一个重要的区别：</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>特性</strong></th>
+          <th><strong>Transpiler (转译器)</strong></th>
+          <th><strong>Compiler (编译器)</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>输入/输出</strong></td>
+          <td><strong>源代码</strong> $\rightarrow$ <strong>源代码</strong> (Source-to-Source)</td>
+          <td><strong>源代码</strong> $\rightarrow$ <strong>低级代码/机器码</strong> (例如：C/Java $\rightarrow$ 机器码)</td>
+      </tr>
+      <tr>
+          <td><strong>抽象级别</strong></td>
+          <td>在<strong>大致相同的抽象级别</strong>之间转换 (例如：JS ES6 $\rightarrow$ JS ES5)</td>
+          <td>从<strong>高级抽象</strong>转换为<strong>低级抽象</strong></td>
+      </tr>
+      <tr>
+          <td><strong>主要目标</strong></td>
+          <td>确保新代码的<strong>跨环境兼容性</strong></td>
+          <td>将代码转换为<strong>可直接执行的格式</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>著名的 Transpiler 例子：</strong></p>
+<ul>
+<li>
+<p><strong>Babel：</strong> 最流行的 JavaScript Transpiler，用于将最新的 JavaScript（如 ES6+、JSX、TypeScript）转译为向后兼容的 JS 代码。</p>
+</li>
+<li>
+<p><strong>TypeScript 编译器：</strong> 它将 TypeScript 代码（带有类型注解）转译为纯 JavaScript 代码。</p>
+</li>
 </ul>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Dec 12, 2025
+              <i class='fa-fw fas fa-calendar'></i> Nov 27, 2025
   </footer>
 </article>
         </div>
@@ -385,7 +425,7 @@ ctx.drawImage(img, x1, y1, w1, h1, x2, y2, w2, h2);</code></pre></div>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/blogs/bun/index.html"><a class="padding" href="/hugo-blog/blogs/bun/index.html">Bun</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>

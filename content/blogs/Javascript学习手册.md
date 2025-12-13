@@ -14,10 +14,13 @@ draft: false
 	- console.trace可以追踪执行代码位置
 - \`\`：反引号表示模版字面量，类似formatted string
 	- 标签模版字面量：函数后面紧接着模版字面量
-		- foo(strs, values...)，如foo\`this is ${apple.id}\`，strs接收被\${}分开的部分，values接收\${}的部分，从而自定义字符串解析和输出
+		- foo(strs, ...values)，如foo\`this is ${apple.id}\`，strs接收被\${}分开的部分，values接收\${}的部分，从而自定义字符串解析和输出
 		- 可以作为DSL使用，如[标签模版字面量在DSL中的例子](%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8DSL%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90.md)
 - \=\=\=：三个等号是全等，即对象类型和值均相等，两个等号只代表值相等
-- ...：可变参数，比如function foo (a, b, ...c)，c获取剩余可变参数
+- ...：spread标识
+	- 可变参数，比如function foo (a, b, ...c)，c获取剩余可变参数
+	- 将两个{}合并在一起，const ab = {...a, ...b};
+	- 给array添加元素，a = \[...a, "apple", "banana"\];
 - typeof：类型判断，如typeof xxx !== 'function'
 - for循环：
 	- 对array（可迭代对象，包括map）可以用of
