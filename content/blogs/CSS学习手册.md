@@ -3,6 +3,7 @@ title: CSS学习手册
 date: 2025-12-12
 tags:
   - 技术笔记
+  - CSS
 draft: false
 ---
 # 基础用法
@@ -21,7 +22,7 @@ draft: false
 - span或者div（称为container）用来分组，从而对各组或整体进行排版
 	- span是inline的，只对内容生效，div是block的，对整体block生效
 	- 通过nested layout技术组合横向或竖向（display设为block/inline-block）的div，得到几乎任意排版效果
-- padding就是字和border的距离，margin就是border和其他元素的距离  		![image.png](https://images.ruoruoliu.com/2025/11/243150c0e34a8d1294d09b4570d6db81.png)
+- box model：padding就是字和border的距离，margin就是border和其他元素的距离  		![image.png](https://images.ruoruoliu.com/2025/11/243150c0e34a8d1294d09b4570d6db81.png)
 - position：
 	- static：元素原本位置，不受left、right、top、bottom影响，也不作为上级给absolute做基准定位
 	- relative：元素原本位置加上left、right、top、bottom的影响，多用于flex的下级元素
@@ -33,6 +34,21 @@ draft: false
 - flexbox：可以方便地对container内部的元素进行动态的水平和垂直布局
 	- 可以解决两个div之间由于html换行导致的空格间隙
 	- 相比grid先定义行列再填充内容的方式，flexbox根据内容自动调整行列大小
+	- 参考链接：[# Learn Flexbox CSS in 8 minutes](https://www.youtube.com/watch?v=phWxA89Dy94)
 - transform：可以使对象旋转、缩放、变形等，会使用gpu加速，做动画场景时优先考虑
+- aspect-ratio：保持元素的比例，例如16:9
 - @media：考虑显示器的大小，实现相对应的不同样式，比如横向排版在宽度变小后改为纵向排版
 - @keyframes：利用transform、opacity、background-color等实现简单的动画效果
+- var：变量，实现属性的重复使用。变量名一般在:root伪作用域中定义，以双破折号--开头，通过var()函数来引用定义的值
+	```
+	:root {
+	  --primary-color: #3498db; /* 蓝色 */
+	  --font-size-base: 16px;
+	}
+	
+	body {
+	  background-color: var(--primary-color);
+	  font-size: var(--font-size-base);
+	}
+	```
+- calc：可以结合变量进行赋值操作，如animation-delay: calc(var(X)) \* 100ms;

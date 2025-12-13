@@ -2,9 +2,10 @@
 title: Lua学习手册
 date: 2025-11-29
 tags:
+  - 技术笔记
 draft: false
 ---
 
 参考链接：
-[Learn X in Y minutes](https://learnxinyminutes.com/lua/)
-[# Lua, the simplest language to learn](https://www.youtube.com/watch?v=NneB6GX1Els)
+- [Learn X in Y minutes](https://learnxinyminutes.com/lua/)
+- [# Lua, the simplest language to learn](https://www.youtube.com/watch?v=NneB6GX1Els)

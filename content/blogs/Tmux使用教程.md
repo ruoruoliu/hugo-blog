@@ -108,8 +108,8 @@ tmux attach -t dev
 ```
 
 ---
-参考链接：   
-[# tmux 使用和基礎配置 從入門到加班 一個視頻全搞定！](https://www.youtube.com/watch?v=QGnjSccjDck)  
-[# Tmux + Vim 工作流! 同时操作多个项目, 追求极致的. 滑流畅!](https://www.youtube.com/watch?v=vwmDIaWLbRQ)    
-[# Tmux has forever changed the wa.  I write code.](https://www.youtube.com/watch?v=DzNmUNvnB04)   
-[# you need to learn tmux RIGHT NO. !!](https://www.youtube.com/watch?v=nTqu6w2wc68)    
+参考链接：
+- [# tmux 使用和基礎配置 從入門到加班 一個視頻全搞定！](https://www.youtube.com/watch?v=QGnjSccjDck)  
+- [# Tmux + Vim 工作流! 同时操作多个项目, 追求极致的. 滑流畅!](https://www.youtube.com/watch?v=vwmDIaWLbRQ)    
+- [# Tmux has forever changed the wa.  I write code.](https://www.youtube.com/watch?v=DzNmUNvnB04)   
+- [# you need to learn tmux RIGHT NO. !!](https://www.youtube.com/watch?v=nTqu6w2wc68)    

@@ -3,6 +3,7 @@ title: HTML学习手册
 date: 2025-12-12
 tags:
   - 技术笔记
+  - HTML
 draft: false
 ---
 # 基础概念
@@ -40,9 +41,9 @@ const img = new Image();
 img.src = 'xxx.png';
 ctx.drawImage(img, x1, y1, w1, h1, x2, y2, w2, h2);
 ```
-[# How to Draw Images to HTML Canvas (JavaScript Tutorial)](https://www.youtube.com/watch?v=jEUuM5bRAzw)
-
+参考链接：
+- [# How to Draw Images to HTML Canvas (JavaScript Tutorial)](https://www.youtube.com/watch?v=jEUuM5bRAzw)
 更多链接：
-[HTML5 Canvas Tutorials for Beginners](https://www.youtube.com/playlist?list=PLpPnRKq7eNW3We9VdCfx9fprhqXHwTPXL)
-[# Canvas HTML5 JavaScript Full Tutorial](https://www.youtube.com/playlist?list=PLN0tvDAN1yvSNbkHAwPzJ5O4pP_e2vyme)
-[# HTML Canvas DEEP DIVE](https://www.youtube.com/watch?v=uCH1ta5OUHw)
+- [HTML5 Canvas Tutorials for Beginners](https://www.youtube.com/playlist?list=PLpPnRKq7eNW3We9VdCfx9fprhqXHwTPXL)
+- [# Canvas HTML5 JavaScript Full Tutorial](https://www.youtube.com/playlist?list=PLN0tvDAN1yvSNbkHAwPzJ5O4pP_e2vyme)
+- [# HTML Canvas DEEP DIVE](https://www.youtube.com/watch?v=uCH1ta5OUHw)

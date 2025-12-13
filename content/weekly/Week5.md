@@ -17,7 +17,7 @@ draft: false
 
 > [!info]+ 学习javascript基础知识
 
-- [Javascript学习手册-基础用法](../Blogs/Techs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95)
+- [Javascript学习手册-基础用法](../Blogs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95)
 - 课程链接
 	- [# JavaScript Full Course for free](https://www.youtube.com/watch?v=lfmg-EJ8gm4&list=PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3&index=2)
 	- ~~[# JavaScript Tutorial Full Course - Beginner to Pro](https://www.youtube.com/watch?v=EerdGm-ehJQ)~~

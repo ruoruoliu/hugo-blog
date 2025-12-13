@@ -28,8 +28,8 @@ draft: false
 > [!info] 学习css、html基础知识并简单搭建github.io
 
 - css & html课程学习
-	- [HTML学习手册-基础概念](../Blogs/Techs/HTML%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5)
-	- [CSS学习手册-基础用法](../Blogs/Techs/CSS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95)
+	- [HTML学习手册-基础概念](../Blogs/HTML%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5)
+	- [CSS学习手册-基础用法](../Blogs/CSS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95)
 	- 课程链接
 		- [# 成為網頁設計師的第一步！快速上手 HTML & CSS 展開你的網頁設計之旅！](https://www.youtube.com/watch?v=6HHN0G2cwBM&list=PL7enJ2-v6SPkJxL_qO4bBYGR-QViDFxGf&index=8)
 		- [# HTML & CSS Full Course for free](https://www.youtube.com/watch?v=HGTJBPNC-Gw&list=PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3)

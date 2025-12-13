@@ -13,5 +13,5 @@ draft: false
 	- 等等
 - 支持AI辅助新建工作流
 ---
-参考链接：  
-[# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧](https://www.youtube.com/watch?v=JtdUgJGI_Oo)
+参考链接：
+- [# Zapier AI Tutorial for Beginners: Automation Made Simple 🟧](https://www.youtube.com/watch?v=JtdUgJGI_Oo)

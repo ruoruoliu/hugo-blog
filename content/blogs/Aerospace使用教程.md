@@ -27,4 +27,4 @@ Aerospace是linux系统上i3窗口管理器应用的macOS系统上的替代应�
 
 ---
 相关链接：
-[# Aerospace Is The Best Tiling Window Manager I've Tried On macOS](https://www.youtube.com/watch?v=-FoWClVHG5g)
+- [# Aerospace Is The Best Tiling Window Manager I've Tried On macOS](https://www.youtube.com/watch?v=-FoWClVHG5g)

@@ -49,9 +49,9 @@ Vim分为两个概念，编辑器和motion
 ### Text Object
 ![image.png](https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png)
 
-参考链接：  
-[# Vim As Your Editor](https://www.youtube.com/watch?v=X6AR2RMB5tE&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=1)
-[# Vim中的重要概念 Text Object](https://www.bilibili.com/video/BV1Ze4y1E7Sk/?spm_id_from=333.337.search-card.all.click&vd_source=c8a3c83e361aa2a357093342a046ceed)
+参考链接：
+- [# Vim As Your Editor](https://www.youtube.com/watch?v=X6AR2RMB5tE&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R&index=1)
+- [# Vim中的重要概念 Text Object](https://www.bilibili.com/video/BV1Ze4y1E7Sk/?spm_id_from=333.337.search-card.all.click&vd_source=c8a3c83e361aa2a357093342a046ceed)
 
 # NeoVim
 ----
@@ -110,7 +110,7 @@ Vim分为两个概念，编辑器和motion
 ![image.png](https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png)
 
 
-参考链接：  
-[# The Only Video You Need to Get Started with Neovim](https://www.youtube.com/watch?v=m8C0Cq9Uv9o)  
-[# NeoVim 从平凡到非凡](https://www.youtube.com/watch?v=Qp71mD7Eex0&list=PLlYlfdIF0BKcSMqYr2dxsQNTCLJFQ_hMI&index=1)  
-[# How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide](https://www.youtube.com/watch?v=6pAG3BHurdM)  
+参考链接：
+- [# The Only Video You Need to Get Started with Neovim](https://www.youtube.com/watch?v=m8C0Cq9Uv9o)  
+- [# NeoVim 从平凡到非凡](https://www.youtube.com/watch?v=Qp71mD7Eex0&list=PLlYlfdIF0BKcSMqYr2dxsQNTCLJFQ_hMI&index=1)  
+- [# How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide](https://www.youtube.com/watch?v=6pAG3BHurdM)  

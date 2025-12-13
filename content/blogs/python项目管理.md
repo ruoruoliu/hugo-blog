@@ -2,6 +2,7 @@
 title: Python项目管理
 date: 2025-11-28
 tags:
+  - 技术笔记
 draft: false
 ---
 # pip
@@ -137,6 +138,6 @@ uv tool install ruff
 uv build
 ```
 
-参考链接：  
-[# 从pip到uv：一口气梳理现代Python项目管理全流程！](https://www.youtube.com/watch?v=jd1aRE5pJWc)
-[# 用uv管理Python的一切！](https://www.youtube.com/watch?v=aVXs8lb7i9U)
+参考链接：
+- [# 从pip到uv：一口气梳理现代Python项目管理全流程！](https://www.youtube.com/watch?v=jd1aRE5pJWc)
+- [# 用uv管理Python的一切！](https://www.youtube.com/watch?v=aVXs8lb7i9U)
