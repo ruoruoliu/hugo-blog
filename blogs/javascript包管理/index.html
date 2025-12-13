@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
+npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Javascript包管理 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
+npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="Javascript包管理 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
+npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2025-12-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-12T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta property="article:tag" content="Javascript">
+    <meta itemprop="name" content="Javascript包管理 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
+npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
+    <meta itemprop="datePublished" content="2025-12-12T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-12T00:00:00+00:00">
+    <meta itemprop="wordCount" content="124">
+    <meta itemprop="keywords" content="技术笔记,Javascript">
+    <title>Javascript包管理 :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1765597996" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1765597996" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1765597996" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1765597996" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1765597996" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1765597996";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1765597996" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1765597996" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1765597996" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1765597996" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765597996" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765597996" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1765597996" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1765597996" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1765597996" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/javascript%E5%8C%85%E7%AE%A1%E7%90%86\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#幻影依赖">幻影依赖</a></li>
+    <li><a href="#用户项目">用户项目</a></li>
+    <li><a href="#peer-dependency">peer Dependency</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Javascript包管理</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="HTML学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="Javascript学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/javascript/index.html">Javascript</a></li>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="javascript包管理">Javascript包管理</h1>
+
+<h1 id="npm">
+  npm
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><ul>
+<li>npm init在项目中来创建package.json
+<ul>
+<li>&ndash;yes（-y）直接默认</li>
+</ul>
+</li>
+<li>package.json的作用：
+<ul>
+<li>管理项目依赖</li>
+<li>scripts中支持脚本运行初始化构建项目</li>
+</ul>
+</li>
+<li>package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本</li>
+<li>npm install安装依赖，创建node_modules目录存放
+<ul>
+<li>&ndash;save（-S）可以自动在package.json中记录</li>
+<li>&ndash;save-dev（-D）表示只用于develop，不用于production</li>
+<li>-g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server</li>
+<li>@X.X.X：安装指定版本
+<ul>
+<li>^X.X.X指保持大版本，小版本和patch更新到最新</li>
+<li>~X.X.X指保持大版本和小版本，patch更新到最新</li>
+<li>*指更新到最新</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>npm list列出项目依赖
+<ul>
+<li>&ndash;depth 0，不显示子依赖，1，显示一级子依赖</li>
+<li>&ndash;global true，显示全局安装</li>
+</ul>
+</li>
+<li>npm update更新依赖到指定的最新版本</li>
+<li>npm prune删除package.json中不存在的已安装依赖</li>
+<li>npm run运行package.json中scripts指定的命令</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/playlist?list=PLC3y8-rFHvwhgWwm5J3KqzX47n7dwWNrq" target="_blank">npm Tutorial for Beginners</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=cjoTTSbOuG0" target="_blank"># NPM Full Course For Beginners - Learn NPM fundamentals and basics</a></li>
+</ul>
+<h1 id="yarn">
+  Yarn
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><ul>
+<li>yarn add来安装包</li>
+<li>yarn.lock对应package-lock.json的作用</li>
+<li>yarn set version berry：设置为v2版本
+<ul>
+<li>v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=g9_6KmiBISk" target="_blank"># Yarn Package Manager Crash Course</a></li>
+</ul>
+<h1 id="pnpm">
+  pnpm
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><ul>
+<li>速度快</li>
+<li>node modules中的包文件基于链接，避免重复的io操作</li>
+<li>支持monorepos</li>
+<li>避免flat结构的node modules带来的幻影依赖问题</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=hiTmX2dW84E" target="_blank"># What Is pnpm?</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=d1E31WPR70g" target="_blank"># Why I Switched From NPM/Yarn to PNPM And Why You Should Too!</a></li>
+</ul>
+<h1 id="一些概念">
+  一些概念
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><h2 id="幻影依赖">
+  幻影依赖
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>幻影依赖指的是您的项目代码中直接使用了某个包，但该包并没有在您的package.json文件的dependencies或devDependencies中明确声明。</li>
+<li>比如你的包A依赖B，B依赖C，安装包A的依赖的时候会把B和C都安装到node modules中，是你在开发A时可以直接引用C，但是其实package.json中没有显式写出C。</li>
+<li>这会导致，当后续B不再依赖C的时候，node moduels中将不再有C，你的包A中的对C的引用会突然失效。</li>
+</ul>
+<h2 id="用户项目">
+  用户项目
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>用户项目就是指最终使用您的代码，并直接在package.json中声明了对您的包依赖的那个应用程序或库。peerDependency就是指</li>
+</ul>
+<h2 id="peer-dependency">
+  peer Dependency
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p><a href="#R-image-3105d5e9a862b9ba1d5f28299d4780cb" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4ffc5613e34ffb7b3793294a57506c02.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3105d5e9a862b9ba1d5f28299d4780cb"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4ffc5613e34ffb7b3793294a57506c02.png"></a></p>
+<h1 id="对比">
+  对比
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><p>处理 Peer Dependency 的方式是包管理工具（npm、Yarn、pnpm）之间差异最大的地方之一：
+<a href="#R-image-2a69e2ab9b6b10ef92f91b8556e39e06" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/0fb953c96768e918d8929ade4a7ae27e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2a69e2ab9b6b10ef92f91b8556e39e06"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/0fb953c96768e918d8929ade4a7ae27e.png"></a></p>
+<p>对于幻影依赖：
+<a href="#R-image-a2b0e4fc47776e272cd9c2c025fff48f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c0cac025de26f0d010c112dd77c55569.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a2b0e4fc47776e272cd9c2c025fff48f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c0cac025de26f0d010c112dd77c55569.png"></a></p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=XyPNw_3jsLY" target="_blank"># How JavaScript package managers work: npm vs. yarn vs. pnpm vs. npx</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Dec 12, 2025
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/bun/index.html"><a class="padding" href="/hugo-blog/blogs/bun/index.html">Bun</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8dsl%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8dsl%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/index.html">标签模版字面量在DSL中的例子</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm-agent/index.html"><a class="padding" href="/hugo-blog/blogs/llm-agent/index.html">LLM Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-rot/index.html"><a class="padding" href="/hugo-blog/blogs/context-rot/index.html">Context Rot</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1765597996" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1765597996" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
