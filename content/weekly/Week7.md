@@ -15,8 +15,7 @@ draft: false
 
 > [!info]+ React基础知识学习
 
-- 免费试用 pro 1个月，后续切换到 free plan
-- 后续可以尝试cursor以及claude code
+- 
 
 > [!tip] 知识
 > - 

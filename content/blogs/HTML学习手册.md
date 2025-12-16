@@ -10,6 +10,8 @@ draft: false
 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。
 > markdown的设计目标是对应markup做的简化版本
 
+# data-*
+- [HTML中的data-*](HTML%E4%B8%AD%E7%9A%84data-*.md)
 # Canvas
 ## canvas创建
 ```

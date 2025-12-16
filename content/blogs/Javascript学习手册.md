@@ -82,6 +82,8 @@ draft: false
 - JSON：stringify和parse实现js obect和json string的相互转换
 - fetch：异步函数，通过路径（本地或远程连接）读取数据
 
+# 事件委托
+- [Javascript中的事件委托](Javascript%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98.md)
 # Module
 - module：代码通过模块载入，类似python的import
 	- 在html的script标签里加上type=“module”，将index.js当作module载入
