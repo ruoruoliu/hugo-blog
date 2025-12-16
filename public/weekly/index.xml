@@ -6,14 +6,21 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 14 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Week7 Javascript应用开发</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week7/index.html</link>
+      <pubDate>Sun, 14 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week7/index.html</guid>
+      <description>总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 免费试用 pro 1个月，后续切换到 free plan 后续可以尝试cursor以及claude code [!tip] 知识 待办 学习obsidian和notion功能 基于notion作为内容编辑器搭建个人博客</description>
+    </item>
     <item>
       <title>Week6 Flappy Bird</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week6/index.html</link>
       <pubDate>Mon, 08 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week6/index.html</guid>
-      <description>总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象&#x9;``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习React框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot</description>
+      <description>总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象&#x9;``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn、pnpm等 Bun作为nodejs的运行时替代，也包含包管理器，可以完成前后端整体链路 待办 利用原生JS搭建俄罗斯方块 学习React框架基础知识</description>
     </item>
     <item>
       <title>Week5 Javascript学习</title>

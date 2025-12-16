@@ -32,9 +32,11 @@ draft: false
 
 > [!tip] 知识
 > - Javascript ES6 2015年发布，主要引入let、const、class、module等
-> - Javascript的包管理器有npm、yarn等
+> - Javascript的包管理器有npm、yarn、pnpm等
+> - Bun作为nodejs的运行时替代，也包含包管理器，可以完成前后端整体链路
 
 > [!warning] 待办
+> - 利用原生JS搭建俄罗斯方块
 > - 学习React框架基础知识
-> - 学习强化学习基础知识，在Flappy Bird中实现bot
+
 

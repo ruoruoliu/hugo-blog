@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="背景 在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点 游戏布局 整体游戏布局分为两部分： 主画面：20 * 10 的grid sidebar：包含以下几部分： next：4 * 4 的grid提示下一个是什么 分数栏：包含当前分数和最高分数 按钮栏：包含暂停（pause）和开始（play） Game Loop 用户进入界面后，游戏状态为“ready” 点击play按钮开始Game Loop，游戏状态进入“play” 每50帧，block向下一格 如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行 如果当前block无法新建，即新建位置之前被填充颜色，则失败 游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause” 用户点击play按钮继续Game Loop，游戏状态进入“play” 游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay 用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play” 技术细节 Grid背景 主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线 #scene &gt; div { background-color: white; } #scene { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; background-color: #999; /* 网格线颜色 */ border: 3px solid blue; margin: 10px; position: relative; } 移动和旋转 游戏过程中只有一个block是active的，也就是用户控制的 block的状态包含形状（index）、旋转（四种方向）和位置 let blockState = { index: 0, rotation: 0, x: 1, y: 4, } 通过block的index以及x、y，结合旋转，可以确定整个block的所有div 每次旋转90度：[x, y] = [y, -x] const TETROMINOES = [ // I 块 (直线) [ [-1, 0], [0, 0], [1, 0], [2, 0] ], // O 块 (方形) [ [0, 0], [-1, 0], [-1, 1], [0, 1] ], // L 块 [ [-1, 0], [0, 0], [1, 0], [1, 1] ], // J 块 [ [-1, 0], [0, 0], [1, 0], [-1, 1] ], // T 块 [ [-1, 0], [0, 0], [1, 0], [0, 1] ], // S 块 [ [-1, 0], [0, 0], [0, 1], [1, 1] ], // Z 块 [ [0, 0], [1, 0], [-1, 1], [0, 1] ], ]; 当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格 新建Block 新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid 如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出 // 七种模块在next中的index const nextBlockIndices = [ [2, 6, 10, 14], // I [5, 6, 9, 10], // O [1, 5, 9, 10], // L [1, 2, 5, 9], // J [1, 5, 6, 9], // T [1, 5, 6, 10], // S [2, 5, 6, 9], // Z ] function NewBlock() { blockIndex = nextBlockIndex; blockState = { index: blockIndex, rotation: 0, x: 1, y: 4, }; let newBlockIndices = GetBlockAllIndices(blockState); for (let [newX, newY] of newBlockIndices) { if (blockColors[newX][newY] != &#34;white&#34;) { return false; } } nextBlockIndex = Math.floor(Math.random() * 7); for (let i=0; i &lt; 16; i&#43;&#43;) { if (nextBlockIndices[nextBlockIndex].includes(i)) { nextBlocks[i].style.background = index2Color[nextBlockIndex]; } else { nextBlocks[i].style.background = &#39;white&#39;; } } console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`); return true; } Ghost Block 为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block // 画预期掉落block (Ghost Block) // 1. 计算能掉落多远 let moveX = 0; while (canMoveBlock(moveX &#43; 1, 0)) { // 注意这里要探测 &#43;1 的位置 moveX&#43;&#43;; } // 2. 只有当能移动时才画 ghost if (moveX &gt; 0) { let dropBlockState = {...blockState}; dropBlockState.x &#43;= moveX; let dropBlockIndices = GetBlockAllIndices(dropBlockState); for (let [x, y] of dropBlockIndices) { let dropIndex = x * colNum &#43; y; // 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险） if (blockColors[x][y] === &#39;white&#39;) { sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`; } } }">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="从零开始构建Tetris :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="背景 在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点 游戏布局 整体游戏布局分为两部分： 主画面：20 * 10 的grid sidebar：包含以下几部分： next：4 * 4 的grid提示下一个是什么 分数栏：包含当前分数和最高分数 按钮栏：包含暂停（pause）和开始（play） Game Loop 用户进入界面后，游戏状态为“ready” 点击play按钮开始Game Loop，游戏状态进入“play” 每50帧，block向下一格 如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行 如果当前block无法新建，即新建位置之前被填充颜色，则失败 游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause” 用户点击play按钮继续Game Loop，游戏状态进入“play” 游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay 用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play” 技术细节 Grid背景 主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线 #scene &gt; div { background-color: white; } #scene { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; background-color: #999; /* 网格线颜色 */ border: 3px solid blue; margin: 10px; position: relative; } 移动和旋转 游戏过程中只有一个block是active的，也就是用户控制的 block的状态包含形状（index）、旋转（四种方向）和位置 let blockState = { index: 0, rotation: 0, x: 1, y: 4, } 通过block的index以及x、y，结合旋转，可以确定整个block的所有div 每次旋转90度：[x, y] = [y, -x] const TETROMINOES = [ // I 块 (直线) [ [-1, 0], [0, 0], [1, 0], [2, 0] ], // O 块 (方形) [ [0, 0], [-1, 0], [-1, 1], [0, 1] ], // L 块 [ [-1, 0], [0, 0], [1, 0], [1, 1] ], // J 块 [ [-1, 0], [0, 0], [1, 0], [-1, 1] ], // T 块 [ [-1, 0], [0, 0], [1, 0], [0, 1] ], // S 块 [ [-1, 0], [0, 0], [0, 1], [1, 1] ], // Z 块 [ [0, 0], [1, 0], [-1, 1], [0, 1] ], ]; 当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格 新建Block 新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid 如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出 // 七种模块在next中的index const nextBlockIndices = [ [2, 6, 10, 14], // I [5, 6, 9, 10], // O [1, 5, 9, 10], // L [1, 2, 5, 9], // J [1, 5, 6, 9], // T [1, 5, 6, 10], // S [2, 5, 6, 9], // Z ] function NewBlock() { blockIndex = nextBlockIndex; blockState = { index: blockIndex, rotation: 0, x: 1, y: 4, }; let newBlockIndices = GetBlockAllIndices(blockState); for (let [newX, newY] of newBlockIndices) { if (blockColors[newX][newY] != &#34;white&#34;) { return false; } } nextBlockIndex = Math.floor(Math.random() * 7); for (let i=0; i &lt; 16; i&#43;&#43;) { if (nextBlockIndices[nextBlockIndex].includes(i)) { nextBlocks[i].style.background = index2Color[nextBlockIndex]; } else { nextBlocks[i].style.background = &#39;white&#39;; } } console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`); return true; } Ghost Block 为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block // 画预期掉落block (Ghost Block) // 1. 计算能掉落多远 let moveX = 0; while (canMoveBlock(moveX &#43; 1, 0)) { // 注意这里要探测 &#43;1 的位置 moveX&#43;&#43;; } // 2. 只有当能移动时才画 ghost if (moveX &gt; 0) { let dropBlockState = {...blockState}; dropBlockState.x &#43;= moveX; let dropBlockIndices = GetBlockAllIndices(dropBlockState); for (let [x, y] of dropBlockIndices) { let dropIndex = x * colNum &#43; y; // 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险） if (blockColors[x][y] === &#39;white&#39;) { sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`; } } }">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="从零开始构建Tetris :: Ruoruoliu 2.0">
+    <meta property="og:description" content="背景 在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点 游戏布局 整体游戏布局分为两部分： 主画面：20 * 10 的grid sidebar：包含以下几部分： next：4 * 4 的grid提示下一个是什么 分数栏：包含当前分数和最高分数 按钮栏：包含暂停（pause）和开始（play） Game Loop 用户进入界面后，游戏状态为“ready” 点击play按钮开始Game Loop，游戏状态进入“play” 每50帧，block向下一格 如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行 如果当前block无法新建，即新建位置之前被填充颜色，则失败 游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause” 用户点击play按钮继续Game Loop，游戏状态进入“play” 游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay 用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play” 技术细节 Grid背景 主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线 #scene &gt; div { background-color: white; } #scene { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; background-color: #999; /* 网格线颜色 */ border: 3px solid blue; margin: 10px; position: relative; } 移动和旋转 游戏过程中只有一个block是active的，也就是用户控制的 block的状态包含形状（index）、旋转（四种方向）和位置 let blockState = { index: 0, rotation: 0, x: 1, y: 4, } 通过block的index以及x、y，结合旋转，可以确定整个block的所有div 每次旋转90度：[x, y] = [y, -x] const TETROMINOES = [ // I 块 (直线) [ [-1, 0], [0, 0], [1, 0], [2, 0] ], // O 块 (方形) [ [0, 0], [-1, 0], [-1, 1], [0, 1] ], // L 块 [ [-1, 0], [0, 0], [1, 0], [1, 1] ], // J 块 [ [-1, 0], [0, 0], [1, 0], [-1, 1] ], // T 块 [ [-1, 0], [0, 0], [1, 0], [0, 1] ], // S 块 [ [-1, 0], [0, 0], [0, 1], [1, 1] ], // Z 块 [ [0, 0], [1, 0], [-1, 1], [0, 1] ], ]; 当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格 新建Block 新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid 如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出 // 七种模块在next中的index const nextBlockIndices = [ [2, 6, 10, 14], // I [5, 6, 9, 10], // O [1, 5, 9, 10], // L [1, 2, 5, 9], // J [1, 5, 6, 9], // T [1, 5, 6, 10], // S [2, 5, 6, 9], // Z ] function NewBlock() { blockIndex = nextBlockIndex; blockState = { index: blockIndex, rotation: 0, x: 1, y: 4, }; let newBlockIndices = GetBlockAllIndices(blockState); for (let [newX, newY] of newBlockIndices) { if (blockColors[newX][newY] != &#34;white&#34;) { return false; } } nextBlockIndex = Math.floor(Math.random() * 7); for (let i=0; i &lt; 16; i&#43;&#43;) { if (nextBlockIndices[nextBlockIndex].includes(i)) { nextBlocks[i].style.background = index2Color[nextBlockIndex]; } else { nextBlocks[i].style.background = &#39;white&#39;; } } console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`); return true; } Ghost Block 为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block // 画预期掉落block (Ghost Block) // 1. 计算能掉落多远 let moveX = 0; while (canMoveBlock(moveX &#43; 1, 0)) { // 注意这里要探测 &#43;1 的位置 moveX&#43;&#43;; } // 2. 只有当能移动时才画 ghost if (moveX &gt; 0) { let dropBlockState = {...blockState}; dropBlockState.x &#43;= moveX; let dropBlockIndices = GetBlockAllIndices(dropBlockState); for (let [x, y] of dropBlockIndices) { let dropIndex = x * colNum &#43; y; // 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险） if (blockColors[x][y] === &#39;white&#39;) { sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`; } } }">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2025-12-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-14T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta property="article:tag" content="Javascript">
+    <meta itemprop="name" content="从零开始构建Tetris :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="背景 在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点 游戏布局 整体游戏布局分为两部分： 主画面：20 * 10 的grid sidebar：包含以下几部分： next：4 * 4 的grid提示下一个是什么 分数栏：包含当前分数和最高分数 按钮栏：包含暂停（pause）和开始（play） Game Loop 用户进入界面后，游戏状态为“ready” 点击play按钮开始Game Loop，游戏状态进入“play” 每50帧，block向下一格 如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行 如果当前block无法新建，即新建位置之前被填充颜色，则失败 游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause” 用户点击play按钮继续Game Loop，游戏状态进入“play” 游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay 用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play” 技术细节 Grid背景 主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线 #scene &gt; div { background-color: white; } #scene { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; background-color: #999; /* 网格线颜色 */ border: 3px solid blue; margin: 10px; position: relative; } 移动和旋转 游戏过程中只有一个block是active的，也就是用户控制的 block的状态包含形状（index）、旋转（四种方向）和位置 let blockState = { index: 0, rotation: 0, x: 1, y: 4, } 通过block的index以及x、y，结合旋转，可以确定整个block的所有div 每次旋转90度：[x, y] = [y, -x] const TETROMINOES = [ // I 块 (直线) [ [-1, 0], [0, 0], [1, 0], [2, 0] ], // O 块 (方形) [ [0, 0], [-1, 0], [-1, 1], [0, 1] ], // L 块 [ [-1, 0], [0, 0], [1, 0], [1, 1] ], // J 块 [ [-1, 0], [0, 0], [1, 0], [-1, 1] ], // T 块 [ [-1, 0], [0, 0], [1, 0], [0, 1] ], // S 块 [ [-1, 0], [0, 0], [0, 1], [1, 1] ], // Z 块 [ [0, 0], [1, 0], [-1, 1], [0, 1] ], ]; 当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格 新建Block 新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid 如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出 // 七种模块在next中的index const nextBlockIndices = [ [2, 6, 10, 14], // I [5, 6, 9, 10], // O [1, 5, 9, 10], // L [1, 2, 5, 9], // J [1, 5, 6, 9], // T [1, 5, 6, 10], // S [2, 5, 6, 9], // Z ] function NewBlock() { blockIndex = nextBlockIndex; blockState = { index: blockIndex, rotation: 0, x: 1, y: 4, }; let newBlockIndices = GetBlockAllIndices(blockState); for (let [newX, newY] of newBlockIndices) { if (blockColors[newX][newY] != &#34;white&#34;) { return false; } } nextBlockIndex = Math.floor(Math.random() * 7); for (let i=0; i &lt; 16; i&#43;&#43;) { if (nextBlockIndices[nextBlockIndex].includes(i)) { nextBlocks[i].style.background = index2Color[nextBlockIndex]; } else { nextBlocks[i].style.background = &#39;white&#39;; } } console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`); return true; } Ghost Block 为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block // 画预期掉落block (Ghost Block) // 1. 计算能掉落多远 let moveX = 0; while (canMoveBlock(moveX &#43; 1, 0)) { // 注意这里要探测 &#43;1 的位置 moveX&#43;&#43;; } // 2. 只有当能移动时才画 ghost if (moveX &gt; 0) { let dropBlockState = {...blockState}; dropBlockState.x &#43;= moveX; let dropBlockIndices = GetBlockAllIndices(dropBlockState); for (let [x, y] of dropBlockIndices) { let dropIndex = x * colNum &#43; y; // 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险） if (blockColors[x][y] === &#39;white&#39;) { sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`; } } }">
+    <meta itemprop="datePublished" content="2025-12-14T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-14T00:00:00+00:00">
+    <meta itemprop="wordCount" content="392">
+    <meta itemprop="keywords" content="技术笔记,Javascript">
+    <title>从零开始构建Tetris :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1765871070" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1765871070" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1765871070" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1765871070" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1765871070" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1765871070";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1765871070" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1765871070" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1765871070" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1765871070" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765871070" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1765871070" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1765871070" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1765871070" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1765871070" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">从零开始构建Tetris</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/bun/index.html" title="Bun (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/javascript/index.html">Javascript</a></li>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="从零开始构建tetris">从零开始构建Tetris</h1>
+
+
+<details open class="box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    背景
+  </summary>
+  <div class="box-content">
+<ul>
+<li>在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点</li>
+</ul>
+  </div>
+</details>
+<p><a href="#R-image-fbea30774f9cbcb9de10bd52ac39f826" class="lightbox-link"><img alt="image.png|center|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4dd2f584a188851b0e70ecb017bac1fa.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fbea30774f9cbcb9de10bd52ac39f826"><img alt="image.png|center|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4dd2f584a188851b0e70ecb017bac1fa.png"></a></p>
+
+<details open class="box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    游戏布局
+  </summary>
+</details>
+<ul>
+<li>整体游戏布局分为两部分：
+<ul>
+<li>主画面：20 * 10 的grid</li>
+<li>sidebar：包含以下几部分：
+<ul>
+<li>next：4 * 4 的grid提示下一个是什么</li>
+<li>分数栏：包含当前分数和最高分数</li>
+<li>按钮栏：包含暂停（pause）和开始（play）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<details open class="box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    Game Loop
+  </summary>
+</details>
+<ul>
+<li>用户进入界面后，游戏状态为“ready”</li>
+<li>点击play按钮开始Game Loop，游戏状态进入“play”
+<ul>
+<li>每50帧，block向下一格</li>
+<li>如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行</li>
+<li>如果当前block无法新建，即新建位置之前被填充颜色，则失败</li>
+</ul>
+</li>
+<li>游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause”
+<ul>
+<li>用户点击play按钮继续Game Loop，游戏状态进入“play”</li>
+</ul>
+</li>
+<li>游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay
+<ul>
+<li>用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play”</li>
+</ul>
+</li>
+</ul>
+
+<details open class="box cstyle notices note">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-exclamation-circle"></i> 
+    技术细节
+  </summary>
+</details>
+
+<details open class="box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    Grid背景
+  </summary>
+</details>
+<ul>
+<li>主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code> #scene &gt; div {
+    background-color: white;
+}
+
+#scene {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    gap: 1px;
+    background-color: #999; /* 网格线颜色 */
+    border: 3px solid blue;
+    margin: 10px;
+    position: relative;
+}</code></pre></div>
+
+<details open class="box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    移动和旋转
+  </summary>
+</details>
+<ul>
+<li>游戏过程中只有一个block是active的，也就是用户控制的</li>
+<li>block的状态包含形状（index）、旋转（四种方向）和位置</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>let blockState = {
+    index: 0,
+    rotation: 0,
+    x: 1,
+    y: 4,
+}</code></pre></div>
+<ul>
+<li>通过block的index以及x、y，结合旋转，可以确定整个block的所有div
+<ul>
+<li>每次旋转90度：[x, y] = [y, -x]</li>
+</ul>
+</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>const TETROMINOES = [
+    // I 块 (直线)
+    [
+        [-1, 0], [0, 0], [1, 0], [2, 0]
+    ],
+    // O 块 (方形)
+    [
+        [0, 0], [-1, 0], [-1, 1], [0, 1]
+    ],
+    // L 块
+    [
+        [-1, 0], [0, 0], [1, 0], [1, 1]
+    ],
+    // J 块
+    [
+        [-1, 0], [0, 0], [1, 0], [-1, 1]
+    ],
+    // T 块
+    [
+        [-1, 0], [0, 0], [1, 0], [0, 1]
+    ],
+    // S 块
+    [
+        [-1, 0], [0, 0], [0, 1], [1, 1]
+    ],
+    // Z 块
+    [
+        [0, 0], [1, 0], [-1, 1], [0, 1]
+    ],
+];</code></pre></div>
+<ul>
+<li>当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格</li>
+</ul>
+
+<details open class="box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    新建Block
+  </summary>
+</details>
+<ul>
+<li>新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid</li>
+<li>如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>// 七种模块在next中的index
+const nextBlockIndices = [
+    [2, 6, 10, 14], // I
+    [5, 6, 9, 10], // O
+    [1, 5, 9, 10], // L
+    [1, 2, 5, 9], // J
+    [1, 5, 6, 9], // T
+    [1, 5, 6, 10], // S
+    [2, 5, 6, 9], // Z
+]
+
+function NewBlock() {
+    blockIndex = nextBlockIndex;
+    blockState = {
+        index: blockIndex,
+        rotation: 0,
+        x: 1,
+        y: 4,
+    };
+    let newBlockIndices = GetBlockAllIndices(blockState);
+    for (let [newX, newY] of newBlockIndices) {
+        if (blockColors[newX][newY] != &#34;white&#34;) {
+            return false;
+        }
+    }
+    nextBlockIndex = Math.floor(Math.random() * 7);
+    for (let i=0; i &lt; 16; i++) {
+        if (nextBlockIndices[nextBlockIndex].includes(i)) {
+            nextBlocks[i].style.background = index2Color[nextBlockIndex];
+        }
+        else {
+            nextBlocks[i].style.background = &#39;white&#39;;
+        } 
+    }
+    console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`);
+    return true;
+} </code></pre></div>
+
+<details open class="box cstyle notices info">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-info-circle"></i> 
+    Ghost Block
+  </summary>
+</details>
+<ul>
+<li>为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>// 画预期掉落block (Ghost Block)
+// 1. 计算能掉落多远
+let moveX = 0;
+while (canMoveBlock(moveX + 1, 0)) { // 注意这里要探测 +1 的位置
+	moveX++;
+}
+
+// 2. 只有当能移动时才画 ghost
+if (moveX &gt; 0) {
+	let dropBlockState = {...blockState};
+	dropBlockState.x += moveX;
+	let dropBlockIndices = GetBlockAllIndices(dropBlockState);
+	for (let [x, y] of dropBlockIndices) {
+		let dropIndex = x * colNum + y;
+		// 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险）
+		if (blockColors[x][y] === &#39;white&#39;) {
+			sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`;
+		}
+	}
+}</code></pre></div>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Dec 14, 2025
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="active " data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/bun/index.html"><a class="padding" href="/hugo-blog/blogs/bun/index.html">Bun</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm-agent/index.html"><a class="padding" href="/hugo-blog/blogs/llm-agent/index.html">LLM Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-rot/index.html"><a class="padding" href="/hugo-blog/blogs/context-rot/index.html">Context Rot</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1765871070" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1765871070" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
