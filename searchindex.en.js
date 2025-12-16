@@ -16,17 +16,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "什么是Bun Bun是一个Javascript的运行时工具，包括前端、后端 包含了bundler、transpiler、任务执行和npm客户端的综合体 参考链接： Javascript中的bundler和transpiler 替代nodejs和npm，并兼容他们 基本操作 watch mode： bun –watch index.ts，监控改动反应到页面，类似node的nodemon bun –hot index.ts，相比watch不用手动reload页面 .env：存储环境变量，process.env.XXX或者bun.env.XXX bunx：不用安装直接运行，对应npx 支持sqlite 文件读写： 写： const data = 'I love Javascript'; await Bun.write('output.txt', data); 读： const file = await Bun.file('output.txt'); console.log(await file.text()); 测试： import { describe, expect, test, beforeAll } from 'bun:test' beforeAll(() =\u003e { // setup tests }); describe('math', () =\u003e { test('addition', () =\u003e { expect(2 + 2).toBe(4); }) }) bundler：将代码打包成可使用的js文件 bun build ./src/index.ts –outfile=./dist/bundle.js 同时支持watch mode 参考链接： Bun 1.0 # Bun Crash Course | JavaScript Runtime, Bundler \u0026 Transpiler Bun 1.3 bun index.html可以直接起服务 数据库支持增加redis Bun.secrets包裹的部分可以存在keychain中（macOS），提升安全性",
-    "description": "什么是Bun Bun是一个Javascript的运行时工具，包括前端、后端 包含了bundler、transpiler、任务执行和npm客户端的综合体 参考链接： Javascript中的bundler和transpiler 替代nodejs和npm，并兼容他们 基本操作 watch mode： bun –watch index.ts，监控改动反应到页面，类似node的nodemon bun –hot index.ts，相比watch不用手动reload页面 .env：存储环境变量，process.env.XXX或者bun.env.XXX bunx：不用安装直接运行，对应npx 支持sqlite 文件读写： 写： const data = 'I love Javascript'; await Bun.write('output.txt', data); 读： const file = await Bun.file('output.txt'); console.log(await file.text()); 测试： import { describe, expect, test, beforeAll } from 'bun:test' beforeAll(() =\u003e { // setup tests }); describe('math', () =\u003e { test('addition', () =\u003e { expect(2 + 2).toBe(4); }) }) bundler：将代码打包成可使用的js文件 bun build ./src/index.ts –outfile=./dist/bundle.js 同时支持watch mode 参考链接： Bun 1.0 # Bun Crash Course | JavaScript Runtime, Bundler \u0026 Transpiler Bun 1.3 bun index.html可以直接起服务 数据库支持增加redis Bun.secrets包裹的部分可以存在keychain中（macOS），提升安全性",
-    "tags": [
-      "技术笔记",
-      "Javascript"
-    ],
-    "title": "Bun",
-    "uri": "/hugo-blog/blogs/bun/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
     "content": "",
     "description": "",
@@ -43,12 +32,60 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
+    "content": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 免费试用 pro 1个月，后续切换到 free plan 后续可以尝试cursor以及claude code [!tip] 知识 待办 学习obsidian和notion功能 基于notion作为内容编辑器搭建个人博客",
+    "description": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 免费试用 pro 1个月，后续切换到 free plan 后续可以尝试cursor以及claude code [!tip] 知识 待办 学习obsidian和notion功能 基于notion作为内容编辑器搭建个人博客",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week7 Javascript应用开发",
+    "uri": "/hugo-blog/weekly/week7/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Weeklies",
+    "uri": "/hugo-blog/weekly/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "背景 在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点 游戏布局 整体游戏布局分为两部分： 主画面：20 * 10 的grid sidebar：包含以下几部分： next：4 * 4 的grid提示下一个是什么 分数栏：包含当前分数和最高分数 按钮栏：包含暂停（pause）和开始（play） Game Loop 用户进入界面后，游戏状态为“ready” 点击play按钮开始Game Loop，游戏状态进入“play” 每50帧，block向下一格 如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行 如果当前block无法新建，即新建位置之前被填充颜色，则失败 游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause” 用户点击play按钮继续Game Loop，游戏状态进入“play” 游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay 用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play” 技术细节 Grid背景 主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线 #scene \u003e div { background-color: white; } #scene { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; background-color: #999; /* 网格线颜色 */ border: 3px solid blue; margin: 10px; position: relative; } 移动和旋转 游戏过程中只有一个block是active的，也就是用户控制的 block的状态包含形状（index）、旋转（四种方向）和位置 let blockState = { index: 0, rotation: 0, x: 1, y: 4, } 通过block的index以及x、y，结合旋转，可以确定整个block的所有div 每次旋转90度：[x, y] = [y, -x] const TETROMINOES = [ // I 块 (直线) [ [-1, 0], [0, 0], [1, 0], [2, 0] ], // O 块 (方形) [ [0, 0], [-1, 0], [-1, 1], [0, 1] ], // L 块 [ [-1, 0], [0, 0], [1, 0], [1, 1] ], // J 块 [ [-1, 0], [0, 0], [1, 0], [-1, 1] ], // T 块 [ [-1, 0], [0, 0], [1, 0], [0, 1] ], // S 块 [ [-1, 0], [0, 0], [0, 1], [1, 1] ], // Z 块 [ [0, 0], [1, 0], [-1, 1], [0, 1] ], ]; 当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格 新建Block 新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid 如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出 // 七种模块在next中的index const nextBlockIndices = [ [2, 6, 10, 14], // I [5, 6, 9, 10], // O [1, 5, 9, 10], // L [1, 2, 5, 9], // J [1, 5, 6, 9], // T [1, 5, 6, 10], // S [2, 5, 6, 9], // Z ] function NewBlock() { blockIndex = nextBlockIndex; blockState = { index: blockIndex, rotation: 0, x: 1, y: 4, }; let newBlockIndices = GetBlockAllIndices(blockState); for (let [newX, newY] of newBlockIndices) { if (blockColors[newX][newY] != \"white\") { return false; } } nextBlockIndex = Math.floor(Math.random() * 7); for (let i=0; i \u003c 16; i++) { if (nextBlockIndices[nextBlockIndex].includes(i)) { nextBlocks[i].style.background = index2Color[nextBlockIndex]; } else { nextBlocks[i].style.background = 'white'; } } console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`); return true; } Ghost Block 为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block // 画预期掉落block (Ghost Block) // 1. 计算能掉落多远 let moveX = 0; while (canMoveBlock(moveX + 1, 0)) { // 注意这里要探测 +1 的位置 moveX++; } // 2. 只有当能移动时才画 ghost if (moveX \u003e 0) { let dropBlockState = {...blockState}; dropBlockState.x += moveX; let dropBlockIndices = GetBlockAllIndices(dropBlockState); for (let [x, y] of dropBlockIndices) { let dropIndex = x * colNum + y; // 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险） if (blockColors[x][y] === 'white') { sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`; } } }",
+    "description": "背景 在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点 游戏布局 整体游戏布局分为两部分： 主画面：20 * 10 的grid sidebar：包含以下几部分： next：4 * 4 的grid提示下一个是什么 分数栏：包含当前分数和最高分数 按钮栏：包含暂停（pause）和开始（play） Game Loop 用户进入界面后，游戏状态为“ready” 点击play按钮开始Game Loop，游戏状态进入“play” 每50帧，block向下一格 如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行 如果当前block无法新建，即新建位置之前被填充颜色，则失败 游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause” 用户点击play按钮继续Game Loop，游戏状态进入“play” 游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay 用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play” 技术细节 Grid背景 主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线 #scene \u003e div { background-color: white; } #scene { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; background-color: #999; /* 网格线颜色 */ border: 3px solid blue; margin: 10px; position: relative; } 移动和旋转 游戏过程中只有一个block是active的，也就是用户控制的 block的状态包含形状（index）、旋转（四种方向）和位置 let blockState = { index: 0, rotation: 0, x: 1, y: 4, } 通过block的index以及x、y，结合旋转，可以确定整个block的所有div 每次旋转90度：[x, y] = [y, -x] const TETROMINOES = [ // I 块 (直线) [ [-1, 0], [0, 0], [1, 0], [2, 0] ], // O 块 (方形) [ [0, 0], [-1, 0], [-1, 1], [0, 1] ], // L 块 [ [-1, 0], [0, 0], [1, 0], [1, 1] ], // J 块 [ [-1, 0], [0, 0], [1, 0], [-1, 1] ], // T 块 [ [-1, 0], [0, 0], [1, 0], [0, 1] ], // S 块 [ [-1, 0], [0, 0], [0, 1], [1, 1] ], // Z 块 [ [0, 0], [1, 0], [-1, 1], [0, 1] ], ]; 当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格 新建Block 新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid 如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出 // 七种模块在next中的index const nextBlockIndices = [ [2, 6, 10, 14], // I [5, 6, 9, 10], // O [1, 5, 9, 10], // L [1, 2, 5, 9], // J [1, 5, 6, 9], // T [1, 5, 6, 10], // S [2, 5, 6, 9], // Z ] function NewBlock() { blockIndex = nextBlockIndex; blockState = { index: blockIndex, rotation: 0, x: 1, y: 4, }; let newBlockIndices = GetBlockAllIndices(blockState); for (let [newX, newY] of newBlockIndices) { if (blockColors[newX][newY] != \"white\") { return false; } } nextBlockIndex = Math.floor(Math.random() * 7); for (let i=0; i \u003c 16; i++) { if (nextBlockIndices[nextBlockIndex].includes(i)) { nextBlocks[i].style.background = index2Color[nextBlockIndex]; } else { nextBlocks[i].style.background = 'white'; } } console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`); return true; } Ghost Block 为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block // 画预期掉落block (Ghost Block) // 1. 计算能掉落多远 let moveX = 0; while (canMoveBlock(moveX + 1, 0)) { // 注意这里要探测 +1 的位置 moveX++; } // 2. 只有当能移动时才画 ghost if (moveX \u003e 0) { let dropBlockState = {...blockState}; dropBlockState.x += moveX; let dropBlockIndices = GetBlockAllIndices(dropBlockState); for (let [x, y] of dropBlockIndices) { let dropIndex = x * colNum + y; // 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险） if (blockColors[x][y] === 'white') { sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`; } } }",
+    "tags": [
+      "技术笔记",
+      "Javascript"
+    ],
+    "title": "从零开始构建Tetris",
+    "uri": "/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 周记",
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Tag :: 技术笔记",
     "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "什么是Bun Bun是一个Javascript的运行时工具，包括前端、后端 包含了bundler、transpiler、任务执行和npm客户端的综合体 参考链接： Javascript中的bundler和transpiler 替代nodejs和npm，并兼容他们 基本操作 watch mode： bun –watch index.ts，监控改动反应到页面，类似node的nodemon bun –hot index.ts，相比watch不用手动reload页面 .env：存储环境变量，process.env.XXX或者bun.env.XXX bunx：不用安装直接运行，对应npx 支持sqlite 文件读写： 写： const data = 'I love Javascript'; await Bun.write('output.txt', data); 读： const file = await Bun.file('output.txt'); console.log(await file.text()); 测试： import { describe, expect, test, beforeAll } from 'bun:test' beforeAll(() =\u003e { // setup tests }); describe('math', () =\u003e { test('addition', () =\u003e { expect(2 + 2).toBe(4); }) }) bundler：将代码打包成可使用的js文件 bun build ./src/index.ts –outfile=./dist/bundle.js 同时支持watch mode 参考链接： Bun 1.0 # Bun Crash Course | JavaScript Runtime, Bundler \u0026 Transpiler Bun 1.3 bun index.html可以直接起服务 数据库支持增加redis Bun.secrets包裹的部分可以存在keychain中（macOS），提升安全性",
+    "description": "什么是Bun Bun是一个Javascript的运行时工具，包括前端、后端 包含了bundler、transpiler、任务执行和npm客户端的综合体 参考链接： Javascript中的bundler和transpiler 替代nodejs和npm，并兼容他们 基本操作 watch mode： bun –watch index.ts，监控改动反应到页面，类似node的nodemon bun –hot index.ts，相比watch不用手动reload页面 .env：存储环境变量，process.env.XXX或者bun.env.XXX bunx：不用安装直接运行，对应npx 支持sqlite 文件读写： 写： const data = 'I love Javascript'; await Bun.write('output.txt', data); 读： const file = await Bun.file('output.txt'); console.log(await file.text()); 测试： import { describe, expect, test, beforeAll } from 'bun:test' beforeAll(() =\u003e { // setup tests }); describe('math', () =\u003e { test('addition', () =\u003e { expect(2 + 2).toBe(4); }) }) bundler：将代码打包成可使用的js文件 bun build ./src/index.ts –outfile=./dist/bundle.js 同时支持watch mode 参考链接： Bun 1.0 # Bun Crash Course | JavaScript Runtime, Bundler \u0026 Transpiler Bun 1.3 bun index.html可以直接起服务 数据库支持增加redis Bun.secrets包裹的部分可以存在keychain中（macOS），提升安全性",
+    "tags": [
+      "技术笔记",
+      "Javascript"
+    ],
+    "title": "Bun",
+    "uri": "/hugo-blog/blogs/bun/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -141,21 +178,13 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习React框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot",
-    "description": "总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn等 待办 学习React框架基础知识 学习强化学习基础知识，在Flappy Bird中实现bot",
+    "content": "总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn、pnpm等 Bun作为nodejs的运行时替代，也包含包管理器，可以完成前后端整体链路 待办 利用原生JS搭建俄罗斯方块 学习React框架基础知识",
+    "description": "总结 Javascript进阶学习 利用原生JS搭建Flappy Bird 了解Javascript的包管理器 Javascript面向对象编程 Javascript学习手册-面向对象\t``` 课程链接： # Object-oriented Programming in JavaScript: Made Super Simple | Mosh 学习Javascript ES6新特性 Javascript学习手册-ES6新特性 课程链接： # ES6 Tutorial: Learn Modern JavaScript in 1 Hour 开发Flappy Bird 从零开始构建Flappy Bird 了解Javascript的包管理器 Javascript包管理 知识 Javascript ES6 2015年发布，主要引入let、const、class、module等 Javascript的包管理器有npm、yarn、pnpm等 Bun作为nodejs的运行时替代，也包含包管理器，可以完成前后端整体链路 待办 利用原生JS搭建俄罗斯方块 学习React框架基础知识",
     "tags": [
       "周记"
     ],
     "title": "Week6 Flappy Bird",
     "uri": "/hugo-blog/weekly/week6/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Weeklies",
-    "uri": "/hugo-blog/weekly/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -166,14 +195,6 @@ var relearn_searchindex = [
     ],
     "title": "从零开始构建Flappy Bird",
     "uri": "/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 周记",
-    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
