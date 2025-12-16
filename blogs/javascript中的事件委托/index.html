@@ -5,49 +5,46 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="标签模板字面量在构建 领域特定语言 (DSL) 方面非常有用。
-我将以一个常见的场景为例：安全地构建 SQL 查询。
-💻 DSL 应用示例：安全 SQL 查询 在 Web 开发中，直接将用户输入拼接到 SQL 字符串中非常危险，容易导致 SQL 注入攻击。标签模板可以帮助我们构建一个安全的 DSL 来解决这个问题。
-1. 标签函数：sql 我们定义一个名为 sql 的标签函数，它将静态字符串和变量分开处理。
-JavaScript
-function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 作为占位符 let query = strings[0]; // 2. 拼接字符串和占位符 for (let i = 0; i &lt; values.length; i&#43;&#43;) { // 假设这是连接到数据库的函数，它会自动将 &#39;values[i]&#39; // 转换为安全的参数或占位符 (例如：?) query &#43;= `?` &#43; strings[i &#43; 1]; } // 3. 返回一个包含查询语句和安全值的对象 // 实际的数据库驱动程序会使用这个对象来执行查询 return { text: query, // 例如: &#34;SELECT * FROM users WHERE id = ? AND status = ?&#34; params: values // 例如: [101, &#39;active&#39;] }; } 2. 使用 DSL 构造查询 现在，我们可以像编写普通模板字符串一样编写 SQL 查询，但是变量会被 sql 函数安全地处理：">
+    <meta name="description" content="事件委托（Event Delegation） 是一个在纯 JavaScript 开发中，尤其是在处理大型列表或动态内容时非常重要的 性能优化技巧。
+🌟 什么是事件委托？(Event Delegation) 概念 事件委托是一种利用 事件冒泡（Event Bubbling） 机制的编程模式。
+事件冒泡： 当一个元素上的事件被触发时（例如点击），该事件会从该元素开始，沿着 DOM 树向上传播到其父元素、祖父元素，直到 document 对象。
+委托核心： 不在每个子元素上单独设置事件监听器，而是将一个 单独的监听器 设置在它们的 共同父元素 上。
+当子元素被点击时，事件会“冒泡”到父元素，父元素上的监听器捕获到这个事件，然后通过检查事件的 目标元素（即 event.target），来确定是哪个子元素触发了事件，并执行相应的操作。
+为什么使用它？（解决的问题） 在您滑块底部的指示点中，如果您有 10 个指示点，如果您不使用事件委托，您需要：">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="标签模版字面量在DSL中的例子 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="标签模板字面量在构建 领域特定语言 (DSL) 方面非常有用。
-我将以一个常见的场景为例：安全地构建 SQL 查询。
-💻 DSL 应用示例：安全 SQL 查询 在 Web 开发中，直接将用户输入拼接到 SQL 字符串中非常危险，容易导致 SQL 注入攻击。标签模板可以帮助我们构建一个安全的 DSL 来解决这个问题。
-1. 标签函数：sql 我们定义一个名为 sql 的标签函数，它将静态字符串和变量分开处理。
-JavaScript
-function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 作为占位符 let query = strings[0]; // 2. 拼接字符串和占位符 for (let i = 0; i &lt; values.length; i&#43;&#43;) { // 假设这是连接到数据库的函数，它会自动将 &#39;values[i]&#39; // 转换为安全的参数或占位符 (例如：?) query &#43;= `?` &#43; strings[i &#43; 1]; } // 3. 返回一个包含查询语句和安全值的对象 // 实际的数据库驱动程序会使用这个对象来执行查询 return { text: query, // 例如: &#34;SELECT * FROM users WHERE id = ? AND status = ?&#34; params: values // 例如: [101, &#39;active&#39;] }; } 2. 使用 DSL 构造查询 现在，我们可以像编写普通模板字符串一样编写 SQL 查询，但是变量会被 sql 函数安全地处理：">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8dsl%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/index.html">
+    <meta name="twitter:title" content="Javascript中的事件委托标题 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="事件委托（Event Delegation） 是一个在纯 JavaScript 开发中，尤其是在处理大型列表或动态内容时非常重要的 性能优化技巧。
+🌟 什么是事件委托？(Event Delegation) 概念 事件委托是一种利用 事件冒泡（Event Bubbling） 机制的编程模式。
+事件冒泡： 当一个元素上的事件被触发时（例如点击），该事件会从该元素开始，沿着 DOM 树向上传播到其父元素、祖父元素，直到 document 对象。
+委托核心： 不在每个子元素上单独设置事件监听器，而是将一个 单独的监听器 设置在它们的 共同父元素 上。
+当子元素被点击时，事件会“冒泡”到父元素，父元素上的监听器捕获到这个事件，然后通过检查事件的 目标元素（即 event.target），来确定是哪个子元素触发了事件，并执行相应的操作。
+为什么使用它？（解决的问题） 在您滑块底部的指示点中，如果您有 10 个指示点，如果您不使用事件委托，您需要：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/javascript%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="标签模版字面量在DSL中的例子 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="标签模板字面量在构建 领域特定语言 (DSL) 方面非常有用。
-我将以一个常见的场景为例：安全地构建 SQL 查询。
-💻 DSL 应用示例：安全 SQL 查询 在 Web 开发中，直接将用户输入拼接到 SQL 字符串中非常危险，容易导致 SQL 注入攻击。标签模板可以帮助我们构建一个安全的 DSL 来解决这个问题。
-1. 标签函数：sql 我们定义一个名为 sql 的标签函数，它将静态字符串和变量分开处理。
-JavaScript
-function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 作为占位符 let query = strings[0]; // 2. 拼接字符串和占位符 for (let i = 0; i &lt; values.length; i&#43;&#43;) { // 假设这是连接到数据库的函数，它会自动将 &#39;values[i]&#39; // 转换为安全的参数或占位符 (例如：?) query &#43;= `?` &#43; strings[i &#43; 1]; } // 3. 返回一个包含查询语句和安全值的对象 // 实际的数据库驱动程序会使用这个对象来执行查询 return { text: query, // 例如: &#34;SELECT * FROM users WHERE id = ? AND status = ?&#34; params: values // 例如: [101, &#39;active&#39;] }; } 2. 使用 DSL 构造查询 现在，我们可以像编写普通模板字符串一样编写 SQL 查询，但是变量会被 sql 函数安全地处理：">
+    <meta property="og:title" content="Javascript中的事件委托标题 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="事件委托（Event Delegation） 是一个在纯 JavaScript 开发中，尤其是在处理大型列表或动态内容时非常重要的 性能优化技巧。
+🌟 什么是事件委托？(Event Delegation) 概念 事件委托是一种利用 事件冒泡（Event Bubbling） 机制的编程模式。
+事件冒泡： 当一个元素上的事件被触发时（例如点击），该事件会从该元素开始，沿着 DOM 树向上传播到其父元素、祖父元素，直到 document 对象。
+委托核心： 不在每个子元素上单独设置事件监听器，而是将一个 单独的监听器 设置在它们的 共同父元素 上。
+当子元素被点击时，事件会“冒泡”到父元素，父元素上的监听器捕获到这个事件，然后通过检查事件的 目标元素（即 event.target），来确定是哪个子元素触发了事件，并执行相应的操作。
+为什么使用它？（解决的问题） 在您滑块底部的指示点中，如果您有 10 个指示点，如果您不使用事件委托，您需要：">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-12-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-12-13T00:00:00+00:00">
-    <meta property="article:tag" content="Javascript">
-    <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="标签模版字面量在DSL中的例子 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="标签模板字面量在构建 领域特定语言 (DSL) 方面非常有用。
-我将以一个常见的场景为例：安全地构建 SQL 查询。
-💻 DSL 应用示例：安全 SQL 查询 在 Web 开发中，直接将用户输入拼接到 SQL 字符串中非常危险，容易导致 SQL 注入攻击。标签模板可以帮助我们构建一个安全的 DSL 来解决这个问题。
-1. 标签函数：sql 我们定义一个名为 sql 的标签函数，它将静态字符串和变量分开处理。
-JavaScript
-function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 作为占位符 let query = strings[0]; // 2. 拼接字符串和占位符 for (let i = 0; i &lt; values.length; i&#43;&#43;) { // 假设这是连接到数据库的函数，它会自动将 &#39;values[i]&#39; // 转换为安全的参数或占位符 (例如：?) query &#43;= `?` &#43; strings[i &#43; 1]; } // 3. 返回一个包含查询语句和安全值的对象 // 实际的数据库驱动程序会使用这个对象来执行查询 return { text: query, // 例如: &#34;SELECT * FROM users WHERE id = ? AND status = ?&#34; params: values // 例如: [101, &#39;active&#39;] }; } 2. 使用 DSL 构造查询 现在，我们可以像编写普通模板字符串一样编写 SQL 查询，但是变量会被 sql 函数安全地处理：">
-    <meta itemprop="datePublished" content="2025-12-13T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-12-13T00:00:00+00:00">
-    <meta itemprop="wordCount" content="196">
-    <meta itemprop="keywords" content="Javascript,技术笔记">
-    <title>标签模版字面量在DSL中的例子 :: Ruoruoliu 2.0</title>
+    <meta property="article:published_time" content="2025-12-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-16T00:00:00+00:00">
+    <meta itemprop="name" content="Javascript中的事件委托标题 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="事件委托（Event Delegation） 是一个在纯 JavaScript 开发中，尤其是在处理大型列表或动态内容时非常重要的 性能优化技巧。
+🌟 什么是事件委托？(Event Delegation) 概念 事件委托是一种利用 事件冒泡（Event Bubbling） 机制的编程模式。
+事件冒泡： 当一个元素上的事件被触发时（例如点击），该事件会从该元素开始，沿着 DOM 树向上传播到其父元素、祖父元素，直到 document 对象。
+委托核心： 不在每个子元素上单独设置事件监听器，而是将一个 单独的监听器 设置在它们的 共同父元素 上。
+当子元素被点击时，事件会“冒泡”到父元素，父元素上的监听器捕获到这个事件，然后通过检查事件的 目标元素（即 event.target），来确定是哪个子元素触发了事件，并执行相应的操作。
+为什么使用它？（解决的问题） 在您滑块底部的指示点中，如果您有 10 个指示点，如果您不使用事件委托，您需要：">
+    <meta itemprop="datePublished" content="2025-12-16T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-16T00:00:00+00:00">
+    <meta itemprop="wordCount" content="170">
+    <title>Javascript中的事件委托标题 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1765891922" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1765891922" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1765891922" defer></script>
@@ -73,7 +70,7 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8dsl%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90\/index.html';
+      window.relearn.path='\/blogs\/javascript%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -121,7 +118,7 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8dsl%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/javascript%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -151,11 +148,10 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#-dsl-应用示例安全-sql-查询">💻 DSL 应用示例：安全 SQL 查询</a>
+    <li>
       <ul>
-        <li><a href="#1-标签函数sql">1. 标签函数：<code>sql</code></a></li>
-        <li><a href="#2-使用-dsl-构造查询">2. 使用 DSL 构造查询</a></li>
-        <li><a href="#3-运行结果解析">3. 运行结果解析</a></li>
+        <li><a href="#-什么是事件委托event-delegation">🌟 什么是事件委托？(Event Delegation)</a></li>
+        <li><a href="#-在图像滑块中的应用示例">💻 在图像滑块中的应用示例</a></li>
       </ul>
     </li>
   </ul>
@@ -164,7 +160,7 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">标签模版字面量在DSL中的例子</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Javascript中的事件委托标题</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -175,7 +171,7 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/bun/index.html" title="Bun (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/html%E4%B8%AD%E7%9A%84data-/index.html" title="HTML中的data-* (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -185,7 +181,7 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="CSS学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html" title="从零开始构建Tetris (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -211,22 +207,14 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
         <div class="flex-block-wrapper">
 <article class="default">
   <header class="headline">
-<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
-  <i class="fa-fw fas fa-layer-group"></i>
-  <ul>
-    <li><a class="term-link" href="/hugo-blog/tags/javascript/index.html">Javascript</a></li>
-    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
-  </ul>
-</div>
   </header>
 
-<h1 id="标签模版字面量在dsl中的例子">标签模版字面量在DSL中的例子</h1>
+<h1 id="javascript中的事件委托标题">Javascript中的事件委托标题</h1>
 
-<p>标签模板字面量在构建 <strong>领域特定语言 (DSL)</strong> 方面非常有用。</p>
-<p>我将以一个常见的场景为例：<strong>安全地构建 SQL 查询</strong>。</p>
+<p><strong>事件委托（Event Delegation）</strong> 是一个在纯 JavaScript 开发中，尤其是在处理大型列表或动态内容时非常重要的 <strong>性能优化技巧</strong>。</p>
 <hr>
-<h2 id="-dsl-应用示例安全-sql-查询">
-  💻 DSL 应用示例：安全 SQL 查询
+<h3 id="-什么是事件委托event-delegation">
+  🌟 什么是事件委托？(Event Delegation)
 
 
 
@@ -235,9 +223,8 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p>在 Web 开发中，直接将用户输入拼接到 SQL 字符串中非常危险，容易导致 <strong>SQL 注入攻击</strong>。标签模板可以帮助我们构建一个安全的 DSL 来解决这个问题。</p>
-<h3 id="1-标签函数sql">
-  1. 标签函数：<code>sql</code>
+</h3><h4 id="概念">
+  概念
 
 
 
@@ -246,87 +233,129 @@ function sql(strings, ...values) { // 1. 静态字符串部分：我们使用 ? 
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>我们定义一个名为 <code>sql</code> 的标签函数，它将静态字符串和变量分开处理。</p>
-<p>JavaScript</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>function sql(strings, ...values) {
-  // 1. 静态字符串部分：我们使用 ? 作为占位符
-  let query = strings[0];
-  
-  // 2. 拼接字符串和占位符
-  for (let i = 0; i &lt; values.length; i++) {
-    // 假设这是连接到数据库的函数，它会自动将 &#39;values[i]&#39;
-    // 转换为安全的参数或占位符 (例如：?)
-    query += `?` + strings[i + 1]; 
-  }
-  
-  // 3. 返回一个包含查询语句和安全值的对象
-  // 实际的数据库驱动程序会使用这个对象来执行查询
-  return {
-    text: query, // 例如: &#34;SELECT * FROM users WHERE id = ? AND status = ?&#34;
-    params: values // 例如: [101, &#39;active&#39;]
-  };
-}</code></pre></div>
-<h3 id="2-使用-dsl-构造查询">
-  2. 使用 DSL 构造查询
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>现在，我们可以像编写普通模板字符串一样编写 SQL 查询，但是变量会被 <code>sql</code> 函数安全地处理：</p>
-<p>JavaScript</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>// 假设这是来自用户的输入
-const userId = 101; 
-const status = &#39;active&#39;; 
-
-// 使用我们的 SQL DSL
-const safeQuery = sql`
-  SELECT * FROM users 
-  WHERE id = ${userId} 
-  AND status = ${status}
-`;
-
-console.log(safeQuery);</code></pre></div>
-<h3 id="3-运行结果解析">
-  3. 运行结果解析
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>当 JavaScript 运行这段代码时，<code>safeQuery</code> 的值不会是一个直接的字符串，而是一个包含了分隔信息的对象：</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>{
-  text: &#34;SELECT * FROM users WHERE id = ? AND status = ?&#34;,
-  params: [101, &#34;active&#34;]
-}</code></pre></div>
-<h4 id="-为什么说这是安全的-dsl">
-  🌟 为什么说这是安全的 DSL？
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h4><ul>
+</h4><p>事件委托是一种利用 <strong>事件冒泡（Event Bubbling）</strong> 机制的编程模式。</p>
+<ul>
 <li>
-<p><strong>分离关注点：</strong> 标签函数将 <strong>SQL 结构</strong> (<code>text</code>) 和 <strong>变量数据</strong> (<code>params</code>) 分开。</p>
+<p><strong>事件冒泡：</strong> 当一个元素上的事件被触发时（例如点击），该事件会从该元素开始，沿着 DOM 树向上传播到其父元素、祖父元素，直到 <code>document</code> 对象。</p>
 </li>
 <li>
-<p><strong>防止注入：</strong> 真正的数据库驱动程序在执行查询时，只会把 <code>text</code> 部分当作命令，而 <code>params</code> 数组中的值会被安全地绑定到 <code>?</code> 占位符上。如果用户输入的不是 <code>101</code> 而是恶意的代码（例如 <code>'101 OR 1=1'</code>），它也只会被当作一个普通的字符串值传入，而不会被当作 SQL 命令的一部分执行。</p>
+<p><strong>委托核心：</strong> 不在每个子元素上单独设置事件监听器，而是将一个 <strong>单独的监听器</strong> 设置在它们的 <strong>共同父元素</strong> 上。</p>
 </li>
 </ul>
-<p>这个例子展示了标签模板字面量如何允许您创建一种更安全、更具可读性的 <strong>迷你语言 (SQL DSL)</strong> 来处理特定任务（构建数据库查询）。</p>
+<p>当子元素被点击时，事件会“冒泡”到父元素，父元素上的监听器捕获到这个事件，然后通过检查事件的 <strong>目标元素</strong>（即 <code>event.target</code>），来确定是哪个子元素触发了事件，并执行相应的操作。</p>
+<h4 id="为什么使用它解决的问题">
+  为什么使用它？（解决的问题）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>在您滑块底部的指示点中，如果您有 10 个指示点，如果您不使用事件委托，您需要：</p>
+<ol>
+<li>
+<p>创建 10 个 DOM 元素。</p>
+</li>
+<li>
+<p>为这 10 个元素 <strong>分别</strong> 绑定 10 个独立的 <code>addEventListener</code>。</p>
+</li>
+</ol>
+<p>这会导致：</p>
+<ol>
+<li>
+<p><strong>内存占用高：</strong> 每个监听器都会占用内存。</p>
+</li>
+<li>
+<p><strong>性能低：</strong> 浏览器需要跟踪和管理大量监听器。</p>
+</li>
+<li>
+<p><strong>动态元素问题：</strong> 如果您通过 JS 动态添加或删除了指示点，您必须记得为新的点重新绑定监听器，非常麻烦且容易出错。</p>
+</li>
+</ol>
+<p><strong>使用事件委托后：</strong></p>
+<ol>
+<li>
+<p>只需在 <strong>指示点容器</strong>（父元素）上设置 <strong>1 个</strong> 监听器。</p>
+</li>
+<li>
+<p>无论是 10 个点还是 100 个点，性能和内存开销都不会增加。</p>
+</li>
+<li>
+<p>未来即使动态增减指示点，也 <strong>无需</strong> 重新绑定任何监听器。</p>
+</li>
+</ol>
+<hr>
+<h3 id="-在图像滑块中的应用示例">
+  💻 在图像滑块中的应用示例
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>假设您的 HTML 结构如下：</p>
+<p>HTML</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>&lt;div class=&#34;nav-dots&#34;&gt; 
+    &lt;button data-index=&#34;0&#34; class=&#34;dot&#34;&gt;&lt;/button&gt;
+    &lt;button data-index=&#34;1&#34; class=&#34;dot&#34;&gt;&lt;/button&gt;
+    &lt;button data-index=&#34;2&#34; class=&#34;dot&#34;&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+<h4 id="传统不推荐做法">
+  传统（不推荐）做法：
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>JavaScript</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>const dots = document.querySelectorAll(&#39;.dot&#39;);
+dots.forEach(dot =&gt; {
+    dot.addEventListener(&#39;click&#39;, function(event) {
+        const index = this.getAttribute(&#39;data-index&#39;);
+        // 执行切换逻辑...
+    });
+});
+// ⚠️ 缺点：每添加一个点，就需要重新运行这段代码。</code></pre></div>
+<h4 id="使用事件委托推荐做法">
+  使用事件委托（推荐）做法：
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>JavaScript</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>// 1. 获取父元素
+const navDotsContainer = document.querySelector(&#39;.nav-dots&#39;); 
+
+// 2. 仅在父元素上绑定一个监听器
+navDotsContainer.addEventListener(&#39;click&#39;, function(event) {
+    // 3. 检查被点击的目标元素是否是我们想要的子元素
+    const target = event.target;
+
+    // 检查目标元素是否包含 &#39;dot&#39; 这个 CSS 类
+    if (target.classList.contains(&#39;dot&#39;)) {
+        // 4. 从被点击的子元素上获取数据
+        const index = target.getAttribute(&#39;data-index&#39;);
+        
+        console.log(`切换到第 ${parseInt(index) + 1} 张图片`);
+        // 调用您的滑块切换函数，例如: switchToSlide(index);
+    }
+});
+// ✅ 优点：只有 1 个监听器，即使未来动态添加 100 个 .dot 元素，这段代码都不需要修改。</code></pre></div>
+<p>通过这种方式，您不仅掌握了一个高性能的技巧，也让您的代码更加灵活和健壮，为未来学习 React 中高效的事件处理机制打下了基础。</p>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Dec 13, 2025
+              <i class='fa-fw fas fa-calendar'></i> Dec 16, 2025
   </footer>
 </article>
         </div>
