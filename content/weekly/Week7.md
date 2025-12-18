@@ -1,5 +1,5 @@
 ---
-title: Week7 Javascript应用开发
+title: Week7 React学习
 date: 2025-12-14
 tags:
   - 周记
@@ -15,12 +15,12 @@ draft: false
 
 > [!info]+ React基础知识学习
 
-- 
+- [React学习手册](../Blogs/React%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)
 
 > [!tip] 知识
-> - 
+> - React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新
 
 > [!warning] 待办
-> - 学习obsidian和notion功能
-> - 基于notion作为内容编辑器搭建个人博客
+> - 强化学习基础知识
+> - 大模型面试专项
 

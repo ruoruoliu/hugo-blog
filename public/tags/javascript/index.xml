@@ -6,8 +6,15 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>新建项目 npx create-react-app appName node_modules：保存依赖的库 public：保存静态文件 manifest.json：记录app的元数据，如名字，主题，字体等 robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则 src：源代码 index.js：app启动入口，连接到index.html的root节点 App.js：具体app逻辑，可以理解为html的index.html 语法为JSX（Javascript XML），将javascript和html结合 采用function component，即App这个函数，返回一个“动态的html” export default，外部可以复用 App.test.js：测试文件 reportWebVitals.js：性能测试文件 package.json：记录关键信息，例如依赖、版本、启动脚本等 package-lock.json：记录依赖版本，保证协同开发版本一致 参考链接：&#xA;# Master React JS in easy way 基本概念 Components 只返回一个元素：需要把要返回的部分包起来，比如&lt;div&gt;或者空的&lt;&gt; mount指添加组件到DOM，unmount指从DOM移除组件 props：用来给Component返回的元素加入属性，来实现不同的具体内容 component中： function Greeting(props) { return &lt;h1&gt;{props.text}&lt;/h1&gt; } 使用中： &lt;Greeting text={&#39;yo&#39;}/&gt; key props：用于区分component，可以用数字或str，一般在map函数中使用： {items.map((item =&gt; ( &lt;Component key={item.id} /&gt; ))} propTypes：用来确保传入的prop的属性类型正确 array用PropTypes.arrayof object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy}) Student.propTypes = { name: PropTypes.string, age: PropTypes.number, isStudent: PropTypes.bool, } defaultProp：用来填充prop的默认值 Rendering 利用虚拟DOM（VDOM）进行渲染：react做的三步 当state改变，更新VDOM 通过diffs检查改变 reconciliation：协调改变真实DOM Hook State hooks：useState/useReducer 记录状态，返回状态变量和更新函数 const [count, setCount] = useState(0) 实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起 function ControlledInput() { const [value, setValue] = useState(&#39;&#39;) return ( &lt;input value={value} onChange={(e) =&gt; setValue(e.target.value)} /&gt; ) } 与原生JS实现的区别：</description>
+    </item>
     <item>
       <title>从零开始构建Tetris</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html</link>
