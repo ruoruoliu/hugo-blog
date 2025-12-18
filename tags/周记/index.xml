@@ -9,11 +9,11 @@
     <lastBuildDate>Sun, 14 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Week7 Javascript应用开发</title>
+      <title>Week7 React学习</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week7/index.html</link>
       <pubDate>Sun, 14 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week7/index.html</guid>
-      <description>总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 [!tip] 知识 待办 学习obsidian和notion功能 基于notion作为内容编辑器搭建个人博客</description>
+      <description>总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 大模型面试专项</description>
     </item>
     <item>
       <title>Week6 Flappy Bird</title>

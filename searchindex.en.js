@@ -16,6 +16,41 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Javascript",
+    "uri": "/hugo-blog/tags/javascript/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "新建项目 npx create-react-app appName node_modules：保存依赖的库 public：保存静态文件 manifest.json：记录app的元数据，如名字，主题，字体等 robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则 src：源代码 index.js：app启动入口，连接到index.html的root节点 App.js：具体app逻辑，可以理解为html的index.html 语法为JSX（Javascript XML），将javascript和html结合 采用function component，即App这个函数，返回一个“动态的html” export default，外部可以复用 App.test.js：测试文件 reportWebVitals.js：性能测试文件 package.json：记录关键信息，例如依赖、版本、启动脚本等 package-lock.json：记录依赖版本，保证协同开发版本一致 参考链接：\n# Master React JS in easy way 基本概念 Components 只返回一个元素：需要把要返回的部分包起来，比如\u003cdiv\u003e或者空的\u003c\u003e mount指添加组件到DOM，unmount指从DOM移除组件 props：用来给Component返回的元素加入属性，来实现不同的具体内容 component中： function Greeting(props) { return \u003ch1\u003e{props.text}\u003c/h1\u003e } 使用中： \u003cGreeting text={'yo'}/\u003e key props：用于区分component，可以用数字或str，一般在map函数中使用： {items.map((item =\u003e ( \u003cComponent key={item.id} /\u003e ))} propTypes：用来确保传入的prop的属性类型正确 array用PropTypes.arrayof object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy}) Student.propTypes = { name: PropTypes.string, age: PropTypes.number, isStudent: PropTypes.bool, } defaultProp：用来填充prop的默认值 Rendering 利用虚拟DOM（VDOM）进行渲染：react做的三步 当state改变，更新VDOM 通过diffs检查改变 reconciliation：协调改变真实DOM Hook State hooks：useState/useReducer 记录状态，返回状态变量和更新函数 const [count, setCount] = useState(0) 实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起 function ControlledInput() { const [value, setValue] = useState('') return ( \u003cinput value={value} onChange={(e) =\u003e setValue(e.target.value)} /\u003e ) } 与原生JS实现的区别： 立即执行 vs 函数引用\n立即执行：onClick={func()}，还没点就运行了 函数引用：onClick={() =\u003e func()} 或 onClick={func} ，只有点的那下才运行 监听函数传入一定是函数引用，否则 多次调用更新函数，react会batch处理，比如三次setValue(value+1)，使用同样的value，最终结果还是value+1，而不是value+3\n可以使用updater function，react会将函数放入队列，顺序执行，是个好习惯 function increment() { setValue(v =\u003e v + 1) setValue(v =\u003e v + 1) setValue(v =\u003e v + 1) } Context hooks：useContext 避免prop需要层层传递的情况，直接通过context交给底层 在生产者组件ComponentA中： import {createContext} from 'react'; export const MyContext = createContext(); 在组件中包裹child \u003cMyContext.Provider value={value}\u003e \u003cChild /\u003e \u003c/MyContext.Provider 在消费者组件中： 导入MyContext import React, { useContext } from 'react'; import { MyContext } from './ComponentA; const value = useContext(MyContext); MyContext只能通过value（规定属性名称）传递一个对象，可以把想要传递的所有内容组成一个大的对象传递下去，也是通用做法 Reference hooks：useRef 和useState一样，都是用来保存数据，但是不希望关联到页面渲染， 相比useState在每次值变化时更新渲染，useRef不会 使用ref的current来存储DOM对象，对current进行操作，从而： 直接访问/交互html的DOM元素 处理focus、animation、transition 管理timer和interval Effect hooks：useEffect 在组件主逻辑运行时的side code，额外做一些事 用effect包起来，可以精确控制执行的条件，如： 组件重新渲染：useEffect(() =\u003e {}) 组件mount：useEffect(() =\u003e {}, [])， []代表空依赖，只在mount时生效 组件内状态变化：useEffect(() =\u003e {}, [value])，在mount和状态值变化时生效 在effect里面返回一个箭头函数，用于组件unmount时清理资源，如remove listener 一般用于： 事件监听：组件mount的写法避免每次渲染都添加新的listener DOM 操作 订阅实时更新 从API获取数据 unmount组件 Performance hooks：useMemo/useCallback Purity 保证component纯净，即相同的输入对应相同的输出 component只返回JSX 不要在render之前在component外部修改component里面的元素 Portal Suspense 加载图标：需要获取数据的时候，提供更好的UX Error Boundaries 通过添加ErrorBoundary的FallbackComponent来控制错误出现时的反应 CSS styling external 提供global作用域的style，适合小项目 class名称在大型项目中可能会重复，导致覆盖和难以管理 module 普通css文件是全局生效的，但如果css文件名为xxx.module.css，vite或者react会识别这个文件名，会自动给你的类名加一个“随机后缀”（哈希值） 缺点包括：导致动态类名写起来麻烦、使用第三方库时，需要:global跳出局部作用域等 inline 除了用module方式，还可以使用inline的方式，即把css样式直接写在component的jsx文件里 适用于简单样式 参考链接：\n# React Full Course for free ⚛️ # Every React Concept Explained in 12 Minutes # ALL React Hooks Explained in 12 Minutes",
+    "description": "新建项目 npx create-react-app appName node_modules：保存依赖的库 public：保存静态文件 manifest.json：记录app的元数据，如名字，主题，字体等 robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则 src：源代码 index.js：app启动入口，连接到index.html的root节点 App.js：具体app逻辑，可以理解为html的index.html 语法为JSX（Javascript XML），将javascript和html结合 采用function component，即App这个函数，返回一个“动态的html” export default，外部可以复用 App.test.js：测试文件 reportWebVitals.js：性能测试文件 package.json：记录关键信息，例如依赖、版本、启动脚本等 package-lock.json：记录依赖版本，保证协同开发版本一致 参考链接：\n# Master React JS in easy way 基本概念 Components 只返回一个元素：需要把要返回的部分包起来，比如\u003cdiv\u003e或者空的\u003c\u003e mount指添加组件到DOM，unmount指从DOM移除组件 props：用来给Component返回的元素加入属性，来实现不同的具体内容 component中： function Greeting(props) { return \u003ch1\u003e{props.text}\u003c/h1\u003e } 使用中： \u003cGreeting text={'yo'}/\u003e key props：用于区分component，可以用数字或str，一般在map函数中使用： {items.map((item =\u003e ( \u003cComponent key={item.id} /\u003e ))} propTypes：用来确保传入的prop的属性类型正确 array用PropTypes.arrayof object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy}) Student.propTypes = { name: PropTypes.string, age: PropTypes.number, isStudent: PropTypes.bool, } defaultProp：用来填充prop的默认值 Rendering 利用虚拟DOM（VDOM）进行渲染：react做的三步 当state改变，更新VDOM 通过diffs检查改变 reconciliation：协调改变真实DOM Hook State hooks：useState/useReducer 记录状态，返回状态变量和更新函数 const [count, setCount] = useState(0) 实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起 function ControlledInput() { const [value, setValue] = useState('') return ( \u003cinput value={value} onChange={(e) =\u003e setValue(e.target.value)} /\u003e ) } 与原生JS实现的区别：",
+    "tags": [
+      "技术笔记",
+      "Javascript"
+    ],
+    "title": "React学习手册",
+    "uri": "/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tags",
+    "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "💡 HTML 中的 data-* 属性作用 在 HTML5 中，data-* 属性提供了一种标准的方式，允许我们在 HTML 元素上存储额外、自定义的数据，而无需依赖非标准属性或 DOM 操作（如设置 ID 或 class 属性来存储数据）。\n🎯 主要作用和用途 存储自定义数据： 这是它最主要的作用。你可以将与元素相关的、但没有内置 HTML 属性可以表达的数据存储在这些属性中。\n示例： 存储一个产品的 ID、用户的偏好设置、元素的初始状态等。 与 JavaScript 交互：\n快速访问： JavaScript 可以通过元素的 dataset 属性轻松地读取、写入或删除这些自定义数据。这使得 JS 能够根据这些数据来修改 UI 或执行逻辑。\n避免污染： 使用 data-* 属性，你可以避免滥用标准的 HTML 属性（例如，不应该将数据存储在 title 或 alt 属性中），保持 HTML 语义的纯净性。\n与 CSS 结合使用：\n样式控制： CSS 可以使用属性选择器来根据这些 data-* 属性的值来设置元素的样式。\n示例： 你可以设置一个元素的 data-state 属性为 \"active\" 或 \"inactive\"，然后用 CSS 来定义这两种状态下的不同样式。\n✍️ 语法和使用 1. HTML 中定义 data- 后面可以跟任何你想要的名称，但不能包含任何大写字母，并且推荐使用**中划线（kebab-case）**来分隔单词。\nHTML\n\u003cdiv id=\"product-123\" data-product-id=\"45678\" data-category=\"electronics\" data-in-stock=\"true\"\u003e 智能手机 \u003c/div\u003e 2. JavaScript 中访问 在 JavaScript 中访问这些属性时，需要通过元素的 dataset 属性。浏览器会自动将 HTML 中使用的中划线命名 (data-product-id) 转换成 JavaScript 中使用的驼峰式命名 (dataset.productId)。\nJavaScript\nconst productDiv = document.getElementById('product-123'); // 💡 读取数据 const id = productDiv.dataset.productId; // \"45678\" const category = productDiv.dataset.category; // \"electronics\" console.log(`产品ID: ${id}, 类别: ${category}`); // 💡 写入/修改数据 productDiv.dataset.inStock = \"false\"; // 💡 删除数据 // delete productDiv.dataset.category; 3. CSS 中使用 在 CSS 中，访问时需要使用完整的属性名，即 data- 开头的中划线命名。\nCSS\n/* 当 data-in-stock 属性的值为 \"true\" 时 */ [data-in-stock=\"true\"] { border: 2px solid green; background-color: #e6ffe6; } /* 当 data-category 属性的值包含 \"elec\" 时 */ [data-category*=\"elec\"] { font-weight: bold; } 总结 data-* 属性是 HTML5 引入的一个非常有用的特性，它为前端开发者提供了一个干净、标准且易于维护的方式来存储和管理元素上的自定义数据，极大地增强了 HTML 与 JavaScript 和 CSS 之间的数据通信能力。",
     "description": "💡 HTML 中的 data-* 属性作用 在 HTML5 中，data-* 属性提供了一种标准的方式，允许我们在 HTML 元素上存储额外、自定义的数据，而无需依赖非标准属性或 DOM 操作（如设置 ID 或 class 属性来存储数据）。\n🎯 主要作用和用途 存储自定义数据： 这是它最主要的作用。你可以将与元素相关的、但没有内置 HTML 属性可以表达的数据存储在这些属性中。\n示例： 存储一个产品的 ID、用户的偏好设置、元素的初始状态等。 与 JavaScript 交互：\n快速访问： JavaScript 可以通过元素的 dataset 属性轻松地读取、写入或删除这些自定义数据。这使得 JS 能够根据这些数据来修改 UI 或执行逻辑。\n避免污染： 使用 data-* 属性，你可以避免滥用标准的 HTML 属性（例如，不应该将数据存储在 title 或 alt 属性中），保持 HTML 语义的纯净性。",
@@ -32,29 +67,13 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/javascript%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: Javascript",
-    "uri": "/hugo-blog/tags/javascript/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tags",
-    "uri": "/hugo-blog/tags/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 [!tip] 知识 待办 学习obsidian和notion功能 基于notion作为内容编辑器搭建个人博客",
-    "description": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 [!tip] 知识 待办 学习obsidian和notion功能 基于notion作为内容编辑器搭建个人博客",
+    "content": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 大模型面试专项",
+    "description": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 大模型面试专项",
     "tags": [
       "周记"
     ],
-    "title": "Week7 Javascript应用开发",
+    "title": "Week7 React学习",
     "uri": "/hugo-blog/weekly/week7/index.html"
   },
   {
@@ -83,14 +102,6 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: 周记",
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="新建项目 npx create-react-app appName node_modules：保存依赖的库 public：保存静态文件 manifest.json：记录app的元数据，如名字，主题，字体等 robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则 src：源代码 index.js：app启动入口，连接到index.html的root节点 App.js：具体app逻辑，可以理解为html的index.html 语法为JSX（Javascript XML），将javascript和html结合 采用function component，即App这个函数，返回一个“动态的html” export default，外部可以复用 App.test.js：测试文件 reportWebVitals.js：性能测试文件 package.json：记录关键信息，例如依赖、版本、启动脚本等 package-lock.json：记录依赖版本，保证协同开发版本一致 参考链接：
+# Master React JS in easy way 基本概念 Components 只返回一个元素：需要把要返回的部分包起来，比如&lt;div&gt;或者空的&lt;&gt; mount指添加组件到DOM，unmount指从DOM移除组件 props：用来给Component返回的元素加入属性，来实现不同的具体内容 component中： function Greeting(props) { return &lt;h1&gt;{props.text}&lt;/h1&gt; } 使用中： &lt;Greeting text={&#39;yo&#39;}/&gt; key props：用于区分component，可以用数字或str，一般在map函数中使用： {items.map((item =&gt; ( &lt;Component key={item.id} /&gt; ))} propTypes：用来确保传入的prop的属性类型正确 array用PropTypes.arrayof object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy}) Student.propTypes = { name: PropTypes.string, age: PropTypes.number, isStudent: PropTypes.bool, } defaultProp：用来填充prop的默认值 Rendering 利用虚拟DOM（VDOM）进行渲染：react做的三步 当state改变，更新VDOM 通过diffs检查改变 reconciliation：协调改变真实DOM Hook State hooks：useState/useReducer 记录状态，返回状态变量和更新函数 const [count, setCount] = useState(0) 实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起 function ControlledInput() { const [value, setValue] = useState(&#39;&#39;) return ( &lt;input value={value} onChange={(e) =&gt; setValue(e.target.value)} /&gt; ) } 与原生JS实现的区别：">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="React学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="新建项目 npx create-react-app appName node_modules：保存依赖的库 public：保存静态文件 manifest.json：记录app的元数据，如名字，主题，字体等 robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则 src：源代码 index.js：app启动入口，连接到index.html的root节点 App.js：具体app逻辑，可以理解为html的index.html 语法为JSX（Javascript XML），将javascript和html结合 采用function component，即App这个函数，返回一个“动态的html” export default，外部可以复用 App.test.js：测试文件 reportWebVitals.js：性能测试文件 package.json：记录关键信息，例如依赖、版本、启动脚本等 package-lock.json：记录依赖版本，保证协同开发版本一致 参考链接：
+# Master React JS in easy way 基本概念 Components 只返回一个元素：需要把要返回的部分包起来，比如&lt;div&gt;或者空的&lt;&gt; mount指添加组件到DOM，unmount指从DOM移除组件 props：用来给Component返回的元素加入属性，来实现不同的具体内容 component中： function Greeting(props) { return &lt;h1&gt;{props.text}&lt;/h1&gt; } 使用中： &lt;Greeting text={&#39;yo&#39;}/&gt; key props：用于区分component，可以用数字或str，一般在map函数中使用： {items.map((item =&gt; ( &lt;Component key={item.id} /&gt; ))} propTypes：用来确保传入的prop的属性类型正确 array用PropTypes.arrayof object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy}) Student.propTypes = { name: PropTypes.string, age: PropTypes.number, isStudent: PropTypes.bool, } defaultProp：用来填充prop的默认值 Rendering 利用虚拟DOM（VDOM）进行渲染：react做的三步 当state改变，更新VDOM 通过diffs检查改变 reconciliation：协调改变真实DOM Hook State hooks：useState/useReducer 记录状态，返回状态变量和更新函数 const [count, setCount] = useState(0) 实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起 function ControlledInput() { const [value, setValue] = useState(&#39;&#39;) return ( &lt;input value={value} onChange={(e) =&gt; setValue(e.target.value)} /&gt; ) } 与原生JS实现的区别：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="React学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="新建项目 npx create-react-app appName node_modules：保存依赖的库 public：保存静态文件 manifest.json：记录app的元数据，如名字，主题，字体等 robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则 src：源代码 index.js：app启动入口，连接到index.html的root节点 App.js：具体app逻辑，可以理解为html的index.html 语法为JSX（Javascript XML），将javascript和html结合 采用function component，即App这个函数，返回一个“动态的html” export default，外部可以复用 App.test.js：测试文件 reportWebVitals.js：性能测试文件 package.json：记录关键信息，例如依赖、版本、启动脚本等 package-lock.json：记录依赖版本，保证协同开发版本一致 参考链接：
+# Master React JS in easy way 基本概念 Components 只返回一个元素：需要把要返回的部分包起来，比如&lt;div&gt;或者空的&lt;&gt; mount指添加组件到DOM，unmount指从DOM移除组件 props：用来给Component返回的元素加入属性，来实现不同的具体内容 component中： function Greeting(props) { return &lt;h1&gt;{props.text}&lt;/h1&gt; } 使用中： &lt;Greeting text={&#39;yo&#39;}/&gt; key props：用于区分component，可以用数字或str，一般在map函数中使用： {items.map((item =&gt; ( &lt;Component key={item.id} /&gt; ))} propTypes：用来确保传入的prop的属性类型正确 array用PropTypes.arrayof object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy}) Student.propTypes = { name: PropTypes.string, age: PropTypes.number, isStudent: PropTypes.bool, } defaultProp：用来填充prop的默认值 Rendering 利用虚拟DOM（VDOM）进行渲染：react做的三步 当state改变，更新VDOM 通过diffs检查改变 reconciliation：协调改变真实DOM Hook State hooks：useState/useReducer 记录状态，返回状态变量和更新函数 const [count, setCount] = useState(0) 实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起 function ControlledInput() { const [value, setValue] = useState(&#39;&#39;) return ( &lt;input value={value} onChange={(e) =&gt; setValue(e.target.value)} /&gt; ) } 与原生JS实现的区别：">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2025-12-17T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-17T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta property="article:tag" content="Javascript">
+    <meta itemprop="name" content="React学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="新建项目 npx create-react-app appName node_modules：保存依赖的库 public：保存静态文件 manifest.json：记录app的元数据，如名字，主题，字体等 robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则 src：源代码 index.js：app启动入口，连接到index.html的root节点 App.js：具体app逻辑，可以理解为html的index.html 语法为JSX（Javascript XML），将javascript和html结合 采用function component，即App这个函数，返回一个“动态的html” export default，外部可以复用 App.test.js：测试文件 reportWebVitals.js：性能测试文件 package.json：记录关键信息，例如依赖、版本、启动脚本等 package-lock.json：记录依赖版本，保证协同开发版本一致 参考链接：
+# Master React JS in easy way 基本概念 Components 只返回一个元素：需要把要返回的部分包起来，比如&lt;div&gt;或者空的&lt;&gt; mount指添加组件到DOM，unmount指从DOM移除组件 props：用来给Component返回的元素加入属性，来实现不同的具体内容 component中： function Greeting(props) { return &lt;h1&gt;{props.text}&lt;/h1&gt; } 使用中： &lt;Greeting text={&#39;yo&#39;}/&gt; key props：用于区分component，可以用数字或str，一般在map函数中使用： {items.map((item =&gt; ( &lt;Component key={item.id} /&gt; ))} propTypes：用来确保传入的prop的属性类型正确 array用PropTypes.arrayof object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy}) Student.propTypes = { name: PropTypes.string, age: PropTypes.number, isStudent: PropTypes.bool, } defaultProp：用来填充prop的默认值 Rendering 利用虚拟DOM（VDOM）进行渲染：react做的三步 当state改变，更新VDOM 通过diffs检查改变 reconciliation：协调改变真实DOM Hook State hooks：useState/useReducer 记录状态，返回状态变量和更新函数 const [count, setCount] = useState(0) 实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起 function ControlledInput() { const [value, setValue] = useState(&#39;&#39;) return ( &lt;input value={value} onChange={(e) =&gt; setValue(e.target.value)} /&gt; ) } 与原生JS实现的区别：">
+    <meta itemprop="datePublished" content="2025-12-17T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-17T00:00:00+00:00">
+    <meta itemprop="wordCount" content="258">
+    <meta itemprop="keywords" content="技术笔记,Javascript">
+    <title>React学习手册 :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1766047611" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766047611" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766047611" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1766047611" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1766047611" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766047611";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1766047611" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766047611" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766047611" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766047611" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766047611" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766047611" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766047611" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1766047611" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1766047611" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#rendering">Rendering</a></li>
+    <li><a href="#hook">Hook</a>
+      <ul>
+        <li><a href="#state-hooksusestateusereducer">State hooks：useState/useReducer</a></li>
+        <li><a href="#context-hooksusecontext">Context hooks：useContext</a></li>
+        <li><a href="#reference-hooksuseref">Reference hooks：useRef</a></li>
+        <li><a href="#effect-hooksuseeffect">Effect hooks：useEffect</a></li>
+        <li><a href="#performance-hooksusememousecallback">Performance hooks：useMemo/useCallback</a></li>
+      </ul>
+    </li>
+    <li><a href="#purity">Purity</a></li>
+    <li><a href="#portal">Portal</a></li>
+    <li><a href="#suspense">Suspense</a></li>
+    <li><a href="#error-boundaries">Error Boundaries</a></li>
+    <li><a href="#css-styling">CSS styling</a>
+      <ul>
+        <li><a href="#external">external</a></li>
+        <li><a href="#module">module</a></li>
+        <li><a href="#inline">inline</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">React学习手册</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/html%E4%B8%AD%E7%9A%84data-/index.html" title="HTML中的data-* (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/javascript/index.html">Javascript</a></li>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="react学习手册">React学习手册</h1>
+
+<h1 id="新建项目">
+  新建项目
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><ul>
+<li>npx create-react-app appName
+<a href="#R-image-a45c9563f50dde81187aa3c3c0008426" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a45c9563f50dde81187aa3c3c0008426"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png"></a></li>
+<li>node_modules：保存依赖的库</li>
+<li>public：保存静态文件
+<ul>
+<li>manifest.json：记录app的元数据，如名字，主题，字体等</li>
+<li>robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则</li>
+</ul>
+</li>
+<li>src：源代码
+<ul>
+<li>index.js：app启动入口，连接到index.html的root节点
+<a href="#R-image-e23141342622575b6023c9472d83cbff" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e23141342622575b6023c9472d83cbff"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png"></a></li>
+<li>App.js：具体app逻辑，可以理解为html的index.html
+<ul>
+<li>语法为JSX（Javascript XML），将javascript和html结合</li>
+<li>采用function component，即App这个函数，返回一个“动态的html”</li>
+<li>export default，外部可以复用
+<a href="#R-image-be3c111706d5ef13252e9ee04a72ba08" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-be3c111706d5ef13252e9ee04a72ba08"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png"></a></li>
+</ul>
+</li>
+<li>App.test.js：测试文件</li>
+<li>reportWebVitals.js：性能测试文件</li>
+</ul>
+</li>
+<li>package.json：记录关键信息，例如依赖、版本、启动脚本等</li>
+<li>package-lock.json：记录依赖版本，保证协同开发版本一致</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=E8lXC2mR6-k" target="_blank"># Master React JS in easy way</a></li>
+</ul>
+<h1 id="基本概念">
+  基本概念
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><h2 id="components">
+  Components
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>只返回一个元素：需要把要返回的部分包起来，比如&lt;div&gt;或者空的&lt;&gt;</li>
+<li>mount指添加组件到DOM，unmount指从DOM移除组件</li>
+<li>props：用来给Component返回的元素加入属性，来实现不同的具体内容
+<ul>
+<li>component中：
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>function Greeting(props) {
+	return &lt;h1&gt;{props.text}&lt;/h1&gt;
+}</code></pre></div>
+</li>
+<li>使用中：
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>&lt;Greeting text={&#39;yo&#39;}/&gt;</code></pre></div>
+</li>
+<li>key props：用于区分component，可以用数字或str，一般在map函数中使用：
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>{items.map((item =&gt; (
+	&lt;Component key={item.id} /&gt;
+))}</code></pre></div>
+</li>
+<li>propTypes：用来确保传入的prop的属性类型正确
+<ul>
+<li>array用PropTypes.arrayof</li>
+<li>object用PropTypes.shape({x: PropTypes.xxx, y: PropTypes.yyy})</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>Student.propTypes = {
+	name: PropTypes.string,
+	age: PropTypes.number,
+	isStudent: PropTypes.bool,
+}</code></pre></div>
+</li>
+<li>defaultProp：用来填充prop的默认值</li>
+</ul>
+</li>
+</ul>
+<h2 id="rendering">
+  Rendering
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>利用虚拟DOM（VDOM）进行渲染：react做的三步
+<ul>
+<li>当state改变，更新VDOM</li>
+<li>通过diffs检查改变</li>
+<li>reconciliation：协调改变真实DOM</li>
+</ul>
+</li>
+</ul>
+<h2 id="hook">
+  Hook
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="state-hooksusestateusereducer">
+  State hooks：useState/useReducer
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>记录状态，返回状态变量和更新函数
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>const [count, setCount] = useState(0)</code></pre></div>
+</li>
+<li>实现受控组件（controlled components），提供数据驱动的能力，将UI和用户行为产生的数据关联在一起</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>function ControlledInput() {
+	const [value, setValue] = useState(&#39;&#39;)
+	
+	return (
+		&lt;input value={value} onChange={(e) =&gt; setValue(e.target.value)} /&gt;
+	)
+}</code></pre></div>
+<ul>
+<li>
+<p>与原生JS实现的区别：
+<a href="#R-image-2b53d0ca3cab7e6e40ae98e5c21b871c" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a3f763a7a2211d2ab1fe24e879cc861.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2b53d0ca3cab7e6e40ae98e5c21b871c"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a3f763a7a2211d2ab1fe24e879cc861.png"></a></p>
+</li>
+<li>
+<p>立即执行 vs 函数引用</p>
+<ul>
+<li>立即执行：<code>onClick={func()}</code>，还没点就运行了</li>
+<li>函数引用：<code>onClick={() =&gt; func()}</code> 或 <code>onClick={func}</code> ，只有点的那下才运行</li>
+<li>监听函数传入一定是函数引用，否则
+<a href="#R-image-dd40d5b1f1128f8a1fd2220cda6f490c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5e5a1eb2b6e4b61e3dbeed707bc4f45d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-dd40d5b1f1128f8a1fd2220cda6f490c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5e5a1eb2b6e4b61e3dbeed707bc4f45d.png"></a></li>
+</ul>
+</li>
+<li>
+<p>多次调用更新函数，react会batch处理，比如三次setValue(value+1)，使用同样的value，最终结果还是value+1，而不是value+3</p>
+<ul>
+<li>可以使用updater function，react会将函数放入队列，顺序执行，是个好习惯</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>function increment() {
+	setValue(v =&gt; v + 1)
+	setValue(v =&gt; v + 1)
+	setValue(v =&gt; v + 1)
+}</code></pre></div>
+</li>
+</ul>
+<h3 id="context-hooksusecontext">
+  Context hooks：useContext
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>避免prop需要层层传递的情况，直接通过context交给底层</li>
+<li>在生产者组件ComponentA中：
+<ul>
+<li><code>import {createContext} from 'react';</code></li>
+<li><code>export const MyContext = createContext();</code></li>
+<li>在组件中包裹child
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>&lt;MyContext.Provider value={value}&gt;
+  &lt;Child /&gt;
+&lt;/MyContext.Provider</code></pre></div>
+</li>
+</ul>
+</li>
+<li>在消费者组件中：
+<ul>
+<li>导入MyContext
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>import React, { useContext } from &#39;react&#39;;
+import { MyContext } from &#39;./ComponentA;</code></pre></div>
+</li>
+<li><code>const value = useContext(MyContext);</code></li>
+</ul>
+</li>
+<li>MyContext只能通过value（规定属性名称）传递一个对象，可以把想要传递的所有内容组成一个大的对象传递下去，也是通用做法
+<a href="#R-image-ce8efe60fce23b6fcd47b4df9e01c4b5" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c6ac7b698c458538b754d0b418d7be6d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ce8efe60fce23b6fcd47b4df9e01c4b5"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c6ac7b698c458538b754d0b418d7be6d.png"></a></li>
+</ul>
+<h3 id="reference-hooksuseref">
+  Reference hooks：useRef
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>和useState一样，都是用来保存数据，但是不希望关联到页面渲染，</li>
+<li>相比useState在每次值变化时更新渲染，useRef不会</li>
+<li>使用ref的current来存储DOM对象，对current进行操作，从而：
+<ul>
+<li>直接访问/交互html的DOM元素</li>
+<li>处理focus、animation、transition</li>
+<li>管理timer和interval</li>
+</ul>
+</li>
+</ul>
+<h3 id="effect-hooksuseeffect">
+  Effect hooks：useEffect
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>在组件主逻辑运行时的side code，额外做一些事</li>
+<li>用effect包起来，可以精确控制执行的条件，如：
+<ul>
+<li>组件重新渲染：useEffect(() =&gt; {})</li>
+<li>组件mount：useEffect(() =&gt; {}, [])， []代表空依赖，只在mount时生效</li>
+<li>组件内状态变化：useEffect(() =&gt; {}, [value])，在mount和状态值变化时生效</li>
+</ul>
+</li>
+<li>在effect里面返回一个箭头函数，用于组件unmount时清理资源，如remove listener
+<a href="#R-image-0e926ae0b7955d6d43fae2f7ca5aee4b" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0e926ae0b7955d6d43fae2f7ca5aee4b"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png"></a></li>
+<li>一般用于：
+<ul>
+<li>事件监听：组件mount的写法避免每次渲染都添加新的listener</li>
+<li>DOM 操作</li>
+<li>订阅实时更新</li>
+<li>从API获取数据</li>
+<li>unmount组件</li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-hooksusememousecallback">
+  Performance hooks：useMemo/useCallback
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h2 id="purity">
+  Purity
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>保证component纯净，即相同的输入对应相同的输出
+<ul>
+<li>component只返回JSX</li>
+<li>不要在render之前在component外部修改component里面的元素</li>
+</ul>
+</li>
+</ul>
+<h2 id="portal">
+  Portal
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="suspense">
+  Suspense
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>加载图标：需要获取数据的时候，提供更好的UX</li>
+</ul>
+<h2 id="error-boundaries">
+  Error Boundaries
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>通过添加ErrorBoundary的FallbackComponent来控制错误出现时的反应</li>
+</ul>
+<h2 id="css-styling">
+  CSS styling
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="external">
+  external
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>提供global作用域的style，适合小项目</li>
+<li>class名称在大型项目中可能会重复，导致覆盖和难以管理</li>
+</ul>
+<h3 id="module">
+  module
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>普通css文件是全局生效的，但如果css文件名为xxx.module.css，vite或者react会识别这个文件名，会自动给你的类名加一个“随机后缀”（哈希值）</li>
+<li>缺点包括：导致动态类名写起来麻烦、使用第三方库时，需要:global跳出局部作用域等</li>
+</ul>
+<h3 id="inline">
+  inline
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>除了用module方式，还可以使用inline的方式，即把css样式直接写在component的jsx文件里</li>
+<li>适用于简单样式</li>
+</ul>
+<hr>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=CgkZ7MvWUAA&amp;list=PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3&amp;index=4" target="_blank"># React Full Course for free ⚛️</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=wIyHSOugGGw" target="_blank"># Every React Concept Explained in 12 Minutes</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=LOH1l-MP_9k" target="_blank"># ALL React Hooks Explained in 12 Minutes</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Dec 17, 2025
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="active " data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/bun/index.html"><a class="padding" href="/hugo-blog/blogs/bun/index.html">Bun</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm-agent/index.html"><a class="padding" href="/hugo-blog/blogs/llm-agent/index.html">LLM Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-rot/index.html"><a class="padding" href="/hugo-blog/blogs/context-rot/index.html">Context Rot</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766047611" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1766047611" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
