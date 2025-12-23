@@ -8,19 +8,19 @@ draft: false
 ---
 # 新建项目
 - npx create-react-app appName
-	![image.png|300](https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png)
+	![image.png|180](https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png)
 - node_modules：保存依赖的库
 - public：保存静态文件
 	- manifest.json：记录app的元数据，如名字，主题，字体等
 	- robots.txt：设置User-agent、Disallow和Allow，提供网络交互routing规则
 -  src：源代码
 	- index.js：app启动入口，连接到index.html的root节点
-		![image.png](https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png)
+		![image.png|500](https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png)
 	- App.js：具体app逻辑，可以理解为html的index.html
 		- 语法为JSX（Javascript XML），将javascript和html结合
 		- 采用function component，即App这个函数，返回一个“动态的html”
 		- export default，外部可以复用
-		![image.png|500](https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png)
+		![image.png|400](https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png)
 	- App.test.js：测试文件
 	- reportWebVitals.js：性能测试文件
 - package.json：记录关键信息，例如依赖、版本、启动脚本等
@@ -135,7 +135,7 @@ function ControlledInput() {
 	- 组件mount：useEffect(() => {}, \[\])， \[\]代表空依赖，只在mount时生效
 	- 组件内状态变化：useEffect(() => {}, \[value\])，在mount和状态值变化时生效
 - 在effect里面返回一个箭头函数，用于组件unmount时清理资源，如remove listener
-	![image.png|500](https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png)
+	![image.png|400](https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png)
 - 一般用于：
 	- 事件监听：组件mount的写法避免每次渲染都添加新的listener
 	- DOM 操作
