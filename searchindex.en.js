@@ -16,6 +16,58 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tags",
+    "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
+    "content": "总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识",
+    "description": "总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week8 大模型进展",
+    "uri": "/hugo-blog/weekly/week8/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Weeklies",
+    "uri": "/hugo-blog/weekly/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 周记",
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "概念 Agent MCP 全称：model context protocol 2024年底由anthropic开源，用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(\"GitHub Manager\") # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(\"GITHUB_TOKEN\") # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -\u003e str: \"\"\" 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 'psf') :param repo: 仓库名称 (例如 'requests') \"\"\" url = f\"https://api.github.com/repos/{owner}/{repo}/issues\" headers = { \"Authorization\": f\"token {GITHUB_TOKEN}\", \"Accept\": \"application/vnd.github.v3+json\" } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f\"#{issue['number']}: {issue['title']}\") return \"\\n\".join(results) if results else \"没有找到打开的 Issue。\" if __name__ == \"__main__\": # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { \"mcpServers\": { \"my_python_github\": { \"command\": \"python3\", \"args\": [\"/你的绝对路径/github_server.py\"], \"env\": { \"GITHUB_TOKEN\": \"你的_PERSONAL_ACCESS_TOKEN\" } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：\n# Introducing the Model Context Protocol # What is the Model Context Protocol (MCP)? # MCP是啥？技术原理是什么？一个视频搞懂MCP的一切。Windows系统配置MCP，Cursor,Cline 使用MCP‘ # 用过上百款编程MCP，只有这15个真正好用，Claude Code与Codex配置MCP详细教程 # you need to learn MCP RIGHT NOW!! (Model Context Protocol) Smithery Skills",
+    "description": "概念 Agent MCP 全称：model context protocol 2024年底由anthropic开源，用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(\"GitHub Manager\") # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(\"GITHUB_TOKEN\") # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -\u003e str: \"\"\" 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 'psf') :param repo: 仓库名称 (例如 'requests') \"\"\" url = f\"https://api.github.com/repos/{owner}/{repo}/issues\" headers = { \"Authorization\": f\"token {GITHUB_TOKEN}\", \"Accept\": \"application/vnd.github.v3+json\" } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f\"#{issue['number']}: {issue['title']}\") return \"\\n\".join(results) if results else \"没有找到打开的 Issue。\" if __name__ == \"__main__\": # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { \"mcpServers\": { \"my_python_github\": { \"command\": \"python3\", \"args\": [\"/你的绝对路径/github_server.py\"], \"env\": { \"GITHUB_TOKEN\": \"你的_PERSONAL_ACCESS_TOKEN\" } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "大模型进展",
+    "uri": "/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%9B%E5%B1%95/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
     "content": "",
     "description": "",
@@ -35,22 +87,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tags",
-    "uri": "/hugo-blog/tags/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "💡 HTML 中的 data-* 属性作用 在 HTML5 中，data-* 属性提供了一种标准的方式，允许我们在 HTML 元素上存储额外、自定义的数据，而无需依赖非标准属性或 DOM 操作（如设置 ID 或 class 属性来存储数据）。\n🎯 主要作用和用途 存储自定义数据： 这是它最主要的作用。你可以将与元素相关的、但没有内置 HTML 属性可以表达的数据存储在这些属性中。\n示例： 存储一个产品的 ID、用户的偏好设置、元素的初始状态等。 与 JavaScript 交互：\n快速访问： JavaScript 可以通过元素的 dataset 属性轻松地读取、写入或删除这些自定义数据。这使得 JS 能够根据这些数据来修改 UI 或执行逻辑。\n避免污染： 使用 data-* 属性，你可以避免滥用标准的 HTML 属性（例如，不应该将数据存储在 title 或 alt 属性中），保持 HTML 语义的纯净性。\n与 CSS 结合使用：\n样式控制： CSS 可以使用属性选择器来根据这些 data-* 属性的值来设置元素的样式。\n示例： 你可以设置一个元素的 data-state 属性为 \"active\" 或 \"inactive\"，然后用 CSS 来定义这两种状态下的不同样式。\n✍️ 语法和使用 1. HTML 中定义 data- 后面可以跟任何你想要的名称，但不能包含任何大写字母，并且推荐使用**中划线（kebab-case）**来分隔单词。\nHTML\n\u003cdiv id=\"product-123\" data-product-id=\"45678\" data-category=\"electronics\" data-in-stock=\"true\"\u003e 智能手机 \u003c/div\u003e 2. JavaScript 中访问 在 JavaScript 中访问这些属性时，需要通过元素的 dataset 属性。浏览器会自动将 HTML 中使用的中划线命名 (data-product-id) 转换成 JavaScript 中使用的驼峰式命名 (dataset.productId)。\nJavaScript\nconst productDiv = document.getElementById('product-123'); // 💡 读取数据 const id = productDiv.dataset.productId; // \"45678\" const category = productDiv.dataset.category; // \"electronics\" console.log(`产品ID: ${id}, 类别: ${category}`); // 💡 写入/修改数据 productDiv.dataset.inStock = \"false\"; // 💡 删除数据 // delete productDiv.dataset.category; 3. CSS 中使用 在 CSS 中，访问时需要使用完整的属性名，即 data- 开头的中划线命名。\nCSS\n/* 当 data-in-stock 属性的值为 \"true\" 时 */ [data-in-stock=\"true\"] { border: 2px solid green; background-color: #e6ffe6; } /* 当 data-category 属性的值包含 \"elec\" 时 */ [data-category*=\"elec\"] { font-weight: bold; } 总结 data-* 属性是 HTML5 引入的一个非常有用的特性，它为前端开发者提供了一个干净、标准且易于维护的方式来存储和管理元素上的自定义数据，极大地增强了 HTML 与 JavaScript 和 CSS 之间的数据通信能力。",
     "description": "💡 HTML 中的 data-* 属性作用 在 HTML5 中，data-* 属性提供了一种标准的方式，允许我们在 HTML 元素上存储额外、自定义的数据，而无需依赖非标准属性或 DOM 操作（如设置 ID 或 class 属性来存储数据）。\n🎯 主要作用和用途 存储自定义数据： 这是它最主要的作用。你可以将与元素相关的、但没有内置 HTML 属性可以表达的数据存储在这些属性中。\n示例： 存储一个产品的 ID、用户的偏好设置、元素的初始状态等。 与 JavaScript 交互：\n快速访问： JavaScript 可以通过元素的 dataset 属性轻松地读取、写入或删除这些自定义数据。这使得 JS 能够根据这些数据来修改 UI 或执行逻辑。\n避免污染： 使用 data-* 属性，你可以避免滥用标准的 HTML 属性（例如，不应该将数据存储在 title 或 alt 属性中），保持 HTML 语义的纯净性。",
@@ -68,21 +104,13 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 大模型面试专项",
-    "description": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 大模型面试专项",
+    "content": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 跟进大模型进展",
+    "description": "总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 跟进大模型进展",
     "tags": [
       "周记"
     ],
     "title": "Week7 React学习",
     "uri": "/hugo-blog/weekly/week7/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Weeklies",
-    "uri": "/hugo-blog/weekly/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -94,14 +122,6 @@ var relearn_searchindex = [
     ],
     "title": "从零开始构建Tetris",
     "uri": "/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 周记",
-    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",

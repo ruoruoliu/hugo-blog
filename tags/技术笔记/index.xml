@@ -6,8 +6,15 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>大模型进展</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%9B%E5%B1%95/index.html</link>
+      <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%9B%E5%B1%95/index.html</guid>
+      <description>概念 Agent MCP 全称：model context protocol 2024年底由anthropic开源，用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(&#34;GitHub Manager&#34;) # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(&#34;GITHUB_TOKEN&#34;) # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -&gt; str: &#34;&#34;&#34; 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 &#39;psf&#39;) :param repo: 仓库名称 (例如 &#39;requests&#39;) &#34;&#34;&#34; url = f&#34;https://api.github.com/repos/{owner}/{repo}/issues&#34; headers = { &#34;Authorization&#34;: f&#34;token {GITHUB_TOKEN}&#34;, &#34;Accept&#34;: &#34;application/vnd.github.v3+json&#34; } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f&#34;#{issue[&#39;number&#39;]}: {issue[&#39;title&#39;]}&#34;) return &#34;\n&#34;.join(results) if results else &#34;没有找到打开的 Issue。&#34; if __name__ == &#34;__main__&#34;: # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { &#34;mcpServers&#34;: { &#34;my_python_github&#34;: { &#34;command&#34;: &#34;python3&#34;, &#34;args&#34;: [&#34;/你的绝对路径/github_server.py&#34;], &#34;env&#34;: { &#34;GITHUB_TOKEN&#34;: &#34;你的_PERSONAL_ACCESS_TOKEN&#34; } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：</description>
+    </item>
     <item>
       <title>React学习手册</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>

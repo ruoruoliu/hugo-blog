@@ -6,7 +6,31 @@
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</loc>
-    <lastmod>2025-12-17T00:00:00+00:00</lastmod>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/tags/index.html</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week8/index.html</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%9B%E5%B1%95/index.html</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</loc>
+    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/tags/javascript/index.html</loc>
@@ -14,14 +38,6 @@
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</loc>
-    <lastmod>2025-12-17T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/tags/index.html</loc>
-    <lastmod>2025-12-17T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</loc>
     <lastmod>2025-12-17T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -37,15 +53,7 @@
     <lastmod>2025-12-14T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</loc>
-    <lastmod>2025-12-14T00:00:00+00:00</lastmod>
-  </url>
-  <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html</loc>
-    <lastmod>2025-12-14T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html</loc>
     <lastmod>2025-12-14T00:00:00+00:00</lastmod>
   </url>
   <url>
