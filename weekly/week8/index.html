@@ -5,15 +5,15 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识">
+    <meta name="description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 了解Agent、MCP和Skills： Agent、MCP和Skills 了解Context Engineering： Context Engineering 了解Deep Research： Deep Research 跟进RAG技术进展： RAG 学习强化学习基础知识 知识 Agent=LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 简历项目准备 强化学习基础知识">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Week8 大模型进展 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识">
+    <meta name="twitter:description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 了解Agent、MCP和Skills： Agent、MCP和Skills 了解Context Engineering： Context Engineering 了解Deep Research： Deep Research 跟进RAG技术进展： RAG 学习强化学习基础知识 知识 Agent=LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 简历项目准备 强化学习基础知识">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/weekly/week8/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="Week8 大模型进展 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识">
+    <meta property="og:description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 了解Agent、MCP和Skills： Agent、MCP和Skills 了解Context Engineering： Context Engineering 了解Deep Research： Deep Research 跟进RAG技术进展： RAG 学习强化学习基础知识 知识 Agent=LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 简历项目准备 强化学习基础知识">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Weeklies">
@@ -21,33 +21,33 @@
     <meta property="article:modified_time" content="2025-12-22T00:00:00+00:00">
     <meta property="article:tag" content="周记">
     <meta itemprop="name" content="Week8 大模型进展 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识">
+    <meta itemprop="description" content="总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 了解Agent、MCP和Skills： Agent、MCP和Skills 了解Context Engineering： Context Engineering 了解Deep Research： Deep Research 跟进RAG技术进展： RAG 学习强化学习基础知识 知识 Agent=LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 简历项目准备 强化学习基础知识">
     <meta itemprop="datePublished" content="2025-12-22T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-12-22T00:00:00+00:00">
-    <meta itemprop="wordCount" content="12">
+    <meta itemprop="wordCount" content="31">
     <meta itemprop="keywords" content="周记">
     <title>Week8 大模型进展 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1766496098" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766496098" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766496098" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1766496098" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1766496098" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1766647259" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766647259" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766647259" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1766647259" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1766647259" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766496098";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766647259";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1766496098" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766496098" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766496098" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766496098" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1766647259" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766647259" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766647259" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766647259" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766496098" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766496098" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766496098" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1766496098" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1766496098" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766647259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766647259" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766647259" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1766647259" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1766647259" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -127,12 +127,7 @@
 
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper">
-<nav class="TableOfContents">
-  <ul>
-    <li><a href="#tip-知识">[!tip] 知识</a></li>
-  </ul>
-</nav>
+                <div class="topbar-content-wrapper"> 
                 </div>
               </div>
             </div>
@@ -215,13 +210,30 @@
   </summary>
 </details>
 <ul>
-<li>学习MCP基础知识及配置：
+<li>了解Agent、MCP和Skills：
 
 
 
     
-<a href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%9B%E5%B1%95/">MCP</a></li>
-<li></li>
+<a href="/hugo-blog/blogs/agentmcp%E5%92%8Cskills/">Agent、MCP和Skills</a></li>
+<li>了解Context Engineering：
+
+
+
+    
+<a href="/hugo-blog/blogs/context-engineering/">Context Engineering</a></li>
+<li>了解Deep Research：
+
+
+
+    
+<a href="/hugo-blog/blogs/deep-research/">Deep Research</a></li>
+<li>跟进RAG技术进展：
+
+
+
+    
+<a href="/hugo-blog/blogs/rag/">RAG</a></li>
 </ul>
 
 <details open class="box cstyle notices info">
@@ -233,18 +245,21 @@
 <ul>
 <li></li>
 </ul>
-<blockquote>
-<h2 id="tip-知识">
-  [!tip] 知识
 
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2></blockquote>
+<details open class="box cstyle notices tip">
+  <summary class="box-label" tabindex="-1">
+    <i class="fa-fw fas fa-lightbulb"></i> 
+    知识
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Agent=LLM + 规划 + 记忆 + 工具使用</li>
+<li>认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent</li>
+<li>MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路</li>
+<li>Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow</li>
+</ul>
+  </div>
+</details>
 
 <details open class="box cstyle notices warning">
   <summary class="box-label" tabindex="-1">
@@ -335,8 +350,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766496098" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1766496098" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766647259" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1766647259" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

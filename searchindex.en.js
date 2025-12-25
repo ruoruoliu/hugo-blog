@@ -8,12 +8,70 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "站在 2025 年末的时间点回顾，RAG（检索增强生成）已经从一个简单的“搜索+生成”插件，进化成了企业级 AI 的核心基础设施。\n如果说 2023 年是 RAG 的诞生年，2024 年是工程化年，那么 2025 年则是 RAG 的“认知融合”与“自主化”之年。\n以下是根据最新趋势整理的 2025 年 RAG 技术现状与未来展望：\n一、 2025 年 RAG 技术现状：四大进化特征 1. 从“单纯检索”进化到“多模态原生 RAG” (Multimodal Native) 现状：2025 年的 RAG 不再只处理文本。通过原生多模态模型（如 Gemini 1.5 系列和 GPT-4o），系统可以直接检索并理解图片、PDF 中的复杂图表、甚至视频和音频剪辑。\n关键突破：不再是将图片转成文字（OCR），而是将视觉信息直接映射到统一的向量空间，实现了“图搜图、图搜文、文搜图”的无缝衔接。\n2. “长上下文”与“缓存增强生成 (CAG)” 的崛起 现状：随着模型上下文窗口普遍突破 1M（百万级）Token，CAG 技术开始在特定领域取代传统 RAG。\n关键突破：对于几十万字的垂直文档（如法律法规、单一项目资料），开发者倾向于通过 KV Cache 技术将资料预加载到模型“内存”中，实现零检索延迟和 100% 的上下文覆盖，彻底解决了 RAG 的“丢片”问题。\n3. GraphRAG 的“平民化”与“混合化” 现状：GraphRAG（图检索增强）不再是高不可攀的技术。2025 年，动态建图技术（LightRAG）大幅降低了成本。\n关键突破：现在的系统通常采用 Hybrid RAG 模式——简单问题走向量检索（快且省），复杂逻辑/全局分析走图检索（准且深）。\n4. Agentic RAG（智能体化 RAG）成为标配 现状：RAG 流程不再是线性的（搜索-\u003e回答），而是循环自省的。\n关键突破：引入了反思（Reflection）和规划（Planning）机制。AI 在回答前会自问：“搜到的资料够吗？”、“这个结果矛盾吗？”。如果不够，它会自主更换关键词重新搜索，直到满意为止。\n二、 2025 年 RAG 产业格局对比 维度 传统 RAG (2023-2024) 现代 RAG (2025) 检索单元 文本片段 (Chunks) 实体关系网 + 社区摘要 + 原始多模态对象 工作流 线性 (One-shot) 迭代自省 (Agentic Loop) 长文本处理 强行切片 (容易断章取义) 智能分层缓存 (CAG) + 逻辑图谱 精准度 80%-85% (存在幻觉) 95%+ (具备自我校验与冲突处理能力) 三、 未来展望：2026 及以后 1. RAG 与训练的界限进一步模糊 (Unifying RAG \u0026 Training) 未来可能会出现“实时学习”的模型。检索不再是外部行为，而是模型权重更新的一种轻量级形式。模型在检索到新知识的同时，会进行短期的局部权重微调。\n2. 端侧 RAG (On-Device RAG) 的普及 随着手机、PC 算力的提升，个人隐私数据的 RAG 将完全在端侧运行。你的手机会实时索引你所有的聊天记录、邮件、照片，成为一个完全本地化、绝对隐私的“第二大脑”。\n3. 语义协议的标准化 (MCP \u0026 A2A) 随着 Model Context Protocol (MCP) 等协议的普及，不同软件之间的数据将能够自动、标准化地流入 RAG 系统。这意味着你不需要为每个 App 写插件，AI 可以自动“接管”所有工具的知识检索。\n4. 从“找答案”到“找逻辑” 未来的 RAG 将不再满足于告诉你“是什么”，而是致力于告诉你“为什么”。它会通过横跨多年、成千上万份文档的对比，发现人类可能忽略的宏观规律（如医药发现、金融暗流）。\n总结：\n2025 年的 RAG 已经不再是一个技术方案，它正在变成AI 系统的“长期记忆体”。",
+    "description": "站在 2025 年末的时间点回顾，RAG（检索增强生成）已经从一个简单的“搜索+生成”插件，进化成了企业级 AI 的核心基础设施。\n如果说 2023 年是 RAG 的诞生年，2024 年是工程化年，那么 2025 年则是 RAG 的“认知融合”与“自主化”之年。\n以下是根据最新趋势整理的 2025 年 RAG 技术现状与未来展望：\n一、 2025 年 RAG 技术现状：四大进化特征 1. 从“单纯检索”进化到“多模态原生 RAG” (Multimodal Native) 现状：2025 年的 RAG 不再只处理文本。通过原生多模态模型（如 Gemini 1.5 系列和 GPT-4o），系统可以直接检索并理解图片、PDF 中的复杂图表、甚至视频和音频剪辑。",
+    "tags": [],
+    "title": "2025年RAG技术回顾与展望",
+    "uri": "/hugo-blog/blogs/2025%E5%B9%B4rag%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Blogs",
     "uri": "/hugo-blog/blogs/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "",
+    "description": "",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "Context Engineering",
+    "uri": "/hugo-blog/blogs/context-engineering/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "",
+    "description": "",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "Deep Research",
+    "uri": "/hugo-blog/blogs/deep-research/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "LangGraph 参考链接：\n# What is LangChain? # LangChain vs LangGraph: A Tale of Two Frameworks",
+    "description": "LangGraph 参考链接：\n# What is LangChain? # LangChain vs LangGraph: A Tale of Two Frameworks",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "LangChain",
+    "uri": "/hugo-blog/blogs/langchain/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "简单来说，Pydantic Model 是 Python 中用于数据验证和设置管理的最流行工具。\n它让你能够用 Python 的“类型提示”（Type Hints）来定义数据结构。当你把数据丢给一个 Pydantic 模型时，它会自动帮你检查数据对不对，如果不符合要求，它会报错；如果格式稍微有点偏差（比如字符串的 \"123\" 传给了整数类型 int），它还会自动帮你转换。\n1. 核心功能：它能帮你做什么？ 类型检查（Validation）： 确保 age 字段一定是整数，email 格式一定正确。\n数据转换（Parsing/Coercion）： 如果你传入 age=\"25\"（字符串），它会自动转成 25（整数）。\n清晰的错误提示： 如果数据错了，它会准确告诉你哪个字段、因为什么原因失败了。\n序列化： 可以轻松地将模型对象转回 Python 字典或 JSON 字符串。\n2. 代码长什么样？ 定义一个模型非常简单，只需要继承 BaseModel：\nPython\nfrom pydantic import BaseModel, EmailStr # 1. 定义模型（SOP/Schema） class User(BaseModel): id: int name: str signup_ts: str | None = None # 可选字段 friends: list[int] = [] # 默认值为空列表 # 2. 使用模型（传入原始数据） external_data = { \"id\": \"123\", # 传入的是字符串，但模型定义是 int \"name\": \"John Doe\", \"signup_ts\": \"2024-01-01 12:22\", \"friends\": [1, \"2\", b\"3\"], # 混合类型 } user = User(**external_data) print(user.id) # 输出: 123 (已经自动转成了 int) print(user.friends) # 输出: [1, 2, 3] (全部自动转成了 int) 3. 为什么大家都在用它？ 如果你在用 FastAPI 或构建 AI Agent（比如 OpenAI 的结构化输出），Pydantic 是核心灵魂：\n与 IDE 完美配合： 因为使用了类型提示，PyCharm 或 VS Code 会给你完美的自动补全。\n性能极快： Pydantic V2 的核心逻辑是用 Rust 编写的，处理速度非常快。\n结构化数据驱动： 在 LLM（大语言模型）应用中，我们常用 Pydantic 来强制模型输出符合特定格式的 JSON，这就是所谓的 Structured Outputs。\n4. Pydantic Model vs. 普通类 (Class) 特性 普通 Python Class Pydantic Model 类型检查 无（除非手动写 if isinstance） 运行时自动检查 自动转换 需手动转换 自动完成 (Coercion) JSON 转换 需手动实现 to_json 自带 model_dump_json() 默认值处理 简单支持 复杂支持（如 Field 约束） 💡 与 Agent 的联系 在 OpenAI 的 Agent 开发中，Pydantic Model 通常被用作 Tools 的定义。LLM 看到 Pydantic 定义的字段和描述（Description），就能明白这个工具需要什么参数，并生成符合该结构的 JSON 调用。",
+    "description": "简单来说，Pydantic Model 是 Python 中用于数据验证和设置管理的最流行工具。\n它让你能够用 Python 的“类型提示”（Type Hints）来定义数据结构。当你把数据丢给一个 Pydantic 模型时，它会自动帮你检查数据对不对，如果不符合要求，它会报错；如果格式稍微有点偏差（比如字符串的 \"123\" 传给了整数类型 int），它还会自动帮你转换。\n1. 核心功能：它能帮你做什么？ 类型检查（Validation）： 确保 age 字段一定是整数，email 格式一定正确。\n数据转换（Parsing/Coercion）： 如果你传入 age=\"25\"（字符串），它会自动转成 25（整数）。\n清晰的错误提示： 如果数据错了，它会准确告诉你哪个字段、因为什么原因失败了。\n序列化： 可以轻松地将模型对象转回 Python 字典或 JSON 字符串。\n2. 代码长什么样？ 定义一个模型非常简单，只需要继承 BaseModel：\nPython\nfrom pydantic import BaseModel, EmailStr # 1. 定义模型（SOP/Schema） class User(BaseModel): id: int name: str signup_ts: str | None = None # 可选字段 friends: list[int] = [] # 默认值为空列表 # 2. 使用模型（传入原始数据） external_data = { \"id\": \"123\", # 传入的是字符串，但模型定义是 int \"name\": \"John Doe\", \"signup_ts\": \"2024-01-01 12:22\", \"friends\": [1, \"2\", b\"3\"], # 混合类型 } user = User(**external_data) print(user.id) # 输出: 123 (已经自动转成了 int) print(user.friends) # 输出: [1, 2, 3] (全部自动转成了 int) 3. 为什么大家都在用它？ 如果你在用 FastAPI 或构建 AI Agent（比如 OpenAI 的结构化输出），Pydantic 是核心灵魂：",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "Pydantic Model",
+    "uri": "/hugo-blog/blogs/pydantic-model/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：\n2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph\nCAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG是什么以及其局限性： CAG 参考链接：\n# RAG vs. CAG: Solving Knowledge Gaps in AI Models HybridRAG GraphRAG 索引阶段：对于每个chunk进行实体和关系的识别，对图进行社区发现算法，对于每一层社区进行llm摘要 检索阶段： global：主要针对概括性的问题，对每个社区（不同层级）进行llm判断，是否和query相关，排序top的部分进入prompt local：主要针对细节问题，先用向量检索实体，再对实体链接的社区摘要进行llm判断，是否和query相关，排序top的部分进入prompt 缺点： 无法很快更新知识数据，需要重跑社区发现算法和社区摘要生成 检索阶段的global方法需要计算每个摘要的相关度，也很耗费token 参考链接： From Local to Global: A GraphRAG Approach to Query-Focused Summarization # AI知识图谱 GraphRAG 是怎么回事？ graphrag neo4j系列视频 # Intro to GraphRAG — Zach Blumenfeld # GraphRAG: The Marriage of Knowledge Graphs and RAG # Practical GraphRAG: Making LLMs smarter with Knowledge Graphs # Agentic GraphRAG: AI’s Logical Edge LightRAG 对每个chunk中识别出的实体和链接，构造high-level和low-level的kv对，保存概括和细节信息 检索的时候将query也转成high-level和low-level，用向量匹配，匹配到的部分以及1-hop、2-hop进行打分排序，最终拼成prompt 索引阶段，相比GraphRAG需要跑社区检测算法，LightRAG只将新的节点添加进图即可，实时更新知识数据 参考链接：\nLIGHTRAG: SIMPLE AND FAST RETRIEVAL-AUGMENTED GENERATION RAG评估 Ragas 基于大模型对检索质量和生成质量两方面进行评估： 检索质量： 召回：ground truth信息点中检索的覆盖比例，保证没有漏掉关键信息点 准确：检索中与question相关的比例，保证信息的纯净度 生成质量包括幻觉和相关性 支持自动生成测试集 通过大模型提取文档信息，构建临时的语义图 基于高信息文本快生成直接问题 基于语义图进行问题进化，包括多跳进化、推理进化、条件过滤进化、抽象进化 参考链接： Ragas: Automated Evaluation of Retrieval Augmented Generation Ragas",
+    "description": "RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：\n2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph\nCAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG是什么以及其局限性： CAG 参考链接：",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "RAG",
+    "uri": "/hugo-blog/blogs/rag/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0",
@@ -24,9 +82,27 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "Agent Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升\nAgent的四个核心部分：LLM + 规划 + 记忆 + 工具使用 可以使用 LangGraph来搭建不同范式的workflow和Agent 参考链接：\n# Building effective agents # LLM Powered Autonomous Agents # Workflows and agents # Building Effective Agents with LangGraph MCP model context protocol在2024年底由anthropic开源， 用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(\"GitHub Manager\") # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(\"GITHUB_TOKEN\") # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -\u003e str: \"\"\" 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 'psf') :param repo: 仓库名称 (例如 'requests') \"\"\" url = f\"https://api.github.com/repos/{owner}/{repo}/issues\" headers = { \"Authorization\": f\"token {GITHUB_TOKEN}\", \"Accept\": \"application/vnd.github.v3+json\" } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f\"#{issue['number']}: {issue['title']}\") return \"\\n\".join(results) if results else \"没有找到打开的 Issue。\" if __name__ == \"__main__\": # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { \"mcpServers\": { \"my_python_github\": { \"command\": \"python3\", \"args\": [\"/你的绝对路径/github_server.py\"], \"env\": { \"GITHUB_TOKEN\": \"你的_PERSONAL_ACCESS_TOKEN\" } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：\n# Introducing the Model Context Protocol # What is the Model Context Protocol (MCP)? # MCP是啥？技术原理是什么？一个视频搞懂MCP的一切。Windows系统配置MCP，Cursor,Cline 使用MCP‘ # 用过上百款编程MCP，只有这15个真正好用，Claude Code与Codex配置MCP详细教程 # you need to learn MCP RIGHT NOW!! (Model Context Protocol) Smithery Skills Claude发布，用于将一些重复的能力固化在md文件中，当用户问题与之相关时，自动读取Skill的md文件，加载到prompt中 Claude自带的create-skill这个skill可以帮助我们创建自己的skill，通过几轮对话完善一个定制化的skill的md文件 与MCP不同，MCP用于获取外部数据和工具，而Skills用于指导大模型如何做某件事，比如规范、要求等 参考链接：\n# Claude Skills Explained - Step-by-Step Tutorial for Beginners # Equipping agents for the real world with Agent Skills # 停止构建智能体，开始构建技能：Anthropic Agent Skills的深度洞察与AI范式变革",
+    "description": "Agent Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升\nAgent的四个核心部分：LLM + 规划 + 记忆 + 工具使用 可以使用 LangGraph来搭建不同范式的workflow和Agent 参考链接：\n# Building effective agents # LLM Powered Autonomous Agents # Workflows and agents # Building Effective Agents with LangGraph MCP model context protocol在2024年底由anthropic开源， 用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(\"GitHub Manager\") # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(\"GITHUB_TOKEN\") # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -\u003e str: \"\"\" 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 'psf') :param repo: 仓库名称 (例如 'requests') \"\"\" url = f\"https://api.github.com/repos/{owner}/{repo}/issues\" headers = { \"Authorization\": f\"token {GITHUB_TOKEN}\", \"Accept\": \"application/vnd.github.v3+json\" } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f\"#{issue['number']}: {issue['title']}\") return \"\\n\".join(results) if results else \"没有找到打开的 Issue。\" if __name__ == \"__main__\": # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { \"mcpServers\": { \"my_python_github\": { \"command\": \"python3\", \"args\": [\"/你的绝对路径/github_server.py\"], \"env\": { \"GITHUB_TOKEN\": \"你的_PERSONAL_ACCESS_TOKEN\" } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "Agent、MCP和Skills",
+    "uri": "/hugo-blog/blogs/agentmcp%E5%92%8Cskills/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识",
-    "description": "总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 学习MCP基础知识及配置： MCP 学习强化学习基础知识 [!tip] 知识 待办 简历项目准备 强化学习基础知识",
+    "content": "总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 了解Agent、MCP和Skills： Agent、MCP和Skills 了解Context Engineering： Context Engineering 了解Deep Research： Deep Research 跟进RAG技术进展： RAG 学习强化学习基础知识 知识 Agent=LLM + 规划 + 记忆 + 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 简历项目准备 强化学习基础知识",
+    "description": "总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 了解Agent、MCP和Skills： Agent、MCP和Skills 了解Context Engineering： Context Engineering 了解Deep Research： Deep Research 跟进RAG技术进展： RAG 学习强化学习基础知识 知识 Agent=LLM + 规划 + 记忆 + 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 简历项目准备 强化学习基础知识",
     "tags": [
       "周记"
     ],
@@ -48,24 +124,6 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: 周记",
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "概念 Agent MCP 全称：model context protocol 2024年底由anthropic开源，用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(\"GitHub Manager\") # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(\"GITHUB_TOKEN\") # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -\u003e str: \"\"\" 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 'psf') :param repo: 仓库名称 (例如 'requests') \"\"\" url = f\"https://api.github.com/repos/{owner}/{repo}/issues\" headers = { \"Authorization\": f\"token {GITHUB_TOKEN}\", \"Accept\": \"application/vnd.github.v3+json\" } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f\"#{issue['number']}: {issue['title']}\") return \"\\n\".join(results) if results else \"没有找到打开的 Issue。\" if __name__ == \"__main__\": # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { \"mcpServers\": { \"my_python_github\": { \"command\": \"python3\", \"args\": [\"/你的绝对路径/github_server.py\"], \"env\": { \"GITHUB_TOKEN\": \"你的_PERSONAL_ACCESS_TOKEN\" } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：\n# Introducing the Model Context Protocol # What is the Model Context Protocol (MCP)? # MCP是啥？技术原理是什么？一个视频搞懂MCP的一切。Windows系统配置MCP，Cursor,Cline 使用MCP‘ # 用过上百款编程MCP，只有这15个真正好用，Claude Code与Codex配置MCP详细教程 # you need to learn MCP RIGHT NOW!! (Model Context Protocol) Smithery Skills",
-    "description": "概念 Agent MCP 全称：model context protocol 2024年底由anthropic开源，用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(\"GitHub Manager\") # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(\"GITHUB_TOKEN\") # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -\u003e str: \"\"\" 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 'psf') :param repo: 仓库名称 (例如 'requests') \"\"\" url = f\"https://api.github.com/repos/{owner}/{repo}/issues\" headers = { \"Authorization\": f\"token {GITHUB_TOKEN}\", \"Accept\": \"application/vnd.github.v3+json\" } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f\"#{issue['number']}: {issue['title']}\") return \"\\n\".join(results) if results else \"没有找到打开的 Issue。\" if __name__ == \"__main__\": # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { \"mcpServers\": { \"my_python_github\": { \"command\": \"python3\", \"args\": [\"/你的绝对路径/github_server.py\"], \"env\": { \"GITHUB_TOKEN\": \"你的_PERSONAL_ACCESS_TOKEN\" } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：",
-    "tags": [
-      "技术笔记"
-    ],
-    "title": "大模型进展",
-    "uri": "/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%9B%E5%B1%95/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
@@ -254,16 +312,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/weekly/week5/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "",
-    "description": "",
-    "tags": [
-      "技术笔记"
-    ],
-    "title": "LLM Agent",
-    "uri": "/hugo-blog/blogs/llm-agent/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
     "content": "总结 优化本地开发环境 tmux配置 Tmux使用教程 aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 配置neovim环境 熟练vim操作",
     "description": "总结 优化本地开发环境 tmux配置 Tmux使用教程 aerospace配置 Aerospace使用教程 iterm2配置 Terminal配置 知识 通过tmux解决同一个shell下多开进程的操作方式 tmux分为session、window、pane，每个session下可以快速切换window和pane 通过aerospace可以通过键盘快速切换操作页面，如chrome、terminal、obsidian之间 linux上使用i3，macOS上使用aerospace terminal配置主要包含以下几步 安装terminal 安装color themes 安装字体：支持定制化图标 安装插件：powerlevel10k（未使用）、zsh的语义补全和语法高亮 待办 配置neovim环境 熟练vim操作",
@@ -326,6 +374,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Vim和NeoVim",
     "uri": "/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "从目前的架构设计来看，CAG (Cache-Augmented Generation) 的确不是为了取代 RAG，而是在特定场景下解决 RAG “硬伤”的极端优化方案。\n你觉得它“用处有限”，主要是因为它牺牲了海量规模和成本灵活性。但我们可以从以下几个维度看看，为什么在某些高端或特定商业场景下，人们反而觉得它比 RAG 香：\n1. 为什么会有 CAG？（解决 RAG 的痛点） 虽然 RAG 看起来无所不能，但在实际落地中，开发者经常被三个问题折磨得头秃：\n检索丢片（Lost in the Middle）：向量搜索有时候很笨，最关键的那一页它偏偏没搜到，导致 AI 满口胡言。\n上下文断裂：RAG 只能给 AI 看几块“碎片”，AI 很难理解整本书的宏观逻辑。\n延迟太高：检索 + 排序 + 生成，整套流程下来，用户可能要等好几秒。\n2. CAG 的“杀手锏”场景 虽然它处理不了整个互联网的数据，但在以下场景，CAG 几乎是碾压级的：\nA. 极高频互动的“单一知识库” 例子：一个热门游戏的官方百科，或者一本正在热卖的复杂桌游规则书。\n理由：文档就那么几万字或几十万字。如果用 RAG，每次玩家提问都要算一遍向量、查一遍库；如果用 CAG，把整本书预热到模型的“缓存”里。\n结果：玩家提问，秒回！而且因为 AI 读了全书，绝对不会出现“找不到资料”的情况。\nB. 法律/医疗等“零容忍”行业 例子：针对某一部具体法律（如《民法典》）的咨询。\n理由：RAG 可能会漏掉某个关键的法条修正案，导致法律建议错误。\n结果：CAG 强迫模型在回答前“大脑里已经装了整部法律”，保证了答案的严谨性和全局观。\nC. 实时会议/直播助手 例子：一场 4 小时的技术发布会，你需要随时提问。\n理由：发布会内容在不断增加。\n结果：将实时转录的文本不断推入 Cache。AI 能够基于之前发生的全部内容进行分析，而不需要像 RAG 那样去反复切片索引。\n3. CAG 的致命伤（确实受限的地方） 正如你所察觉，它的局限性非常明显：\n容量天花板：受限于模型的上下文窗口（Context Window）。虽然 Gemini 1.5 支持 1M-2M token，但如果你有 100GB 的文档，CAG 根本装不下。\n成本昂贵：缓存（KV Cache）是占用显存（VRAM）的。长期维护一个巨大的缓存，比存一个向量数据库贵得多。\n扩展性差：如果有 1 万个用户，每个用户都有不同的私人文档，服务器根本没有那么多内存给每个人都开一个专属 Cache。\n4. 总结：它是“手术刀”而非“瑞士军刀” RAG 是“搜索引擎”：适合管一个图书馆，大而全，但偶尔漏掉细节。\nCAG 是“内存驻留”：适合管一本教科书，小而精，追求极致的准确和速度。\n目前行业内的趋势其实是 RAG + Long Context/CAG 的混合体：先用 RAG 粗筛出 10 万字，然后把这 10 万字丢进长上下文缓存（CAG 思想）进行多轮深度对话。",
+    "description": "从目前的架构设计来看，CAG (Cache-Augmented Generation) 的确不是为了取代 RAG，而是在特定场景下解决 RAG “硬伤”的极端优化方案。\n你觉得它“用处有限”，主要是因为它牺牲了海量规模和成本灵活性。但我们可以从以下几个维度看看，为什么在某些高端或特定商业场景下，人们反而觉得它比 RAG 香：\n1. 为什么会有 CAG？（解决 RAG 的痛点） 虽然 RAG 看起来无所不能，但在实际落地中，开发者经常被三个问题折磨得头秃：\n检索丢片（Lost in the Middle）：向量搜索有时候很笨，最关键的那一页它偏偏没搜到，导致 AI 满口胡言。\n上下文断裂：RAG 只能给 AI 看几块“碎片”，AI 很难理解整本书的宏观逻辑。\n延迟太高：检索 + 排序 + 生成，整套流程下来，用户可能要等好几秒。\n2. CAG 的“杀手锏”场景 虽然它处理不了整个互联网的数据，但在以下场景，CAG 几乎是碾压级的：\nA. 极高频互动的“单一知识库” 例子：一个热门游戏的官方百科，或者一本正在热卖的复杂桌游规则书。",
+    "tags": [],
+    "title": "CAG",
+    "uri": "/hugo-blog/blogs/cag/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
