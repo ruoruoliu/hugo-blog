@@ -5,11 +5,43 @@
     <lastmod>2025-11-14T22:03:36+08:00</lastmod>
   </url>
   <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/2025%E5%B9%B4rag%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</loc>
-    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/context-engineering/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/deep-research/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/langchain/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/pydantic-model/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/rag/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/tags/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</loc>
+    <lastmod>2025-12-24T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/agentmcp%E5%92%8Cskills/index.html</loc>
     <lastmod>2025-12-22T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -22,14 +54,6 @@
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html</loc>
-    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%9B%E5%B1%95/index.html</loc>
-    <lastmod>2025-12-22T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</loc>
     <lastmod>2025-12-22T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -109,10 +133,6 @@
     <lastmod>2025-12-04T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/llm-agent/index.html</loc>
-    <lastmod>2025-12-03T00:00:00+00:00</lastmod>
-  </url>
-  <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week4/index.html</loc>
     <lastmod>2025-11-30T00:00:00+00:00</lastmod>
   </url>
@@ -139,6 +159,10 @@
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html</loc>
     <lastmod>2025-11-28T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/cag/index.html</loc>
+    <lastmod>2025-11-27T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler/index.html</loc>
