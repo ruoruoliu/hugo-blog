@@ -1,5 +1,5 @@
 ---
-title: RAG
+title: RAG学习手册
 date: 2025-12-24
 tags:
   - 技术笔记
@@ -32,7 +32,7 @@ draft: false
 # CAG
 ---
 - CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销
-- 关于CAG是什么以及其局限性：[CAG](CAG.md)
+- 关于CAG的存在意义以及其局限性：[CAG的存在意义以及其局限性](CAG%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7.md)
 
 参考链接：
 - [# RAG vs. CAG: Solving Knowledge Gaps in AI Models](https://www.youtube.com/watch?v=HdafI0t3sEY)

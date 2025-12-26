@@ -1,25 +1,10 @@
 ---
-title: Agent、MCP和Skills
+title: MCP和Skills
 date: 2025-12-22
 tags:
   - 技术笔记
 draft: false
 ---
-# Agent
----
-- Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升
-- Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用
-	![image.png|600](https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png)
-
-- 可以使用[LangGraph](LangChain.md#LangGraph)来搭建不同范式的workflow和Agent
-	![image.png](https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png)
-
-参考链接：
-- [# Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
-- [# LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)
-- [# Workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
-- [# Building Effective Agents with LangGraph](https://www.youtube.com/watch?v=aHCDrAbH_go)
-
 # MCP
 ---
 - model context protocol在2024年底由anthropic开源，

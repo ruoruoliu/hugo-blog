@@ -5,28 +5,32 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="OSI模型是计算机通信网络的抽象模型">
+    <meta name="description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
+Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="OSI模型是计算机通信网络的抽象模型">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">
+    <meta name="twitter:title" content="Context Engineering学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
+Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="OSI模型是计算机通信网络的抽象模型">
+    <meta property="og:title" content="Context Engineering学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
+Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-11-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-11-15T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-12-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-24T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="OSI模型是计算机通信网络的抽象模型">
-    <meta itemprop="datePublished" content="2025-11-15T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-11-15T00:00:00+00:00">
-    <meta itemprop="wordCount" content="1">
+    <meta itemprop="name" content="Context Engineering学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
+Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
+    <meta itemprop="datePublished" content="2025-12-24T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-24T00:00:00+00:00">
+    <meta itemprop="wordCount" content="82">
     <meta itemprop="keywords" content="技术笔记">
-    <title>OSI模型 :: Ruoruoliu 2.0</title>
+    <title>Context Engineering学习手册 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1766742054" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766742054" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766742054" defer></script>
@@ -52,7 +56,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/osi%E6%A8%A1%E5%9E%8B\/index.html';
+      window.relearn.path='\/blogs\/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -100,7 +104,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -132,7 +136,7 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OSI模型</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Context Engineering学习手册</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -143,7 +147,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html" title="内容管理系统 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/cag%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7/index.html" title="CAG的存在意义以及其局限性 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -153,7 +157,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/weekly/index.html" title="Weeklies (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/deep-research/index.html" title="Deep Research (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -187,12 +191,117 @@
 </div>
   </header>
 
-<h1 id="osi模型">OSI模型</h1>
+<h1 id="context-engineering学习手册">Context Engineering学习手册</h1>
 
-<p>OSI模型是计算机通信网络的抽象模型</p>
+<h1 id="context-rot">
+  Context Rot
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<ul>
+<li>虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://research.trychroma.com/context-rot" target="_blank">Context Rot: How Increasing Input Tokens Impacts LLM Performance</a></li>
+<li>
+
+
+
+<a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html" target="_blank"># How Long Contexts Fail</a></li>
+</ul>
+<h1 id="context-engineering">
+  Context Engineering
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p><a href="#R-image-aaa65f4d1fda55dd26e35093921545cc" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-aaa65f4d1fda55dd26e35093921545cc"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png"></a></p>
+<ul>
+<li>大模型回复的context应该包含以下几方面：
+<ul>
+<li>system prompt：系统提示词，回复的高级指导</li>
+<li>long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息</li>
+<li>RAG：外部参考数据</li>
+<li>tools：工具返回数据</li>
+<li>structured output：回复的格式要求</li>
+<li>user prompt：用户的上文</li>
+</ul>
+</li>
+</ul>
+<p><a href="#R-image-3c515aa3e2df4b7222f6edbeb56551d3" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3c515aa3e2df4b7222f6edbeb56551d3"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png"></a></p>
+<ul>
+<li>context engineering的工作主要包含以下四个方面：
+<ul>
+<li>写入：长期记忆（用户偏好的总结）、短期记忆（当前会话的摘要和状态）</li>
+<li>选取：选取相关工具和知识、选取当前会话摘要和长期记忆
+<ul>
+<li>通过规则，比如指定读取某个memory文件</li>
+<li>通过大模型，比如判断合适的工具</li>
+<li>通过检索，比如RAG</li>
+</ul>
+</li>
+<li>压缩：基本分为compaction和summarization，经常同时使用
+<ul>
+<li>compaction：将信息offload到文件系统中，减少context长度，无损，可以回溯</li>
+<li>summarization：直接通过大模型总结，容易造成信息损失</li>
+<li>为什么需要压缩：
+
+
+
+<a href="https://cognition.ai/blog/dont-build-multi-agents#principles-of-context-engineering" target="_blank"># Don’t Build Multi-Agents</a></li>
+</ul>
+</li>
+<li>隔离：设定信息的边界，也可以理解为一种信息筛选
+<ul>
+<li>tool的调用相当于一种context隔离，只将tool需要的context传递</li>
+<li>多agent相当于每个子agent对信息进行隔离，只关注自己需要处理的部分
+参考链接：</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+
+
+
+<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank"># Effective context engineering for AI agents</a></li>
+<li>
+
+
+
+<a href="https://www.philschmid.de/context-engineering" target="_blank"># The New Skill in AI is Not Prompting, It&rsquo;s Context Engineering</a></li>
+<li>
+
+
+
+<a href="https://rlancemartin.github.io/2025/06/23/context_engineering/" target="_blank"># Context Engineering for Agents</a></li>
+<li>
+
+
+
+<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank"># Effective context engineering for AI agents</a></li>
+</ul>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Nov 15, 2025
+              <i class='fa-fw fas fa-calendar'></i> Dec 24, 2025
   </footer>
 </article>
         </div>
@@ -241,7 +350,7 @@
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/deep-research/index.html"><a class="padding" href="/hugo-blog/blogs/deep-research/index.html">Deep Research</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/langchain/index.html"><a class="padding" href="/hugo-blog/blogs/langchain/index.html">LangChain</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
@@ -264,7 +373,7 @@
             <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
           </ul>

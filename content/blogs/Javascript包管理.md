@@ -7,6 +7,7 @@ tags:
 draft: false
 ---
 # npm
+--- 
 - npm init在项目中来创建package.json
 	- --yes（-y）直接默认
 - package.json的作用：
@@ -33,6 +34,7 @@ draft: false
 - [# NPM Full Course For Beginners - Learn NPM fundamentals and basics](https://www.youtube.com/watch?v=cjoTTSbOuG0)
 
 # Yarn
+--- 
 - yarn add来安装包
 - yarn.lock对应package-lock.json的作用
 - yarn set version berry：设置为v2版本
@@ -42,6 +44,7 @@ draft: false
 - [# Yarn Package Manager Crash Course](https://www.youtube.com/watch?v=g9_6KmiBISk)
 
 # pnpm
+--- 
 - 速度快
 - node modules中的包文件基于链接，避免重复的io操作
 - 支持monorepos
@@ -60,9 +63,8 @@ draft: false
 ## peer Dependency
 ![image.png](https://images.ruoruoliu.com/2025/12/4ffc5613e34ffb7b3793294a57506c02.png)
 
-
 # 对比
-
+--- 
 处理 Peer Dependency 的方式是包管理工具（npm、Yarn、pnpm）之间差异最大的地方之一：
 ![image.png](https://images.ruoruoliu.com/2025/12/0fb953c96768e918d8929ade4a7ae27e.png)
 
@@ -71,3 +73,54 @@ draft: false
 
 参考链接：
 - [# How JavaScript package managers work: npm vs. yarn vs. pnpm vs. npx](https://www.youtube.com/watch?v=XyPNw_3jsLY)
+
+# Bun
+--- 
+- Bun是一个Javascript的运行时工具，包括前端、后端
+- 包含了bundler、transpiler、任务执行和npm客户端的综合体
+	- 参考链接：[Javascript中的bundler和transpiler](Javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler.md)
+- 替代nodejs和npm，并兼容他们
+
+## 基本操作
+- watch mode：
+	- bun --watch index.ts，监控改动反应到页面，类似node的nodemon
+	- bun --hot index.ts，相比watch不用手动reload页面
+- .env：存储环境变量，process.env.XXX或者bun.env.XXX
+- bunx：不用安装直接运行，对应npx
+- 支持sqlite
+- 文件读写：
+	- 写：
+		```
+		const data = 'I love Javascript';
+		await Bun.write('output.txt', data);
+		```
+	- 读：
+		```
+		const file = await Bun.file('output.txt');
+		console.log(await file.text());
+		```
+- 测试：
+```
+import { describe, expect, test, beforeAll } from 'bun:test'
+
+beforeAll(() => {
+	// setup tests
+});
+
+describe('math', () => {
+	test('addition', () => {
+		expect(2 + 2).toBe(4);
+	})
+})
+```
+- bundler：将代码打包成可使用的js文件
+	- bun build ./src/index.ts --outfile=./dist/bundle.js
+	- 同时支持watch mode
+参考链接：
+- [Bun 1.0](https://bun.com/blog/bun-v1.0)
+- [# Bun Crash Course | JavaScript Runtime, Bundler & Transpiler](https://www.youtube.com/watch?v=U4JVw8K19uY)
+
+## Bun 1.3
+- bun index.html可以直接起服务
+- 数据库支持增加redis
+- Bun.secrets包裹的部分可以存在keychain中（macOS），提升安全性

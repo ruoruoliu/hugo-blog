@@ -1,5 +1,5 @@
 ---
-title: Pydantic Model
+title: Pydantic Model是什么
 date: 2025-12-24
 tags:
   - 技术笔记

@@ -21,5 +21,4 @@ draft: false
 > - React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新
 
 > [!warning] 待办
-> - 强化学习基础知识
 > - 跟进大模型进展
