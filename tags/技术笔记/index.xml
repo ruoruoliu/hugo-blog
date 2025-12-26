@@ -6,14 +6,21 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Context Engineering</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/context-engineering/index.html</link>
+      <title>Agent学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Fri, 26 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态+用户输入到新状态的函数执行 参考链接：</description>
+    </item>
+    <item>
+      <title>Context Engineering学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/context-engineering/index.html</guid>
-      <description></description>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：&#xA;Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文</description>
     </item>
     <item>
       <title>Deep Research</title>
@@ -30,25 +37,25 @@
       <description>LangGraph 参考链接：&#xA;# What is LangChain? # LangChain vs LangGraph: A Tale of Two Frameworks</description>
     </item>
     <item>
-      <title>Pydantic Model</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/pydantic-model/index.html</link>
+      <title>Pydantic Model是什么</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/pydantic-model%E6%98%AF%E4%BB%80%E4%B9%88/index.html</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/pydantic-model/index.html</guid>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/pydantic-model%E6%98%AF%E4%BB%80%E4%B9%88/index.html</guid>
       <description>简单来说，Pydantic Model 是 Python 中用于数据验证和设置管理的最流行工具。&#xA;它让你能够用 Python 的“类型提示”（Type Hints）来定义数据结构。当你把数据丢给一个 Pydantic 模型时，它会自动帮你检查数据对不对，如果不符合要求，它会报错；如果格式稍微有点偏差（比如字符串的 &#34;123&#34; 传给了整数类型 int），它还会自动帮你转换。&#xA;1. 核心功能：它能帮你做什么？ 类型检查（Validation）： 确保 age 字段一定是整数，email 格式一定正确。&#xA;数据转换（Parsing/Coercion）： 如果你传入 age=&#34;25&#34;（字符串），它会自动转成 25（整数）。&#xA;清晰的错误提示： 如果数据错了，它会准确告诉你哪个字段、因为什么原因失败了。&#xA;序列化： 可以轻松地将模型对象转回 Python 字典或 JSON 字符串。&#xA;2. 代码长什么样？ 定义一个模型非常简单，只需要继承 BaseModel：&#xA;Python&#xA;from pydantic import BaseModel, EmailStr # 1. 定义模型（SOP/Schema） class User(BaseModel): id: int name: str signup_ts: str | None = None # 可选字段 friends: list[int] = [] # 默认值为空列表 # 2. 使用模型（传入原始数据） external_data = { &#34;id&#34;: &#34;123&#34;, # 传入的是字符串，但模型定义是 int &#34;name&#34;: &#34;John Doe&#34;, &#34;signup_ts&#34;: &#34;2024-01-01 12:22&#34;, &#34;friends&#34;: [1, &#34;2&#34;, b&#34;3&#34;], # 混合类型 } user = User(**external_data) print(user.id) # 输出: 123 (已经自动转成了 int) print(user.friends) # 输出: [1, 2, 3] (全部自动转成了 int) 3. 为什么大家都在用它？ 如果你在用 FastAPI 或构建 AI Agent（比如 OpenAI 的结构化输出），Pydantic 是核心灵魂：</description>
     </item>
     <item>
-      <title>RAG</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/rag/index.html</link>
+      <title>RAG学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Wed, 24 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/rag/index.html</guid>
-      <description>RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：&#xA;2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph&#xA;CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG是什么以及其局限性： CAG 参考链接：</description>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：&#xA;2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph&#xA;CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：</description>
     </item>
     <item>
-      <title>Agent、MCP和Skills</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/agentmcp%E5%92%8Cskills/index.html</link>
+      <title>MCP和Skills</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html</link>
       <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/agentmcp%E5%92%8Cskills/index.html</guid>
-      <description>Agent Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升&#xA;Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用 可以使用 LangGraph来搭建不同范式的workflow和Agent 参考链接：&#xA;# Building effective agents # LLM Powered Autonomous Agents # Workflows and agents # Building Effective Agents with LangGraph MCP model context protocol在2024年底由anthropic开源， 用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(&#34;GitHub Manager&#34;) # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(&#34;GITHUB_TOKEN&#34;) # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -&gt; str: &#34;&#34;&#34; 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 &#39;psf&#39;) :param repo: 仓库名称 (例如 &#39;requests&#39;) &#34;&#34;&#34; url = f&#34;https://api.github.com/repos/{owner}/{repo}/issues&#34; headers = { &#34;Authorization&#34;: f&#34;token {GITHUB_TOKEN}&#34;, &#34;Accept&#34;: &#34;application/vnd.github.v3+json&#34; } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f&#34;#{issue[&#39;number&#39;]}: {issue[&#39;title&#39;]}&#34;) return &#34;\n&#34;.join(results) if results else &#34;没有找到打开的 Issue。&#34; if __name__ == &#34;__main__&#34;: # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { &#34;mcpServers&#34;: { &#34;my_python_github&#34;: { &#34;command&#34;: &#34;python3&#34;, &#34;args&#34;: [&#34;/你的绝对路径/github_server.py&#34;], &#34;env&#34;: { &#34;GITHUB_TOKEN&#34;: &#34;你的_PERSONAL_ACCESS_TOKEN&#34; } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：</description>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html</guid>
+      <description>MCP model context protocol在2024年底由anthropic开源， 用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(&#34;GitHub Manager&#34;) # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(&#34;GITHUB_TOKEN&#34;) # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -&gt; str: &#34;&#34;&#34; 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 &#39;psf&#39;) :param repo: 仓库名称 (例如 &#39;requests&#39;) &#34;&#34;&#34; url = f&#34;https://api.github.com/repos/{owner}/{repo}/issues&#34; headers = { &#34;Authorization&#34;: f&#34;token {GITHUB_TOKEN}&#34;, &#34;Accept&#34;: &#34;application/vnd.github.v3+json&#34; } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f&#34;#{issue[&#39;number&#39;]}: {issue[&#39;title&#39;]}&#34;) return &#34;\n&#34;.join(results) if results else &#34;没有找到打开的 Issue。&#34; if __name__ == &#34;__main__&#34;: # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { &#34;mcpServers&#34;: { &#34;my_python_github&#34;: { &#34;command&#34;: &#34;python3&#34;, &#34;args&#34;: [&#34;/你的绝对路径/github_server.py&#34;], &#34;env&#34;: { &#34;GITHUB_TOKEN&#34;: &#34;你的_PERSONAL_ACCESS_TOKEN&#34; } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选+缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：</description>
     </item>
     <item>
       <title>React学习手册</title>
@@ -63,13 +70,6 @@
       <pubDate>Sun, 14 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html</guid>
       <description>背景 在完成css、html、javascript的基础上，构建Tetris游戏，以巩固以上知识点 游戏布局 整体游戏布局分为两部分： 主画面：20 * 10 的grid sidebar：包含以下几部分： next：4 * 4 的grid提示下一个是什么 分数栏：包含当前分数和最高分数 按钮栏：包含暂停（pause）和开始（play） Game Loop 用户进入界面后，游戏状态为“ready” 点击play按钮开始Game Loop，游戏状态进入“play” 每50帧，block向下一格 如果向下位置已经有颜色，则锁住当前block的颜色，新建block，同时清理整行 如果当前block无法新建，即新建位置之前被填充颜色，则失败 游戏过程中点击pause按钮暂停Game Loop，暂停所有keydown事件监听，游戏状态进入“pause” 用户点击play按钮继续Game Loop，游戏状态进入“play” 游戏失败后，游戏状态变为“end”，弹出对话框，显示分数，play按钮文本变为replay 用户点击replay按钮重新初始化，开始Game Loop，游戏状态进入“play” 技术细节 Grid背景 主画面的20 * 10的grid的显示，需要在scene中新建200个div，且每个div之间有gap，scene本身的背景颜色设为深色，div的背景颜色设为白色，这样gap会显示为深色的线 #scene &gt; div { background-color: white; } #scene { display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(20, 1fr); gap: 1px; background-color: #999; /* 网格线颜色 */ border: 3px solid blue; margin: 10px; position: relative; } 移动和旋转 游戏过程中只有一个block是active的，也就是用户控制的 block的状态包含形状（index）、旋转（四种方向）和位置 let blockState = { index: 0, rotation: 0, x: 1, y: 4, } 通过block的index以及x、y，结合旋转，可以确定整个block的所有div 每次旋转90度：[x, y] = [y, -x] const TETROMINOES = [ // I 块 (直线) [ [-1, 0], [0, 0], [1, 0], [2, 0] ], // O 块 (方形) [ [0, 0], [-1, 0], [-1, 1], [0, 1] ], // L 块 [ [-1, 0], [0, 0], [1, 0], [1, 1] ], // J 块 [ [-1, 0], [0, 0], [1, 0], [-1, 1] ], // T 块 [ [-1, 0], [0, 0], [1, 0], [0, 1] ], // S 块 [ [-1, 0], [0, 0], [0, 1], [1, 1] ], // Z 块 [ [0, 0], [1, 0], [-1, 1], [0, 1] ], ]; 当block在边缘处旋转时，有超出边框的可能，这时候需要向里移动一格 新建Block 新建Block的时候，需要将之前设定的nextBlockIndex作为新的blockIndex，同时随机产生一个新的nextBlockIndex，根据这两个index渲染next的grid和scene的grid 如果发现新建Block的div上已经填充颜色，说明scene满了，游戏失败，返回false，否则返回true；Game Loop里通过这个返回值跳出 // 七种模块在next中的index const nextBlockIndices = [ [2, 6, 10, 14], // I [5, 6, 9, 10], // O [1, 5, 9, 10], // L [1, 2, 5, 9], // J [1, 5, 6, 9], // T [1, 5, 6, 10], // S [2, 5, 6, 9], // Z ] function NewBlock() { blockIndex = nextBlockIndex; blockState = { index: blockIndex, rotation: 0, x: 1, y: 4, }; let newBlockIndices = GetBlockAllIndices(blockState); for (let [newX, newY] of newBlockIndices) { if (blockColors[newX][newY] != &#34;white&#34;) { return false; } } nextBlockIndex = Math.floor(Math.random() * 7); for (let i=0; i &lt; 16; i++) { if (nextBlockIndices[nextBlockIndex].includes(i)) { nextBlocks[i].style.background = index2Color[nextBlockIndex]; } else { nextBlocks[i].style.background = &#39;white&#39;; } } console.log(`NewBlock: ${blockIndex}, ${nextBlockIndex}`); return true; } Ghost Block 为提升用户体验，为当前block预期掉落位置Ghost Block加border，方便用户通过空格键快速掉落block // 画预期掉落block (Ghost Block) // 1. 计算能掉落多远 let moveX = 0; while (canMoveBlock(moveX + 1, 0)) { // 注意这里要探测 +1 的位置 moveX++; } // 2. 只有当能移动时才画 ghost if (moveX &gt; 0) { let dropBlockState = {...blockState}; dropBlockState.x += moveX; let dropBlockIndices = GetBlockAllIndices(dropBlockState); for (let [x, y] of dropBlockIndices) { let dropIndex = x * colNum + y; // 确保不覆盖已经存在的方块颜色（虽然 ghost 通常在空白处，但为了保险） if (blockColors[x][y] === &#39;white&#39;) { sceneBlocks[dropIndex].style.border = `1px dashed ${index2Color[blockState.index]}`; } } }</description>
-    </item>
-    <item>
-      <title>Bun</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/bun/index.html</link>
-      <pubDate>Sat, 13 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/bun/index.html</guid>
-      <description>什么是Bun Bun是一个Javascript的运行时工具，包括前端、后端 包含了bundler、transpiler、任务执行和npm客户端的综合体 参考链接： Javascript中的bundler和transpiler 替代nodejs和npm，并兼容他们 基本操作 watch mode： bun –watch index.ts，监控改动反应到页面，类似node的nodemon bun –hot index.ts，相比watch不用手动reload页面 .env：存储环境变量，process.env.XXX或者bun.env.XXX bunx：不用安装直接运行，对应npx 支持sqlite 文件读写： 写： const data = &#39;I love Javascript&#39;; await Bun.write(&#39;output.txt&#39;, data); 读： const file = await Bun.file(&#39;output.txt&#39;); console.log(await file.text()); 测试： import { describe, expect, test, beforeAll } from &#39;bun:test&#39; beforeAll(() =&gt; { // setup tests }); describe(&#39;math&#39;, () =&gt; { test(&#39;addition&#39;, () =&gt; { expect(2 + 2).toBe(4); }) }) bundler：将代码打包成可使用的js文件 bun build ./src/index.ts –outfile=./dist/bundle.js 同时支持watch mode 参考链接： Bun 1.0 # Bun Crash Course | JavaScript Runtime, Bundler &amp; Transpiler Bun 1.3 bun index.html可以直接起服务 数据库支持增加redis Bun.secrets包裹的部分可以存在keychain中（macOS），提升安全性</description>
     </item>
     <item>
       <title>标签模版字面量在DSL中的例子</title>
@@ -126,13 +126,6 @@
       <pubDate>Sat, 29 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
       <description>参考链接：&#xA;Learn X in Y minutes # Lua, the simplest language to learn</description>
-    </item>
-    <item>
-      <title>Context Rot</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/context-rot/index.html</link>
-      <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/context-rot/index.html</guid>
-      <description>参考链接：&#xA;Context Rot: How Increasing Input Tokens Impacts LLM Performance</description>
     </item>
     <item>
       <title>Python项目管理</title>

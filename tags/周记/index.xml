@@ -13,14 +13,14 @@
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week8/index.html</link>
       <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week8/index.html</guid>
-      <description>总结 跟进大模型进展 学习强化学习基础知识 跟进大模型进展 了解Agent、MCP和Skills： Agent、MCP和Skills 了解Context Engineering： Context Engineering 了解Deep Research： Deep Research 跟进RAG技术进展： RAG 学习强化学习基础知识 知识 Agent=LLM + 规划 + 记忆 + 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 简历项目准备 强化学习基础知识</description>
+      <description>总结 跟进大模型进展 跟进大模型进展 了解MCP和Skills： MCP和Skills 跟进RAG技术进展： RAG学习手册 了解Context Engineering： Context Engineering学习手册 跟进Agent技术进展： Agent学习手册 知识 Agent=LLM + 规划 + 记忆 + 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 Deep Research相关技术 大模型训练中的强化学习</description>
     </item>
     <item>
       <title>Week7 React学习</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week7/index.html</link>
       <pubDate>Sun, 14 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week7/index.html</guid>
-      <description>总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 强化学习基础知识 跟进大模型进展</description>
+      <description>总结 利用原生JS完成tetris 学习react基础知识 利用原生JS完成tetris 从零开始构建Tetris React基础知识学习 React学习手册 知识 React是javascript的library，通过JSX（javascript XML）编写，提供了一种通过compenent复用样式的能力，支持基于数据驱动的页面更新 待办 跟进大模型进展</description>
     </item>
     <item>
       <title>Week6 Flappy Bird</title>

@@ -5,28 +5,54 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="OSI模型是计算机通信网络的抽象模型">
+    <meta name="description" content="从目前的架构设计来看，CAG (Cache-Augmented Generation) 的确不是为了取代 RAG，而是在特定场景下解决 RAG “硬伤”的极端优化方案。
+你觉得它“用处有限”，主要是因为它牺牲了海量规模和成本灵活性。但我们可以从以下几个维度看看，为什么在某些高端或特定商业场景下，人们反而觉得它比 RAG 香：
+1. 为什么会有 CAG？（解决 RAG 的痛点） 虽然 RAG 看起来无所不能，但在实际落地中，开发者经常被三个问题折磨得头秃：
+检索丢片（Lost in the Middle）：向量搜索有时候很笨，最关键的那一页它偏偏没搜到，导致 AI 满口胡言。
+上下文断裂：RAG 只能给 AI 看几块“碎片”，AI 很难理解整本书的宏观逻辑。
+延迟太高：检索 &#43; 排序 &#43; 生成，整套流程下来，用户可能要等好几秒。
+2. CAG 的“杀手锏”场景 虽然它处理不了整个互联网的数据，但在以下场景，CAG 几乎是碾压级的：
+A. 极高频互动的“单一知识库” 例子：一个热门游戏的官方百科，或者一本正在热卖的复杂桌游规则书。">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="OSI模型是计算机通信网络的抽象模型">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">
+    <meta name="twitter:title" content="CAG的存在意义以及其局限性 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="从目前的架构设计来看，CAG (Cache-Augmented Generation) 的确不是为了取代 RAG，而是在特定场景下解决 RAG “硬伤”的极端优化方案。
+你觉得它“用处有限”，主要是因为它牺牲了海量规模和成本灵活性。但我们可以从以下几个维度看看，为什么在某些高端或特定商业场景下，人们反而觉得它比 RAG 香：
+1. 为什么会有 CAG？（解决 RAG 的痛点） 虽然 RAG 看起来无所不能，但在实际落地中，开发者经常被三个问题折磨得头秃：
+检索丢片（Lost in the Middle）：向量搜索有时候很笨，最关键的那一页它偏偏没搜到，导致 AI 满口胡言。
+上下文断裂：RAG 只能给 AI 看几块“碎片”，AI 很难理解整本书的宏观逻辑。
+延迟太高：检索 &#43; 排序 &#43; 生成，整套流程下来，用户可能要等好几秒。
+2. CAG 的“杀手锏”场景 虽然它处理不了整个互联网的数据，但在以下场景，CAG 几乎是碾压级的：
+A. 极高频互动的“单一知识库” 例子：一个热门游戏的官方百科，或者一本正在热卖的复杂桌游规则书。">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/cag%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="OSI模型是计算机通信网络的抽象模型">
+    <meta property="og:title" content="CAG的存在意义以及其局限性 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="从目前的架构设计来看，CAG (Cache-Augmented Generation) 的确不是为了取代 RAG，而是在特定场景下解决 RAG “硬伤”的极端优化方案。
+你觉得它“用处有限”，主要是因为它牺牲了海量规模和成本灵活性。但我们可以从以下几个维度看看，为什么在某些高端或特定商业场景下，人们反而觉得它比 RAG 香：
+1. 为什么会有 CAG？（解决 RAG 的痛点） 虽然 RAG 看起来无所不能，但在实际落地中，开发者经常被三个问题折磨得头秃：
+检索丢片（Lost in the Middle）：向量搜索有时候很笨，最关键的那一页它偏偏没搜到，导致 AI 满口胡言。
+上下文断裂：RAG 只能给 AI 看几块“碎片”，AI 很难理解整本书的宏观逻辑。
+延迟太高：检索 &#43; 排序 &#43; 生成，整套流程下来，用户可能要等好几秒。
+2. CAG 的“杀手锏”场景 虽然它处理不了整个互联网的数据，但在以下场景，CAG 几乎是碾压级的：
+A. 极高频互动的“单一知识库” 例子：一个热门游戏的官方百科，或者一本正在热卖的复杂桌游规则书。">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-11-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-11-15T00:00:00+00:00">
-    <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="OSI模型是计算机通信网络的抽象模型">
-    <meta itemprop="datePublished" content="2025-11-15T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-11-15T00:00:00+00:00">
-    <meta itemprop="wordCount" content="1">
-    <meta itemprop="keywords" content="技术笔记">
-    <title>OSI模型 :: Ruoruoliu 2.0</title>
+    <meta property="article:published_time" content="2025-12-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-24T00:00:00+00:00">
+    <meta itemprop="name" content="CAG的存在意义以及其局限性 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="从目前的架构设计来看，CAG (Cache-Augmented Generation) 的确不是为了取代 RAG，而是在特定场景下解决 RAG “硬伤”的极端优化方案。
+你觉得它“用处有限”，主要是因为它牺牲了海量规模和成本灵活性。但我们可以从以下几个维度看看，为什么在某些高端或特定商业场景下，人们反而觉得它比 RAG 香：
+1. 为什么会有 CAG？（解决 RAG 的痛点） 虽然 RAG 看起来无所不能，但在实际落地中，开发者经常被三个问题折磨得头秃：
+检索丢片（Lost in the Middle）：向量搜索有时候很笨，最关键的那一页它偏偏没搜到，导致 AI 满口胡言。
+上下文断裂：RAG 只能给 AI 看几块“碎片”，AI 很难理解整本书的宏观逻辑。
+延迟太高：检索 &#43; 排序 &#43; 生成，整套流程下来，用户可能要等好几秒。
+2. CAG 的“杀手锏”场景 虽然它处理不了整个互联网的数据，但在以下场景，CAG 几乎是碾压级的：
+A. 极高频互动的“单一知识库” 例子：一个热门游戏的官方百科，或者一本正在热卖的复杂桌游规则书。">
+    <meta itemprop="datePublished" content="2025-12-24T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-24T00:00:00+00:00">
+    <meta itemprop="wordCount" content="105">
+    <title>CAG的存在意义以及其局限性 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1766742054" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766742054" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766742054" defer></script>
@@ -52,7 +78,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/osi%E6%A8%A1%E5%9E%8B\/index.html';
+      window.relearn.path='\/blogs\/cag%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -100,7 +126,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/cag%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -127,12 +153,24 @@
 
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-为什么会有-cag解决-rag-的痛点">1. 为什么会有 CAG？（解决 RAG 的痛点）</a></li>
+        <li><a href="#2-cag-的杀手锏场景">2. CAG 的“杀手锏”场景</a></li>
+        <li><a href="#3-cag-的致命伤确实受限的地方">3. CAG 的致命伤（确实受限的地方）</a></li>
+        <li><a href="#4-总结它是手术刀而非瑞士军刀">4. 总结：它是“手术刀”而非“瑞士军刀”</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OSI模型</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">CAG的存在意义以及其局限性</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -143,7 +181,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html" title="内容管理系统 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/2025%E5%B9%B4rag%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B/index.html" title="2025年RAG技术回顾与展望 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -153,7 +191,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/weekly/index.html" title="Weeklies (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="Context Engineering学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -179,20 +217,156 @@
         <div class="flex-block-wrapper">
 <article class="default">
   <header class="headline">
-<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
-  <i class="fa-fw fas fa-layer-group"></i>
-  <ul>
-    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
-  </ul>
-</div>
   </header>
 
-<h1 id="osi模型">OSI模型</h1>
+<h1 id="cag的存在意义以及其局限性">CAG的存在意义以及其局限性</h1>
 
-<p>OSI模型是计算机通信网络的抽象模型</p>
+<p>从目前的架构设计来看，<strong>CAG (Cache-Augmented Generation)</strong> 的确不是为了取代 RAG，而是在特定场景下解决 RAG “硬伤”的<strong>极端优化方案</strong>。</p>
+<p>你觉得它“用处有限”，主要是因为它牺牲了<strong>海量规模</strong>和<strong>成本灵活性</strong>。但我们可以从以下几个维度看看，为什么在某些高端或特定商业场景下，人们反而觉得它比 RAG 香：</p>
+<hr>
+<h3 id="1-为什么会有-cag解决-rag-的痛点">
+  1. 为什么会有 CAG？（解决 RAG 的痛点）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>虽然 RAG 看起来无所不能，但在实际落地中，开发者经常被三个问题折磨得头秃：</p>
+<ul>
+<li>
+<p><strong>检索丢片（Lost in the Middle）</strong>：向量搜索有时候很笨，最关键的那一页它偏偏没搜到，导致 AI 满口胡言。</p>
+</li>
+<li>
+<p><strong>上下文断裂</strong>：RAG 只能给 AI 看几块“碎片”，AI 很难理解整本书的宏观逻辑。</p>
+</li>
+<li>
+<p><strong>延迟太高</strong>：检索 + 排序 + 生成，整套流程下来，用户可能要等好几秒。</p>
+</li>
+</ul>
+<hr>
+<h3 id="2-cag-的杀手锏场景">
+  2. CAG 的“杀手锏”场景
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>虽然它处理不了整个互联网的数据，但在以下场景，CAG 几乎是碾压级的：</p>
+<h4 id="a-极高频互动的单一知识库">
+  <strong>A. 极高频互动的“单一知识库”</strong>
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><ul>
+<li>
+<p><strong>例子</strong>：一个热门游戏的官方百科，或者一本正在热卖的复杂桌游规则书。</p>
+</li>
+<li>
+<p><strong>理由</strong>：文档就那么几万字或几十万字。如果用 RAG，每次玩家提问都要算一遍向量、查一遍库；如果用 CAG，把整本书预热到模型的“缓存”里。</p>
+</li>
+<li>
+<p><strong>结果</strong>：玩家提问，秒回！而且因为 AI 读了全书，绝对不会出现“找不到资料”的情况。</p>
+</li>
+</ul>
+<h4 id="b-法律医疗等零容忍行业">
+  <strong>B. 法律/医疗等“零容忍”行业</strong>
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><ul>
+<li>
+<p><strong>例子</strong>：针对某一部具体法律（如《民法典》）的咨询。</p>
+</li>
+<li>
+<p><strong>理由</strong>：RAG 可能会漏掉某个关键的法条修正案，导致法律建议错误。</p>
+</li>
+<li>
+<p><strong>结果</strong>：CAG 强迫模型在回答前“大脑里已经装了整部法律”，保证了答案的严谨性和全局观。</p>
+</li>
+</ul>
+<h4 id="c-实时会议直播助手">
+  <strong>C. 实时会议/直播助手</strong>
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><ul>
+<li>
+<p><strong>例子</strong>：一场 4 小时的技术发布会，你需要随时提问。</p>
+</li>
+<li>
+<p><strong>理由</strong>：发布会内容在不断增加。</p>
+</li>
+<li>
+<p><strong>结果</strong>：将实时转录的文本不断推入 Cache。AI 能够基于<strong>之前发生的全部内容</strong>进行分析，而不需要像 RAG 那样去反复切片索引。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-cag-的致命伤确实受限的地方">
+  3. CAG 的致命伤（确实受限的地方）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>正如你所察觉，它的局限性非常明显：</p>
+<ol>
+<li>
+<p><strong>容量天花板</strong>：受限于模型的上下文窗口（Context Window）。虽然 Gemini 1.5 支持 1M-2M token，但如果你有 100GB 的文档，CAG 根本装不下。</p>
+</li>
+<li>
+<p><strong>成本昂贵</strong>：缓存（KV Cache）是占用显存（VRAM）的。长期维护一个巨大的缓存，比存一个向量数据库贵得多。</p>
+</li>
+<li>
+<p><strong>扩展性差</strong>：如果有 1 万个用户，每个用户都有不同的私人文档，服务器根本没有那么多内存给每个人都开一个专属 Cache。</p>
+</li>
+</ol>
+<hr>
+<h3 id="4-总结它是手术刀而非瑞士军刀">
+  4. 总结：它是“手术刀”而非“瑞士军刀”
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>
+<p><strong>RAG 是“搜索引擎”</strong>：适合管一个图书馆，大而全，但偶尔漏掉细节。</p>
+</li>
+<li>
+<p><strong>CAG 是“内存驻留”</strong>：适合管一本教科书，小而精，追求极致的准确和速度。</p>
+</li>
+</ul>
+<p>目前行业内的趋势其实是 <strong>RAG + Long Context/CAG 的混合体</strong>：先用 RAG 粗筛出 10 万字，然后把这 10 万字丢进长上下文缓存（CAG 思想）进行多轮深度对话。</p>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Nov 15, 2025
+              <i class='fa-fw fas fa-calendar'></i> Dec 24, 2025
   </footer>
 </article>
         </div>
@@ -264,7 +438,7 @@
             <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
           </ul>

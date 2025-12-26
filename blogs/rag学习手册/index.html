@@ -5,28 +5,36 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="OSI模型是计算机通信网络的抽象模型">
+    <meta name="description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
+2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
+CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="OSI模型是计算机通信网络的抽象模型">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">
+    <meta name="twitter:title" content="RAG学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
+2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
+CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="OSI模型是计算机通信网络的抽象模型">
+    <meta property="og:title" content="RAG学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
+2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
+CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-11-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-11-15T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-12-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-24T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="OSI模型 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="OSI模型是计算机通信网络的抽象模型">
-    <meta itemprop="datePublished" content="2025-11-15T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-11-15T00:00:00+00:00">
-    <meta itemprop="wordCount" content="1">
+    <meta itemprop="name" content="RAG学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
+2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
+CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
+    <meta itemprop="datePublished" content="2025-12-24T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-24T00:00:00+00:00">
+    <meta itemprop="wordCount" content="144">
     <meta itemprop="keywords" content="技术笔记">
-    <title>OSI模型 :: Ruoruoliu 2.0</title>
+    <title>RAG学习手册 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1766742054" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766742054" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766742054" defer></script>
@@ -52,7 +60,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/osi%E6%A8%A1%E5%9E%8B\/index.html';
+      window.relearn.path='\/blogs\/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -100,7 +108,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -127,12 +135,22 @@
 
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#graphrag">GraphRAG</a></li>
+    <li><a href="#lightrag">LightRAG</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#ragas">Ragas</a></li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">OSI模型</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">RAG学习手册</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -143,7 +161,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html" title="内容管理系统 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/pydantic-model%E6%98%AF%E4%BB%80%E4%B9%88/index.html" title="Pydantic Model是什么 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -153,7 +171,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/weekly/index.html" title="Weeklies (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html" title="MCP和Skills (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -187,12 +205,262 @@
 </div>
   </header>
 
-<h1 id="osi模型">OSI模型</h1>
+<h1 id="rag学习手册">RAG学习手册</h1>
 
-<p>OSI模型是计算机通信网络的抽象模型</p>
+<h1 id="rag">
+  RAG
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<ul>
+<li>Retrieval-Augmented Generation</li>
+<li>通过检索获取实时信息，补充模型预训练阶段缺失的知识</li>
+<li>需要在两方面确保RAG能真正提升效果：
+<ul>
+<li>retriever检索到的信息是高度相关且正确的</li>
+<li>generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+    
+<a href="/hugo-blog/blogs/2025%E5%B9%B4rag%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B/">2025年RAG技术回顾与展望</a></li>
+</ul>
+<h1 id="agentic-rag">
+  Agentic RAG
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<ul>
+<li>相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断：
+<ul>
+<li>检索哪个数据源</li>
+<li>使用什么工具</li>
+<li>query是否需要改写</li>
+<li>当前query是否足够进行检索，是否需要用户澄清</li>
+<li>是否需要迭代式的检索</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：
+
+
+
+
+<a href="https://www.youtube.com/watch?v=0z9_MhcYvcY" target="_blank"># What is Agentic RAG?</a>
+
+
+
+
+<a href="https://arxiv.org/pdf/2501.09136" target="_blank">AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG</a>
+
+
+
+
+<a href="https://docs.langchain.com/oss/python/langgraph/agentic-rag" target="_blank"># Build a custom RAG agent with LangGraph</a></p>
+<h1 id="cag">
+  CAG
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<ul>
+<li>CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销</li>
+<li>关于CAG的存在意义以及其局限性：
+
+
+
+    
+<a href="/hugo-blog/blogs/cag%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7/">CAG的存在意义以及其局限性</a></li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=HdafI0t3sEY" target="_blank"># RAG vs. CAG: Solving Knowledge Gaps in AI Models</a></li>
+</ul>
+<h1 id="hybridrag">
+  HybridRAG
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="graphrag">
+  GraphRAG
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p><a href="#R-image-364b603159d2c95a8d0604a46f94c2c4" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/283f5ea91bac35d7afdacd0d00aa907a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-364b603159d2c95a8d0604a46f94c2c4"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/283f5ea91bac35d7afdacd0d00aa907a.png"></a></p>
+<ul>
+<li>索引阶段：对于每个chunk进行实体和关系的识别，对图进行社区发现算法，对于每一层社区进行llm摘要</li>
+<li>检索阶段：
+<ul>
+<li>global：主要针对概括性的问题，对每个社区（不同层级）进行llm判断，是否和query相关，排序top的部分进入prompt</li>
+<li>local：主要针对细节问题，先用向量检索实体，再对实体链接的社区摘要进行llm判断，是否和query相关，排序top的部分进入prompt</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>无法很快更新知识数据，需要重跑社区发现算法和社区摘要生成</li>
+<li>检索阶段的global方法需要计算每个摘要的相关度，也很耗费token
+参考链接：</li>
+</ul>
+</li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2404.16130" target="_blank">From Local to Global: A GraphRAG Approach to Query-Focused Summarization</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=WoU7XxDafbA" target="_blank"># AI知识图谱 GraphRAG 是怎么回事？</a></li>
+<li>
+
+
+
+<a href="https://github.com/microsoft/graphrag" target="_blank">graphrag</a></li>
+<li>neo4j系列视频
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=J-9EbJBxcbg" target="_blank"># Intro to GraphRAG — Zach Blumenfeld</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=knDDGYHnnSI" target="_blank"># GraphRAG: The Marriage of Knowledge Graphs and RAG</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=XNneh6-eyPg" target="_blank"># Practical GraphRAG: Making LLMs smarter with Knowledge Graphs</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=AvVoJBxgSQk" target="_blank"># Agentic GraphRAG: AI’s Logical Edge</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="lightrag">
+  LightRAG
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p><a href="#R-image-690ee7d9a9cb1488f84c84e5a77725aa" class="lightbox-link"><img alt="image.png|750" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5bf9a785c52835889268ed5e6031f815.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-690ee7d9a9cb1488f84c84e5a77725aa"><img alt="image.png|750" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5bf9a785c52835889268ed5e6031f815.png"></a></p>
+<ul>
+<li>对每个chunk中识别出的实体和链接，构造high-level和low-level的kv对，保存概括和细节信息</li>
+<li>检索的时候将query也转成high-level和low-level，用向量匹配，匹配到的部分以及1-hop、2-hop进行打分排序，最终拼成prompt</li>
+<li>索引阶段，相比GraphRAG需要跑社区检测算法，LightRAG只将新的节点添加进图即可，实时更新知识数据</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://lightrag.github.io/" target="_blank">LIGHTRAG: SIMPLE AND FAST RETRIEVAL-AUGMENTED GENERATION</a></li>
+</ul>
+<h1 id="rag评估">
+  RAG评估
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="ragas">
+  Ragas
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>基于大模型对检索质量和生成质量两方面进行评估：
+<ul>
+<li>检索质量：
+<ul>
+<li>召回：ground truth信息点中检索的覆盖比例，保证没有漏掉关键信息点</li>
+<li>准确：检索中与question相关的比例，保证信息的纯净度</li>
+</ul>
+</li>
+<li>生成质量包括幻觉和相关性</li>
+</ul>
+</li>
+<li>支持自动生成测试集
+<ul>
+<li>通过大模型提取文档信息，构建临时的语义图</li>
+<li>基于高信息文本快生成直接问题</li>
+<li>基于语义图进行问题进化，包括多跳进化、推理进化、条件过滤进化、抽象进化
+参考链接：</li>
+</ul>
+</li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2309.15217" target="_blank">Ragas: Automated Evaluation of Retrieval Augmented Generation</a></li>
+<li>
+
+
+
+<a href="https://docs.ragas.io/en/stable/" target="_blank">Ragas</a></li>
+</ul>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Nov 15, 2025
+              <i class='fa-fw fas fa-calendar'></i> Dec 24, 2025
   </footer>
 </article>
         </div>
@@ -244,7 +512,7 @@
             <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/deep-research/index.html"><a class="padding" href="/hugo-blog/blogs/deep-research/index.html">Deep Research</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/langchain/index.html"><a class="padding" href="/hugo-blog/blogs/langchain/index.html">LangChain</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
@@ -264,7 +532,7 @@
             <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
           </ul>
