@@ -8,14 +8,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/log/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Blogs",
-    "uri": "/hugo-blog/blogs/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态+用户输入到新状态的函数执行 参考链接：\n# Building effective agents # LLM Powered Autonomous Agents # 12-Factor Agents: Patterns of reliable LLM applications Planning Prompt引导 COT 通过强制模型将问题分成多个步骤，形成思维链（chain of thoughts），提升回复准确性 参考链接：\nChain-of-Thought Prompting Elicits Reasoning in Large Language Models TOT Tree of thoughts：构建解决任务的树状结构路径，在每一层扩展N种方案，并进行评估可行性，如果当前分支看起来行不通，可以回溯到之前的节点，尝试另一个分支 参考链接：\nTree of Thoughts: Deliberate Problem Solving with Large Language Models ReAct 将大模型交互的过程拆分为thought、action和observation的循环 结合大模型推理能力进行observation和thought，以及工具调用能力进行action 参考链接：\nREACT: SYNERGIZING REASONING AND ACTING IN LANGUAGE MODELS # Understanding ReACT with LangChain # Building a LangGraph ReAct Mini Agent # Talking to a LangChain ReAct Voice Agent Plan and Excute 为了弥补ReAct中一步步方式可能导致的短视问题，采取先整体规划再执行的策略 经过Agent对task的处理后，判断是否已经完成，否则进行replan 参考链接：\nPlan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models ReWOO Reasoning Without Observation 相比ReAct和Plan and Excute每次执行一步观察的方式，ReWoo预先写下整体流程，中间执行结果用占位符代替，最终使用solver整体汇总给出答案，解耦了推理和执行，极大节省token和延时 参考链接：\nReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models LLM Compiler 和ReWOO的思想类似，做了以下两点优化： planner的输出变成stream，即在每个token输出后都检查是否有新任务，减少等待时间 task list转化为dag图，从而在一些可以并行的任务上并行调用工具 参考链接：\nAn LLM Compiler for Parallel Function Calling Reflexion Reflection是指在推理-行动-观察之后的反思步骤 Reflexion 可以被视为一种将 Reflection模式制度化、结构化的特定 Agent 框架 Reflexion框架包括三个核心部分： Actor（执行者）：负责尝试解决问题（生成尝试） Evaluator（评估者）：负责给执行结果打分（判断对错） Self- reflection（反思者）：这是一个拥有“长期记忆”的组件。它会分析失败的原因，并生成一条自然语言提示词（如：“下次不要用 X 库，改用 Y 库”），存入记忆库中 参考链接：\nReflexion: Language Agents with Verbal Reinforcement Learning # Reflection Agents LATS LATS (Language Agent Tree Search)是一种将蒙特卡洛树搜索 (MCTS)与 LLM 的Reflection（反思）能力结合的高级规划框架 LATS主要分为以下六个步骤： selection：基于UCB（upper confidence bound，选择收益大且被选中次数少的）分数选择下一步该做什么 expansion：通过大模型进行扩展，进入下一层节点， evaluation：通过大模型给当前节点打分，用于后续selection，判断是否值得继续探索，同时进行剪枝以及局部reflection，防止扩展到不必要的节点 simulation：继续模拟直到截止条件 backpropagation：将最终结果反向传播回所有祖先节点，更新分数 和TOT的对比： 参考链接：\nLanguage Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models 原生推理 算力换智能\nHuman-in-the-Loop Tools CodeAct 将生成和执行可执行代码（如 Python）作为智能体与环境交互的统一接口，而不是传统的 JSON 或简单的工具调用 目前普遍大模型的代码能力极强，受益于大量的开源代码训练数据 代码执行后产生的错误信息天然作为reflection的输入，纠正模型的下一次行为 参考链接：\n# Executable Code Actions Elicit Better LLM Agents # LangGraph CodeAct Memory Multi-agent Agent构建 LangGraph 使用 LangGraph来搭建不同范式的workflow和Agent 参考链接：\n# Workflows and agents # Building Effective Agents with LangGraph # LangGraph: Planning Agents Agent训练 PRM Agent产品 Manus",
     "description": "Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态+用户输入到新状态的函数执行 参考链接：",
@@ -24,6 +16,14 @@ var relearn_searchindex = [
     ],
     "title": "Agent学习手册",
     "uri": "/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Blogs",
+    "uri": "/hugo-blog/blogs/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0",
@@ -494,13 +494,5 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Categories",
     "uri": "/hugo-blog/categories/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Projects",
-    "uri": "/hugo-blog/projects/index.html"
   }
 ]
