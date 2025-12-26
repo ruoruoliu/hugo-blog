@@ -27,27 +27,27 @@
     <meta itemprop="wordCount" content="244">
     <meta itemprop="keywords" content="技术笔记">
     <title>MCP和Skills :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1766742054" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766742054" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1766742054" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1766771436" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766771436" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1766771436" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766742054";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766771436";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766742054" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766771436" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766742054" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766742054" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766742054" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1766742054" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1766742054" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766771436" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1766771436" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1766771436" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -212,8 +212,8 @@
 <li>用于方便大模型agent获取和操作内部数据或者外部API接口</li>
 <li>MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议</li>
 <li>MCP中的分工：
-<a href="#R-image-f9e0224503774082e363430b63a96550" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f9e0224503774082e363430b63a96550"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png"></a></li>
+<a href="#R-image-52b909b352b12b9c76ca87c32ef48892" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-52b909b352b12b9c76ca87c32ef48892"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png"></a></li>
 </ul>
 <h2 id="mcp-server">
   MCP server
@@ -319,8 +319,8 @@ if __name__ == &#34;__main__&#34;:
 <li>使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server</li>
 <li>如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置</li>
 <li>这种网关比如docker desktop：
-<a href="#R-image-dbd9892896399fb0718815c8742cc15e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-dbd9892896399fb0718815c8742cc15e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png"></a></li>
+<a href="#R-image-1c2265caba01e6633dd0f25d335c4f57" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1c2265caba01e6633dd0f25d335c4f57"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png"></a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -366,8 +366,8 @@ if __name__ == &#34;__main__&#34;:
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<p><a href="#R-image-3373d01847206a703b4809372131e3ad" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3373d01847206a703b4809372131e3ad"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png"></a></p>
+<p><a href="#R-image-8d04af46d51594103cdc809356327d44" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8d04af46d51594103cdc809356327d44"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png"></a></p>
 <ul>
 <li>Claude发布，用于将一些重复的能力固化在md文件中，当用户问题与之相关时，自动读取Skill的md文件，加载到prompt中</li>
 <li>Claude自带的create-skill这个skill可以帮助我们创建自己的skill，通过几轮对话完善一个定制化的skill的md文件</li>
@@ -485,8 +485,8 @@ if __name__ == &#34;__main__&#34;:
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1766742054" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1766771436" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -24,30 +24,30 @@
     <meta itemprop="description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态&#43;用户输入到新状态的函数执行 参考链接：">
     <meta itemprop="datePublished" content="2025-12-26T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-12-26T00:00:00+00:00">
-    <meta itemprop="wordCount" content="195">
+    <meta itemprop="wordCount" content="302">
     <meta itemprop="keywords" content="技术笔记">
     <title>Agent学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1766742054" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766742054" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1766742054" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1766771436" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766771436" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1766771436" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766742054";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766771436";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766742054" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766771436" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766742054" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766742054" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766742054" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1766742054" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1766742054" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766771436" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1766771436" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1766771436" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -130,16 +130,36 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#react">ReAct</a></li>
-    <li><a href="#plan-and-excute">Plan and Excute</a></li>
-    <li><a href="#rewoo">ReWOO</a></li>
-    <li><a href="#llm-compiler">LLM Compiler</a></li>
-    <li><a href="#reflection">Reflection</a></li>
-    <li><a href="#tot">TOT</a></li>
+    <li><a href="#prompt引导">Prompt引导</a>
+      <ul>
+        <li><a href="#cot">COT</a></li>
+        <li><a href="#tot">TOT</a></li>
+        <li><a href="#react">ReAct</a></li>
+        <li><a href="#plan-and-excute">Plan and Excute</a></li>
+        <li><a href="#rewoo">ReWOO</a></li>
+        <li><a href="#llm-compiler">LLM Compiler</a></li>
+        <li><a href="#reflexion">Reflexion</a></li>
+        <li><a href="#lats">LATS</a></li>
+      </ul>
+    </li>
+    <li><a href="#原生推理">原生推理</a></li>
+    <li><a href="#human-in-the-loop">Human-in-the-Loop</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#codeact">CodeAct</a></li>
   </ul>
 
   <ul>
     <li><a href="#langgraph">LangGraph</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#prm">PRM</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -221,8 +241,8 @@
 <ul>
 <li>Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升</li>
 <li>Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用
-<a href="#R-image-de46f490b3a3e87f07bb76753670b3e0" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-de46f490b3a3e87f07bb76753670b3e0"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png"></a></li>
+<a href="#R-image-9feabe713aca841585c74900ec8ef4b6" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9feabe713aca841585c74900ec8ef4b6"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png"></a></li>
 <li>构建可靠Agent的12个关键：
 <ol>
 <li>natural language to tool calls：将自然语言的需求转化为函数名、参数的能力</li>
@@ -274,7 +294,63 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<h2 id="react">
+<h2 id="prompt引导">
+  Prompt引导
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="cot">
+  COT
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-b80f7d25cbf19ecbdfdd93294a0e3591" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b80f7d25cbf19ecbdfdd93294a0e3591"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png"></a></p>
+<ul>
+<li>通过强制模型将问题分成多个步骤，形成思维链（chain of thoughts），提升回复准确性</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2201.11903" target="_blank">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</a></li>
+</ul>
+<h3 id="tot">
+  TOT
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-60ff184ac51f480d77de267b87c75faf" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-60ff184ac51f480d77de267b87c75faf"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png"></a></p>
+<ul>
+<li>Tree of thoughts：构建解决任务的树状结构路径，在每一层扩展N种方案，并进行评估可行性，如果当前分支看起来行不通，可以回溯到之前的节点，尝试另一个分支</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2305.10601" target="_blank">Tree of Thoughts: Deliberate Problem Solving with Large Language Models</a></li>
+</ul>
+<h3 id="react">
   ReAct
 
 
@@ -284,8 +360,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-7ca5c7e22851134aba709d10eb8a7e5e" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7ca5c7e22851134aba709d10eb8a7e5e"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png"></a></p>
+</h3><p><a href="#R-image-b851f15b0123f3881493d41a3677017c" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b851f15b0123f3881493d41a3677017c"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png"></a></p>
 <ul>
 <li>将大模型交互的过程拆分为thought、action和observation的循环</li>
 <li>结合大模型推理能力进行observation和thought，以及工具调用能力进行action</li>
@@ -313,7 +389,7 @@
 
 <a href="https://www.youtube.com/watch?v=TdZtr1nrhJg" target="_blank"># Talking to a LangChain ReAct Voice Agent</a></li>
 </ul>
-<h2 id="plan-and-excute">
+<h3 id="plan-and-excute">
   Plan and Excute
 
 
@@ -323,8 +399,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-3f1b89e55d2c769e6697d2176b9bc3c6" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3f1b89e55d2c769e6697d2176b9bc3c6"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png"></a></p>
+</h3><p><a href="#R-image-8f3d8d110f71421a6af3685f90b10f2f" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8f3d8d110f71421a6af3685f90b10f2f"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png"></a></p>
 <ul>
 <li>为了弥补ReAct中一步步方式可能导致的短视问题，采取先整体规划再执行的策略</li>
 <li>经过Agent对task的处理后，判断是否已经完成，否则进行replan</li>
@@ -337,7 +413,7 @@
 
 <a href="https://arxiv.org/pdf/2305.04091" target="_blank">Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models</a></li>
 </ul>
-<h2 id="rewoo">
+<h3 id="rewoo">
   ReWOO
 
 
@@ -347,8 +423,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-b4a5e336d136ae5cbf2721be4c42cb6b" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b4a5e336d136ae5cbf2721be4c42cb6b"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png"></a></p>
+</h3><p><a href="#R-image-65bf536892607f2f99620be790fa1b9e" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-65bf536892607f2f99620be790fa1b9e"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png"></a></p>
 <ul>
 <li>Reasoning Without Observation</li>
 <li>相比ReAct和Plan and Excute每次执行一步观察的方式，ReWoo预先写下整体流程，中间执行结果用占位符代替，最终使用solver整体汇总给出答案，解耦了推理和执行，极大节省token和延时</li>
@@ -361,7 +437,7 @@
 
 <a href="https://arxiv.org/pdf/2305.18323" target="_blank">ReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models</a></li>
 </ul>
-<h2 id="llm-compiler">
+<h3 id="llm-compiler">
   LLM Compiler
 
 
@@ -371,14 +447,13 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-cebd4c1beff153fd34b757e5ec3cd3d9" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cebd4c1beff153fd34b757e5ec3cd3d9"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png"></a></p>
+</h3><p><a href="#R-image-cee3a6e1f97db63a37f679f716451303" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cee3a6e1f97db63a37f679f716451303"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png"></a></p>
 <ul>
 <li>和ReWOO的思想类似，做了以下两点优化：
 <ul>
 <li>planner的输出变成stream，即在每个token输出后都检查是否有新任务，减少等待时间</li>
 <li>task list转化为dag图，从而在一些可以并行的任务上并行调用工具</li>
-<li></li>
 </ul>
 </li>
 </ul>
@@ -390,8 +465,8 @@
 
 <a href="https://arxiv.org/pdf/2312.04511" target="_blank">An LLM Compiler for Parallel Function Calling</a></li>
 </ul>
-<h2 id="reflection">
-  Reflection
+<h3 id="reflexion">
+  Reflexion
 
 
 
@@ -400,26 +475,90 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><h2 id="tot">
-  TOT
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p>参考链接：</p>
+</h3><p><a href="#R-image-d16c25175c45062d7e381bb2f63f6b52" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d16c25175c45062d7e381bb2f63f6b52"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png"></a></p>
+<ul>
+<li>Reflection是指在推理-行动-观察之后的反思步骤</li>
+<li>Reflexion 可以被视为一种将 Reflection模式制度化、结构化的特定 Agent 框架</li>
+<li>Reflexion框架包括三个核心部分：
+<ul>
+<li>Actor（执行者）：负责尝试解决问题（生成尝试）</li>
+<li>Evaluator（评估者）：负责给执行结果打分（判断对错）</li>
+<li>Self- reflection（反思者）：这是一个拥有“长期记忆”的组件。它会分析失败的原因，并生成一条自然语言提示词（如：“下次不要用 X 库，改用 Y 库”），存入记忆库中</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：</p>
 <ul>
 <li>
 
 
 
-<a href="https://www.youtube.com/watch?v=uRya4zRrRx4" target="_blank"># LangGraph: Planning Agents</a></li>
+<a href="https://arxiv.org/pdf/2303.11366" target="_blank">Reflexion: Language Agents with Verbal Reinforcement Learning</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=v5ymBTXNqtk" target="_blank"># Reflection Agents</a></li>
 </ul>
-<h1 id="memory">
-  Memory
+<h3 id="lats">
+  LATS
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-ba91c2cf12428ecbc55cc0911387d113" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ba91c2cf12428ecbc55cc0911387d113"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png"></a></p>
+<ul>
+<li>LATS (Language Agent Tree Search)是一种将蒙特卡洛树搜索 (MCTS)与 LLM 的Reflection（反思）能力结合的高级规划框架</li>
+<li>LATS主要分为以下六个步骤：
+<ul>
+<li>selection：基于UCB（upper confidence bound，选择收益大且被选中次数少的）分数选择下一步该做什么</li>
+<li>expansion：通过大模型进行扩展，进入下一层节点，</li>
+<li>evaluation：通过大模型给当前节点打分，用于后续selection，判断是否值得继续探索，同时进行剪枝以及局部reflection，防止扩展到不必要的节点</li>
+<li>simulation：继续模拟直到截止条件</li>
+<li>backpropagation：将最终结果反向传播回所有祖先节点，更新分数</li>
+</ul>
+</li>
+<li>和TOT的对比：
+<a href="#R-image-71376e2c4b3e5bee73500fb382e47eab" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-71376e2c4b3e5bee73500fb382e47eab"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png"></a></li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2310.04406" target="_blank">Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models</a></li>
+</ul>
+<h2 id="原生推理">
+  原生推理
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>算力换智能</p>
+<h2 id="human-in-the-loop">
+  Human-in-the-Loop
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h1 id="tools">
+  Tools
 
 
 
@@ -429,8 +568,38 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<h1 id="human-in-the-loop">
-  Human-in-the-Loop
+<h2 id="codeact">
+  CodeAct
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p><a href="#R-image-2df2f0235241fa3d7d1295235f18930e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2df2f0235241fa3d7d1295235f18930e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png"></a></p>
+<ul>
+<li>将生成和执行可执行代码（如 Python）作为智能体与环境交互的统一接口，而不是传统的 JSON 或简单的工具调用</li>
+<li>目前普遍大模型的代码能力极强，受益于大量的开源代码训练数据</li>
+<li>代码执行后产生的错误信息天然作为reflection的输入，纠正模型的下一次行为</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2402.01030" target="_blank"># Executable Code Actions Elicit Better LLM Agents</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=M8E5VekVVss" target="_blank"># LangGraph CodeAct</a></li>
+</ul>
+<h1 id="memory">
+  Memory
 
 
 
@@ -479,8 +648,8 @@
 
     
 <a href="/hugo-blog/blogs/langchain/">LangGraph</a>来搭建不同范式的workflow和Agent
-<a href="#R-image-cf56a5c17a541bc415a4319fc28f1c4b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cf56a5c17a541bc415a4319fc28f1c4b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png"></a></li>
+<a href="#R-image-a999be4c927f00ca76f4095481458fec" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a999be4c927f00ca76f4095481458fec"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png"></a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -494,6 +663,11 @@
 
 
 <a href="https://www.youtube.com/watch?v=aHCDrAbH_go" target="_blank"># Building Effective Agents with LangGraph</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=uRya4zRrRx4" target="_blank"># LangGraph: Planning Agents</a></li>
 </ul>
 <h1 id="agent训练">
   Agent训练
@@ -506,7 +680,17 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<h1 id="agent产品">
+<h3 id="prm">
+  PRM
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h1 id="agent产品">
   Agent产品
 
 
@@ -621,8 +805,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766742054" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1766742054" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1766771436" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
