@@ -31,7 +31,22 @@ draft: false
 
 # Planning
 ---
-## ReAct
+## Prompt引导
+### COT
+![image.png|500](https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png)
+- 通过强制模型将问题分成多个步骤，形成思维链（chain of thoughts），提升回复准确性
+
+参考链接：
+- [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/pdf/2201.11903)
+
+### TOT
+![image.png|500](https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png)
+- Tree of thoughts：构建解决任务的树状结构路径，在每一层扩展N种方案，并进行评估可行性，如果当前分支看起来行不通，可以回溯到之前的节点，尝试另一个分支
+
+参考链接：
+- [Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/pdf/2305.10601)
+
+### ReAct
 ![image.png|600](https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png)
 - 将大模型交互的过程拆分为thought、action和observation的循环
 - 结合大模型推理能力进行observation和thought，以及工具调用能力进行action
@@ -42,7 +57,7 @@ draft: false
 - [# Building a LangGraph ReAct Mini Agent](https://www.youtube.com/watch?v=pEMhPBQMNjg)
 - [# Talking to a LangChain ReAct Voice Agent](https://www.youtube.com/watch?v=TdZtr1nrhJg)
 
-## Plan and Excute
+### Plan and Excute
 ![image.png|500](https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png)
 - 为了弥补ReAct中一步步方式可能导致的短视问题，采取先整体规划再执行的策略
 - 经过Agent对task的处理后，判断是否已经完成，否则进行replan
@@ -50,35 +65,70 @@ draft: false
 参考链接：
 - [Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models](https://arxiv.org/pdf/2305.04091)
 
-## ReWOO
+### ReWOO
 ![image.png|500](https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png)
 - Reasoning Without Observation
 - 相比ReAct和Plan and Excute每次执行一步观察的方式，ReWoo预先写下整体流程，中间执行结果用占位符代替，最终使用solver整体汇总给出答案，解耦了推理和执行，极大节省token和延时
 
 参考链接：
 - [ReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models](https://arxiv.org/pdf/2305.18323)
-## LLM Compiler
+### LLM Compiler
 ![image.png|600](https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png)
 - 和ReWOO的思想类似，做了以下两点优化：
 	- planner的输出变成stream，即在每个token输出后都检查是否有新任务，减少等待时间
 	- task list转化为dag图，从而在一些可以并行的任务上并行调用工具
-	- 
 
 参考链接：
 - [An LLM Compiler for Parallel Function Calling](https://arxiv.org/pdf/2312.04511)
 
-## Reflection
-
-
-## TOT
+### Reflexion
+![image.png|600](https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png)
+- Reflection是指在推理-行动-观察之后的反思步骤
+- Reflexion 可以被视为一种将 Reflection模式制度化、结构化的特定 Agent 框架
+- Reflexion框架包括三个核心部分：
+	- Actor（执行者）：负责尝试解决问题（生成尝试）
+	- Evaluator（评估者）：负责给执行结果打分（判断对错）
+	- Self- reflection（反思者）：这是一个拥有“长期记忆”的组件。它会分析失败的原因，并生成一条自然语言提示词（如：“下次不要用 X 库，改用 Y 库”），存入记忆库中
 
 参考链接：
-- [# LangGraph: Planning Agents](https://www.youtube.com/watch?v=uRya4zRrRx4)
+- [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/pdf/2303.11366)
+- [# Reflection Agents](https://www.youtube.com/watch?v=v5ymBTXNqtk)
+
+### LATS
+![image.png|600](https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png)
+
+- LATS (Language Agent Tree Search)是一种将蒙特卡洛树搜索 (MCTS)与 LLM 的Reflection（反思）能力结合的高级规划框架
+- LATS主要分为以下六个步骤：
+	- selection：基于UCB（upper confidence bound，选择收益大且被选中次数少的）分数选择下一步该做什么
+	- expansion：通过大模型进行扩展，进入下一层节点，
+	- evaluation：通过大模型给当前节点打分，用于后续selection，判断是否值得继续探索，同时进行剪枝以及局部reflection，防止扩展到不必要的节点
+	- simulation：继续模拟直到截止条件
+	- backpropagation：将最终结果反向传播回所有祖先节点，更新分数
+- 和TOT的对比：
+	![image.png](https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png)
+
+参考链接：
+- [Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models](https://arxiv.org/pdf/2310.04406)
+
+## 原生推理
+
+算力换智能
+
+## Human-in-the-Loop
+
+# Tools
+---
+## CodeAct
+![image.png](https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png)
+- 将生成和执行可执行代码（如 Python）作为智能体与环境交互的统一接口，而不是传统的 JSON 或简单的工具调用
+- 目前普遍大模型的代码能力极强，受益于大量的开源代码训练数据
+- 代码执行后产生的错误信息天然作为reflection的输入，纠正模型的下一次行为
+
+参考链接：
+- [# Executable Code Actions Elicit Better LLM Agents](https://arxiv.org/pdf/2402.01030)
+- [# LangGraph CodeAct](https://www.youtube.com/watch?v=M8E5VekVVss)
 # Memory
 ---
-
-# Human-in-the-Loop
---- 
 
 # Multi-agent
 ---
@@ -92,11 +142,12 @@ draft: false
 参考链接：
 - [# Workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
 - [# Building Effective Agents with LangGraph](https://www.youtube.com/watch?v=aHCDrAbH_go)
+- [# LangGraph: Planning Agents](https://www.youtube.com/watch?v=uRya4zRrRx4)
 
 
 # Agent训练
 --- 
-
+### PRM
 
 # Agent产品
 ---

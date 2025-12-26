@@ -82,3 +82,9 @@ draft: false
 参考链接：
 - [Ragas: Automated Evaluation of Retrieval Augmented Generation](https://arxiv.org/pdf/2309.15217)
 - [Ragas](https://docs.ragas.io/en/stable/)
+
+## 垂域RAG
+
+
+参考链接：
+- [# Find the BEST RAG Strategy with Domain Specific Evals](https://www.youtube.com/watch?v=wZ2DXaSIm4g)
