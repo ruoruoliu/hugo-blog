@@ -5,15 +5,18 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态&#43;用户输入到新状态的函数执行 参考链接：">
+    <meta name="description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Generative Agents通过在虚拟环境中多个agent的交互，证明拥有plan、reflect和memory能力的agent可以更好的作出符合人类共识的判断 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 参考链接：
+# Building effective agents # LLM Powered Autonomous Agents Planning COT">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Agent学习手册 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态&#43;用户输入到新状态的函数执行 参考链接：">
+    <meta name="twitter:description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Generative Agents通过在虚拟环境中多个agent的交互，证明拥有plan、reflect和memory能力的agent可以更好的作出符合人类共识的判断 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 参考链接：
+# Building effective agents # LLM Powered Autonomous Agents Planning COT">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="Agent学习手册 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态&#43;用户输入到新状态的函数执行 参考链接：">
+    <meta property="og:description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Generative Agents通过在虚拟环境中多个agent的交互，证明拥有plan、reflect和memory能力的agent可以更好的作出符合人类共识的判断 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 参考链接：
+# Building effective agents # LLM Powered Autonomous Agents Planning COT">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
@@ -21,33 +24,34 @@
     <meta property="article:modified_time" content="2025-12-26T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
     <meta itemprop="name" content="Agent学习手册 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 构建可靠Agent的12个关键： natural language to tool calls：将自然语言的需求转化为函数名、参数的能力 own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代 own your context window：参考 Context Engineering学习手册 tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型 unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场 launch/pause/resume：需要具备随时启动、暂停、继续的能力 contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标 own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等 compact errors into context window：通过大模型的自愈能力来解决error small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告） make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态&#43;用户输入到新状态的函数执行 参考链接：">
+    <meta itemprop="description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Generative Agents通过在虚拟环境中多个agent的交互，证明拥有plan、reflect和memory能力的agent可以更好的作出符合人类共识的判断 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 参考链接：
+# Building effective agents # LLM Powered Autonomous Agents Planning COT">
     <meta itemprop="datePublished" content="2025-12-26T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-12-26T00:00:00+00:00">
-    <meta itemprop="wordCount" content="302">
+    <meta itemprop="wordCount" content="441">
     <meta itemprop="keywords" content="技术笔记">
     <title>Agent学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1766771436" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766771436" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1766771436" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1767290529" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1767290529" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1767290529" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766771436";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1767290529";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1767290529" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766771436" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1766771436" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1766771436" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1767290529" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1767290529" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1767290529" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -130,40 +134,40 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#prompt引导">Prompt引导</a>
+    <li><a href="#planning">Planning</a>
       <ul>
         <li><a href="#cot">COT</a></li>
         <li><a href="#tot">TOT</a></li>
         <li><a href="#react">ReAct</a></li>
         <li><a href="#plan-and-excute">Plan and Excute</a></li>
         <li><a href="#rewoo">ReWOO</a></li>
-        <li><a href="#llm-compiler">LLM Compiler</a></li>
         <li><a href="#reflexion">Reflexion</a></li>
+        <li><a href="#llm-compiler">LLM Compiler</a></li>
         <li><a href="#lats">LATS</a></li>
       </ul>
     </li>
-    <li><a href="#原生推理">原生推理</a></li>
-    <li><a href="#human-in-the-loop">Human-in-the-Loop</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#codeact">CodeAct</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#langgraph">LangGraph</a></li>
-  </ul>
-
-  <ul>
-    <li>
+    <li><a href="#tools">Tools</a>
       <ul>
-        <li><a href="#prm">PRM</a></li>
+        <li><a href="#codeact">CodeAct</a></li>
       </ul>
     </li>
+    <li><a href="#memory">Memory</a>
+      <ul>
+        <li><a href="#memgpt">MemGPT</a></li>
+        <li><a href="#mem0">Mem0</a></li>
+        <li><a href="#a-mem">A-Mem</a></li>
+      </ul>
+    </li>
+    <li><a href="#multi-agent">Multi-agent</a></li>
   </ul>
 
   <ul>
-    <li><a href="#manus">Manus</a></li>
+    <li><a href="#langchain">LangChain</a>
+      <ul>
+        <li><a href="#langgraph">LangGraph</a></li>
+        <li><a href="#deep-agents">Deep Agents</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
                 </div>
@@ -181,7 +185,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html" title="长程任务：Deep Agent (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -191,7 +195,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/2025%E5%B9%B4rag%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B/index.html" title="2025年RAG技术回顾与展望 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="Context Engineering学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -240,30 +244,17 @@
 </h1><hr>
 <ul>
 <li>Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升</li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2304.03442" target="_blank">Generative Agents</a>通过在虚拟环境中多个agent的交互，证明拥有plan、reflect和memory能力的agent可以更好的作出符合人类共识的判断
+<a href="#R-image-8ae46478c1fddfca90580ebcc00f89d3" class="lightbox-link"><img alt="image.png|420" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a39d883a7782f9d06e0b8b65263a8e4.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8ae46478c1fddfca90580ebcc00f89d3"><img alt="image.png|420" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a39d883a7782f9d06e0b8b65263a8e4.png"></a><a href="#R-image-eca7878c3ff08460e990a2d66312bf1d" class="lightbox-link"><img alt="image.png|240" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d693ce5f4232776974006ec0a7dc6c4d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-eca7878c3ff08460e990a2d66312bf1d"><img alt="image.png|240" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d693ce5f4232776974006ec0a7dc6c4d.png"></a></li>
 <li>Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用
-<a href="#R-image-9feabe713aca841585c74900ec8ef4b6" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9feabe713aca841585c74900ec8ef4b6"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png"></a></li>
-<li>构建可靠Agent的12个关键：
-<ol>
-<li>natural language to tool calls：将自然语言的需求转化为函数名、参数的能力</li>
-<li>own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代</li>
-<li>own your context window：参考
-
-
-
-    
-<a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">Context Engineering学习手册</a></li>
-<li>tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型</li>
-<li>unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场</li>
-<li>launch/pause/resume：需要具备随时启动、暂停、继续的能力</li>
-<li>contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标</li>
-<li>own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等</li>
-<li>compact errors into context window：通过大模型的自愈能力来解决error</li>
-<li>small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug</li>
-<li>tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告）</li>
-<li>make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态+用户输入到新状态的函数执行</li>
-</ol>
-</li>
+<a href="#R-image-b4fa8301dd28340d4743373f6b81a7b3" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b4fa8301dd28340d4743373f6b81a7b3"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png"></a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -277,13 +268,8 @@
 
 
 <a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank"># LLM Powered Autonomous Agents</a></li>
-<li>
-
-
-
-<a href="https://github.com/humanlayer/12-factor-agents/tree/main/content" target="_blank"># 12-Factor Agents: Patterns of reliable LLM applications</a></li>
 </ul>
-<h1 id="planning">
+<h2 id="planning">
   Planning
 
 
@@ -293,18 +279,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<h2 id="prompt引导">
-  Prompt引导
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><h3 id="cot">
+</h2><hr>
+<h3 id="cot">
   COT
 
 
@@ -314,8 +290,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-b80f7d25cbf19ecbdfdd93294a0e3591" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b80f7d25cbf19ecbdfdd93294a0e3591"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png"></a></p>
+</h3><p><a href="#R-image-5357dc9aca8f37b35a751799f3311dd7" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5357dc9aca8f37b35a751799f3311dd7"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png"></a></p>
 <ul>
 <li>通过强制模型将问题分成多个步骤，形成思维链（chain of thoughts），提升回复准确性</li>
 </ul>
@@ -337,8 +313,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-60ff184ac51f480d77de267b87c75faf" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-60ff184ac51f480d77de267b87c75faf"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png"></a></p>
+</h3><p><a href="#R-image-14c3c24475e36313b9b814eb05def93e" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-14c3c24475e36313b9b814eb05def93e"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png"></a></p>
 <ul>
 <li>Tree of thoughts：构建解决任务的树状结构路径，在每一层扩展N种方案，并进行评估可行性，如果当前分支看起来行不通，可以回溯到之前的节点，尝试另一个分支</li>
 </ul>
@@ -360,8 +336,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-b851f15b0123f3881493d41a3677017c" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b851f15b0123f3881493d41a3677017c"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png"></a></p>
+</h3><p><a href="#R-image-d93edaf6847ee854f59447bd006423f7" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d93edaf6847ee854f59447bd006423f7"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png"></a></p>
 <ul>
 <li>将大模型交互的过程拆分为thought、action和observation的循环</li>
 <li>结合大模型推理能力进行observation和thought，以及工具调用能力进行action</li>
@@ -399,8 +375,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-8f3d8d110f71421a6af3685f90b10f2f" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8f3d8d110f71421a6af3685f90b10f2f"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png"></a></p>
+</h3><p><a href="#R-image-d01fa90a506965651c52e17cc48ab4e9" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d01fa90a506965651c52e17cc48ab4e9"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png"></a></p>
 <ul>
 <li>为了弥补ReAct中一步步方式可能导致的短视问题，采取先整体规划再执行的策略</li>
 <li>经过Agent对task的处理后，判断是否已经完成，否则进行replan</li>
@@ -423,8 +399,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-65bf536892607f2f99620be790fa1b9e" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-65bf536892607f2f99620be790fa1b9e"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png"></a></p>
+</h3><p><a href="#R-image-bb16477e46b54b0b4223f3d0eca72a77" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bb16477e46b54b0b4223f3d0eca72a77"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png"></a></p>
 <ul>
 <li>Reasoning Without Observation</li>
 <li>相比ReAct和Plan and Excute每次执行一步观察的方式，ReWoo预先写下整体流程，中间执行结果用占位符代替，最终使用solver整体汇总给出答案，解耦了推理和执行，极大节省token和延时</li>
@@ -437,34 +413,6 @@
 
 <a href="https://arxiv.org/pdf/2305.18323" target="_blank">ReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models</a></li>
 </ul>
-<h3 id="llm-compiler">
-  LLM Compiler
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-cee3a6e1f97db63a37f679f716451303" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-cee3a6e1f97db63a37f679f716451303"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png"></a></p>
-<ul>
-<li>和ReWOO的思想类似，做了以下两点优化：
-<ul>
-<li>planner的输出变成stream，即在每个token输出后都检查是否有新任务，减少等待时间</li>
-<li>task list转化为dag图，从而在一些可以并行的任务上并行调用工具</li>
-</ul>
-</li>
-</ul>
-<p>参考链接：</p>
-<ul>
-<li>
-
-
-
-<a href="https://arxiv.org/pdf/2312.04511" target="_blank">An LLM Compiler for Parallel Function Calling</a></li>
-</ul>
 <h3 id="reflexion">
   Reflexion
 
@@ -475,10 +423,12 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-d16c25175c45062d7e381bb2f63f6b52" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d16c25175c45062d7e381bb2f63f6b52"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png"></a></p>
+</h3><p><a href="#R-image-dc99b53e55e82d5d8b110a9fad693c5b" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-dc99b53e55e82d5d8b110a9fad693c5b"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png"></a></p>
 <ul>
-<li>Reflection是指在推理-行动-观察之后的反思步骤</li>
+<li>Reflection是指在推理-观察之后的反思步骤，相比之下ReAct只是观察后的下一步推理
+<a href="#R-image-695671d947252225f0693dd09fe21c92" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/de6d17ee643e6d06484ed4fcf7ec8942.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-695671d947252225f0693dd09fe21c92"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/de6d17ee643e6d06484ed4fcf7ec8942.png"></a></li>
 <li>Reflexion 可以被视为一种将 Reflection模式制度化、结构化的特定 Agent 框架</li>
 <li>Reflexion框架包括三个核心部分：
 <ul>
@@ -501,6 +451,34 @@
 
 <a href="https://www.youtube.com/watch?v=v5ymBTXNqtk" target="_blank"># Reflection Agents</a></li>
 </ul>
+<h3 id="llm-compiler">
+  LLM Compiler
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-7942ad1624eb264e3980999424082fcb" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7942ad1624eb264e3980999424082fcb"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png"></a></p>
+<ul>
+<li>和ReWOO的思想类似，是个进化版，做了以下两点优化：
+<ul>
+<li>planner的输出变成stream，即在每个token输出后都检查是否有新任务，减少等待时间</li>
+<li>task list转化为DAG图，只要发现依赖项确认，就直接执行，从而在一些可以并行的任务上并行调用工具</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2312.04511" target="_blank">An LLM Compiler for Parallel Function Calling</a></li>
+</ul>
 <h3 id="lats">
   LATS
 
@@ -511,8 +489,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-ba91c2cf12428ecbc55cc0911387d113" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ba91c2cf12428ecbc55cc0911387d113"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png"></a></p>
+</h3><p><a href="#R-image-45f57668f664b1d6e6108340ab4d319e" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-45f57668f664b1d6e6108340ab4d319e"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png"></a></p>
 <ul>
 <li>LATS (Language Agent Tree Search)是一种将蒙特卡洛树搜索 (MCTS)与 LLM 的Reflection（反思）能力结合的高级规划框架</li>
 <li>LATS主要分为以下六个步骤：
@@ -525,8 +503,8 @@
 </ul>
 </li>
 <li>和TOT的对比：
-<a href="#R-image-71376e2c4b3e5bee73500fb382e47eab" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-71376e2c4b3e5bee73500fb382e47eab"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png"></a></li>
+<a href="#R-image-e78e3b757f53715d05bbb426e918082d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e78e3b757f53715d05bbb426e918082d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png"></a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -536,28 +514,8 @@
 
 <a href="https://arxiv.org/pdf/2310.04406" target="_blank">Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models</a></li>
 </ul>
-<h2 id="原生推理">
-  原生推理
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p>算力换智能</p>
-<h2 id="human-in-the-loop">
-  Human-in-the-Loop
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><h1 id="tools">
+<p>#todo 2025 agent planing方向进展</p>
+<h2 id="tools">
   Tools
 
 
@@ -567,8 +525,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<h2 id="codeact">
+</h2><hr>
+<h3 id="codeact">
   CodeAct
 
 
@@ -578,8 +536,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-2df2f0235241fa3d7d1295235f18930e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2df2f0235241fa3d7d1295235f18930e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png"></a></p>
+</h3><p><a href="#R-image-4d70a25a7e520261faa2c52185505a5b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4d70a25a7e520261faa2c52185505a5b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png"></a></p>
 <ul>
 <li>将生成和执行可执行代码（如 Python）作为智能体与环境交互的统一接口，而不是传统的 JSON 或简单的工具调用</li>
 <li>目前普遍大模型的代码能力极强，受益于大量的开源代码训练数据</li>
@@ -598,7 +556,7 @@
 
 <a href="https://www.youtube.com/watch?v=M8E5VekVVss" target="_blank"># LangGraph CodeAct</a></li>
 </ul>
-<h1 id="memory">
+<h2 id="memory">
   Memory
 
 
@@ -608,8 +566,123 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<h1 id="multi-agent">
+</h2><hr>
+<p><a href="#R-image-7906f8e9dbc4dca88f326bb2396f5bf8" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7415cd08f834f74dc5b0f80b7546f187.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7906f8e9dbc4dca88f326bb2396f5bf8"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7415cd08f834f74dc5b0f80b7546f187.png"></a>
+参考
+
+
+
+<a href="https://arxiv.org/pdf/2309.02427" target="_blank">Cognitive Architectures for Language Agents</a>，agent记忆主要分为四类：</p>
+<ul>
+<li>Working Memory：对话过程中的工作记忆，即对话上下文</li>
+<li>Episodic Memory：需要一段时间（每轮或更久）进行提炼得到的用户习惯，注意事项等，参考
+
+
+
+    
+<a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">Context Engineering学习手册</a></li>
+<li>Semantic Memory：外部知识，可以理解为RAG手段获取的那部分信息，参考
+
+
+
+    
+<a href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">RAG学习手册</a></li>
+<li>Procedural Memory：大模型本身的行为习惯，通常是训练内化到模型能力中，类似于人的本能，参考
+
+
+
+    
+<a href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">Agent训练</a></li>
+</ul>
+<p>参考链接：
+
+
+
+
+<a href="https://www.youtube.com/watch?v=VKPngyO0iKg" target="_blank"># Building Brain-Like Memory for AI | LLM Agent Memory Systems</a></p>
+<h3 id="memgpt">
+  MemGPT
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-f9aba3993c17d3ff15b7842b0f17ddeb" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9943b47aaf389723fc0ce6542400fb92.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f9aba3993c17d3ff15b7842b0f17ddeb"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9943b47aaf389723fc0ce6542400fb92.png"></a></p>
+<p>提出“虚拟内存管理”概念，将向量数据库视为硬盘，将 Context Window 视为内存，实现按需调入</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2310.08560" target="_blank">MemGPT: Towards LLMs as Operating Systems</a></li>
+</ul>
+<h3 id="mem0">
+  Mem0
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-5e975cecdc1302dbb9ea438b42140058" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5da39810d3d54fb89f1c59de868de42f.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5e975cecdc1302dbb9ea438b42140058"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5da39810d3d54fb89f1c59de868de42f.png"></a></p>
+<p>Mem0采用了一种增量处理模式，主要分为两个阶段：</p>
+<ul>
+<li>提取阶段 (Extraction Phase)：通过结合当前的对话摘要和最近的消息序列，利用LLM动态提取出具有持久价值的“显著记忆”事实</li>
+<li>更新阶段 (Update Phase)：对提取出的事实进行评估。系统会通过向量检索查找现有记忆，并使用LLM的“工具调用”能力决定对记忆库执行四种操作之一：
+<ul>
+<li>添加 (ADD)</li>
+<li>更新 (UPDATE)</li>
+<li>删除 (DELETE)（当新信息与旧记忆冲突时）</li>
+<li>无操作 (NOOP)</li>
+</ul>
+</li>
+</ul>
+<p>Mem0还提出了一个增强版本Mem0g。它利用基于图的记忆表示来捕捉实体之间复杂的关联结构，类似于GraphRAG</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2504.19413" target="_blank">Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory</a></li>
+</ul>
+<h3 id="a-mem">
+  A-Mem
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-d200aa2d9f88b9e9ff157dc5cab721a6" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2750363010258c1d908650809e5b8f0.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d200aa2d9f88b9e9ff157dc5cab721a6"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2750363010258c1d908650809e5b8f0.png"></a></p>
+<p>A-Mem的工作流程模仿了卡片笔记的构建过程，主要包含以下四个步骤：</p>
+<ul>
+<li>笔记构建：当有新信息进入时，系统生成包含上下文描述、关键词和标签的结构化笔记卡片</li>
+<li>链接生成：系统会分析新笔记与历史笔记之间的关联，自动建立语义链接</li>
+<li>记忆进化：当新经验产生时，它不仅被添加，还会触发对旧记忆的更新，实现认知的持续演进</li>
+<li>记忆检索：利用建立好的链接网络，进行关联检索</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2502.12110" target="_blank">A-Mem: Agentic Memory for LLM Agents</a></li>
+</ul>
+<h2 id="multi-agent">
   Multi-agent
 
 
@@ -619,7 +692,7 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
+</h2><hr>
 <h1 id="agent构建">
   Agent构建
 
@@ -631,7 +704,56 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<h2 id="langgraph">
+<p>构建可靠Agent的12个关键：
+1. natural language to tool calls：将自然语言的需求转化为函数名、参数的能力
+2. own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代
+3. own your context window：参考
+
+
+
+    
+<a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">Context Engineering学习手册</a>
+4. tools are structured outputs：大模型输出结构化的函数调用、函数执行、反馈结果给大模型
+5. unify execution state and business state：执行和业务状态统一，减少复杂性，方便debug和恢复现场
+6. launch/pause/resume：需要具备随时启动、暂停、继续的能力
+7. contact humans with tool calls：总是通过工具调用的方式进行下一步（包括返回答案、澄清问题和调用工具），使得模型不至于需要在第一个token（“the” or “|JSON”）就明确下一步目标
+8. own your control flow：自己定义运行逻辑，提高可控性，包括summarize/compaction、judge等
+9. compact errors into context window：通过大模型的自愈能力来解决error
+10. small, focused agents：把agent的功能聚焦，context可控、明确分工、方便测试和debug
+11. tigger from anywhere, meet users where they are：在不同应用中出现，帮助用户（作者产品的广告）
+12. make your agent a stateless reducer：agent尽可能是无状态的reducer，意味着每轮对话都是一个当前状态+用户输入到新状态的函数执行</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://github.com/humanlayer/12-factor-agents/tree/main/content" target="_blank"># 12-Factor Agents: Patterns of reliable LLM applications</a></li>
+</ul>
+<h2 id="langchain">
+  LangChain
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><hr>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=1bUy-1hGZpI" target="_blank"># What is LangChain?</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=qAF1NjEVHhY" target="_blank"># LangChain vs LangGraph: A Tale of Two Frameworks</a></li>
+</ul>
+<h3 id="langgraph">
   LangGraph
 
 
@@ -641,17 +763,13 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><ul>
-<li>使用
+</h3><p>使用
 
 
 
-    
-<a href="/hugo-blog/blogs/langchain/">LangGraph</a>来搭建不同范式的workflow和Agent
-<a href="#R-image-a999be4c927f00ca76f4095481458fec" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a999be4c927f00ca76f4095481458fec"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png"></a></li>
-</ul>
-<p>参考链接：</p>
+<a href="LangChain.md#LangGraph">LangGraph</a>来搭建不同范式的workflow和Agent	<a href="#R-image-bf803b6615897accd09e92b72e4d28d2" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bf803b6615897accd09e92b72e4d28d2"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png"></a>
+参考链接：</p>
 <ul>
 <li>
 
@@ -669,6 +787,38 @@
 
 <a href="https://www.youtube.com/watch?v=uRya4zRrRx4" target="_blank"># LangGraph: Planning Agents</a></li>
 </ul>
+<h3 id="deep-agents">
+  Deep Agents
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>使用
+
+
+
+<a href="https://docs.langchain.com/oss/python/deepagents/overview" target="_blank">deepagents</a>来搭建Deep Agent</p>
+<ul>
+<li>自带各种工具及其对应中间件：planning、sub-agent delegation、filesystem</li>
+<li>用户可以提供工具、指令以及sub-agent</li>
+<li>
+
+
+
+<a href="https://github.com/langchain-ai/deepagents-quickstarts" target="_blank">deepagents-quickstarts</a>中包含了一个deep research的例子</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=5tn6O0uXYEg" target="_blank"># Build a Research Agent with Deep Agents</a></li>
+</ul>
 <h1 id="agent训练">
   Agent训练
 
@@ -680,38 +830,12 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<h3 id="prm">
-  PRM
+<p>#todo 强化学习调整agent行为模式：retroformer、voyager
+#todo PRM
+#todo interleaving thinking后训练
+#todo verl slime
+#todo Search-R1</p>
 
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><h1 id="agent产品">
-  Agent产品
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<h2 id="manus">
-  Manus
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2>
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> Dec 26, 2025
   </footer>
@@ -761,10 +885,10 @@
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html">大模型应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="active " data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/deep-research/index.html"><a class="padding" href="/hugo-blog/blogs/deep-research/index.html">Deep Research</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/langchain/index.html"><a class="padding" href="/hugo-blog/blogs/langchain/index.html">LangChain</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
@@ -805,8 +929,8 @@
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1767290529" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

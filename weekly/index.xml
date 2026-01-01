@@ -6,14 +6,21 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 31 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Week9 大模型进展</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week9/index.html</link>
+      <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week9/index.html</guid>
+      <description>总结 跟进大模型进展 跟进大模型进展 跟进Agent技术进展， Agent学习手册，主要跟进以下几方面： Memory Deep Agents Multi-agent 知识 Deep Agents是agent解决长程任务的一种范式，其中重要的一类任务是Deep Research，通过Agentic Search方式搜索信息生成详细的技术报告 待办 大模型强化学习相关技术</description>
+    </item>
     <item>
       <title>Week8 大模型进展</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week8/index.html</link>
       <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week8/index.html</guid>
-      <description>总结 跟进大模型进展 跟进大模型进展 了解MCP和Skills： MCP和Skills 跟进RAG技术进展： RAG学习手册 了解Context Engineering： Context Engineering学习手册 跟进Agent技术进展： Agent学习手册 知识 Agent=LLM + 规划 + 记忆 + 工具使用 认为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow 待办 Deep Research相关技术 大模型训练中的强化学习</description>
+      <description>总结 跟进大模型进展 跟进大模型进展 了解MCP和Skills： MCP和Skills 跟进RAG技术进展： RAG学习手册 了解Context Engineering： Context Engineering学习手册 跟进Agent技术进展， Agent学习手册，主要跟进以下几方面： Planning Memory 知识 MCP统一模型调用外部接口的协议，从而让模型方和外部接口方共同努力实现自己到协议的转写，方便打通链路 Skills和workflow中的规划很像，只是用md文件表示，定义了统一的文件结构，方便模型理解workflow RAG演变到2025年主要采用图谱+向量的混合搜索方式（hybrid search），且通常采用agentic的方式进行图谱的构建 Context Engineering是agent如何选取对于当前轮对话最有用的context的技术 Agent=LLM + 规划 + 记忆 + 工具使用 人为定义好的规划，称为workflow，大模型在过程中实现自我规划，称为Agent 待办 跟进Agent技术进展</description>
     </item>
     <item>
       <title>Week7 React学习</title>
