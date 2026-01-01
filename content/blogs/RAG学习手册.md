@@ -14,32 +14,18 @@ draft: false
 	- generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息
 
 参考链接：
-- [2025年RAG技术回顾与展望](2025%E5%B9%B4RAG%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B.md)
-# Agentic RAG
---- 
-- 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断：
-	- 检索哪个数据源
-	- 使用什么工具
-	- query是否需要改写
-	- 当前query是否足够进行检索，是否需要用户澄清
-	- 是否需要迭代式的检索
-
-参考链接：
-[# What is Agentic RAG?](https://www.youtube.com/watch?v=0z9_MhcYvcY)
-[AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG](https://arxiv.org/pdf/2501.09136)
-[# Build a custom RAG agent with LangGraph](https://docs.langchain.com/oss/python/langgraph/agentic-rag)
+- [../Answers/2025年RAG技术回顾与展望](../Answers/2025%E5%B9%B4RAG%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B.md)
 
 # CAG
 ---
 - CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销
-- 关于CAG的存在意义以及其局限性：[CAG的存在意义以及其局限性](CAG%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7.md)
+- 关于CAG的存在意义以及其局限性：[../Answers/CAG的存在意义以及其局限性](../Answers/CAG%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7.md)
 
 参考链接：
 - [# RAG vs. CAG: Solving Knowledge Gaps in AI Models](https://www.youtube.com/watch?v=HdafI0t3sEY)
 
-# HybridRAG
---- 
-## GraphRAG
+# GraphRAG
+---
 ![image.png|500](https://images.ruoruoliu.com/2025/12/283f5ea91bac35d7afdacd0d00aa907a.png)
 - 索引阶段：对于每个chunk进行实体和关系的识别，对图进行社区发现算法，对于每一层社区进行llm摘要
 - 检索阶段：
@@ -67,6 +53,34 @@ draft: false
 参考链接：
 - [LIGHTRAG: SIMPLE AND FAST RETRIEVAL-AUGMENTED GENERATION](https://lightrag.github.io/)
 
+## Zep
+
+Zep = GraphRAG + 时序版本控制 + 工业级异步中间件
+
+三层子图：
+- Episode Subgraph：存储最原始的输入单元（消息、文本、JSON）
+- Semantic Entity Subgraph：从情节（Episodes）中提取出的实体节点及其语义边（关系）
+- Community Subgraph：对强相关的实体进行聚类形成的高阶摘要节点
+
+两层存储：
+- 消息存储层：使用关系型数据库 (Postgres)，存储完整的对话原文、Token 计数、Session ID
+- 知识存储层：使用图数据库 (Neo4j / Graphiti)，存储三层子图的所有节点和边
+
+对话数据进入后，先存入消息存储，然后异步构建三个子图，子图中的内容都对应到消息存储中，包含了时间戳，保证新的事实替代旧的事实
+
+参考链接：
+- [ZEP: A TEMPORAL KNOWLEDGE GRAPH ARCHITECTURE FOR AGENT MEMORY](https://arxiv.org/pdf/2501.13956)
+- [# Stop Using RAG as Memory](https://www.youtube.com/watch?v=T5IMo5ntyhA)
+
+## Cognee
+
+- 一个将非结构化数据转化为确定性图谱的框架
+- 处理关系密集型的数据（如法律卷宗、医疗病历、企业内部文档）
+- 在大模型应用中建立一套可维护、可演进的知识库，而不仅仅是临时的上下文补充
+
+参考链接：
+- [# Cognee: Superior AI Memory & Knowledge For AI Agents! Greatly Beats ChatGPT! (Opensource)](https://www.youtube.com/watch?v=MgqLAp4F3co)
+
 # RAG评估
 ---
 ## Ragas
@@ -83,8 +97,16 @@ draft: false
 - [Ragas: Automated Evaluation of Retrieval Augmented Generation](https://arxiv.org/pdf/2309.15217)
 - [Ragas](https://docs.ragas.io/en/stable/)
 
-## 垂域RAG
-
+# Agentic RAG
+--- 
+- 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断：
+	- 检索哪个数据源
+	- 使用什么工具
+	- query是否需要改写
+	- 当前query是否足够进行检索，是否需要用户澄清
+	- 是否需要迭代式的检索
 
 参考链接：
-- [# Find the BEST RAG Strategy with Domain Specific Evals](https://www.youtube.com/watch?v=wZ2DXaSIm4g)
+[# What is Agentic RAG?](https://www.youtube.com/watch?v=0z9_MhcYvcY)
+[AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG](https://arxiv.org/pdf/2501.09136)
+[# Build a custom RAG agent with LangGraph](https://docs.langchain.com/oss/python/langgraph/agentic-rag)

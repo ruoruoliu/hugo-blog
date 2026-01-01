@@ -78,7 +78,7 @@ draft: false
 --- 
 - Bun是一个Javascript的运行时工具，包括前端、后端
 - 包含了bundler、transpiler、任务执行和npm客户端的综合体
-	- 参考链接：[Javascript中的bundler和transpiler](Javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler.md)
+	- 参考链接：[../Answers/Javascript中的bundler和transpiler](../Answers/Javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler.md)
 - 替代nodejs和npm，并兼容他们
 
 ## 基本操作

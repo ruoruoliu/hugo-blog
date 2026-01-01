@@ -6,20 +6,20 @@
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
     <meta name="description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
-2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
-CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
+../Answers/2025年RAG技术回顾与展望 CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： ../Answers/CAG的存在意义以及其局限性 参考链接：
+# RAG vs. CAG: Solving Knowledge Gaps in AI Models GraphRAG">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="RAG学习手册 :: Ruoruoliu 2.0">
     <meta name="twitter:description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
-2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
-CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
+../Answers/2025年RAG技术回顾与展望 CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： ../Answers/CAG的存在意义以及其局限性 参考链接：
+# RAG vs. CAG: Solving Knowledge Gaps in AI Models GraphRAG">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="RAG学习手册 :: Ruoruoliu 2.0">
     <meta property="og:description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
-2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
-CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
+../Answers/2025年RAG技术回顾与展望 CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： ../Answers/CAG的存在意义以及其局限性 参考链接：
+# RAG vs. CAG: Solving Knowledge Gaps in AI Models GraphRAG">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
@@ -28,34 +28,34 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
     <meta property="article:tag" content="技术笔记">
     <meta itemprop="name" content="RAG学习手册 :: Ruoruoliu 2.0">
     <meta itemprop="description" content="RAG Retrieval-Augmented Generation 通过检索获取实时信息，补充模型预训练阶段缺失的知识 需要在两方面确保RAG能真正提升效果： retriever检索到的信息是高度相关且正确的 generator能辨别retriever提供信息的可靠性和正确性，或者抛弃检索信息 参考链接：
-2025年RAG技术回顾与展望 Agentic RAG 相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断： 检索哪个数据源 使用什么工具 query是否需要改写 当前query是否足够进行检索，是否需要用户澄清 是否需要迭代式的检索 参考链接： # What is Agentic RAG? AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG # Build a custom RAG agent with LangGraph
-CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： CAG的存在意义以及其局限性 参考链接：">
+../Answers/2025年RAG技术回顾与展望 CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免RAG中检索不精准的问题，目标文档通过kv-cache的方式预先计算，减少推理开销 关于CAG的存在意义以及其局限性： ../Answers/CAG的存在意义以及其局限性 参考链接：
+# RAG vs. CAG: Solving Knowledge Gaps in AI Models GraphRAG">
     <meta itemprop="datePublished" content="2025-12-24T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-12-24T00:00:00+00:00">
-    <meta itemprop="wordCount" content="156">
+    <meta itemprop="wordCount" content="204">
     <meta itemprop="keywords" content="技术笔记">
     <title>RAG学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1766771436" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1766771436" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1766771436" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1767290529" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1767290529" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1767290529" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1766771436";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1767290529";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1767290529" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1766771436" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1766771436" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1766771436" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1766771436" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1767290529" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1767290529" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1767290529" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -138,13 +138,13 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#graphrag">GraphRAG</a></li>
     <li><a href="#lightrag">LightRAG</a></li>
+    <li><a href="#zep">Zep</a></li>
+    <li><a href="#cognee">Cognee</a></li>
   </ul>
 
   <ul>
     <li><a href="#ragas">Ragas</a></li>
-    <li><a href="#垂域rag">垂域RAG</a></li>
   </ul>
 </nav>
                 </div>
@@ -162,7 +162,7 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/pydantic-model%E6%98%AF%E4%BB%80%E4%B9%88/index.html" title="Pydantic Model是什么 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="Context Engineering学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -235,47 +235,8 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 
 
-    
-<a href="/hugo-blog/blogs/2025%E5%B9%B4rag%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B/">2025年RAG技术回顾与展望</a></li>
+<a href="../Answers/2025%E5%B9%B4RAG%E6%8A%80%E6%9C%AF%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%B1%95%E6%9C%9B.md">../Answers/2025年RAG技术回顾与展望</a></li>
 </ul>
-<h1 id="agentic-rag">
-  Agentic RAG
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<ul>
-<li>相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断：
-<ul>
-<li>检索哪个数据源</li>
-<li>使用什么工具</li>
-<li>query是否需要改写</li>
-<li>当前query是否足够进行检索，是否需要用户澄清</li>
-<li>是否需要迭代式的检索</li>
-</ul>
-</li>
-</ul>
-<p>参考链接：
-
-
-
-
-<a href="https://www.youtube.com/watch?v=0z9_MhcYvcY" target="_blank"># What is Agentic RAG?</a>
-
-
-
-
-<a href="https://arxiv.org/pdf/2501.09136" target="_blank">AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG</a>
-
-
-
-
-<a href="https://docs.langchain.com/oss/python/langgraph/agentic-rag" target="_blank"># Build a custom RAG agent with LangGraph</a></p>
 <h1 id="cag">
   CAG
 
@@ -293,8 +254,7 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 
 
-    
-<a href="/hugo-blog/blogs/cag%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7/">CAG的存在意义以及其局限性</a></li>
+<a href="../Answers/CAG%E7%9A%84%E5%AD%98%E5%9C%A8%E6%84%8F%E4%B9%89%E4%BB%A5%E5%8F%8A%E5%85%B6%E5%B1%80%E9%99%90%E6%80%A7.md">../Answers/CAG的存在意义以及其局限性</a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -304,18 +264,7 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 <a href="https://www.youtube.com/watch?v=HdafI0t3sEY" target="_blank"># RAG vs. CAG: Solving Knowledge Gaps in AI Models</a></li>
 </ul>
-<h1 id="hybridrag">
-  HybridRAG
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<h2 id="graphrag">
+<h1 id="graphrag">
   GraphRAG
 
 
@@ -325,8 +274,9 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-900b9c1c75413b17e52ea4b3c7ffaef0" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/283f5ea91bac35d7afdacd0d00aa907a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-900b9c1c75413b17e52ea4b3c7ffaef0"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/283f5ea91bac35d7afdacd0d00aa907a.png"></a></p>
+</h1><hr>
+<p><a href="#R-image-cf42428d148bfad08ea2a2456fb7fc0c" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/283f5ea91bac35d7afdacd0d00aa907a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cf42428d148bfad08ea2a2456fb7fc0c"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/283f5ea91bac35d7afdacd0d00aa907a.png"></a></p>
 <ul>
 <li>索引阶段：对于每个chunk进行实体和关系的识别，对图进行社区发现算法，对于每一层社区进行llm摘要</li>
 <li>检索阶段：
@@ -392,8 +342,8 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-a0e6e9a06e97e44722f77fd380e74dfd" class="lightbox-link"><img alt="image.png|750" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5bf9a785c52835889268ed5e6031f815.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a0e6e9a06e97e44722f77fd380e74dfd"><img alt="image.png|750" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5bf9a785c52835889268ed5e6031f815.png"></a></p>
+</h2><p><a href="#R-image-a29217778e04de7cf3110b6203f2f926" class="lightbox-link"><img alt="image.png|750" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5bf9a785c52835889268ed5e6031f815.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a29217778e04de7cf3110b6203f2f926"><img alt="image.png|750" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5bf9a785c52835889268ed5e6031f815.png"></a></p>
 <ul>
 <li>对每个chunk中识别出的实体和链接，构造high-level和low-level的kv对，保存概括和细节信息</li>
 <li>检索的时候将query也转成high-level和low-level，用向量匹配，匹配到的部分以及1-hop、2-hop进行打分排序，最终拼成prompt</li>
@@ -406,6 +356,65 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 
 <a href="https://lightrag.github.io/" target="_blank">LIGHTRAG: SIMPLE AND FAST RETRIEVAL-AUGMENTED GENERATION</a></li>
+</ul>
+<h2 id="zep">
+  Zep
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>Zep = GraphRAG + 时序版本控制 + 工业级异步中间件</p>
+<p>三层子图：</p>
+<ul>
+<li>Episode Subgraph：存储最原始的输入单元（消息、文本、JSON）</li>
+<li>Semantic Entity Subgraph：从情节（Episodes）中提取出的实体节点及其语义边（关系）</li>
+<li>Community Subgraph：对强相关的实体进行聚类形成的高阶摘要节点</li>
+</ul>
+<p>两层存储：</p>
+<ul>
+<li>消息存储层：使用关系型数据库 (Postgres)，存储完整的对话原文、Token 计数、Session ID</li>
+<li>知识存储层：使用图数据库 (Neo4j / Graphiti)，存储三层子图的所有节点和边</li>
+</ul>
+<p>对话数据进入后，先存入消息存储，然后异步构建三个子图，子图中的内容都对应到消息存储中，包含了时间戳，保证新的事实替代旧的事实</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2501.13956" target="_blank">ZEP: A TEMPORAL KNOWLEDGE GRAPH ARCHITECTURE FOR AGENT MEMORY</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=T5IMo5ntyhA" target="_blank"># Stop Using RAG as Memory</a></li>
+</ul>
+<h2 id="cognee">
+  Cognee
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><ul>
+<li>一个将非结构化数据转化为确定性图谱的框架</li>
+<li>处理关系密集型的数据（如法律卷宗、医疗病历、企业内部文档）</li>
+<li>在大模型应用中建立一套可维护、可演进的知识库，而不仅仅是临时的上下文补充</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=MgqLAp4F3co" target="_blank"># Cognee: Superior AI Memory &amp; Knowledge For AI Agents! Greatly Beats ChatGPT! (Opensource)</a></li>
 </ul>
 <h1 id="rag评估">
   RAG评估
@@ -459,8 +468,8 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 <a href="https://docs.ragas.io/en/stable/" target="_blank">Ragas</a></li>
 </ul>
-<h2 id="垂域rag">
-  垂域RAG
+<h1 id="agentic-rag">
+  Agentic RAG
 
 
 
@@ -469,14 +478,34 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p>参考链接：</p>
+</h1><hr>
 <ul>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=wZ2DXaSIm4g" target="_blank"># Find the BEST RAG Strategy with Domain Specific Evals</a></li>
+<li>相比传统的RAG只检索一次，然后拼到prompt里，Agentic RAG利用一个单独的agent来处理整体检索的行为，包括判断：
+<ul>
+<li>检索哪个数据源</li>
+<li>使用什么工具</li>
+<li>query是否需要改写</li>
+<li>当前query是否足够进行检索，是否需要用户澄清</li>
+<li>是否需要迭代式的检索</li>
 </ul>
+</li>
+</ul>
+<p>参考链接：
+
+
+
+
+<a href="https://www.youtube.com/watch?v=0z9_MhcYvcY" target="_blank"># What is Agentic RAG?</a>
+
+
+
+
+<a href="https://arxiv.org/pdf/2501.09136" target="_blank">AGENTIC RETRIEVAL-AUGMENTED GENERATION: A SURVEY ON AGENTIC RAG</a>
+
+
+
+
+<a href="https://docs.langchain.com/oss/python/langgraph/agentic-rag" target="_blank"># Build a custom RAG agent with LangGraph</a></p>
 
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> Dec 24, 2025
@@ -527,10 +556,10 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html">大模型应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/deep-research/index.html"><a class="padding" href="/hugo-blog/blogs/deep-research/index.html">Deep Research</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/langchain/index.html"><a class="padding" href="/hugo-blog/blogs/langchain/index.html">LangChain</a></li>
             <li class="active " data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
@@ -571,8 +600,8 @@ CAG CAG（cache-augmented）通过将目标文档全文塞进prompt中，避免R
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1766771436" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1766771436" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1767290529" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

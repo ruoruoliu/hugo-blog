@@ -15,7 +15,7 @@ draft: false
 - \`\`：反引号表示模版字面量，类似formatted string
 	- 标签模版字面量：函数后面紧接着模版字面量
 		- foo(strs, ...values)，如foo\`this is ${apple.id}\`，strs接收被\${}分开的部分，values接收\${}的部分，从而自定义字符串解析和输出
-		- 可以作为DSL使用，如[标签模版字面量在DSL中的例子](%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8DSL%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90.md)
+		- 可以作为DSL使用，如[../Answers/标签模版字面量在DSL中的例子](../Answers/%E6%A0%87%E7%AD%BE%E6%A8%A1%E7%89%88%E5%AD%97%E9%9D%A2%E9%87%8F%E5%9C%A8DSL%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90.md)
 - \=\=\=：三个等号是全等，即对象类型和值均相等，两个等号只代表值相等
 - ...：spread标识
 	- 可变参数，比如function foo (a, b, ...c)，c获取剩余可变参数
@@ -83,7 +83,7 @@ draft: false
 - fetch：异步函数，通过路径（本地或远程连接）读取数据
 
 # 事件委托
-- [Javascript中的事件委托](Javascript%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98.md)
+- [../Answers/Javascript中的事件委托](../Answers/Javascript%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98.md)
 # Module
 - module：代码通过模块载入，类似python的import
 	- 在html的script标签里加上type=“module”，将index.js当作module载入

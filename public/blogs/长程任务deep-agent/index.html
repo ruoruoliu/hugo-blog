@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="什么是长程任务 长程任务（Long-horizon tasks）任务通常包含数十步甚至上百步的推理与操作，且往往涉及跨软件交互、长时间跨度和不确定的环境反馈
+Deep Agent Deep Agent一般认为由四部分组成：
+planning tool：前期任务规划 将计划写入文件，标注状态（pending/working/finished） 后续更新状态，并在最终所有计划中的step完成时，结束任务 sub agents： 防止占用主agent的context 拥有专家能力 能力可复用 灵活的权限管理 file system：通过文件系统扩充context 与外部的交互通常token巨大，如web的html数据、pdf等 context过长容易导致模型能力衰减 context过长带来的成本问题 system prompt： 通常很长（几百甚至上千行）且很详细，结构清晰 包含few-shot prompt tool使用规范，包含好的和坏的使用样例 参考链接：
+# What are Deep Agents? # Implementing deepagents: a technical walkthrough # Build AI Agents That Work While You Sleep | Deep Agents Human-in-the-loop 在长程任务中的三大作用：">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="长程任务：Deep Agent :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="什么是长程任务 长程任务（Long-horizon tasks）任务通常包含数十步甚至上百步的推理与操作，且往往涉及跨软件交互、长时间跨度和不确定的环境反馈
+Deep Agent Deep Agent一般认为由四部分组成：
+planning tool：前期任务规划 将计划写入文件，标注状态（pending/working/finished） 后续更新状态，并在最终所有计划中的step完成时，结束任务 sub agents： 防止占用主agent的context 拥有专家能力 能力可复用 灵活的权限管理 file system：通过文件系统扩充context 与外部的交互通常token巨大，如web的html数据、pdf等 context过长容易导致模型能力衰减 context过长带来的成本问题 system prompt： 通常很长（几百甚至上千行）且很详细，结构清晰 包含few-shot prompt tool使用规范，包含好的和坏的使用样例 参考链接：
+# What are Deep Agents? # Implementing deepagents: a technical walkthrough # Build AI Agents That Work While You Sleep | Deep Agents Human-in-the-loop 在长程任务中的三大作用：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="长程任务：Deep Agent :: Ruoruoliu 2.0">
+    <meta property="og:description" content="什么是长程任务 长程任务（Long-horizon tasks）任务通常包含数十步甚至上百步的推理与操作，且往往涉及跨软件交互、长时间跨度和不确定的环境反馈
+Deep Agent Deep Agent一般认为由四部分组成：
+planning tool：前期任务规划 将计划写入文件，标注状态（pending/working/finished） 后续更新状态，并在最终所有计划中的step完成时，结束任务 sub agents： 防止占用主agent的context 拥有专家能力 能力可复用 灵活的权限管理 file system：通过文件系统扩充context 与外部的交互通常token巨大，如web的html数据、pdf等 context过长容易导致模型能力衰减 context过长带来的成本问题 system prompt： 通常很长（几百甚至上千行）且很详细，结构清晰 包含few-shot prompt tool使用规范，包含好的和坏的使用样例 参考链接：
+# What are Deep Agents? # Implementing deepagents: a technical walkthrough # Build AI Agents That Work While You Sleep | Deep Agents Human-in-the-loop 在长程任务中的三大作用：">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2025-12-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-27T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta itemprop="name" content="长程任务：Deep Agent :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="什么是长程任务 长程任务（Long-horizon tasks）任务通常包含数十步甚至上百步的推理与操作，且往往涉及跨软件交互、长时间跨度和不确定的环境反馈
+Deep Agent Deep Agent一般认为由四部分组成：
+planning tool：前期任务规划 将计划写入文件，标注状态（pending/working/finished） 后续更新状态，并在最终所有计划中的step完成时，结束任务 sub agents： 防止占用主agent的context 拥有专家能力 能力可复用 灵活的权限管理 file system：通过文件系统扩充context 与外部的交互通常token巨大，如web的html数据、pdf等 context过长容易导致模型能力衰减 context过长带来的成本问题 system prompt： 通常很长（几百甚至上千行）且很详细，结构清晰 包含few-shot prompt tool使用规范，包含好的和坏的使用样例 参考链接：
+# What are Deep Agents? # Implementing deepagents: a technical walkthrough # Build AI Agents That Work While You Sleep | Deep Agents Human-in-the-loop 在长程任务中的三大作用：">
+    <meta itemprop="datePublished" content="2025-12-27T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-27T00:00:00+00:00">
+    <meta itemprop="wordCount" content="207">
+    <meta itemprop="keywords" content="技术笔记">
+    <title>长程任务：Deep Agent :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1767290529" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1767290529" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1767290529" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1767290529";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1767290529" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1767290529" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1767290529" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1767290529" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#human-in-the-loop">Human-in-the-loop</a></li>
+    <li><a href="#agentic-search">Agentic Search</a></li>
+    <li><a href="#deep-research">Deep Research</a></li>
+    <li><a href="#能力评估">能力评估</a>
+      <ul>
+        <li><a href="#browsecamp-plus">BrowseCamp Plus</a></li>
+      </ul>
+    </li>
+    <li><a href="#产品形态">产品形态</a>
+      <ul>
+        <li><a href="#manus">Manus</a></li>
+        <li><a href="#openai-deep-research">OpenAI Deep Research</a></li>
+        <li><a href="#claude-code">Claude Code</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">长程任务：Deep Agent</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html" title="大模型应用 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="Agent学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="长程任务deep-agent">长程任务：Deep Agent</h1>
+
+<h1 id="什么是长程任务">
+  什么是长程任务
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>长程任务（Long-horizon tasks）任务通常包含数十步甚至上百步的推理与操作，且往往涉及跨软件交互、长时间跨度和不确定的环境反馈</p>
+<h1 id="deep-agent">
+  Deep Agent
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Deep Agent一般认为由四部分组成：</p>
+<ul>
+<li>planning tool：前期任务规划
+<ul>
+<li>将计划写入文件，标注状态（pending/working/finished）</li>
+<li>后续更新状态，并在最终所有计划中的step完成时，结束任务</li>
+</ul>
+</li>
+<li>sub agents：
+<ul>
+<li>防止占用主agent的context</li>
+<li>拥有专家能力</li>
+<li>能力可复用</li>
+<li>灵活的权限管理</li>
+</ul>
+</li>
+<li>file system：通过文件系统扩充context
+<ul>
+<li>与外部的交互通常token巨大，如web的html数据、pdf等</li>
+<li>context过长容易导致模型能力衰减</li>
+<li>context过长带来的成本问题</li>
+</ul>
+</li>
+<li>system prompt：
+<ul>
+<li>通常很长（几百甚至上千行）且很详细，结构清晰</li>
+<li>包含few-shot prompt</li>
+<li>tool使用规范，包含好的和坏的使用样例</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=433SmtTc0TA" target="_blank"># What are Deep Agents?</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=TTMYJAw5tiA" target="_blank"># Implementing deepagents: a technical walkthrough</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=Ly9UDjiOpxg" target="_blank"># Build AI Agents That Work While You Sleep | Deep Agents</a></li>
+</ul>
+<h2 id="human-in-the-loop">
+  Human-in-the-loop
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>在长程任务中的三大作用：</p>
+<ul>
+<li>遇到不可逆的高风险操作（例如：删除服务器数据、进行大额支付）时，需要人工确认</li>
+<li>进入死循环（例如：网页改版导致爬虫失效，或者逻辑推理陷入死结）时，需要人工提示</li>
+<li>人类对Agent每一个步骤的反馈（点赞、踩、修改意见）会被记录下来，作为RLHF的训练数据</li>
+</ul>
+<p>长程任务有两大技术痛点，必须考 HITL 解决：</p>
+<ul>
+<li>意图对齐：用户说“帮我策划一场旅行”，Agent很难一次性猜准用户所有的偏好。通过HITL，Agent可以在第一阶段（选目的地）询问用户反馈，再进行第二阶段（订酒店）</li>
+<li>长程衰减：即使是高级别的模型，在执行到第 20 步时，往往会忘记第一步的初衷。人类介入可以起到“锚点”作用，重置Agent的专注力</li>
+</ul>
+<p>Human-in-the-loop通过checkpointer，记录了任务每个环节的状态，从而方便：</p>
+<ul>
+<li>暂停与恢复：到达需要人工审批的任务节点时，将状态存入数据库，然后进程可以完全关闭</li>
+<li>回溯：让Agent回滚到每一个节点，从那个节点重新分支执行</li>
+<li>故障恢复：执行过程中遇到网络中断或程序崩溃，保证中间结果不丢失</li>
+<li>并发执行：在处理成千上万个长程任务时，系统通过thread_id知道哪个状态属于哪个用户</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=ET8uzwF8Q0A" target="_blank"># Adding Human-in-the-Loop to DeepAgents</a></li>
+</ul>
+<h2 id="agentic-search">
+  Agentic Search
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>Agentic Search是指一种全新的搜索体验或产品形态，它改变了过去输入关键词给出链接列表的模式，而是寻找问题的答案或完成复杂的调研任务</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=_VAPVcdow-Q" target="_blank"># Framework-less Agentic Search</a></li>
+</ul>
+<h2 id="deep-research">
+  Deep Research
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>Deep Agent一个具体应用方向，通过分析用户问题，指定研究计划，agentic search的方式进行搜索和反思，最终形成一份用户问题相关的研究报告</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=2mSNIX-l_Zc" target="_blank"># Open Deep Research</a></li>
+</ul>
+<h2 id="能力评估">
+  能力评估
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="browsecamp-plus">
+  BrowseCamp Plus
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>包含了需要多轮检索和推理的复杂的问题集合，被认为是衡量agent在复杂搜索和长程推理任务（Long-horizon tasks）上性能的重要标尺：</p>
+<ul>
+<li>固定语料库：提供一个包含约 10 万份文档的固定库，不会出现原版实时检索的结果波动</li>
+<li>多维度解耦：它可以分别测试Retriever和Agent的表现</li>
+<li>人工校验： 测试集中的答案和支撑文档都经过了人工验证，确保正确性</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2508.06600" target="_blank">BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent</a></li>
+</ul>
+<h2 id="产品形态">
+  产品形态
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="manus">
+  Manus
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="context-engineering的一些思考">
+  Context Engineering的一些思考
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>
+
+
+
+    
+<a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">Manus中的Context Engineering</a></p>
+<h4 id="context-offloading的三层抽象">
+  Context Offloading的三层抽象
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><ul>
+<li>Function Calling：保留10个左右基础的工具调用，例如文件读写、shell命令执行、网页搜索等，这些原子工具写在system prompt中，基本固定</li>
+<li>Sandbox Utilities：每个session都运行在虚拟环境中，环境中预安装了很多自定义的命令供agent调用</li>
+<li>Packages &amp; APIs：通过编写的python脚本直接请求api获取数据</li>
+</ul>
+<h4 id="技术细节">
+  技术细节
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><blockquote>
+<p>Q：agent如何知道有哪些命令，以及如何使用这些命令？
+A：由于agent在sandbox中执行，可以在system prompt中加入hint，告诉他查看/usr/bin中的命令，由于这些命令都是manus自己开发的，都包含相同格式的&ndash;help文档，供agent查看学习</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus在使用file system的时候是否实时构建索引，怎么搜索内容？
+A：Manus没有实时构建索引，还是通过grep和glob命令来查询中间的文件结果，但是如果需要长期或者企业级知识库，还是需要建索引来完成</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus如何处理长期的跨session的memory呢，是否也有像claude.md文件这样的东西？
+A：每次session都会总结并向用户确认是否要保存这份知识（当前session的关键信息），目前也在探索如何自动化的处理用户偏好</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus会随着模型进步逐渐简化一些基础逻辑吗？
+A：会的，从25年3月到10月已经更新了五个版本，需要根据最新最强的模型的能力变化，预先判断架构是否仍然合理，做好准备</p>
+</blockquote>
+<blockquote>
+<p>Q：怎么确定文件的存储格式，是使用markdown、plain text还是什么？
+A：一般使用line based的plain text，方便进行grep以及查询一定范围行数的内容，markdown有一个问题是某些模型厂商的模型在markdown上训练过于充分导致太容易出现bullet point</p>
+</blockquote>
+<blockquote>
+<p>Q：Summarization的prompt的怎么写的，如果写不好会损失信息，一般的做法是基于高召回来调整，Manus呢？
+A：不要让模型自由发挥，设定一个类似schema的东西，一些field让模型填写，保持稳定以及保证某些内容一定会被总结到（比如目标）</p>
+</blockquote>
+<blockquote>
+<p>Q：Compaction就是把工具的结果写入文件，然后返回一个文件名吗？
+A：是的，但是不光是文件，基本所有操作都有一个外部存储方式，比如网页操作有一个url、搜索操作有一个query，他们都天然的有一个用于compaction的外部存储方式</p>
+</blockquote>
+<blockquote>
+<p>Q：比如对于搜索，如果返回的token很多，是先做summarization在返回还是整体返回再等着compaction？
+A：如果搜索是个复杂搜索，比如多个query那种，会调用高级搜索，本质就是一个sub-agent，他会进行agentic workflow的处理，然后返回固定格式的结果，但是如果是简单的搜索，比如google一下，就是全文返回，然后等待compaction，这种情况下也会让模型写下一些中间的insight存入文件</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是怎么处理agent和agent之间的交流的？
+A：由于Manus是在sandbox中运行的，因此agent之间的sharing context就是共用sandbox就可以了，这不难，难得是怎么确保从sub-agent能得到期望的输出。我们指定主agent在创建sub-agent的时候，就需要制定好返回的structured output，然后在sub-agent返回结果的时候，使用限制解码来控制得到我们期望的输出</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是使用anthropic的模型，但是你们有尝试过开源模型吗，怎么选择的？
+A：更多是成本上的考虑。当需要使用distributed kv-cache的时候，更前沿的模型厂商拥有更有保障的架构支持，反而比你自己实现成本更低。另外每个大模型厂商的模型技术优势各不相同（claude在代码上强，gemini在多模态上强，openai在数学和推理上强），可以进行task、subtask甚至step粒度的routing</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是不是一种混合模式，在有些时候使用原子操作，有些时候使用codeact模式？
+A：是的，这很重要，因为如果都用codeact模式，没办法进行限制解码，导致结果不可控</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus的planning是怎么样的？
+A：一开始Manus也是使用todo.md，这样你会发现三分之一的操作都是在执行todo.md的更新，很浪费token，后来我们使用了一个agent as tool来专门规划，节省token</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus的multi agent是怎么样规划设计的？
+A：Manus的agent不是传统的按角色定义的，只有planner agent、executor agent、knowledge management agent以及api registration agent这么几个，我们对于添加agent很谨慎，因为agent之间的交流很难，更多的是使用agent as tool</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是如何做安全防护的？
+A：由于Manus是运行在sandbox里的，只要能连接到互联网都不安全，所以我们会监控从sandbox流出的信息，确保不含有带有token信息的内容，即便这样，Manus在agent使用一些敏感操作时，还是会向用户确认，或者直接让用户接手</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是如何进行评估的？
+A：一开始刚发布的时候是使用gaia评估集，但是发现分数高的模型反而用户不喜欢。目前是采取以下三种方式：1、每个完成的session都要求用户打分（1-5分）；2、自己构建了一些关于execution的自动化评测集，可以在sandbox里面跑测试；3、招实习生来标注，因为一些如web generation、data visualization的任务需要人工评估（很难有好的reward model）</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus会基于提供的工具进行RL训练吗？
+A：如果要支持MCP，agent的action space就会非常自由多变，这个情况下RL的方式很难训练。如果有充足的资源可以尝试，但是大模型的厂商都在做这件事，所以我们不需要重复造轮子，我们尽量使用parameter free的方式（不改变模型权重）</p>
+</blockquote>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=6_BcCthVvb8" target="_blank">Context Engineering for AI Agents with LangChain and Manus</a></li>
+</ul>
+<h3 id="openai-deep-research">
+  OpenAI Deep Research
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h3 id="claude-code">
+  Claude Code
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3>
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Dec 27, 2025
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html">大模型应用</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1767290529" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>

@@ -13,7 +13,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Fri, 12 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
-      <description>基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。&#xA;markdown的设计目标是对应markup做的简化版本&#xA;data-* HTML中的data-* Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context</description>
+      <description>基础概念 HTML本质上 就是和markdown 一样的标记语言，用于给文本添加格式。&#xA;markdown的设计目标是对应markup做的简化版本&#xA;data-* ../Answers/HTML中的data-* Canvas canvas创建 &lt;canvas width=&#34;300&#34; height=&#34;200&#34;&gt;&lt;/canvas&gt; context 设置使用2D canvas，获取canvas的context，后续操作都是通过context</description>
     </item>
   </channel>
 </rss>
