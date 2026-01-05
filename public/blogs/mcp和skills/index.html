@@ -24,30 +24,30 @@
     <meta itemprop="description" content="MCP model context protocol在2024年底由anthropic开源， 用于方便大模型agent获取和操作内部数据或者外部API接口 MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议 MCP中的分工： MCP server MCP server的实现，以python版本github的list_repo_issues为例： from mcp.server.fastmcp import FastMCP import httpx import os # 1. 初始化 FastMCP # name 会显示在 AI 客户端中 mcp = FastMCP(&#34;GitHub Manager&#34;) # 从环境变量获取 Token GITHUB_TOKEN = os.getenv(&#34;GITHUB_TOKEN&#34;) # 2. 定义一个工具 (Tool) # FastMCP 会根据函数签名、类型提示和 Docstring 自动生成 MCP 所需的 Schema @mcp.tool() async def list_repo_issues(owner: str, repo: str) -&gt; str: &#34;&#34;&#34; 获取指定 GitHub 仓库的公开 Issue 列表。 :param owner: 仓库所有者 (例如 &#39;psf&#39;) :param repo: 仓库名称 (例如 &#39;requests&#39;) &#34;&#34;&#34; url = f&#34;https://api.github.com/repos/{owner}/{repo}/issues&#34; headers = { &#34;Authorization&#34;: f&#34;token {GITHUB_TOKEN}&#34;, &#34;Accept&#34;: &#34;application/vnd.github.v3&#43;json&#34; } async with httpx.AsyncClient() as client: response = await client.get(url, headers=headers) response.raise_for_status() issues = response.json() # 格式化输出给 AI 看 results = [] for issue in issues[:10]: # 仅取前10个 results.append(f&#34;#{issue[&#39;number&#39;]}: {issue[&#39;title&#39;]}&#34;) return &#34;\n&#34;.join(results) if results else &#34;没有找到打开的 Issue。&#34; if __name__ == &#34;__main__&#34;: # 3. 启动 Server（默认使用 stdio 传输） mcp.run() MCP server的配置 { &#34;mcpServers&#34;: { &#34;my_python_github&#34;: { &#34;command&#34;: &#34;python3&#34;, &#34;args&#34;: [&#34;/你的绝对路径/github_server.py&#34;], &#34;env&#34;: { &#34;GITHUB_TOKEN&#34;: &#34;你的_PERSONAL_ACCESS_TOKEN&#34; } } } } MCP Host（client） MCP Host会把各个的大模型工具调用json转换为统一的MCP格式调用json，并在MCP server中进行调用（server通常是在Host本地起的一个子进程），从而用户只要关心MCP上不同工具的配置参数即可，不同厂家的模型都可以无缝使用这些工具 MCP Host开始只是大模型厂商在做，逐渐演变成编辑器（IDE）、容器（docker）等加入，只要支持对json的翻译能力就可以 MCP Host初始化 会进行工具查询，与配置文件里的所有 MCP Server 进行“握手” 当你开启一个“新对话”并输入第一句话时，Host 会把缓存里的工具定义转换成模型能懂的格式，塞进system prompt 专业的host甚至在每一轮对话都会传入，以便模型维持记忆，并进行动态筛选&#43;缓存（prompt caching） MCP Gateway 使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server 如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置 这种网关比如docker desktop： 参考链接：">
     <meta itemprop="datePublished" content="2025-12-22T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-12-22T00:00:00+00:00">
-    <meta itemprop="wordCount" content="244">
+    <meta itemprop="wordCount" content="252">
     <meta itemprop="keywords" content="技术笔记">
     <title>MCP和Skills :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1767290529" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1767290529" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1767290529" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1767290529" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1767290529" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1767597487" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1767597487" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1767597487" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1767597487" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1767597487" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1767290529";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1767597487";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1767290529" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1767290529" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1767290529" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1767597487" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1767597487" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1767597487" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1767597487" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767290529" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1767290529" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1767290529" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1767290529" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767597487" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1767597487" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1767597487" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1767597487" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1767597487" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -212,8 +212,8 @@
 <li>用于方便大模型agent获取和操作内部数据或者外部API接口</li>
 <li>MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议</li>
 <li>MCP中的分工：
-<a href="#R-image-b68d5541c373135ea23cfab76f2e316a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b68d5541c373135ea23cfab76f2e316a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png"></a></li>
+<a href="#R-image-5eb935ddc888ca9c28a58716c4ee2ffa" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5eb935ddc888ca9c28a58716c4ee2ffa"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png"></a></li>
 </ul>
 <h2 id="mcp-server">
   MCP server
@@ -319,8 +319,8 @@ if __name__ == &#34;__main__&#34;:
 <li>使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server</li>
 <li>如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置</li>
 <li>这种网关比如docker desktop：
-<a href="#R-image-beb689e48b34a838c5771d48e62b0b5c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-beb689e48b34a838c5771d48e62b0b5c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png"></a></li>
+<a href="#R-image-754e669c6611c8625ce5629ad0f1fd7e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-754e669c6611c8625ce5629ad0f1fd7e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png"></a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -366,10 +366,17 @@ if __name__ == &#34;__main__&#34;:
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<p><a href="#R-image-b4cb819763dbd3ec1e23305f13235b24" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b4cb819763dbd3ec1e23305f13235b24"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png"></a></p>
+<p><a href="#R-image-58f62bb0a15f05365fca8fcb8531b4f1" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-58f62bb0a15f05365fca8fcb8531b4f1"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png"></a></p>
 <ul>
 <li>Claude发布，用于将一些重复的能力固化在md文件中，当用户问题与之相关时，自动读取Skill的md文件，加载到prompt中</li>
+<li>skill的主要特点，渐进式披露：
+<ul>
+<li>元数据按需加载：根据用户query，模型会根据skills的描述选择合适的skill，之后用户确认使用后，再将skill的全部内容发给模型查看</li>
+<li>reference：在过程中如果需要某个引用文件（一般内容较多，如规章制度、法律法规等），可以在skill.md中添加对应的查看条件，做到skill内部文件的按需加载</li>
+<li>script：在过程中如果需要调用脚本程序，也可以在skil.md中添加对应的使用条件，自动触发脚本执行，注意模型不查看scirpt内容，不消耗token</li>
+</ul>
+</li>
 <li>Claude自带的create-skill这个skill可以帮助我们创建自己的skill，通过几轮对话完善一个定制化的skill的md文件</li>
 <li>与MCP不同，MCP用于获取外部数据和工具，而Skills用于指导大模型如何做某件事，比如规范、要求等</li>
 </ul>
@@ -390,6 +397,11 @@ if __name__ == &#34;__main__&#34;:
 
 
 <a href="https://www.bilibili.com/video/BV1HcmgBJEqJ/?spm_id_from=333.788.recommend_more_video.0&amp;trackid=web_related_0.router-related-2206419-k4qpm.1766411182993.885&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># 停止构建智能体，开始构建技能：Anthropic Agent Skills的深度洞察与AI范式变革</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=yDc0_8emz7M" target="_blank"># Agent Skill 从使用到原理，一次讲清</a></li>
 </ul>
 
   <footer class="footline">
@@ -441,7 +453,10 @@ if __name__ == &#34;__main__&#34;:
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html">大模型应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html">LLM和agent的训练</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">大模型工程实践</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">大模型在其他技术中的应用</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
@@ -485,8 +500,8 @@ if __name__ == &#34;__main__&#34;:
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1767290529" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1767290529" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1767597487" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1767597487" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

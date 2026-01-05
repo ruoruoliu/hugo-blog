@@ -98,6 +98,10 @@ draft: false
 ![image.png](https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png)
 
 - Claude发布，用于将一些重复的能力固化在md文件中，当用户问题与之相关时，自动读取Skill的md文件，加载到prompt中
+- skill的主要特点，渐进式披露：
+	- 元数据按需加载：根据用户query，模型会根据skills的描述选择合适的skill，之后用户确认使用后，再将skill的全部内容发给模型查看
+	- reference：在过程中如果需要某个引用文件（一般内容较多，如规章制度、法律法规等），可以在skill.md中添加对应的查看条件，做到skill内部文件的按需加载
+	- script：在过程中如果需要调用脚本程序，也可以在skil.md中添加对应的使用条件，自动触发脚本执行，注意模型不查看scirpt内容，不消耗token
 - Claude自带的create-skill这个skill可以帮助我们创建自己的skill，通过几轮对话完善一个定制化的skill的md文件
 - 与MCP不同，MCP用于获取外部数据和工具，而Skills用于指导大模型如何做某件事，比如规范、要求等
 
@@ -105,3 +109,4 @@ draft: false
 - [# Claude Skills Explained - Step-by-Step Tutorial for Beginners](https://www.youtube.com/watch?v=wO8EboopboU)
 - [# Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
 - [# 停止构建智能体，开始构建技能：Anthropic Agent Skills的深度洞察与AI范式变革](https://www.bilibili.com/video/BV1HcmgBJEqJ/?spm_id_from=333.788.recommend_more_video.0&trackid=web_related_0.router-related-2206419-k4qpm.1766411182993.885&vd_source=c8a3c83e361aa2a357093342a046ceed)
+- [# Agent Skill 从使用到原理，一次讲清](https://www.youtube.com/watch?v=yDc0_8emz7M)

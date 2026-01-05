@@ -142,7 +142,34 @@ Deep Agent一个具体应用方向，通过分析用户问题，指定研究计�
 
 参考链接：
 - [Context Engineering for AI Agents with LangChain and Manus](https://www.youtube.com/watch?v=6_BcCthVvb8)
+#todo monica插件使用体验
 
 ### OpenAI Deep Research
 
+![image.png|600](https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png)
+
+- lead agent根据用户query设计策略，创建子agent进行不同方面的探索
+- 子agent通过多步搜索动态分析每次的搜索结果
+- citation agent单独在最终完成citation插入的定向任务
+![image.png|600](https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png)
+
+主要通过prompt engineering解决multi-agent的以下问题，
+- 简单query创建过多子agent
+- 在web中持续搜索不存在内容
+- 过度更新context产生互相干扰
+
+如何有效评估multi-agent：
+- 从很小的评测集开始，快速迭代
+- 到某一阶段后通过llm-as-judge来评估：事实性、引用准确、完整性、来源质量和工具效率等
+- 人工校验自动化疏漏（通过prompt修改）：如自动化流程通常倾向于seo较好的文档来源
+
+工业可靠性：
+- 通过agent的state来快速恢复出现错误之前的state并retry，包括tool call的错误
+- 添加trace，包括决策、交互结构等，方便debug
+- agent的更新升级，不是同时的（会导致运行中的agent报错），而是以agent粒度渐进的
+- 期待后续实现异步调用，目前的同步方式会使通信成为瓶颈，且耗时（等待最慢的子agent）
+
+参考链接：
+- [# How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+- [open-source prompts in our Cookbook](https://github.com/anthropics/claude-cookbooks/tree/main/patterns/agents/prompts)
 ### Claude Code

@@ -15,6 +15,7 @@ draft: false
 
 参考链接：
 - [# Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+- [A practical guide to building agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf)
 - [# LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)
 
 ## Planning
@@ -99,8 +100,7 @@ draft: false
 参考链接：
 - [Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models](https://arxiv.org/pdf/2310.04406)
 
-#todo 2025 agent planing方向进展
-
+#todo system1、2、3
 ## Tools
 ---
 ### CodeAct
@@ -161,11 +161,62 @@ A-Mem的工作流程模仿了卡片笔记的构建过程，主要包含以下四
 参考链接：
 - [A-Mem: Agentic Memory for LLM Agents](https://arxiv.org/pdf/2502.12110)
 
+#todo memr3
+
 ## Multi-agent
 ---
+multi-agent相比single agent带来的能力提升大多数（80%）归功于更多token的使用，其次是工具的数量和模型的选择，相比chatbot，agent的token使用量是4x，multi-agent一般是15x。
 
-# Agent构建
----
+这引出了multi-agent的使用场景：
+- 高价值产出的任务、可以并行化的任务、context过长的任务、使用复杂工具数量过多的任务
+- 如果多个agent之间需要共享全部context或者有许多相互依赖，则不适合
+
+参考链接：
+- [# How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+
+应用实例：
+- [OpenAI Deep Research](%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1%EF%BC%9ADeep%20Agent.md#OpenAI%20Deep%20Research)
+
+### 为什么不要构建multi-agent
+
+agent通过context engineering维护可靠性（这里可靠性主要指任务完成能力），而子agent之间缺失的部分context会导致任务失败
+	- 原则1：共享context、以及完整的agent traces，而不只是消息
+	- 原则2：行为隐含了决策，而不同的决策会矛盾导致出错
+
+因此，multi-agent的结构最终只能简化为多个agent的串联，然而这在[长程任务](%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1%EF%BC%9ADeep%20Agent.md)中会导致context overflow的问题，需要agent之间进行context compression，但这很难：
+![image.png|400](https://images.ruoruoliu.com/2026/01/70d87c536898e7f37a8ae021ae39e7ea.png)
+
+可行的multi-agent：
+- claude code：子agent只搜索信息，不参与编程，保证不会出现子agent之间冲突的问题
+- 多agent交互：通过子agent之间的讨论最终达成共识，解决冲突，但这目前很难
+
+参考链接：
+- [# Don’t Build Multi-Agents](https://cognition.ai/blog/dont-build-multi-agents#principles-of-context-engineering)
+
+### 框架实现
+
+#### langgraph
+- 基于工具：构建handoffs工具，供agent调用
+- 子agent共同连接到一个parent上，parent保存global的信息，每次子agent调用handoffs工具，会把message更新到global里，同时跳转到另一个子agent上
+
+参考链接：
+- [# Building a multi-agent researcher with llms.txt](https://www.youtube.com/watch?v=DU_W9tgFcqo)
+- [# Understanding multi-agent handoffs](https://www.youtube.com/watch?v=WTr6mHTw5cM)
+
+#### A2A
+#todo a2a介绍
+
+#### swarm
+
+参考链接：
+- [swarm](https://github.com/openai/swarm)
+#### autgen
+
+参考链接：
+- [autogen](https://github.com/microsoft/autogen)
+
+## 如何构建agent
+--- 
 构建可靠Agent的12个关键：
 	1. natural language to tool calls：将自然语言的需求转化为函数名、参数的能力
 	2. own your prompts：不依赖框架定义的prompt，自己写，方便调试迭代
@@ -183,17 +234,19 @@ A-Mem的工作流程模仿了卡片笔记的构建过程，主要包含以下四
 参考链接：
 - [# 12-Factor Agents: Patterns of reliable LLM applications](https://github.com/humanlayer/12-factor-agents/tree/main/content)
 
-## LangChain
+### LangChain
 --- 
 - [# What is LangChain?](https://www.youtube.com/watch?v=1bUy-1hGZpI)
 - [# LangChain vs LangGraph: A Tale of Two Frameworks](https://www.youtube.com/watch?v=qAF1NjEVHhY)
-### LangGraph
+#### LangGraph
+
 使用[LangGraph](LangChain.md#LangGraph)来搭建不同范式的workflow和Agent	![image.png](https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png)
 参考链接：
 - [# Workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
 - [# Building Effective Agents with LangGraph](https://www.youtube.com/watch?v=aHCDrAbH_go)
 - [# LangGraph: Planning Agents](https://www.youtube.com/watch?v=uRya4zRrRx4)
-### Deep Agents
+#### Deep Agents
+
 使用[deepagents](https://docs.langchain.com/oss/python/deepagents/overview)来搭建Deep Agent
 - 自带各种工具及其对应中间件：planning、sub-agent delegation、filesystem
 - 用户可以提供工具、指令以及sub-agent
@@ -202,10 +255,14 @@ A-Mem的工作流程模仿了卡片笔记的构建过程，主要包含以下四
 参考链接：
 - [# Build a Research Agent with Deep Agents](https://www.youtube.com/watch?v=5tn6O0uXYEg)
 
-# Agent训练
---- 
-#todo 强化学习调整agent行为模式：retroformer、voyager
-#todo PRM
-#todo interleaving thinking后训练
-#todo verl slime
-#todo Search-R1
+### ADK
+
+Google在2025年发布的agent搭建开源框架，通过提供模块化、结构化的工具，帮助开发者更轻松地构建、评估和部署复杂的智能体系统
+
+#todo 试用adk
+参考链接：
+- [ADK是什么](../Answers/ADK%E6%98%AF%E4%BB%80%E4%B9%88.md)
+
+## 如何训练agent
+---
+[LLM和agent的训练](LLM%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83.md)
