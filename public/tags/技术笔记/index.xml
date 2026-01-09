@@ -13,14 +13,14 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html</link>
       <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html</guid>
-      <description>#todo 强化学习调整agent行为模式：retroformer、voyager #todo rlvr， 清华上交paper：提高pass@1的稳定性 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed #todo PRM #todo interleaving thinking后训练 #todo verl slime #todo Search-R1</description>
+      <description>强化学习 RLHF PPO DPO RLVR #todo 强化学习调整agent行为模式：retroformer、voyager #todo rlvr， 清华上交paper：提高pass@1的稳定性 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed #todo PRM #todo interleaving thinking后训练 #todo verl slime #todo Search-R1</description>
     </item>
     <item>
       <title>从零开始构建商品收货系统</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html</link>
       <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html</guid>
-      <description>背景 叔叔需求：</description>
+      <description>背景 需求：老家亲戚是做衣服加工的，分为横机和套口两个种类，现在要做一个功能，来汇总和清晰的展示一些统计数据 现状：目前使用excel来完成：图1包含了横机的单位重量（重量/件）、施工单位和套口的施工单位的基础信息；图2包含了横机按时间、施工单位、件数、重量（件数 * 重量/件）的明细；图3包含了套口按时间、施工单位、件数（包含发出和收回）的明细 痛点：亲戚目前每天手动填写当天的新增条目（哪个单位给了多少，什么款式，如果是套口还包含收回多少），然后需要下拉excel单元格显示结果（excel的列目前用公式指定怎么计算结果）。现在希望可以只用手动添加条目，不用excel下拉的方式，且统一品类在同一页面方便截图 想法：做一个网页，加一个后台数据库，直接访问网页操作，但是考虑数据隐私和亲戚电脑没有联网的情况，设计为本地保存数据 整体思路 基于上述要求，gemini的思路： 方案二细节： 从零开始构建商品收货系统-方案细节&#xA;具体实现 代码链接 product-record-manager</description>
     </item>
     <item>
       <title>大模型工程实践</title>

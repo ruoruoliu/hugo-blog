@@ -6,6 +6,19 @@ tags:
 draft: false
 ---
 
+# 强化学习
+--- 
+## RLHF
+
+## PPO
+
+## DPO
+
+## RLVR
+
+
+
+
 #todo 强化学习调整agent行为模式：retroformer、voyager
 #todo rlvr， 清华上交paper：提高pass@1的稳定性
 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm

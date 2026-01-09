@@ -13,7 +13,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week10/index.html</link>
       <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week10/index.html</guid>
-      <description>总结 跟进大模型强化学习进展 搭建商品收货记录系统 大模型强化学习进展跟进 跟进大模型强化学习进展： LLM和agent的训练 [!tip] 知识 待办 强化学习基础知识 AlphaGo技术调研和实践</description>
+      <description>总结 跟进大模型强化学习进展 搭建商品收货记录系统 搭建商品收货记录系统 学习bootstrap基础知识 前端开源css框架，主要用于快速开发响应式的网站，拥有Grid System和丰富预设组件 预设div的一些class：方便基于grid布局的响应式变化，包括grid的数量、顺序以及offset 提供预设的组件：buttons、下拉栏、以及modal（支持js）等 参考链接 整体思路采用flask+sqlite+bootstrap的方式: 从零开始构建商品收货系统 大模型强化学习进展跟进 跟进大模型强化学习进展： LLM和agent的训练 [!tip] 知识 待办 强化学习基础知识 AlphaGo技术调研和实践</description>
     </item>
     <item>
       <title>Week9 大模型进展</title>
