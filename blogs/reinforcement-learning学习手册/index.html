@@ -5,28 +5,52 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
+    <meta name="description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process） 在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） RL agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 RL agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出平均分，基于相对平均分的好坏来找到最好的policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP 参考链接：">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="大模型工程实践 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">
+    <meta name="twitter:title" content="Reinforcement Learning学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process） 在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） RL agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 RL agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出平均分，基于相对平均分的好坏来找到最好的policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP 参考链接：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="大模型工程实践 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
+    <meta property="og:title" content="Reinforcement Learning学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process） 在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） RL agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 RL agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出平均分，基于相对平均分的好坏来找到最好的policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP 参考链接：">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2026-01-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-01-02T00:00:00+00:00">
+    <meta property="article:published_time" content="2026-01-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-09T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="大模型工程实践 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
-    <meta itemprop="datePublished" content="2026-01-02T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2026-01-02T00:00:00+00:00">
-    <meta itemprop="wordCount" content="4">
+    <meta itemprop="name" content="Reinforcement Learning学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process） 在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） RL agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 RL agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出平均分，基于相对平均分的好坏来找到最好的policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP 参考链接：">
+    <meta itemprop="datePublished" content="2026-01-09T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-01-09T00:00:00+00:00">
+    <meta itemprop="wordCount" content="69">
     <meta itemprop="keywords" content="技术笔记">
-    <title>大模型工程实践 :: Ruoruoliu 2.0</title>
+    <title>Reinforcement Learning学习手册 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1767978911" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1767978911" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1767978911" defer></script>
@@ -52,7 +76,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5\/index.html';
+      window.relearn.path='\/blogs\/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -100,7 +124,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -132,7 +156,7 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">大模型工程实践</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Reinforcement Learning学习手册</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -143,7 +167,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html" title="从零开始构建商品收货系统 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -153,7 +177,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html" title="大模型在其他技术中的应用 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html" title="LLM和agent的训练 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -187,21 +211,10 @@
 </div>
   </header>
 
-<h1 id="大模型工程实践">大模型工程实践</h1>
+<h1 id="reinforcement-learning学习手册">Reinforcement Learning学习手册</h1>
 
-<h1 id="kv-cache">
-  KV-cache
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<h1 id="pd分离">
-  PD分离
+<h1 id="基本概念">
+  基本概念
 
 
 
@@ -211,10 +224,78 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<p>#todo 什么是PD分离，为什么要用PD分离</p>
+<p>强化学习与机器学习的差别：</p>
+<ul>
+<li>没有supervisor，只有reward</li>
+<li>反馈是滞后的，不是实时的</li>
+<li>时间序列，每一个时间步不是i.i.d的</li>
+<li>agent的行为会影响后续数据</li>
+</ul>
+<p>reward是什么：</p>
+<ul>
+<li>一个标量的反馈信号</li>
+<li>表示agent在t时刻的表现</li>
+<li>agent的目标是最大化累积reward</li>
+</ul>
+<p>序列决策：</p>
+<ul>
+<li>目标是选择action，最大化累积reward</li>
+<li>action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward</li>
+<li>序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、&hellip;
+<a href="#R-image-afad2d1b7dc150bfb44d0bf0a482a5ab" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-afad2d1b7dc150bfb44d0bf0a482a5ab"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png"></a></li>
+</ul>
+<p>state是什么：</p>
+<ul>
+<li>state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息</li>
+<li>environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音</li>
+<li>agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入</li>
+<li>markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立</li>
+<li>在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）</li>
+<li>在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process）</li>
+</ul>
+<p>RL agent三大组件：</p>
+<ul>
+<li>policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布</li>
+<li>value function：agent基于某个policy下，对于当前状态的未来累积价值评估</li>
+<li>model：
+<ul>
+<li>transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测</li>
+<li>reward model：agent基于当前状态和行为，对于reward的预测</li>
+</ul>
+</li>
+</ul>
+<p>RL agent的分类：</p>
+<ul>
+<li>value-based：没有显式的policy，根据value function选择最大的action</li>
+<li>policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action）</li>
+<li>actor-critic：结合policy和value function，通过value function给出平均分，基于相对平均分的好坏来找到最好的policy</li>
+<li>基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态
+<a href="#R-image-fbd4a01c481666351840b5616ca61b4d" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fbd4a01c481666351840b5616ca61b4d"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png"></a></li>
+</ul>
+<h1 id="mdp">
+  MDP
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=2pWv7GOvuf0&amp;list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ" target="_blank"># RL Course by David Silver - Lecture 1: Introduction to Reinforcement Learning</a></li>
+</ul>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Jan 2, 2026
+              <i class='fa-fw fas fa-calendar'></i> Jan 9, 2026
   </footer>
 </article>
         </div>
@@ -262,10 +343,10 @@
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
-            <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html">LLM和agent的训练</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">大模型工程实践</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">大模型工程实践</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">大模型在其他技术中的应用</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>

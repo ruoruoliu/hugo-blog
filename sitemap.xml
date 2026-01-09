@@ -6,14 +6,22 @@
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</loc>
-    <lastmod>2026-01-05T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-09T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html</loc>
-    <lastmod>2026-01-05T00:00:00+00:00</lastmod>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</loc>
+    <lastmod>2026-01-09T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/tags/index.html</loc>
+    <lastmod>2026-01-09T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</loc>
+    <lastmod>2026-01-09T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html</loc>
     <lastmod>2026-01-05T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -30,10 +38,6 @@
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html</loc>
-    <lastmod>2026-01-05T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html</loc>
     <lastmod>2026-01-05T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -163,6 +167,10 @@
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html</loc>
     <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week11/index.html</loc>
+    <lastmod>2025-11-17T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html</loc>
