@@ -25,4 +25,4 @@ draft: false
 > - Multi-agent目前主要受限于context共享和任务分工后产生的矛盾问题，基本采用简单的planner/executor的串行模式，基于上下文压缩解决过长的问题
 
 > [!warning] 待办
-> - 大模型强化学习进展跟进
+> - 强化学习基础知识

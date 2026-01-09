@@ -17,13 +17,13 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "强化学习 RLHF PPO DPO RLVR #todo 强化学习调整agent行为模式：retroformer、voyager #todo rlvr， 清华上交paper：提高pass@1的稳定性 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed #todo PRM #todo interleaving thinking后训练 #todo verl slime #todo Search-R1",
-    "description": "强化学习 RLHF PPO DPO RLVR #todo 强化学习调整agent行为模式：retroformer、voyager #todo rlvr， 清华上交paper：提高pass@1的稳定性 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed #todo PRM #todo interleaving thinking后训练 #todo verl slime #todo Search-R1",
+    "content": "基本概念 强化学习与机器学习的差别：\n没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：\n一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：\n目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：\nstate是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process） 在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） RL agent三大组件：\npolicy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 RL agent的分类：\nvalue-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出平均分，基于相对平均分的好坏来找到最好的policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP 参考链接：\n# RL Course by David Silver - Lecture 1: Introduction to Reinforcement Learning",
+    "description": "基本概念 强化学习与机器学习的差别：\n没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：\n一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：\n目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：\nstate是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process） 在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） RL agent三大组件：\npolicy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 RL agent的分类：\nvalue-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出平均分，基于相对平均分的好坏来找到最好的policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP 参考链接：",
     "tags": [
       "技术笔记"
     ],
-    "title": "LLM和agent的训练",
-    "uri": "/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"
+    "title": "Reinforcement Learning学习手册",
+    "uri": "/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0",
@@ -34,9 +34,27 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "强化学习 RLHF PPO DPO RLVR #todo 强化学习调整agent行为模式：retroformer、voyager #todo rlvr， 清华上交paper：提高pass@1的稳定性 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed #todo PRM #todo interleaving thinking后训练 #todo verl slime #todo Search-R1",
+    "description": "强化学习 RLHF PPO DPO RLVR #todo 强化学习调整agent行为模式：retroformer、voyager #todo rlvr， 清华上交paper：提高pass@1的稳定性 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed #todo PRM #todo interleaving thinking后训练 #todo verl slime #todo Search-R1",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "LLM和agent的训练",
+    "uri": "/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 跟进大模型强化学习进展 搭建商品收货记录系统 搭建商品收货记录系统 学习bootstrap基础知识 前端开源css框架，主要用于快速开发响应式的网站，拥有Grid System和丰富预设组件 预设div的一些class：方便基于grid布局的响应式变化，包括grid的数量、顺序以及offset 提供预设的组件：buttons、下拉栏、以及modal（支持js）等 参考链接 整体思路采用flask+sqlite+bootstrap的方式: 从零开始构建商品收货系统 大模型强化学习进展跟进 跟进大模型强化学习进展： LLM和agent的训练 [!tip] 知识 待办 强化学习基础知识 AlphaGo技术调研和实践",
-    "description": "总结 跟进大模型强化学习进展 搭建商品收货记录系统 搭建商品收货记录系统 学习bootstrap基础知识 前端开源css框架，主要用于快速开发响应式的网站，拥有Grid System和丰富预设组件 预设div的一些class：方便基于grid布局的响应式变化，包括grid的数量、顺序以及offset 提供预设的组件：buttons、下拉栏、以及modal（支持js）等 参考链接 整体思路采用flask+sqlite+bootstrap的方式: 从零开始构建商品收货系统 大模型强化学习进展跟进 跟进大模型强化学习进展： LLM和agent的训练 [!tip] 知识 待办 强化学习基础知识 AlphaGo技术调研和实践",
+    "content": "总结 强化学习基础知识 搭建商品收货记录系统 搭建商品收货记录系统 学习bootstrap基础知识 前端开源css框架，主要用于快速开发响应式的网站，拥有Grid System和丰富预设组件 预设div的一些class：方便基于grid布局的响应式变化，包括grid的数量、顺序以及offset 提供预设的组件：buttons、下拉栏、以及modal（支持js）等 参考链接 整体思路采用flask+sqlite+bootstrap的方式: 从零开始构建商品收货系统 强化学习基础知识 Reinforcement Learning学习手册 [!tip] 知识 待办 跟进大模型强化学习技术",
+    "description": "总结 强化学习基础知识 搭建商品收货记录系统 搭建商品收货记录系统 学习bootstrap基础知识 前端开源css框架，主要用于快速开发响应式的网站，拥有Grid System和丰富预设组件 预设div的一些class：方便基于grid布局的响应式变化，包括grid的数量、顺序以及offset 提供预设的组件：buttons、下拉栏、以及modal（支持js）等 参考链接 整体思路采用flask+sqlite+bootstrap的方式: 从零开始构建商品收货系统 强化学习基础知识 Reinforcement Learning学习手册 [!tip] 知识 待办 跟进大模型强化学习技术",
     "tags": [
       "周记"
     ],
@@ -70,14 +88,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离",
     "description": "KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离",
@@ -89,8 +99,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 跟进大模型进展 跟进大模型进展 跟进Agent技术进展， Agent学习手册，主要跟进以下几方面： Memory Deep Agents Multi-agent 知识 Memory主要包含working、episodic、semantic和procedure四种 working基本就是短期的上文对话 episodic和context engineering主要相关，用于提取长上文摘要信息 semantic和rag主要相关，用于提取外部信息 procedure则更多通过模型训练方式内化到参数中，形成解决任务方式的记忆 Deep Agents是agent解决长程任务的一种范式，其中重要的一类任务是Deep Research，通过Agentic Search方式搜索信息生成详细的技术报告 Multi-agent目前主要受限于context共享和任务分工后产生的矛盾问题，基本采用简单的planner/executor的串行模式，基于上下文压缩解决过长的问题 待办 大模型强化学习进展跟进",
-    "description": "总结 跟进大模型进展 跟进大模型进展 跟进Agent技术进展， Agent学习手册，主要跟进以下几方面： Memory Deep Agents Multi-agent 知识 Memory主要包含working、episodic、semantic和procedure四种 working基本就是短期的上文对话 episodic和context engineering主要相关，用于提取长上文摘要信息 semantic和rag主要相关，用于提取外部信息 procedure则更多通过模型训练方式内化到参数中，形成解决任务方式的记忆 Deep Agents是agent解决长程任务的一种范式，其中重要的一类任务是Deep Research，通过Agentic Search方式搜索信息生成详细的技术报告 Multi-agent目前主要受限于context共享和任务分工后产生的矛盾问题，基本采用简单的planner/executor的串行模式，基于上下文压缩解决过长的问题 待办 大模型强化学习进展跟进",
+    "content": "总结 跟进大模型进展 跟进大模型进展 跟进Agent技术进展， Agent学习手册，主要跟进以下几方面： Memory Deep Agents Multi-agent 知识 Memory主要包含working、episodic、semantic和procedure四种 working基本就是短期的上文对话 episodic和context engineering主要相关，用于提取长上文摘要信息 semantic和rag主要相关，用于提取外部信息 procedure则更多通过模型训练方式内化到参数中，形成解决任务方式的记忆 Deep Agents是agent解决长程任务的一种范式，其中重要的一类任务是Deep Research，通过Agentic Search方式搜索信息生成详细的技术报告 Multi-agent目前主要受限于context共享和任务分工后产生的矛盾问题，基本采用简单的planner/executor的串行模式，基于上下文压缩解决过长的问题 待办 强化学习基础知识",
+    "description": "总结 跟进大模型进展 跟进大模型进展 跟进Agent技术进展， Agent学习手册，主要跟进以下几方面： Memory Deep Agents Multi-agent 知识 Memory主要包含working、episodic、semantic和procedure四种 working基本就是短期的上文对话 episodic和context engineering主要相关，用于提取长上文摘要信息 semantic和rag主要相关，用于提取外部信息 procedure则更多通过模型训练方式内化到参数中，形成解决任务方式的记忆 Deep Agents是agent解决长程任务的一种范式，其中重要的一类任务是Deep Research，通过Agentic Search方式搜索信息生成详细的技术报告 Multi-agent目前主要受限于context共享和任务分工后产生的矛盾问题，基本采用简单的planner/executor的串行模式，基于上下文压缩解决过长的问题 待办 强化学习基础知识",
     "tags": [
       "周记"
     ],
@@ -384,6 +394,16 @@ var relearn_searchindex = [
     "tags": [],
     "title": "自动化流程平台Zapier",
     "uri": "/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
+    "content": "总结 跟进大模型强化学习技术 跟进大模型强化学习技术 跟进大模型强化学习进展： LLM和agent的训练 [!tip] 知识 待办 AlphaGo技术调研和实践",
+    "description": "总结 跟进大模型强化学习技术 跟进大模型强化学习技术 跟进大模型强化学习进展： LLM和agent的训练 [!tip] 知识 待办 AlphaGo技术调研和实践",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week11 大模型强化学习",
+    "uri": "/hugo-blog/weekly/week11/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
