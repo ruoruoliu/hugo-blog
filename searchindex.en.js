@@ -500,13 +500,5 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Categories",
     "uri": "/hugo-blog/categories/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Projects",
-    "uri": "/hugo-blog/projects/index.html"
   }
 ]
