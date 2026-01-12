@@ -31,27 +31,27 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
     <meta itemprop="wordCount" content="130">
     <meta itemprop="keywords" content="技术笔记">
     <title>Context Engineering学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768196229" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768196229" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768196229" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1768219034" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768219034" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1768219034" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768196229";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768219034";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768219034" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768196229" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768196229" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768196229" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768196229" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768196229" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768219034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768219034" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768219034" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1768219034" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1768219034" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -245,8 +245,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<p><a href="#R-image-22b1a2cf2a3d96301e90449798541deb" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-22b1a2cf2a3d96301e90449798541deb"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png"></a></p>
+<p><a href="#R-image-24df407b74fd58157c963e0fe5690813" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-24df407b74fd58157c963e0fe5690813"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png"></a></p>
 <ul>
 <li>大模型回复的context应该包含以下几方面：
 <ul>
@@ -259,8 +259,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 </ul>
 </li>
 </ul>
-<p><a href="#R-image-a1cd7a0deceeaee3d54eb2f6eea2b543" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a1cd7a0deceeaee3d54eb2f6eea2b543"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png"></a></p>
+<p><a href="#R-image-1bfb3eb82f37c651720d644e3c0c32a7" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1bfb3eb82f37c651720d644e3c0c32a7"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png"></a></p>
 <ul>
 <li>context engineering的工作主要包含以下四个方面：
 <ul>
@@ -344,8 +344,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 <li>保持前缀稳定，注意system prompt中不要包含时间戳</li>
 <li>context只追加，注意一些json库会变动内部结构顺序</li>
 <li>在需要时明确标记缓存断点，某些大模型厂商不支持自动前缀缓存，需要人工添加
-<a href="#R-image-f791f67be289a7c9fc2e5db37c11d42b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d84e7ddc6ebdfc0348b0c5e50fc0bb44.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f791f67be289a7c9fc2e5db37c11d42b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d84e7ddc6ebdfc0348b0c5e50fc0bb44.png"></a></li>
+<a href="#R-image-d30a981743f71b3a4da26c9bf493f6ac" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d84e7ddc6ebdfc0348b0c5e50fc0bb44.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d30a981743f71b3a4da26c9bf493f6ac"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d84e7ddc6ebdfc0348b0c5e50fc0bb44.png"></a></li>
 </ul>
 <h3 id="遮蔽而非移除">
   遮蔽，而非移除
@@ -369,8 +369,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 <li>指定：模型必须从特定子集中调用函数。通过预填充到函数名称的开头实现：&lt;|im_start|&gt;assistant&lt;tool_call&gt;{&ldquo;name&rdquo;: &ldquo;browser_</li>
 </ul>
 <p>因此可以通过指定+mask指定工具的首token来完成对于对工具的禁用
-<a href="#R-image-bf29adcd2ca724e32bcfd7af3c30a0ea" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b530651026d07b47fa9c448ad3a2b5b6.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-bf29adcd2ca724e32bcfd7af3c30a0ea"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b530651026d07b47fa9c448ad3a2b5b6.png"></a></p>
+<a href="#R-image-69496631f5c12a91354e3d22b74c4cb9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b530651026d07b47fa9c448ad3a2b5b6.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-69496631f5c12a91354e3d22b74c4cb9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b530651026d07b47fa9c448ad3a2b5b6.png"></a></p>
 <h3 id="使用文件系统作为上下文">
   使用文件系统作为上下文
 
@@ -388,8 +388,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 <li>长输入成本高昂，即使使用前缀缓存。你仍然需要为传输和预填充每个token付费</li>
 </ul>
 <p>而文件系统大小不受限制，天然持久化，并且代理可以直接操作
-<a href="#R-image-6cdd7b708bd4def18c817b3fd7a96a4f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6d421649407b9914ee54b76f0b09ab7f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6cdd7b708bd4def18c817b3fd7a96a4f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6d421649407b9914ee54b76f0b09ab7f.png"></a></p>
+<a href="#R-image-890b4546bf02878f89df5e47d1381112" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6d421649407b9914ee54b76f0b09ab7f.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-890b4546bf02878f89df5e47d1381112"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6d421649407b9914ee54b76f0b09ab7f.png"></a></p>
 <h3 id="通过复述操控注意力">
   通过复述操控注意力
 
@@ -401,8 +401,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>Manus通过创建一个todo.md文件，并在任务进行过程中逐步更新它，勾选已完成的项目，来帮助agent保持对任务目标的注意力
-<a href="#R-image-1f8c54e4d6a08831d9b0ac77f94a3c44" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f5a1a34c1b074b4dc2d5c8d6aa7abce5.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1f8c54e4d6a08831d9b0ac77f94a3c44"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f5a1a34c1b074b4dc2d5c8d6aa7abce5.png"></a></p>
+<a href="#R-image-d90359119216d7f3cb8ce7aed8ab3910" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f5a1a34c1b074b4dc2d5c8d6aa7abce5.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d90359119216d7f3cb8ce7aed8ab3910"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f5a1a34c1b074b4dc2d5c8d6aa7abce5.png"></a></p>
 <h3 id="保留错误的内容">
   保留错误的内容
 
@@ -414,8 +414,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>当模型看到一个失败的行动，以及由此产生的观察结果或堆栈跟踪，它会隐式地更新其内部信念，即改变其先验，降低重复相同错误的可能性。因此不要将agent的错误痕迹擦除，保留在上下文中
-<a href="#R-image-b958509dc08a9f2e77284ac949d1d802" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/80ad86fe606ea7ebafc62a6f95b24fe8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b958509dc08a9f2e77284ac949d1d802"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/80ad86fe606ea7ebafc62a6f95b24fe8.png"></a></p>
+<a href="#R-image-b6113d470501185d2fc125718a60ef8d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/80ad86fe606ea7ebafc62a6f95b24fe8.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b6113d470501185d2fc125718a60ef8d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/80ad86fe606ea7ebafc62a6f95b24fe8.png"></a></p>
 <h3 id="不要被少样本示例所困">
   不要被少样本示例所困
 
@@ -427,8 +427,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>如果你的上下文充满了类似的过去行动-观察对，模型将倾向于遵循该模式，即使这不再是最优的。解决方法是增加few-shot的多样性，即不同的序列化模板、替代性措辞、顺序或格式上的微小噪音
-<a href="#R-image-972748aa68f10a76a89d5f92c6b02aec" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/4078410a061a1c95a77b86d92ce3935a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-972748aa68f10a76a89d5f92c6b02aec"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/4078410a061a1c95a77b86d92ce3935a.png"></a>
+<a href="#R-image-39d2cdd059e78717c88fbde28447ec4d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/4078410a061a1c95a77b86d92ce3935a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-39d2cdd059e78717c88fbde28447ec4d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/4078410a061a1c95a77b86d92ce3935a.png"></a>
 参考链接：</p>
 <ul>
 <li>
@@ -535,8 +535,8 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1768219034" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

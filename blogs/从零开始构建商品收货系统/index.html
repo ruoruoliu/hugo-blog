@@ -31,27 +31,27 @@
     <meta itemprop="wordCount" content="318">
     <meta itemprop="keywords" content="技术笔记">
     <title>从零开始构建商品收货系统 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768196229" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768196229" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768196229" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1768219034" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768219034" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1768219034" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768196229";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768219034";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768219034" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768196229" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768196229" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768196229" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768196229" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768196229" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768219034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768219034" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768219034" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1768219034" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1768219034" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -219,10 +219,10 @@
 <ul>
 <li>需求：老家亲戚是做衣服加工的，分为横机和套口两个种类，现在要做一个功能，来汇总和清晰的展示一些统计数据</li>
 <li>现状：目前使用excel来完成：图1包含了横机的单位重量（重量/件）、施工单位和套口的施工单位的基础信息；图2包含了横机按时间、施工单位、件数、重量（件数 * 重量/件）的明细；图3包含了套口按时间、施工单位、件数（包含发出和收回）的明细
-<a href="#R-image-646580794791411fadfc0879dabf5706" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fbe7544d4533b4bb627a9a95b106a95d.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-646580794791411fadfc0879dabf5706"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fbe7544d4533b4bb627a9a95b106a95d.png"></a><a href="#R-image-ca6aab8a3b3303bc21cd8b65111467b1" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/97120c9fde45e0db35713dbe92939d45.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ca6aab8a3b3303bc21cd8b65111467b1"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/97120c9fde45e0db35713dbe92939d45.png"></a><a href="#R-image-d421add50054bc2e4fa46d7a3718b69d" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/126c8739f57f265710c6282d078f7bf0.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d421add50054bc2e4fa46d7a3718b69d"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/126c8739f57f265710c6282d078f7bf0.png"></a></li>
+<a href="#R-image-6cb84f6c33c2a4b1666d6ff5626a9a78" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fbe7544d4533b4bb627a9a95b106a95d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6cb84f6c33c2a4b1666d6ff5626a9a78"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fbe7544d4533b4bb627a9a95b106a95d.png"></a><a href="#R-image-79c769d64f07757b439166a2beacc613" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/97120c9fde45e0db35713dbe92939d45.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-79c769d64f07757b439166a2beacc613"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/97120c9fde45e0db35713dbe92939d45.png"></a><a href="#R-image-75c201a3b78b2e3db1f158cc7fd822d2" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/126c8739f57f265710c6282d078f7bf0.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-75c201a3b78b2e3db1f158cc7fd822d2"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/126c8739f57f265710c6282d078f7bf0.png"></a></li>
 <li>痛点：亲戚目前每天手动填写当天的新增条目（哪个单位给了多少，什么款式，如果是套口还包含收回多少），然后需要下拉excel单元格显示结果（excel的列目前用公式指定怎么计算结果）。现在希望可以只用手动添加条目，不用excel下拉的方式，且统一品类在同一页面方便截图</li>
 <li>想法：做一个网页，加一个后台数据库，直接访问网页操作，但是考虑数据隐私和亲戚电脑没有联网的情况，设计为本地保存数据</li>
 </ul>
@@ -240,8 +240,8 @@
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
 <p>基于上述要求，gemini的思路：
-<a href="#R-image-a8ffaa68131da3033e739440ac7e45cf" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/545c6595825ace6c623a6c702a3e514b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a8ffaa68131da3033e739440ac7e45cf"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/545c6595825ace6c623a6c702a3e514b.png"></a>
+<a href="#R-image-f168fc2be3fe64ccad143e8561342187" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/545c6595825ace6c623a6c702a3e514b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f168fc2be3fe64ccad143e8561342187"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/545c6595825ace6c623a6c702a3e514b.png"></a>
 方案二细节：
 
 
@@ -283,8 +283,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-a86ea7cfb4f66632ef6d6c189a41e9b3" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8d70f1f285765f19cc0f89c50637c8ce.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a86ea7cfb4f66632ef6d6c189a41e9b3"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8d70f1f285765f19cc0f89c50637c8ce.png"></a></p>
+</h2><p><a href="#R-image-ac54c59489186682056a59c777bbcb38" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8d70f1f285765f19cc0f89c50637c8ce.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ac54c59489186682056a59c777bbcb38"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8d70f1f285765f19cc0f89c50637c8ce.png"></a></p>
 <ul>
 <li>侧边栏分为横机、套口两个子页面，子页面逻辑几乎一致（套口不包含重量）</li>
 <li>子页面（以横机为例）：
@@ -311,8 +311,8 @@
 <li>设计模式:
 <ul>
 <li>Models (模型层): 定义了数据结构（款式，加工单位，横机记录，套口记录)
-<a href="#R-image-36a9e52c742f1522474d9b778f39d129" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fd29745418c6b1270d902905a82a3247.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-36a9e52c742f1522474d9b778f39d129"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fd29745418c6b1270d902905a82a3247.png"></a></li>
+<a href="#R-image-a60deaba2ea1ea122181f449af562604" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fd29745418c6b1270d902905a82a3247.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a60deaba2ea1ea122181f449af562604"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/fd29745418c6b1270d902905a82a3247.png"></a></li>
 <li>Templates (视图层): 使用Jinja2模板引擎，index.html作为基布局，hengji.html和taokou.html作为具体页面</li>
 <li>Routes (控制层): app.py中定义的函数处理URL请求、数据库操作和页面跳转</li>
 </ul>
@@ -414,8 +414,8 @@ return redirect(url_for(&#39;hengji_index&#39;))</code></pre></div>
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>在 Bootstrap 中，Modal是一种非常流行的 UI 组件，它会在页面的顶层创建一个覆盖层，弹出一个对话框。模态框通常被用来执行“添加新记录”、“编辑记录”或“确认删除”等操作，这样用户就不必离开当前页面</p>
-<p><a href="#R-image-f1995b0c884e396b15fa80e6ae15bc20" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/16252bcc2958a811ec1da7cdab6344ed.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f1995b0c884e396b15fa80e6ae15bc20"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/16252bcc2958a811ec1da7cdab6344ed.png"></a></p>
+<p><a href="#R-image-7512467a2dd2f2fd52ce1aa998927a18" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/16252bcc2958a811ec1da7cdab6344ed.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7512467a2dd2f2fd52ce1aa998927a18"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/16252bcc2958a811ec1da7cdab6344ed.png"></a></p>
 <p>在 Bootstrap 的模态框（Modal）结构中：</p>
 <ul>
 <li>.modal（遮罩/容器层）：负责全屏覆盖，包括那个半透明的黑色背景（backdrop）。它控制整个弹窗的显示与隐藏，并且负责监听点击背景关闭弹窗的行为</li>
@@ -480,17 +480,17 @@ return redirect(url_for(&#39;hengji_index&#39;))</code></pre></div>
 ├─ 已占用 → 打开浏览器 → 退出
 └─ 未占用 → 启动服务器 + 心跳监控</li>
 <li>app.py中加入心跳检测，判断网页是否alive，如果用户关闭网页，则后台自动关闭，并关闭windows的cmd窗口
-<a href="#R-image-949a62f6af8ef3144889cfefdec265a1" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a39208c44e4e6f28bc3d37b7117b9e87.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-949a62f6af8ef3144889cfefdec265a1"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a39208c44e4e6f28bc3d37b7117b9e87.png"></a></li>
+<a href="#R-image-9c7f7473b9c4240163346dc1be48b417" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a39208c44e4e6f28bc3d37b7117b9e87.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9c7f7473b9c4240163346dc1be48b417"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a39208c44e4e6f28bc3d37b7117b9e87.png"></a></li>
 <li>index.html中加入每两秒发送心跳的逻辑
-<a href="#R-image-fbef8bb5ff57a386ea0ad5d68503ad0c" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5cc9764b698ac2abf18698312ade8f41.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fbef8bb5ff57a386ea0ad5d68503ad0c"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5cc9764b698ac2abf18698312ade8f41.png"></a></li>
+<a href="#R-image-c8a4128e39d96f93ec362ed29755041e" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5cc9764b698ac2abf18698312ade8f41.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c8a4128e39d96f93ec362ed29755041e"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5cc9764b698ac2abf18698312ade8f41.png"></a></li>
 </ul>
 </li>
 <li>
 <p>每次用户点击.bat，都会首先检测下5000是否在使用（之前打开过），如果有则打开浏览器并直接关闭新后台，防止多开
-<a href="#R-image-f44d9228d555fa722175abac9ae3ab33" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ed66b9a681d5b9858d2d30979ef7f8ff.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f44d9228d555fa722175abac9ae3ab33"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ed66b9a681d5b9858d2d30979ef7f8ff.png"></a></p>
+<a href="#R-image-3e1f16132c5dbc5575b23de0ef3978f8" class="lightbox-link"><img alt="image.png|500" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ed66b9a681d5b9858d2d30979ef7f8ff.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3e1f16132c5dbc5575b23de0ef3978f8"><img alt="image.png|500" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ed66b9a681d5b9858d2d30979ef7f8ff.png"></a></p>
 </li>
 </ul>
 
@@ -591,8 +591,8 @@ return redirect(url_for(&#39;hengji_index&#39;))</code></pre></div>
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768196229" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768219034" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1768219034" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
