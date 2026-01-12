@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model主要有两种： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出baseline，基于相对baseline的好坏来优化policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP RL中的MDP：">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="DeepMind x UCL Introduction to RL 2015 课程笔记 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model主要有两种： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出baseline，基于相对baseline的好坏来优化policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP RL中的MDP：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="DeepMind x UCL Introduction to RL 2015 课程笔记 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model主要有两种： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出baseline，基于相对baseline的好坏来优化policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP RL中的MDP：">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2026-01-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-09T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta itemprop="name" content="DeepMind x UCL Introduction to RL 2015 课程笔记 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="基本概念 强化学习与机器学习的差别：
+没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：
+一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策：
+目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：
+state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） agent三大组件：
+policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布 value function：agent基于某个policy下，对于当前状态的未来累积价值评估 model主要有两种： transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测 reward model：agent基于当前状态和行为，对于reward的预测 agent的分类：
+value-based：没有显式的policy，根据value function选择最大的action policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action） actor-critic：结合policy和value function，通过value function给出baseline，基于相对baseline的好坏来优化policy 基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态 MDP RL中的MDP：">
+    <meta itemprop="datePublished" content="2026-01-09T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-01-09T00:00:00+00:00">
+    <meta itemprop="wordCount" content="200">
+    <meta itemprop="keywords" content="技术笔记">
+    <title>DeepMind x UCL Introduction to RL 2015 课程笔记 :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1768196229" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768196229" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1768196229" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768196229";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768196229" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768196229" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768196229" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768196229" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1768196229" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1768196229" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#markov-process">Markov Process</a></li>
+    <li><a href="#markov-reward-process">Markov Reward Process</a>
+      <ul>
+        <li><a href="#bellman-equation-for-mrps">Bellman Equation for MRPs</a></li>
+      </ul>
+    </li>
+    <li><a href="#markov-decision-process">Markov Decision Process</a>
+      <ul>
+        <li><a href="#policy">Policy</a></li>
+        <li><a href="#value-function">Value Function</a></li>
+        <li><a href="#bellman-expectation-equation">Bellman Expectation Equation</a></li>
+        <li><a href="#optimal-value-function">Optimal Value Function</a></li>
+        <li><a href="#bellman-optimality-equation">Bellman Optimality Equation</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#policy-evaluation">Policy Evaluation</a></li>
+    <li><a href="#policy-iteration">Policy Iteration</a></li>
+    <li><a href="#value-iteration">Value Iteration</a></li>
+    <li><a href="#policy-evaluationpolicy-iteration和value-iteration的对比">Policy Evaluation、Policy Iteration和Value Iteration的对比</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">DeepMind x UCL Introduction to RL 2015 课程笔记</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html" title="LLM和agent的训练 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="deepmind-x-ucl-introduction-to-rl-2015-课程笔记">DeepMind x UCL Introduction to RL 2015 课程笔记</h1>
+
+<h1 id="基本概念">
+  基本概念
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>强化学习与机器学习的差别：</p>
+<ul>
+<li>没有supervisor，只有reward</li>
+<li>反馈是滞后的，不是实时的</li>
+<li>时间序列，每一个时间步不是i.i.d的</li>
+<li>agent的行为会影响后续数据</li>
+</ul>
+<p>reward是什么：</p>
+<ul>
+<li>一个标量的反馈信号</li>
+<li>表示agent在t时刻的表现</li>
+<li>agent的目标是最大化累积reward</li>
+</ul>
+<p>序列决策：</p>
+<ul>
+<li>目标是选择action，最大化累积reward</li>
+<li>action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward</li>
+<li>序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、&hellip;
+<a href="#R-image-13a4d7b243bd2845fbd66ad015c77504" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-13a4d7b243bd2845fbd66ad015c77504"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png"></a></li>
+</ul>
+<p>state是什么：</p>
+<ul>
+<li>state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息</li>
+<li>environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音</li>
+<li>agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入</li>
+<li>markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立</li>
+<li>在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process）</li>
+</ul>
+<p>agent三大组件：</p>
+<ul>
+<li>policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布</li>
+<li>value function：agent基于某个policy下，对于当前状态的未来累积价值评估</li>
+<li>model主要有两种：
+<ul>
+<li>transition model：agent基于当前状态和行为，对于环境下一时刻状态的预测</li>
+<li>reward model：agent基于当前状态和行为，对于reward的预测</li>
+</ul>
+</li>
+</ul>
+<p>agent的分类：</p>
+<ul>
+<li>value-based：没有显式的policy，根据value function选择最大的action</li>
+<li>policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action）</li>
+<li>actor-critic：结合policy和value function，通过value function给出baseline，基于相对baseline的好坏来优化policy</li>
+<li>基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态
+<a href="#R-image-7801174157f06cc0f3f1af1b011ef2a8" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7801174157f06cc0f3f1af1b011ef2a8"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png"></a></li>
+</ul>
+<h1 id="mdp">
+  MDP
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>RL中的MDP：</p>
+<ul>
+<li>MDP描述了RL问题的environment，当environment是完全可观测的。</li>
+<li>几乎所有RL问题都可以形式化为MDP，部分可观测的问题可以转化为MDP</li>
+</ul>
+<h2 id="markov-process">
+  Markov Process
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>Markov Process通过状态和状态转移矩阵来描述：
+<a href="#R-image-f8cec3df9f3dd669265a82f3060f67a0" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a4e0b9a7496e345e7d8f69e262690292.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f8cec3df9f3dd669265a82f3060f67a0"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a4e0b9a7496e345e7d8f69e262690292.png"></a></p>
+<h2 id="markov-reward-process">
+  Markov Reward Process
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>如果加上reward，就可以得到一个带衰减的累积reward：
+<a href="#R-image-7ced7fd87c0c2c9c3055cc714008c672" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/935e5b60515db6c5033f5340d6bffd83.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7ced7fd87c0c2c9c3055cc714008c672"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/935e5b60515db6c5033f5340d6bffd83.png"></a>
+<a href="#R-image-71cb34bc9ffe7c644387c73d8d057074" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/c1e5ece1fc4edb82d079f0a1fcd007b6.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-71cb34bc9ffe7c644387c73d8d057074"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/c1e5ece1fc4edb82d079f0a1fcd007b6.png"></a></p>
+<p>
+
+
+
+<a href="../Answers/Markov%20Reward%20Process%E4%B8%AD%E6%8A%98%E6%89%A3%E5%9B%A0%E5%AD%90%28Discount%20Factor%29%20%E5%BF%85%E8%A6%81%E6%80%A7.md">Markov Reward Process中折扣因子(Discount Factor) 必要性</a></p>
+<p>而状态value function就是在某个状态下上述return的期望：
+<a href="#R-image-4b8dc1ac1272229ae88bdaa2424a29c4" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0007592927b82a6f5eaea1f7956a2533.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b8dc1ac1272229ae88bdaa2424a29c4"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0007592927b82a6f5eaea1f7956a2533.png"></a></p>
+<h3 id="bellman-equation-for-mrps">
+  Bellman Equation for MRPs
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>将value function分成当前reward和未来的衰减value两部分：
+<a href="#R-image-8bf4d7381c1bea2d9af9a3acb5d96ed7" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b541f5cd7ab33c42929f7bc5db9a8c2b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8bf4d7381c1bea2d9af9a3acb5d96ed7"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b541f5cd7ab33c42929f7bc5db9a8c2b.png"></a></p>
+<p>未来的状态由转移矩阵确定：
+<a href="#R-image-e6a29e541a401254de6762d77734b801" class="lightbox-link"><img alt="image.png|180" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1886ec69db0a18cc317c3b8902a9b66e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e6a29e541a401254de6762d77734b801"><img alt="image.png|180" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1886ec69db0a18cc317c3b8902a9b66e.png"></a></p>
+<p>直接求解线性方程复杂度为$O(n^3)$，因此只适合小规模MRP的求解；
+对于大规模MRP，通常使用迭代求解的方式：</p>
+<ul>
+<li>动态规划</li>
+<li>Monte-Carlo evaluation</li>
+<li>TD learning（Temporal-Difference）</li>
+</ul>
+<h2 id="markov-decision-process">
+  Markov Decision Process
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>在MRP的基础上加入decisions，得到MDP：
+<a href="#R-image-783aeafe81e597a9320d10cf32e6632e" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/efc640d9ae6ef5253f149854d8ab8b08.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-783aeafe81e597a9320d10cf32e6632e"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/efc640d9ae6ef5253f149854d8ab8b08.png"></a></p>
+<h3 id="policy">
+  Policy
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>policy定义为在给定状态下选择action的概率分布：
+<a href="#R-image-e2c401712ae34ba6e19a2ffc8851235e" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/88aeca582e19f9fab9416b1f6a629bd3.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e2c401712ae34ba6e19a2ffc8851235e"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/88aeca582e19f9fab9416b1f6a629bd3.png"></a></p>
+<ul>
+<li>通过policy可以完全表示agent的行为</li>
+<li>MDP policy依赖于当前状态（markov性质）</li>
+<li>policy是静态的，即不随时间变化</li>
+</ul>
+<h3 id="value-function">
+  Value Function
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>基于policy的value function看作是在policy下的value期望；
+其中state value function可以看成是action value function在policy下的加权平均：
+<a href="#R-image-e7bfc2aff6c652884460befe6ddd633e" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a43859ecddfcc0601eacea6b1b227cd.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e7bfc2aff6c652884460befe6ddd633e"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a43859ecddfcc0601eacea6b1b227cd.png"></a></p>
+<h3 id="bellman-expectation-equation">
+  Bellman Expectation Equation
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>state/action value function也都可以转化为Bellman方程的形式：
+<a href="#R-image-d48fe4d3ffe1f3b620ad97c4e78ec22c" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1dd0b2f6857d238bc28824209cee8612.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d48fe4d3ffe1f3b620ad97c4e78ec22c"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1dd0b2f6857d238bc28824209cee8612.png"></a>
+<a href="#R-image-e6d9550a37d0d67eb6dd74ee22693383" class="lightbox-link"><img alt="image.png|350" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/22b423c980c6cb453f02587ded738410.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e6d9550a37d0d67eb6dd74ee22693383"><img alt="image.png|350" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/22b423c980c6cb453f02587ded738410.png"></a></p>
+<p>而他们互相之间的转换为：
+<a href="#R-image-1947f2f6cd7af5ba6fc8e5a5b089d5a4" class="lightbox-link"><img alt="image.png|160" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d1290e503db81abbacecf6897f45dea3.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1947f2f6cd7af5ba6fc8e5a5b089d5a4"><img alt="image.png|160" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d1290e503db81abbacecf6897f45dea3.png"></a>
+<a href="#R-image-bef78ec74adeb4d1b387c99efef6d886" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5e3671b78ee30fc123c59457efa712a9.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bef78ec74adeb4d1b387c99efef6d886"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5e3671b78ee30fc123c59457efa712a9.png"></a></p>
+<p>相应地，通过两次转换，可以得到state/action value function的迭代：
+<a href="#R-image-9198bb7c6a7547f4e161def570dfa2d2" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/698b10495596ff5bde81736eece4154a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9198bb7c6a7547f4e161def570dfa2d2"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/698b10495596ff5bde81736eece4154a.png"></a>
+<a href="#R-image-d774cf6f52a6b7cf0bad431c2810b942" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/649aa30b5c5c77062a9b32e3b34470e8.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d774cf6f52a6b7cf0bad431c2810b942"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/649aa30b5c5c77062a9b32e3b34470e8.png"></a></p>
+<h3 id="optimal-value-function">
+  Optimal Value Function
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>最优state/action value function分别是：
+<a href="#R-image-ae175edf5956e4fd95359e3f0c1db4ec" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f51052af1a5f404c20ba445f7f7728f3.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ae175edf5956e4fd95359e3f0c1db4ec"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f51052af1a5f404c20ba445f7f7728f3.png"></a></p>
+<p>对于$q_<em>(s,a)$，因为知道了当前状态不同action的value，直接选择最大的action就可以了；但是如果知道了$v_</em>(s)$，即知道我下一步想去哪个state，但是由于不知道action对应的状态转移矩阵（一般情况），没办法知道要选择哪个action最终value最大</p>
+<p>
+
+
+
+<a href="../Answers/Optimal%20Value%20Function%E4%B8%ADq%E5%92%8Cv%E7%9A%84%E5%B7%AE%E5%88%AB.md">Optimal Value Function中q和v的差别</a></p>
+<p>在任意state上实现optimal value function的policy，称为optimal policy
+根据$q_*(s,a)$选择action的policy即optimal policy</p>
+<h3 id="bellman-optimality-equation">
+  Bellman Optimality Equation
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>state/action optimal value function表述为Bellman Optimality Equation的形式：
+<a href="#R-image-99f54db228800a30ac723fd7e6cd28d5" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/87b73ca9216c8e73e04718d27df25dd2.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-99f54db228800a30ac723fd7e6cd28d5"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/87b73ca9216c8e73e04718d27df25dd2.png"></a>
+<a href="#R-image-4e146bf4436a849c52d5a7c67496fc42" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8366f3a455d36db0729a4e2803afb5ab.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4e146bf4436a849c52d5a7c67496fc42"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8366f3a455d36db0729a4e2803afb5ab.png"></a></p>
+<p>Bellman Optimality Equation由于包含max操作，是非线性的方程，一般没有closed form solution，可以使用迭代的算法求解：</p>
+<ul>
+<li>Value Iteration</li>
+<li>Policy Iteration</li>
+<li>Q-learning</li>
+<li>Sarsa</li>
+</ul>
+<p>
+
+
+
+<a href="../Answers/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99MDP%E7%9A%84bellman%E6%96%B9%E7%A8%8B%E6%B1%82%E8%A7%A3%E5%8F%AF%E4%BB%A5%E8%BD%AC%E5%8C%96%E4%B8%BAMRP%EF%BC%9F.md">什么时候MDP的bellman方程求解可以转化为MRP？</a></p>
+<h1 id="planning-by-dynamic-programming">
+  Planning by Dynamic Programming
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Markov Process满足动态规划的两个性质：</p>
+<ul>
+<li>最优子结构：最优解可以被分解为多个子问题
+<ul>
+<li>Bellman方程就是一种子问题的拆解表示</li>
+</ul>
+</li>
+<li>重叠子问题：子问题重复很多次，且能被缓存和复用
+<ul>
+<li>value function保存了信息且被复用</li>
+</ul>
+</li>
+</ul>
+<h2 id="policy-evaluation">
+  Policy Evaluation
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>对所有state的value设定初始值后，每一轮基于当前policy可达state的value加权求和，得到新一轮的value；经过足够多轮次迭代后，value逐渐收敛到当前policy的value真值：</p>
+<p><a href="#R-image-3942cb0d037b6ec9e32eca863375bc40" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bfb5f5ff79939f33547f2dfe227ebb0d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3942cb0d037b6ec9e32eca863375bc40"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bfb5f5ff79939f33547f2dfe227ebb0d.png"></a>
+<a href="#R-image-2841a1e39296f8a268f9972a1686f24d" class="lightbox-link"><img alt="image.png|420" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/30044af3f1cbaafbdf5b7638f0aeb36a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2841a1e39296f8a268f9972a1686f24d"><img alt="image.png|420" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/30044af3f1cbaafbdf5b7638f0aeb36a.png"></a></p>
+<h2 id="policy-iteration">
+  Policy Iteration
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>基于原始$\pi$迭代计算所有state的value，收敛后得到$v_\pi(s)$：</p>
+<ul>
+<li>在某一个state下选择value最大的action：
+<a href="#R-image-62b79e349f2b0ca5b5cca3ac0615f2b9" class="lightbox-link"><img alt="image.png|350" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/11579ec535d6e62e258fe880d81e04c5.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-62b79e349f2b0ca5b5cca3ac0615f2b9"><img alt="image.png|350" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/11579ec535d6e62e258fe880d81e04c5.png"></a></li>
+<li>在每一个state选择value最大的action，那么你就得到了一个在全局所有状态下都表现得更好的新策略$\pi^{\prime}$，更接近$\pi^*$：
+<a href="#R-image-e6ee19e49b184aea5bd26aae2169a262" class="lightbox-link"><img alt="image.png|450" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d14ec55f31c6a66ecc8a7963aa2f186d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e6ee19e49b184aea5bd26aae2169a262"><img alt="image.png|450" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d14ec55f31c6a66ecc8a7963aa2f186d.png"></a></li>
+</ul>
+<p>通过不断地：</p>
+<ul>
+<li>评估：根据当前policy计算全部状态的value</li>
+<li>优化：根据上述value贪婪地选择动作
+就可以不断地优化policy，直到最优policy</li>
+</ul>
+<p>
+
+
+
+<a href="https://cs.stanford.edu/people/karpathy/reinforcejs/gridworld_dp.html" target="_blank">## GridWorld: Dynamic Programming Demo</a></p>
+<h2 id="value-iteration">
+  Value Iteration
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>我们是否需要value收敛到真值后再优化policy？</p>
+<ul>
+<li>可以选择value的$\epsilon$足够小的时候停止迭代value并优化</li>
+<li>可以选择每k步优化</li>
+<li>是否可以每步优化？</li>
+</ul>
+<p>每步评估进行一次优化（取max）：每次采用可达state中最大的value来计算当前state的新一轮value，通过这种方式不断更新value，最终得到每个状态的$v^*(s)$，称为value iteration</p>
+<h2 id="policy-evaluationpolicy-iteration和value-iteration的对比">
+  Policy Evaluation、Policy Iteration和Value Iteration的对比
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p><a href="#R-image-bc2b3709ed1753c0f68086fba1c9f728" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bc2b3709ed1753c0f68086fba1c9f728"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png"></a></p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ" target="_blank">DeepMind x UCL | Introduction to Reinforcement Learning 2015</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Jan 9, 2026
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="active " data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html">LLM和agent的训练</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">大模型工程实践</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">大模型在其他技术中的应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768196229" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1768196229" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
