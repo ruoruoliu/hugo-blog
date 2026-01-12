@@ -7,6 +7,7 @@ draft: false
 ---
 # 基本概念
 --- 
+
 强化学习与机器学习的差别：
 - 没有supervisor，只有reward
 - 反馈是滞后的，不是实时的
@@ -47,6 +48,7 @@ agent的分类：
 
 # MDP
 ---
+
 RL中的MDP：
 - MDP描述了RL问题的environment，当environment是完全可观测的。
 - 几乎所有RL问题都可以形式化为MDP，部分可观测的问题可以转化为MDP
@@ -143,6 +145,7 @@ Bellman Optimality Equation由于包含max操作，是非线性的方程，一�
 
 # Planning by Dynamic Programming
 --- 
+
 Markov Process满足动态规划的两个性质：
 - 最优子结构：最优解可以被分解为多个子问题
 	- Bellman方程就是一种子问题的拆解表示
@@ -182,9 +185,76 @@ Markov Process满足动态规划的两个性质：
 
 ## Policy Evaluation、Policy Iteration和Value Iteration的对比
 
-
 ![image.png|400](https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png)
 
+# Model-Free Prediction
+--- 
+
+Model-Free中的model指的是环境，即我们不知道环境如何基于我们的action进行状态转移，也不知道会得到一个怎么样的reward，是一个未知的MDP。
+
+对于一个未知的MDP的value function的估计，称为Model-Free Prediction
+
+## Monte-Carlo Learning
+
+- MC从完整的实际经验中学习，如果经验不完整，无法使用MC，因为MC要求最终的return
+- 基于最简单的想法，即value就是实际经验的平均return
+- MC Policy Evaluation分为两类：
+	- First-Visit：只统计轨迹中到达该state的第一次，即便同一条轨迹中多次到达该状态，是无偏估计，收敛稳健
+	- Every-Visit：每次到达都记为一次，即一条轨迹贡献多个样本分，可以更充分利用数据
+- 通过增量更新value function：
+	![image.png|250](https://images.ruoruoliu.com/2026/01/7770d42bae48ba9fdc30f17c1709a078.png)
+- 对于非静态系统，可以将增量的系数设为常数，可以更有效忘记旧的样本：
+	![image.png|200](https://images.ruoruoliu.com/2026/01/1a510d04836c75d81968a10529f02960.png)
+
+## Temporal-Difference Learning
+
+- TD可以从不完整的实际经验中学习，而MC不行
+- 通过bootstrapping在不确定的环境中边走边学：[TD learning中的bootstrapping](../Answers/TD%20learning%E4%B8%AD%E7%9A%84bootstrapping.md)
+- 相比于MC中的目标值最终return $G_t$，TD（以TD(0)为例）基于下一状态的return作为目标值：
+	$V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
+	其中：
+	- $R_{t+1}+\gamma V(S_{t+1})$被称为TD target
+	- $\delta_t = R_{t+1}+\gamma V(S_{t+1}) - V(S_t)$被称为TD error
+- TD和MC在bias/variance上的对比：
+	- TD target是有偏的，因为是基于一个有偏的$V（S_{t+1}）$来估计的；而MC是无偏的，因为是真实样本的平均
+	- TD的variance是小的，因为只包含当前的reward和对value的估计；而MC的variance是大的，因为MC中每一步的action和transition都引入variance
+	- TD对初始值敏感；而MC不敏感
+	- [TD learning相比MC learning效率高的原因](../Answers/TD%20learning%E7%9B%B8%E6%AF%94MC%20learning%E6%95%88%E7%8E%87%E9%AB%98%E7%9A%84%E5%8E%9F%E5%9B%A0.md)
+- TD和MC在处理有限经验数据时的对比：
+	- MC 的目标是让价值函数 $V(s)$ 尽可能地贴近return，不考虑状态转移关系，只关注结果，可以理解为最小化均方误差（MSE）
+	- TD的目标是寻找一个最符合当前数据的MDP（状态转移和奖励），然后基于这个模型计算价值，可以理解为最大似然markov模型（MLE）
+	- 由于TD利用了Markov性质，在Markov环境中通常比MC更有效率，因为能够充分利用数据在状态之间传递信息
+- MC、TD和dynamic programming的更新对比：
+![image.png|220](https://images.ruoruoliu.com/2026/01/3b81dc4300f90ad797ba88837b4de935.png)![image.png|210](https://images.ruoruoliu.com/2026/01/59d45497aa9166d79f8a4b25cda86c1c.png)![image.png|200](https://images.ruoruoliu.com/2026/01/73fa66589b32bc2fccd506ea07dd5d20.png)
+
+### n-step TD
+
+n-step TD learning，每次更新考虑n步，而不只是TD(0)的一步：
+![image.png|300](https://images.ruoruoliu.com/2026/01/287022e29ddc7f61fcb6bec8ea0781f8.png)
+
+定义n步的TD target：
+![image.png|350](https://images.ruoruoliu.com/2026/01/7b16be732c214f970c7a6464e6c30ed0.png)
+得到n步的TD learning：
+![image.png|240](https://images.ruoruoliu.com/2026/01/8c845ff38c95b0666730cb14d6c0c48c.png)
+
+### n-step TD trade-off
+
+这里以random walk为例，观察不同的n和alpha在10个episodes数据上的error：
+![image.png|300](https://images.ruoruoliu.com/2026/01/78b1481fd37393a07fd05d156b444707.png)
+曲线主要体现了bias/variance的trade-off：
+- 小n：variance小，bias大，因此较大的alpha更有利于快速优化
+- 大n：variance大，bias小，因此较小的alpha更有利于稳定优化
+- 中n：bias和variance合适，可以较快的收敛到更优解
+
+对比online和offline：
+- online意味着每一步都更新：可以在较大的alpha达到最优解，因为它可以实时修正，所以敢于用更大的步长去快速吸收新信息
+- offline意味着batch更新：需要在较小的alpha达到最优解，因为一次性大量的更新会导致模型极其不稳定（因为这些更新都是基于旧的、可能错误的估计值同时发生的）
+
+提升效果的手段：
+- 增加训练数据量，可以减小“小n”的bias，也可以减小“大n”的variance
+- alpha如果固定，最终error会震荡，大n的震荡更明显，如果alpha衰减，最终error都会归零
+
+## TD($\lambda$)
 
 参考链接：
 - [DeepMind x UCL | Introduction to Reinforcement Learning 2015](https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ)
