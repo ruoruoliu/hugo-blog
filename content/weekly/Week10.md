@@ -22,12 +22,28 @@ draft: false
 
 > [!info]+ 强化学习基础知识
 
-- [Reinforcement Learning学习手册](../Blogs/Reinforcement%20Learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)
+- [DeepMind x UCL Introduction to RL 2015 课程笔记-基本概念](../Blogs/DeepMind%20x%20UCL%20Introduction%20to%20RL%202015%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0.md#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)
+- [DeepMind x UCL Introduction to RL 2015 课程笔记-MDP](../Blogs/DeepMind%20x%20UCL%20Introduction%20to%20RL%202015%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0.md#MDP)
+- [DeepMind x UCL Introduction to RL 2015 课程笔记-Planning by Dynamic Programming](../Blogs/DeepMind%20x%20UCL%20Introduction%20to%20RL%202015%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0.md#Planning%20by%20Dynamic%20Programming)
 
 > [!tip] 知识
-> - 
+> - 强化学习主要解决agent在环境中选择policy从而达到最大化序列reward的问题
+> 	- agent与环境的交互（state和action）可以表示为Markov Process
+> 	- 如果加入reward，就变成MRP（Markov Reward Process）
+> 	- 如果再加入decision（$\pi$），就变成MDP（Markov Decision Process）
+> 	- value function，即从当前state起到最后的序列reward的带衰减的累积，用来衡量当前状态的好坏：
+> 		- state value function：只基于当前state，称为$v(s)$
+> 		- action value function：基于当前state和选择的action，称为$q(s,a)$
+> 		- 只考虑MRP的情况，value function是线性可解的，只是复杂度为$O(n^3)$
+> 		- 通过基于policy的加权求和，可以在v和q之间转化，也可以经过两次转化（v到q到v）得到状态之间的递推关系，称为Bellman Expectation Equation
+> 		- 对于固定policy，可以简化为MRP，value function是线性可解的；
+> 	- MDP求最优policy，即Bellman Optimality Equation，递推关系中由于引入了max操作，是线性不可解的，只能采用迭代法等：
+> 		- policy iteration：通过迭代value function（减小计算复杂度）来评估policy，然后优化policy（选择最大value的state作为action），可以理解为利用Bellman Expectation Equation+Greedy Policy
+> 		- value iteration：不直接迭代value function，而是每次都选择当前最大value的state作为action，然后再根据新的action来更新value，可以理解为利用Bellman Optimality Equation
+> 		- value iteration可以看成每次只迭代一次求value function的policy iteration，避免把时间浪费在“烂策略”的value迭代上
 
 > [!warning] 待办
+> - 强化学习基础知识
 > - 跟进大模型强化学习技术
 
 

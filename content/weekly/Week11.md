@@ -6,7 +6,12 @@ tags:
 draft: false
 ---
 > [!note] 总结
+> - 强化学习基础知识
 > - 跟进大模型强化学习技术
+
+> [!info]+ 强化学习基础知识
+
+- [DeepMind x UCL Introduction to RL 2015 课程笔记](../Blogs/DeepMind%20x%20UCL%20Introduction%20to%20RL%202015%20%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0.md)
 
 > [!info]+ 跟进大模型强化学习技术
 
