@@ -39,27 +39,27 @@ planning tool：前期任务规划 将计划写入文件，标注状态（pendin
     <meta itemprop="wordCount" content="243">
     <meta itemprop="keywords" content="技术笔记">
     <title>长程任务：Deep Agent :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768251679" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768251679" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768251679" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1768274137" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768274137" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1768274137" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768251679";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768274137";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768251679" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768274137" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768251679" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768251679" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768251679" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768251679" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768251679" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768274137" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768274137" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768274137" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1768274137" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1768274137" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -544,14 +544,16 @@ A：如果要支持MCP，agent的action space就会非常自由多变，这个�
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-7003deb42fa8bf03c6e046a7dc04dbb4" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7003deb42fa8bf03c6e046a7dc04dbb4"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png"></a></p>
+</h3><p><a href="#R-image-b7108e315c5a7890e449913c89d70925" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b7108e315c5a7890e449913c89d70925"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png?width=600px"></a>
+</p>
 <ul>
 <li>lead agent根据用户query设计策略，创建子agent进行不同方面的探索</li>
 <li>子agent通过多步搜索动态分析每次的搜索结果</li>
 <li>citation agent单独在最终完成citation插入的定向任务
-<a href="#R-image-629cb4fa6c1d3200b01a4164c4464920" class="lightbox-link"><img alt="image.png|600" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-629cb4fa6c1d3200b01a4164c4464920"><img alt="image.png|600" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png"></a></li>
+<a href="#R-image-9555c51951fda8139ffd475aaf851085" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9555c51951fda8139ffd475aaf851085"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png?width=600px"></a>
+</li>
 </ul>
 <p>主要通过prompt engineering解决multi-agent的以下问题，</p>
 <ul>
@@ -693,8 +695,20 @@ A：如果要支持MCP，agent的action space就会非常自由多变，这个�
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768251679" defer></script>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768274137"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1768274137" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
