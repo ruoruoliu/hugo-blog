@@ -1,0 +1,36 @@
+{{- $url := .Destination }}
+{{- $text := .Text }}
+{{- $alt := $text }}
+{{- $match := findRE `\|([0-9]+)$` $text }}
+{{- if $match }}
+  {{- $widthStr := index $match 0 }} 
+  {{- $width := strings.TrimPrefix "|" $widthStr }}
+  {{- $alt = replaceRE `\|[0-9]+$` "" $text }}
+  
+  {{- $parts := split $url "#" }}
+  {{- $base := index $parts 0 }}
+  {{- $fragment := "" }}
+  {{- if gt (len $parts) 1 }}
+    {{- /* Join remaining parts in case multiple # existed? Usually incorrect URI but safe to keep remainder */}}
+    {{- $fragment = delimit (after 1 $parts) "#" }}
+  {{- end }}
+
+  {{- $sep := "?" }}
+  {{- if in $base "?" }}{{ $sep = "&" }}{{ end }}
+  {{- $base = printf "%s%swidth=%spx" $base $sep $width }}
+  
+  {{- $url = $base }}
+  {{- if ne $fragment "" }}
+    {{- $url = printf "%s#%s" $base $fragment }}
+  {{- end }}
+{{- end }}
+
+{{- $id := "" }}
+{{- partial "shortcodes/image.html" (dict
+  "page" .Page
+  "url" $url
+  "title" .Title
+  "alt" $alt
+  "id" $id
+  "attributes" .Attributes
+) }}

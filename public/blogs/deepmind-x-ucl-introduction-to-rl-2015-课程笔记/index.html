@@ -51,27 +51,27 @@ value-based：没有显式的policy，根据value function选择最大的action 
     <meta itemprop="wordCount" content="374">
     <meta itemprop="keywords" content="技术笔记">
     <title>DeepMind x UCL Introduction to RL 2015 课程笔记 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768251679" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768251679" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768251679" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1768274137" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768274137" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1768274137" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768251679";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768274137";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768251679" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768274137" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768251679" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768251679" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768251679" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768251679" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768251679" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768274137" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768274137" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768274137" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1768274137" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1768274137" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -280,8 +280,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 <li>目标是选择action，最大化累积reward</li>
 <li>action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward</li>
 <li>序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、&hellip;
-<a href="#R-image-62175924088703b60d854ba5d1951b82" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-62175924088703b60d854ba5d1951b82"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png"></a></li>
+<a href="#R-image-6cdbfa5b01fc955e3cadb4a2b049445b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6cdbfa5b01fc955e3cadb4a2b049445b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bad7c540451d22cd344ea708ce9d196c.png?width=250px"></a>
+</li>
 </ul>
 <p>state是什么：</p>
 <ul>
@@ -308,8 +309,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 <li>policy-based：没有显式的value function，通过尝试不同的policy来找到最好的policy（action）</li>
 <li>actor-critic：结合policy和value function，通过value function给出baseline，基于相对baseline的好坏来优化policy</li>
 <li>基于是否包含model来分类，即是否对环境进行学习，是否预测下一时刻环境的状态
-<a href="#R-image-f5c4caffc17a0635fedcb4dfd42e05e9" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f5c4caffc17a0635fedcb4dfd42e05e9"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png"></a></li>
+<a href="#R-image-62e77389d3485e752d840d49207fc66c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-62e77389d3485e752d840d49207fc66c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/303f1acde053e2df39aa8d5a3e5607cd.png?width=250px"></a>
+</li>
 </ul>
 <h1 id="mdp">
   MDP
@@ -338,8 +340,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>Markov Process通过状态和状态转移矩阵来描述：
-<a href="#R-image-78c2c4a5a88aea043cc831f4e3cbe349" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a4e0b9a7496e345e7d8f69e262690292.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-78c2c4a5a88aea043cc831f4e3cbe349"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a4e0b9a7496e345e7d8f69e262690292.png"></a></p>
+<a href="#R-image-8eabea4cfba1c6e338a09b835bc80fa4" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a4e0b9a7496e345e7d8f69e262690292.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8eabea4cfba1c6e338a09b835bc80fa4"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/a4e0b9a7496e345e7d8f69e262690292.png?width=400px"></a>
+</p>
 <h2 id="markov-reward-process">
   Markov Reward Process
 
@@ -351,18 +354,21 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>如果加上reward，就可以得到一个带衰减的累积reward：
-<a href="#R-image-ffc8e0bcc95b9271e917aa89524032e4" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/935e5b60515db6c5033f5340d6bffd83.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ffc8e0bcc95b9271e917aa89524032e4"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/935e5b60515db6c5033f5340d6bffd83.png"></a>
-<a href="#R-image-8dafecc9569e5fdd557efa14ac576f4b" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/c1e5ece1fc4edb82d079f0a1fcd007b6.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8dafecc9569e5fdd557efa14ac576f4b"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/c1e5ece1fc4edb82d079f0a1fcd007b6.png"></a></p>
+<a href="#R-image-f422b156738cc2d1dd100cefcc338606" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/935e5b60515db6c5033f5340d6bffd83.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f422b156738cc2d1dd100cefcc338606"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/935e5b60515db6c5033f5340d6bffd83.png?width=400px"></a>
+
+<a href="#R-image-314e37d5011d67dda70c313010c8fe35" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/c1e5ece1fc4edb82d079f0a1fcd007b6.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-314e37d5011d67dda70c313010c8fe35"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/c1e5ece1fc4edb82d079f0a1fcd007b6.png?width=400px"></a>
+</p>
 <p>
 
 
 
 <a href="../Answers/Markov%20Reward%20Process%E4%B8%AD%E6%8A%98%E6%89%A3%E5%9B%A0%E5%AD%90%28Discount%20Factor%29%20%E5%BF%85%E8%A6%81%E6%80%A7.md">Markov Reward Process中折扣因子(Discount Factor) 必要性</a></p>
 <p>而状态value function就是在某个状态下上述return的期望：
-<a href="#R-image-7e302eec472a6ddc623a45d433f51780" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0007592927b82a6f5eaea1f7956a2533.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7e302eec472a6ddc623a45d433f51780"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0007592927b82a6f5eaea1f7956a2533.png"></a></p>
+<a href="#R-image-87dbb2948c76392745a139fb16e00ae9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0007592927b82a6f5eaea1f7956a2533.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-87dbb2948c76392745a139fb16e00ae9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0007592927b82a6f5eaea1f7956a2533.png?width=400px"></a>
+</p>
 <h3 id="bellman-equation-for-mrps">
   Bellman Equation for MRPs
 
@@ -374,11 +380,13 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>将value function分成当前reward和未来的衰减value两部分：
-<a href="#R-image-a44ca06471f4a3234a2927f69893aeff" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b541f5cd7ab33c42929f7bc5db9a8c2b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a44ca06471f4a3234a2927f69893aeff"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b541f5cd7ab33c42929f7bc5db9a8c2b.png"></a></p>
+<a href="#R-image-6243f0fe8f5320a97afc64a745146903" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b541f5cd7ab33c42929f7bc5db9a8c2b.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6243f0fe8f5320a97afc64a745146903"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b541f5cd7ab33c42929f7bc5db9a8c2b.png?width=300px"></a>
+</p>
 <p>未来的状态由转移矩阵确定：
-<a href="#R-image-240fd50d029acfa672d4611ba9245135" class="lightbox-link"><img alt="image.png|180" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1886ec69db0a18cc317c3b8902a9b66e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-240fd50d029acfa672d4611ba9245135"><img alt="image.png|180" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1886ec69db0a18cc317c3b8902a9b66e.png"></a></p>
+<a href="#R-image-d2f5456f8939f30fc25c36919945e7da" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1886ec69db0a18cc317c3b8902a9b66e.png?width=180px" style="height: auto;width: 180px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d2f5456f8939f30fc25c36919945e7da"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1886ec69db0a18cc317c3b8902a9b66e.png?width=180px"></a>
+</p>
 <p>直接求解线性方程复杂度为$O(n^3)$，因此只适合小规模MRP的求解；
 对于大规模MRP，通常使用迭代求解的方式：</p>
 <ul>
@@ -397,8 +405,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>在MRP的基础上加入decisions，得到MDP：
-<a href="#R-image-9634c9eeac51fc7308412bfb2a872d77" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/efc640d9ae6ef5253f149854d8ab8b08.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9634c9eeac51fc7308412bfb2a872d77"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/efc640d9ae6ef5253f149854d8ab8b08.png"></a></p>
+<a href="#R-image-05b06f301b829a2c82bbe1dabcd00d59" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/efc640d9ae6ef5253f149854d8ab8b08.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-05b06f301b829a2c82bbe1dabcd00d59"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/efc640d9ae6ef5253f149854d8ab8b08.png?width=400px"></a>
+</p>
 <h3 id="policy">
   Policy
 
@@ -410,8 +419,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>policy定义为在给定状态下选择action的概率分布：
-<a href="#R-image-3202a22703baa3fd60e53b52a93e7ce9" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/88aeca582e19f9fab9416b1f6a629bd3.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3202a22703baa3fd60e53b52a93e7ce9"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/88aeca582e19f9fab9416b1f6a629bd3.png"></a></p>
+<a href="#R-image-62c945ae5e6631992656842d9f344207" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/88aeca582e19f9fab9416b1f6a629bd3.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-62c945ae5e6631992656842d9f344207"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/88aeca582e19f9fab9416b1f6a629bd3.png?width=400px"></a>
+</p>
 <ul>
 <li>通过policy可以完全表示agent的行为</li>
 <li>MDP policy依赖于当前状态（markov性质）</li>
@@ -429,8 +439,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>基于policy的value function看作是在policy下的value期望；
 其中state value function可以看成是action value function在policy下的加权平均：
-<a href="#R-image-bcfc378c699993ae2dbac21b3dc98e8a" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a43859ecddfcc0601eacea6b1b227cd.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-bcfc378c699993ae2dbac21b3dc98e8a"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a43859ecddfcc0601eacea6b1b227cd.png"></a></p>
+<a href="#R-image-0c03b4599795a8d9eeb051b5aa68ceaf" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a43859ecddfcc0601eacea6b1b227cd.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0c03b4599795a8d9eeb051b5aa68ceaf"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a43859ecddfcc0601eacea6b1b227cd.png?width=400px"></a>
+</p>
 <h3 id="bellman-expectation-equation">
   Bellman Expectation Equation
 
@@ -442,20 +453,26 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>state/action value function也都可以转化为Bellman方程的形式：
-<a href="#R-image-13a1a6fac064b8c393a3c5d19152d2ec" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1dd0b2f6857d238bc28824209cee8612.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-13a1a6fac064b8c393a3c5d19152d2ec"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1dd0b2f6857d238bc28824209cee8612.png"></a>
-<a href="#R-image-be67f049db168e8061857d179e386528" class="lightbox-link"><img alt="image.png|350" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/22b423c980c6cb453f02587ded738410.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-be67f049db168e8061857d179e386528"><img alt="image.png|350" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/22b423c980c6cb453f02587ded738410.png"></a></p>
+<a href="#R-image-473b99dca70b00283f6c17cb7214834a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1dd0b2f6857d238bc28824209cee8612.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-473b99dca70b00283f6c17cb7214834a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1dd0b2f6857d238bc28824209cee8612.png?width=250px"></a>
+
+<a href="#R-image-85cd76aef50f1e69e4db64b42bb0e803" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/22b423c980c6cb453f02587ded738410.png?width=350px" style="height: auto;width: 350px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-85cd76aef50f1e69e4db64b42bb0e803"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/22b423c980c6cb453f02587ded738410.png?width=350px"></a>
+</p>
 <p>而他们互相之间的转换为：
-<a href="#R-image-6bd1f3bd56d9125e3623c30295d1ba2a" class="lightbox-link"><img alt="image.png|160" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d1290e503db81abbacecf6897f45dea3.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6bd1f3bd56d9125e3623c30295d1ba2a"><img alt="image.png|160" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d1290e503db81abbacecf6897f45dea3.png"></a>
-<a href="#R-image-167c81fadb10e6f120625a70ade7f239" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5e3671b78ee30fc123c59457efa712a9.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-167c81fadb10e6f120625a70ade7f239"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5e3671b78ee30fc123c59457efa712a9.png"></a></p>
+<a href="#R-image-d8af24b991f026929d07ff260e87f313" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d1290e503db81abbacecf6897f45dea3.png?width=160px" style="height: auto;width: 160px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d8af24b991f026929d07ff260e87f313"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d1290e503db81abbacecf6897f45dea3.png?width=160px"></a>
+
+<a href="#R-image-22334bc944f74dd9eb1eea1d70719c5f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5e3671b78ee30fc123c59457efa712a9.png?width=200px" style="height: auto;width: 200px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-22334bc944f74dd9eb1eea1d70719c5f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/5e3671b78ee30fc123c59457efa712a9.png?width=200px"></a>
+</p>
 <p>相应地，通过两次转换，可以得到state/action value function的迭代：
-<a href="#R-image-9189f4df765105ba61689e1e0d7504a8" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/698b10495596ff5bde81736eece4154a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9189f4df765105ba61689e1e0d7504a8"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/698b10495596ff5bde81736eece4154a.png"></a>
-<a href="#R-image-276dded9b1598d0a647d83b849a124bb" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/649aa30b5c5c77062a9b32e3b34470e8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-276dded9b1598d0a647d83b849a124bb"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/649aa30b5c5c77062a9b32e3b34470e8.png"></a></p>
+<a href="#R-image-135af61f399793fb2cb7e0b1a58f9d42" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/698b10495596ff5bde81736eece4154a.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-135af61f399793fb2cb7e0b1a58f9d42"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/698b10495596ff5bde81736eece4154a.png?width=250px"></a>
+
+<a href="#R-image-9a8146a0d21c0e7b7307a4295c261495" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/649aa30b5c5c77062a9b32e3b34470e8.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9a8146a0d21c0e7b7307a4295c261495"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/649aa30b5c5c77062a9b32e3b34470e8.png?width=300px"></a>
+</p>
 <h3 id="optimal-value-function">
   Optimal Value Function
 
@@ -467,8 +484,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>最优state/action value function分别是：
-<a href="#R-image-989b03beddbd7907bde6cd91de6eec5a" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f51052af1a5f404c20ba445f7f7728f3.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-989b03beddbd7907bde6cd91de6eec5a"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f51052af1a5f404c20ba445f7f7728f3.png"></a></p>
+<a href="#R-image-6a843092634de050e6cc51ed1f8a7782" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f51052af1a5f404c20ba445f7f7728f3.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6a843092634de050e6cc51ed1f8a7782"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f51052af1a5f404c20ba445f7f7728f3.png?width=400px"></a>
+</p>
 <p>对于$q_<em>(s,a)$，因为知道了当前状态不同action的value，直接选择最大的action就可以了；但是如果知道了$v_</em>(s)$，即知道我下一步想去哪个state，但是由于不知道action对应的状态转移矩阵（一般情况），没办法知道要选择哪个action最终value最大</p>
 <p>
 
@@ -488,10 +506,12 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h3><p>state/action optimal value function表述为Bellman Optimality Equation的形式：
-<a href="#R-image-3ef1c59624d7e81d3f4546961986204b" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/87b73ca9216c8e73e04718d27df25dd2.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3ef1c59624d7e81d3f4546961986204b"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/87b73ca9216c8e73e04718d27df25dd2.png"></a>
-<a href="#R-image-956936903429792de13b5a5440eee423" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8366f3a455d36db0729a4e2803afb5ab.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-956936903429792de13b5a5440eee423"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8366f3a455d36db0729a4e2803afb5ab.png"></a></p>
+<a href="#R-image-7e89b2b74d93fa2788c4b2b87c00c91c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/87b73ca9216c8e73e04718d27df25dd2.png?width=200px" style="height: auto;width: 200px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7e89b2b74d93fa2788c4b2b87c00c91c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/87b73ca9216c8e73e04718d27df25dd2.png?width=200px"></a>
+
+<a href="#R-image-9affe8895fad7dfba46d963540ae9d40" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8366f3a455d36db0729a4e2803afb5ab.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9affe8895fad7dfba46d963540ae9d40"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8366f3a455d36db0729a4e2803afb5ab.png?width=250px"></a>
+</p>
 <p>Bellman Optimality Equation由于包含max操作，是非线性的方程，一般没有closed form solution，可以使用迭代的算法求解：</p>
 <ul>
 <li>Value Iteration</li>
@@ -539,10 +559,12 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>对所有state的value设定初始值后，每一轮基于当前policy可达state的value加权求和，得到新一轮的value；经过足够多轮次迭代后，value逐渐收敛到当前policy的value真值：</p>
-<p><a href="#R-image-99da08cce2520a017c1a22eca65b1a99" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bfb5f5ff79939f33547f2dfe227ebb0d.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-99da08cce2520a017c1a22eca65b1a99"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bfb5f5ff79939f33547f2dfe227ebb0d.png"></a>
-<a href="#R-image-f6314fb1fa3752938f6f4f62dfaa2927" class="lightbox-link"><img alt="image.png|420" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/30044af3f1cbaafbdf5b7638f0aeb36a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f6314fb1fa3752938f6f4f62dfaa2927"><img alt="image.png|420" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/30044af3f1cbaafbdf5b7638f0aeb36a.png"></a></p>
+<p><a href="#R-image-fce48bdf079be9d4f8c6d0a2cb2ad484" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bfb5f5ff79939f33547f2dfe227ebb0d.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fce48bdf079be9d4f8c6d0a2cb2ad484"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/bfb5f5ff79939f33547f2dfe227ebb0d.png?width=400px"></a>
+
+<a href="#R-image-9109354fd95da6f6ad2b42f2401e9fdd" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/30044af3f1cbaafbdf5b7638f0aeb36a.png?width=420px" style="height: auto;width: 420px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9109354fd95da6f6ad2b42f2401e9fdd"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/30044af3f1cbaafbdf5b7638f0aeb36a.png?width=420px"></a>
+</p>
 <h2 id="policy-iteration">
   Policy Iteration
 
@@ -556,11 +578,13 @@ value-based：没有显式的policy，根据value function选择最大的action 
 </h2><p>基于原始$\pi$迭代计算所有state的value，收敛后得到$v_\pi(s)$：</p>
 <ul>
 <li>在某一个state下选择value最大的action：
-<a href="#R-image-af1c9ad326dd17c03c99d72d4b7b3470" class="lightbox-link"><img alt="image.png|350" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/11579ec535d6e62e258fe880d81e04c5.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-af1c9ad326dd17c03c99d72d4b7b3470"><img alt="image.png|350" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/11579ec535d6e62e258fe880d81e04c5.png"></a></li>
+<a href="#R-image-6acaf5bf7cc992ff4b0d44d6635a2c39" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/11579ec535d6e62e258fe880d81e04c5.png?width=350px" style="height: auto;width: 350px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6acaf5bf7cc992ff4b0d44d6635a2c39"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/11579ec535d6e62e258fe880d81e04c5.png?width=350px"></a>
+</li>
 <li>在每一个state选择value最大的action，那么你就得到了一个在全局所有状态下都表现得更好的新策略$\pi^{\prime}$，更接近$\pi^*$：
-<a href="#R-image-5b97b8ceb6505fbd67a6460c668ddd77" class="lightbox-link"><img alt="image.png|450" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d14ec55f31c6a66ecc8a7963aa2f186d.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5b97b8ceb6505fbd67a6460c668ddd77"><img alt="image.png|450" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d14ec55f31c6a66ecc8a7963aa2f186d.png"></a></li>
+<a href="#R-image-7fbd46c2b7bdfd672fef9b1fe4bd9e55" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d14ec55f31c6a66ecc8a7963aa2f186d.png?width=450px" style="height: auto;width: 450px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7fbd46c2b7bdfd672fef9b1fe4bd9e55"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d14ec55f31c6a66ecc8a7963aa2f186d.png?width=450px"></a>
+</li>
 </ul>
 <p>通过不断地：</p>
 <ul>
@@ -600,8 +624,9 @@ value-based：没有显式的policy，根据value function选择最大的action 
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-129981a36012f30c4e8bf54dc2737019" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-129981a36012f30c4e8bf54dc2737019"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png"></a></p>
+</h2><p><a href="#R-image-873aa4a9297f74cd79048b2ebaa5ad77" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-873aa4a9297f74cd79048b2ebaa5ad77"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png?width=400px"></a>
+</p>
 <h1 id="model-free-prediction">
   Model-Free Prediction
 
@@ -635,11 +660,13 @@ value-based：没有显式的policy，根据value function选择最大的action 
 </ul>
 </li>
 <li>通过增量更新value function：
-<a href="#R-image-814dbef4d5d6bce75f13cff60fba39b3" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7770d42bae48ba9fdc30f17c1709a078.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-814dbef4d5d6bce75f13cff60fba39b3"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7770d42bae48ba9fdc30f17c1709a078.png"></a></li>
+<a href="#R-image-86480c8214d6d67364b5dda79a20717d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7770d42bae48ba9fdc30f17c1709a078.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-86480c8214d6d67364b5dda79a20717d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7770d42bae48ba9fdc30f17c1709a078.png?width=250px"></a>
+</li>
 <li>对于非静态系统，可以将增量的系数设为常数，可以更有效忘记旧的样本：
-<a href="#R-image-c7aafccf4629d2f5f62d8b10b95d1db4" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1a510d04836c75d81968a10529f02960.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c7aafccf4629d2f5f62d8b10b95d1db4"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1a510d04836c75d81968a10529f02960.png"></a></li>
+<a href="#R-image-4f2f12cd9951002061516dba17571de3" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1a510d04836c75d81968a10529f02960.png?width=200px" style="height: auto;width: 200px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4f2f12cd9951002061516dba17571de3"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1a510d04836c75d81968a10529f02960.png?width=200px"></a>
+</li>
 </ul>
 <h2 id="temporal-difference-learning">
   Temporal-Difference Learning
@@ -686,23 +713,30 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 </ul>
 </li>
 <li>MC、TD和dynamic programming的更新对比：
-<a href="#R-image-9fd6ee70d9c736223f8a39350ce0b7c3" class="lightbox-link"><img alt="image.png|220" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3b81dc4300f90ad797ba88837b4de935.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9fd6ee70d9c736223f8a39350ce0b7c3"><img alt="image.png|220" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3b81dc4300f90ad797ba88837b4de935.png"></a><a href="#R-image-9dfc15862275788d708df9801d5da707" class="lightbox-link"><img alt="image.png|210" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/59d45497aa9166d79f8a4b25cda86c1c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9dfc15862275788d708df9801d5da707"><img alt="image.png|210" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/59d45497aa9166d79f8a4b25cda86c1c.png"></a><a href="#R-image-74342ddae10d7f6c307d20bea5ea0c86" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/73fa66589b32bc2fccd506ea07dd5d20.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-74342ddae10d7f6c307d20bea5ea0c86"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/73fa66589b32bc2fccd506ea07dd5d20.png"></a></li>
+<a href="#R-image-b6b25da8f16fc1f4a8160dfc8ec40884" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3b81dc4300f90ad797ba88837b4de935.png?width=220px" style="height: auto;width: 220px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b6b25da8f16fc1f4a8160dfc8ec40884"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3b81dc4300f90ad797ba88837b4de935.png?width=220px"></a>
+<a href="#R-image-2ebd71055254266df9bc89eda24edb5f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/59d45497aa9166d79f8a4b25cda86c1c.png?width=210px" style="height: auto;width: 210px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2ebd71055254266df9bc89eda24edb5f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/59d45497aa9166d79f8a4b25cda86c1c.png?width=210px"></a>
+<a href="#R-image-a3d86c238ffdf94974e5c578b787921f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/73fa66589b32bc2fccd506ea07dd5d20.png?width=200px" style="height: auto;width: 200px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a3d86c238ffdf94974e5c578b787921f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/73fa66589b32bc2fccd506ea07dd5d20.png?width=200px"></a>
+</li>
 </ul>
 <p>n-step TD learning，每次更新考虑n步，而不只是TD(0)的一步：
-<a href="#R-image-20536193d57664c953de4e45a0d71137" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/287022e29ddc7f61fcb6bec8ea0781f8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-20536193d57664c953de4e45a0d71137"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/287022e29ddc7f61fcb6bec8ea0781f8.png"></a></p>
+<a href="#R-image-6b8387b8a125a49f91559850d8ec315a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/287022e29ddc7f61fcb6bec8ea0781f8.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6b8387b8a125a49f91559850d8ec315a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/287022e29ddc7f61fcb6bec8ea0781f8.png?width=300px"></a>
+</p>
 <p>定义n步的TD target：
-<a href="#R-image-31b1114cb91e641207b68230f2f76ead" class="lightbox-link"><img alt="image.png|350" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7b16be732c214f970c7a6464e6c30ed0.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-31b1114cb91e641207b68230f2f76ead"><img alt="image.png|350" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7b16be732c214f970c7a6464e6c30ed0.png"></a>
+<a href="#R-image-49589481eebcdea341ff24f009840aa5" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7b16be732c214f970c7a6464e6c30ed0.png?width=350px" style="height: auto;width: 350px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-49589481eebcdea341ff24f009840aa5"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7b16be732c214f970c7a6464e6c30ed0.png?width=350px"></a>
+
 得到n步的TD learning：
-<a href="#R-image-5ba292529d5a64e4a39b6480a2564c43" class="lightbox-link"><img alt="image.png|240" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8c845ff38c95b0666730cb14d6c0c48c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5ba292529d5a64e4a39b6480a2564c43"><img alt="image.png|240" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8c845ff38c95b0666730cb14d6c0c48c.png"></a></p>
+<a href="#R-image-1c22735b17f91cce11f5bfcae11f52b9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8c845ff38c95b0666730cb14d6c0c48c.png?width=240px" style="height: auto;width: 240px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1c22735b17f91cce11f5bfcae11f52b9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8c845ff38c95b0666730cb14d6c0c48c.png?width=240px"></a>
+</p>
 <p>这里以random walk为例，观察不同的n和alpha在10个episodes数据上的error：
-<a href="#R-image-b74e5385b900ca5120bd3b99bd77a3f7" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/78b1481fd37393a07fd05d156b444707.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b74e5385b900ca5120bd3b99bd77a3f7"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/78b1481fd37393a07fd05d156b444707.png"></a>
+<a href="#R-image-bf04ca0c6b31afbf9949a797ee5ceee2" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/78b1481fd37393a07fd05d156b444707.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bf04ca0c6b31afbf9949a797ee5ceee2"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/78b1481fd37393a07fd05d156b444707.png?width=300px"></a>
+
 曲线主要体现了bias/variance的trade-off：</p>
 <ul>
 <li>小n：variance小，bias大，因此较大的alpha更有利于快速优化</li>
@@ -730,19 +764,22 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>通过对不同step的TD进行加权平均，既利用了大步数带来的快速信息传播，又通过小步数维持了系统的稳定性；这个算法能够在一个统一的框架下，自动实现从 TD(0)到 MC的平滑过渡：
-<a href="#R-image-468dfe7388dc4f9da8d1f97644394241" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8810011b7a628a9647331b54284217be.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-468dfe7388dc4f9da8d1f97644394241"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8810011b7a628a9647331b54284217be.png"></a></p>
+<a href="#R-image-cc915d6aa025677da31e1352cfb8c0ae" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8810011b7a628a9647331b54284217be.png?width=200px" style="height: auto;width: 200px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cc915d6aa025677da31e1352cfb8c0ae"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8810011b7a628a9647331b54284217be.png?width=200px"></a>
+</p>
 <p>TD($\lambda$)对近期步数分配较高权重，对远期步数分配较低权重：
-<a href="#R-image-29ff02c9b545909162dd16560812c363" class="lightbox-link"><img alt="image.png|200" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7dd58bedbf63cfb0537b6872db7bd6c9.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-29ff02c9b545909162dd16560812c363"><img alt="image.png|200" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7dd58bedbf63cfb0537b6872db7bd6c9.png"></a></p>
+<a href="#R-image-c05be39b92827f6f3d688b6e0bb76996" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7dd58bedbf63cfb0537b6872db7bd6c9.png?width=200px" style="height: auto;width: 200px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c05be39b92827f6f3d688b6e0bb76996"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7dd58bedbf63cfb0537b6872db7bd6c9.png?width=200px"></a>
+</p>
 <ul>
 <li>距离越近，因果关系越明确，因果关系越明确</li>
 <li>给远期步数分配较小的权重可以抑制方差的累积</li>
 <li>数学上的考虑，可以利用资格迹实现反向视角</li>
 </ul>
 <p>TD($\lambda$)的正向视角是坐在现在看未来，需要完整序列；而如果采用反向视角，即站在现在看过去，可以利用资格迹（Eligibility Traces）保存每一个state对当前state的return的贡献，从而实时更新当前步的return到之前的state上，且不需要序列是完整的：
-<a href="#R-image-aecd1db8345287a2fa6beffc4342ac15" class="lightbox-link"><img alt="image.png|240" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/165a44f47ce3f980e6caf2b3674602c2.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-aecd1db8345287a2fa6beffc4342ac15"><img alt="image.png|240" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/165a44f47ce3f980e6caf2b3674602c2.png"></a></p>
+<a href="#R-image-2f50e74bda80d0c3438d88b1c1e29eac" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/165a44f47ce3f980e6caf2b3674602c2.png?width=240px" style="height: auto;width: 240px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2f50e74bda80d0c3438d88b1c1e29eac"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/165a44f47ce3f980e6caf2b3674602c2.png?width=240px"></a>
+</p>
 <p>
 
 
@@ -788,12 +825,14 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 <ul>
 <li>与MDP已知不同，我们需要探索所有行为的可能，而没办法确定某个行为是最优的，这也是从planning到learning的跨越</li>
 <li>通过$\epsilon-greedy$策略来选择action，在保证探索的前提下，同时保证收敛到更优：
-<a href="#R-image-ec5ce2fdb83d5c9250a44aa99cc922bd" class="lightbox-link"><img alt="image.png|350" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1ad577de44e5229b5090aca95e497c7b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ec5ce2fdb83d5c9250a44aa99cc922bd"><img alt="image.png|350" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1ad577de44e5229b5090aca95e497c7b.png"></a></li>
+<a href="#R-image-58da58c5567656b51948dbf1a7d44edd" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1ad577de44e5229b5090aca95e497c7b.png?width=350px" style="height: auto;width: 350px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-58da58c5567656b51948dbf1a7d44edd"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/1ad577de44e5229b5090aca95e497c7b.png?width=350px"></a>
+</li>
 <li>不需要过多采样来精确得到$q(s,a)$，可以只采样一条序列，更新序列中每一个s和a的pair的action value function，然后进行$\epsilon-greedy$操作来加速迭代</li>
 <li>如果探索最终满足GLIE（Greedy in the Limit with Infinite Exploration），则能够保证最终收敛到全局最优，比如$\epsilon_k=\frac{1}{k}$就是一个例子：
-<a href="#R-image-6bf805f4ff3f3104b44fc431b4c038b1" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e3742620387147805768190503e0632f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6bf805f4ff3f3104b44fc431b4c038b1"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e3742620387147805768190503e0632f.png"></a>
+<a href="#R-image-e880974cacff5becf55c0f4a10acc438" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e3742620387147805768190503e0632f.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e880974cacff5becf55c0f4a10acc438"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e3742620387147805768190503e0632f.png?width=400px"></a>
+
 
 
 
@@ -811,9 +850,11 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>将On-Policy的MC改成TD，就是Sarsa算法：
-<a href="#R-image-57f32c017bc663806150c165683e616f" class="lightbox-link"><img alt="image.png|300" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9a897256dc31958c6f6059cb262c5eb7.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-57f32c017bc663806150c165683e616f"><img alt="image.png|300" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9a897256dc31958c6f6059cb262c5eb7.png"></a><a href="#R-image-2724cc6f3ffabca4d733467e650fd30f" class="lightbox-link"><img alt="image.png|450" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0a0bbaad45ac7c1fadd06e91b95d218b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-2724cc6f3ffabca4d733467e650fd30f"><img alt="image.png|450" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0a0bbaad45ac7c1fadd06e91b95d218b.png"></a></p>
+<a href="#R-image-3c0f59baabc1db6752b19e58c0198f16" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9a897256dc31958c6f6059cb262c5eb7.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3c0f59baabc1db6752b19e58c0198f16"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9a897256dc31958c6f6059cb262c5eb7.png?width=300px"></a>
+<a href="#R-image-5de76082db86a589acb069e8dbfdad20" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0a0bbaad45ac7c1fadd06e91b95d218b.png?width=450px" style="height: auto;width: 450px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5de76082db86a589acb069e8dbfdad20"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0a0bbaad45ac7c1fadd06e91b95d218b.png?width=450px"></a>
+</p>
 <p>Sarsa算法收敛到最优策略的条件：</p>
 <ul>
 <li>满足GLIE，例如通过$\epsilon-greedy$选择动作即可</li>
@@ -826,11 +867,13 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 <li>实际应用中，大部分不考虑Robbins-Monro条件，甚至有时候不考虑GLIE，Sarsa也能work</li>
 </ul>
 <p>与TD($\lambda$)类似的思考，通过对n-step Sarsa的average，我们可以得到Sarsa($\lambda$)：
-<a href="#R-image-dafae1ec128dddd4e70382bf39e9fbc3" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6bea64d9d2cfece1c2cc84243e957193.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-dafae1ec128dddd4e70382bf39e9fbc3"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6bea64d9d2cfece1c2cc84243e957193.png"></a></p>
+<a href="#R-image-1d16f1fdc2bc1d88724f0a66e31e51cd" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6bea64d9d2cfece1c2cc84243e957193.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1d16f1fdc2bc1d88724f0a66e31e51cd"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6bea64d9d2cfece1c2cc84243e957193.png?width=250px"></a>
+</p>
 <p>同样得到基于资格迹的后向视角的工程实现：
-<a href="#R-image-8178efaee825f7c4391082493c88e73f" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/eebaa918b6913c562d1f561093561e18.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8178efaee825f7c4391082493c88e73f"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/eebaa918b6913c562d1f561093561e18.png"></a></p>
+<a href="#R-image-f05e69065720a05f7d736c09f3cf3a88" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/eebaa918b6913c562d1f561093561e18.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f05e69065720a05f7d736c09f3cf3a88"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/eebaa918b6913c562d1f561093561e18.png?width=400px"></a>
+</p>
 <h2 id="off-policy">
   Off-Policy
 
@@ -848,13 +891,16 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 <li>在采用某个policy得情况下，学习多个policy</li>
 </ul>
 <p>通过important of sampling来利用策略Q的采样来评估策略P：
-<a href="#R-image-41d1fdde3ae68e86c15bf287a26383b7" class="lightbox-link"><img alt="image.png|220" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/861f422ccf03f51b4b92314d7d1841a6.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-41d1fdde3ae68e86c15bf287a26383b7"><img alt="image.png|220" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/861f422ccf03f51b4b92314d7d1841a6.png"></a></p>
+<a href="#R-image-4b9fd51592cc411da8a0fe4bc6ab69bf" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/861f422ccf03f51b4b92314d7d1841a6.png?width=220px" style="height: auto;width: 220px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b9fd51592cc411da8a0fe4bc6ab69bf"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/861f422ccf03f51b4b92314d7d1841a6.png?width=220px"></a>
+</p>
 <p>对于策略Q产生的样本，由于策略不同，导致这些样本在策略P中出现的概率不同，因此在用于评估策略的时候的权重也不同，因此如果要准确地利用这些样本评估策略P，需要做权重的调整：
-<a href="#R-image-3753e15ef438d1d49b725defb47e2691" class="lightbox-link"><img alt="image.png|350" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3047c94280925c8ed478fe0cd1358422.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3753e15ef438d1d49b725defb47e2691"><img alt="image.png|350" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3047c94280925c8ed478fe0cd1358422.png"></a>
-<a href="#R-image-0af602cbad0baf385154e8ed595aafa0" class="lightbox-link"><img alt="image.png|250" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a5f37f92309f8820969065b904e928f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0af602cbad0baf385154e8ed595aafa0"><img alt="image.png|250" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a5f37f92309f8820969065b904e928f.png"></a></p>
+<a href="#R-image-a12c76e00409cffec88e7787cc3bd89f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3047c94280925c8ed478fe0cd1358422.png?width=350px" style="height: auto;width: 350px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a12c76e00409cffec88e7787cc3bd89f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/3047c94280925c8ed478fe0cd1358422.png?width=350px"></a>
+
+<a href="#R-image-f67d895679af2d7f5c2633ad6ca9f935" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a5f37f92309f8820969065b904e928f.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f67d895679af2d7f5c2633ad6ca9f935"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7a5f37f92309f8820969065b904e928f.png?width=250px"></a>
+</p>
 <p>
 
 
@@ -866,8 +912,9 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 <li>数值爆炸：重要性采样会因为概率的连乘很大程度增加方差</li>
 </ul>
 <p>off-policy的TD Learning可以解决这个问题，因为它使用了bootstrapping，重要性权重只加在最近的一次reward上，大大缓解数据饥渴和数值爆炸的问题：
-<a href="#R-image-0fc84852e6465f15e69149e534d65e4d" class="lightbox-link"><img alt="image.png|320" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0735b2f32724f704f0112f8ba945872a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0fc84852e6465f15e69149e534d65e4d"><img alt="image.png|320" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0735b2f32724f704f0112f8ba945872a.png"></a></p>
+<a href="#R-image-d9de5d4bb6dda2d0260e86f1f2752138" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0735b2f32724f704f0112f8ba945872a.png?width=320px" style="height: auto;width: 320px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d9de5d4bb6dda2d0260e86f1f2752138"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/0735b2f32724f704f0112f8ba945872a.png?width=320px"></a>
+</p>
 <p>Q Learning可以避免使用重要性采样，简化off policy的control：</p>
 <ul>
 <li>通过Q和行为策略$\mu$（通常使用$\epsilon-greedy$来保证探索）选择当前state $S_t$要更新的action $A_t$</li>
@@ -877,8 +924,9 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 </ul>
 </li>
 <li>在计算Q的更新时，$A&rsquo;$是通过目标策略$\pi$选择出来的（max选择最优action），这样可以避免使用重要性采样（因为目标策略$\pi$是确定性的，没有分布的概念，不需要纠偏）
-<a href="#R-image-9d0fe6ecd4d80175c4e39f769ad26abf" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/db2e4f606f38387ba0c460a50e398685.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d0fe6ecd4d80175c4e39f769ad26abf"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/db2e4f606f38387ba0c460a50e398685.png"></a>
+<a href="#R-image-13d71a9722bf15e422b3fa9b8dcb1970" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/db2e4f606f38387ba0c460a50e398685.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-13d71a9722bf15e422b3fa9b8dcb1970"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/db2e4f606f38387ba0c460a50e398685.png?width=400px"></a>
+
 
 
 
@@ -892,8 +940,9 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 
 <a href="../Answers/Q-Learning%E5%92%8CSarsa%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.md">Q-Learning和Sarsa之间的关系</a></p>
 <p>TD和DP的关系对比：
-<a href="#R-image-876b7d8623552d5075f21849607493a1" class="lightbox-link"><img alt="image.png|400" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/836038b50720e386b89b16241806761b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-876b7d8623552d5075f21849607493a1"><img alt="image.png|400" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/836038b50720e386b89b16241806761b.png"></a></p>
+<a href="#R-image-9d86cdeaf1ed716c5f7af73bfbe9eacd" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/836038b50720e386b89b16241806761b.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d86cdeaf1ed716c5f7af73bfbe9eacd"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/836038b50720e386b89b16241806761b.png?width=400px"></a>
+</p>
 <p>参考链接：</p>
 <ul>
 <li>
@@ -1000,8 +1049,20 @@ $V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 <div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768251679" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768251679" defer></script>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768274137"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768274137" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1768274137" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
