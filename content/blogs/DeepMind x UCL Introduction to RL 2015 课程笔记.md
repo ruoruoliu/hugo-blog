@@ -185,8 +185,7 @@ Markov Process满足动态规划的两个性质：
 
 每步评估进行一次优化（取max）：每次采用可达state中最大的value来计算当前state的新一轮value，通过这种方式不断更新value，最终得到每个状态的$v^*(s)$，称为value iteration
 
-## Policy Evaluation、Policy Iteration和Value Iteration的对比
-
+Policy Evaluation、Policy Iteration和Value Iteration的对比
 ![image.png|400](https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png)
 
 # Model-Free Prediction
@@ -634,7 +633,7 @@ Dyna将model-free和model-based结合在一起：
 
 - greedy和$\epsilon-greedy$策略都是随次数线性增加的总体regret
 
-### Optimism in the face of Uncertainty
+### Optimism In The Face Of Uncertainty
 
 - Optimistic Initialization：
 	- 所有action初始设为最大值，通过采样慢慢收敛到真实值，保证所有action都会被探索到
