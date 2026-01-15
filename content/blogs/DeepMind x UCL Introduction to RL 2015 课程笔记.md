@@ -19,7 +19,7 @@ reward是什么：
 - 表示agent在t时刻的表现
 - agent的目标是最大化累积reward
 
-序列决策：
+序列决策是什么：
 - 目标是选择action，最大化累积reward
 - action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward
 - 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、...
@@ -32,7 +32,9 @@ state是什么：
 - markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立
 - 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process）
 
-agent三大组件：
+### agent
+
+agent的组成：
 - policy：agent的行为函数，是从state到action的map，可以是确定的，也可以是概率分布
 - value function：agent基于某个policy下，对于当前状态的未来累积价值评估
 - model主要有两种：
@@ -308,7 +310,7 @@ Sarsa算法收敛到最优策略的条件：
 同样得到基于资格迹的后向视角的工程实现：
 ![image.png|400](https://images.ruoruoliu.com/2026/01/eebaa918b6913c562d1f561093561e18.png)
 
-## Off-Policy（Q-Learning）
+## Off-Policy
 
 Off-Policy的意义：
 - 复用数据：参考其他策略的action和结果，帮助优化自己的policy
@@ -328,6 +330,8 @@ Off-Policy的意义：
 
 off-policy的TD Learning使用了bootstrapping，重要性权重只加在最近的一次reward上，大大缓解数据饥渴和数值爆炸的问题：
 ![image.png|320](https://images.ruoruoliu.com/2026/01/0735b2f32724f704f0112f8ba945872a.png)
+
+### Q-Learning
 
 Q-Learning可以避免使用重要性采样，更方便地进行off policy的control：
 - 通过Q和行为策略$\mu$（通常使用$\epsilon-greedy$来保证探索）选择当前state $S_t$要更新的action $A_t$
@@ -394,10 +398,12 @@ Off-Policy TD在函数拟合时不收敛的原因是，死亡三要素条件共�
 control算法收敛性：
 ![image.png|400](https://images.ruoruoliu.com/2026/01/e5392c6cbeb6de212b57ad1b379ec3d6.png)
 
-## Batch Methods（DQN）
+## Batch Methods
 
 为了更有效率地利用样本，我们通常利用agent的经验序列作为数据集，不断采样（经验回放）然后进行SGD求解Least Squares Prediction：
 ![image.png|200](https://images.ruoruoliu.com/2026/01/0a11e6d7c7ddb986393dbfd1535cdc26.png)
+
+### DQN
 
 DQN使用经验回放和固定Q-targets的方式：
 - 基于Q-network的计算结果$Q(s,a,w_i)$，根据$\epsilon-greedy$策略选择action $a_t$
@@ -564,16 +570,19 @@ model是一个MDP的表示，包含S（状态空间）、A（动作空间）、P
 	- 当模型完全错误的时候，转而采用model-free的方法
 	- 对模型不确定性显示建模：[RL中对Model Uncertainty显式建模的方法](../Answers/RL%E4%B8%AD%E5%AF%B9Model%20Uncertainty%E6%98%BE%E5%BC%8F%E5%BB%BA%E6%A8%A1%E7%9A%84%E6%96%B9%E6%B3%95.md)
 
-## Integrated Architectures（Dyna-Q）
+## Integrated Architectures
+
+### Dnya-Q
 
 Dyna将model-free和model-based结合在一起：
 - 从真实样本学习model
 - 从真实和模拟样本学习value function和policy
 ![image.png|200](https://images.ruoruoliu.com/2026/01/6637e20502295eeb21618fb0ba324894.png)![image.png|300](https://images.ruoruoliu.com/2026/01/64e160ec681c5243059ddbc0152664fa.png)
 
-## Simulation-Based Search（MCTS）
+## Simulation-Based Search
 
-Forward Search：
+### Forward Search
+
 - 基于当前state进行模拟：随机生成样本，截止到n步，构造sub-MDP
 - 基于sub-MDP进行model-free的学习，更新Q和policy
 	- 利用MC叫Monte-Carlo Search，利用Sarsa叫TD Search
@@ -581,7 +590,8 @@ Forward Search：
 ![image.png|300](https://images.ruoruoliu.com/2026/01/136ed954eec838fcec7c11d48d4f0ecb.png)
 [Forward Search和Dyna的优劣对比](../Answers/Forward%20Search%E5%92%8CDyna%E7%9A%84%E4%BC%98%E5%8A%A3%E5%AF%B9%E6%AF%94.md)
 
-Monte-Carlo Tree Search：
+### Monte-Carlo Tree Search
+
 - 在MC Search的基础上，不对每一个动作采样，而是根据动作的价值期望采样
 	- 价值大的动作采样更多，保证探索充分，预估精准
 	- 价值期望一般通过UCB策略来判断
@@ -589,7 +599,8 @@ Monte-Carlo Tree Search：
 		- in-tree：当前state在已探索过的tree内部，采用$\epsilon-greedy$或者UCB策略
 		- out-of-tree：当前state在tree外部，采用random来快速获得大致价值
 
-Dyna-2：
+### Dyna-2
+
 - 基于Dyna的思路，TD learning+TD search：
 	- Long-term memory：通过TD learning迭代全局价值信息
 	- Short-term memory：通过TD search模拟当前局部价值信息
@@ -617,8 +628,14 @@ Dyna-2：
 
 ## Multi-Armed Bandits
 
-多臂赌博机问题中，我们希望最小化总体regret（与最优action的gap）：
+多臂赌博机问题中，我们希望最小化总体regret（与最优action的gap）
+
+### Random Exploration
+
 - greedy和$\epsilon-greedy$策略都是随次数线性增加的总体regret
+
+### Optimism in the face of Uncertainty
+
 - Optimistic Initialization：
 	- 所有action初始设为最大值，通过采样慢慢收敛到真实值，保证所有action都会被探索到
 	- policy使用greedy或者$\epsilon-greedy$，仍然线性增加的总体regret
@@ -637,6 +654,9 @@ Dyna-2：
 	- Bayesian UCB：利用后验分布的variance作为UCB的不确定分数，$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, \mu_a + c \sigma_a / \sqrt{N(a)}$
 	- Probability Matching：基于一个action是最优action的概率来进行采样
 		- Thompson Sampling： 通过对每个动作的value随机采样实现
+
+### Information State Space
+
 - Information State Search：基于信息的价值（长期收益-短期损失）来判断
 	- 衡量value of information：不确定性高且与最优action相关的action，包含较大信息价值
 		[RL中信息价值与不确定性的关系](../Answers/RL%E4%B8%AD%E4%BF%A1%E6%81%AF%E4%BB%B7%E5%80%BC%E4%B8%8E%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%9A%84%E5%85%B3%E7%B3%BB.md)
