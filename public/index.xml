@@ -6,7 +6,7 @@
     <description>This is your new home page.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Log</title>
@@ -16,17 +16,17 @@
       <description>This is a log.</description>
     </item>
     <item>
-      <title>Blogs</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</link>
-      <pubDate>Fri, 09 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</guid>
+      <title>Weeklies</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</link>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</guid>
       <description></description>
     </item>
     <item>
-      <title>Weeklies</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</link>
-      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</guid>
+      <title>Blogs</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</link>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</guid>
       <description></description>
     </item>
     <item>

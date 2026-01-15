@@ -308,7 +308,7 @@ Sarsa算法收敛到最优策略的条件：
 同样得到基于资格迹的后向视角的工程实现：
 ![image.png|400](https://images.ruoruoliu.com/2026/01/eebaa918b6913c562d1f561093561e18.png)
 
-## Off-Policy
+## Off-Policy（Q-Learning）
 
 Off-Policy的意义：
 - 复用数据：参考其他策略的action和结果，帮助优化自己的policy
@@ -322,20 +322,18 @@ Off-Policy的意义：
 ![image.png|350](https://images.ruoruoliu.com/2026/01/3047c94280925c8ed478fe0cd1358422.png)
 ![image.png|250](https://images.ruoruoliu.com/2026/01/7a5f37f92309f8820969065b904e928f.png)
 
-[Off-Policy中的重要性采样](../Answers/Off-Policy%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7.md)
-
 由于以下两个原因，off-policy的MC在实际应用中几乎不可用：
 - 数据饥渴：当$\mu(A|S)=0$但是$\pi(A|S)\neq0$的时候，这条样本不可用，即便可以通过$\epsilon-greedy$的策略保证$\mu(A|S)\neq0$，但是这时候的权重会极小，$\epsilon/m$，依然不可用
 - 数值爆炸：重要性采样会因为概率的连乘很大程度增加方差
 
-off-policy的TD Learning可以解决这个问题，因为它使用了bootstrapping，重要性权重只加在最近的一次reward上，大大缓解数据饥渴和数值爆炸的问题：
+off-policy的TD Learning使用了bootstrapping，重要性权重只加在最近的一次reward上，大大缓解数据饥渴和数值爆炸的问题：
 ![image.png|320](https://images.ruoruoliu.com/2026/01/0735b2f32724f704f0112f8ba945872a.png)
 
-Q Learning可以避免使用重要性采样，简化off policy的control：
+Q-Learning可以避免使用重要性采样，更方便地进行off policy的control：
 - 通过Q和行为策略$\mu$（通常使用$\epsilon-greedy$来保证探索）选择当前state $S_t$要更新的action $A_t$
 - 确定$S_t$和$A_t$后，环境给出reward，$R_{t+1}$和下一个state，$S_{t+1}$
 	- 这部分称为SARS四元组，可以使用历史数据进行回放的方式复用数据
-- 在计算Q的更新时，$A'$是通过目标策略$\pi$选择出来的（max选择最优action），这样可以避免使用重要性采样（因为目标策略$\pi$是确定性的，没有分布的概念，不需要纠偏）
+- 在计算Q的更新时，$A'$是通过目标策略$\pi$选择出来的（max选择最优action），这样可以避免使用重要性采样（因为目标策略$\pi$是确定性的，不是分布，不需要纠偏）
 	![image.png|400](https://images.ruoruoliu.com/2026/01/db2e4f606f38387ba0c460a50e398685.png)
 	[为什么Q-Learning有逃避“重要性采样”的特权？](../Answers/%E4%B8%BA%E4%BB%80%E4%B9%88Q-Learning%E6%9C%89%E9%80%83%E9%81%BF%E2%80%9C%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7%E2%80%9D%E7%9A%84%E7%89%B9%E6%9D%83%EF%BC%9F.md)
 - 可以理解为：行为策略$\mu$决定更新哪个state和action，目标策略$\pi$决定怎么更新（具体数值）
@@ -345,6 +343,317 @@ Q Learning可以避免使用重要性采样，简化off policy的control：
 TD和DP的关系对比：
 ![image.png|400](https://images.ruoruoliu.com/2026/01/836038b50720e386b89b16241806761b.png)
 
+# Value Function Approximation
+---
+
+现实世界中，问题的状态规模是巨大的，这带来两个问题：
+- 无法存储全部的state/action在memory中
+- 全部更新所有的state/action太慢
+
+Value Function Approximation通过函数来近似表示value：
+![image.png|160](https://images.ruoruoliu.com/2026/01/a8b40375f0b8a5d895c015af1c3a43db.png)
+- 可以从已知的状态泛化到未知的状态
+- 通过MC或者TD来更新参数w
+
+function approximator：
+- 典型结构：
+	![image.png|300](https://images.ruoruoliu.com/2026/01/3f84e43b30164ca5e130dd3b65048517.png)
+- 实现方式：
+	- 特征线性组合
+	- 神经网络
+	- 决策树
+	- 最近邻居
+	- 傅立叶/小波变换
+- 训练数据特点：
+	- 非固定策略：即训练过程中数据有分布会随策略优化而变化
+	- none-iid：即训练数据来自序列且前后关联的，模型可能会在短时间内过度拟合某一段连续的轨迹，导致参数更新剧烈波动
+
+## Incremental Methods
+
+采用SGD的方式拟合，由于RL问题中没有label，我们用return作为target来计算梯度：
+- MC：$\Delta \mathbf{w} = \alpha( G_t - \hat{v}(S_t, \mathbf{w}))\nabla_{\mathbf{w}}\hat{v}(S_t, \mathbf{w})$
+- TD(0)：$\Delta \mathbf{w} = \alpha( R_{t+1} + \gamma\hat{v}(S_{t+1}, \mathbf{w}) - \hat{v}(S_t, \mathbf{w}))\nabla_{\mathbf{w}}\hat{v}(S_t, \mathbf{w})$
+- TD($\lambda$)：$\Delta \mathbf{w} = \alpha( G_t^{\lambda} - \hat{v}(S_t, \mathbf{w}))\nabla_{\mathbf{w}}\hat{v}(S_t, \mathbf{w})$
+	- 反向视角：
+		![image.png|250](https://images.ruoruoliu.com/2026/01/e258bee56ffe232794738a3088d908e9.png)
+	- 资格迹的更新规则要求累积价值函数关于参数的梯度：
+		- 预测更新：$E_t = \gamma \lambda E_{t-1} + \nabla_{\mathbf{w}} \hat{v}(S_t, \mathbf{w})$
+		- 控制更新：$E_t = \gamma \lambda E_{t-1} + \nabla_{\mathbf{w}} \hat{q}(S_t, A_t, \mathbf{w})$
+		- [Function Approximation中资格迹的更新规则](../Answers/Function%20Approximation%E4%B8%AD%E8%B5%84%E6%A0%BC%E8%BF%B9%E7%9A%84%E6%9B%B4%E6%96%B0%E8%A7%84%E5%88%99.md)
+
+当解决控制问题时，将上述方法使用在action value function上，然后做policy evaluation/improvement的迭代即可
+
+prediction算法收敛性：
+![image.png|400](https://images.ruoruoliu.com/2026/01/7fae4ccde606790b27ccfad06e6b4b0d.png)
+[On-Policy TD在非线性拟合价值函数时不收敛的原因](../Answers/On-Policy%20TD%E5%9C%A8%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%8B%9F%E5%90%88%E4%BB%B7%E5%80%BC%E5%87%BD%E6%95%B0%E6%97%B6%E4%B8%8D%E6%94%B6%E6%95%9B%E7%9A%84%E5%8E%9F%E5%9B%A0.md)
+Off-Policy TD在函数拟合时不收敛的原因是，死亡三要素条件共同作用下，算法往往不稳定：
+- Function Approximation：参数耦合，导致更新一个状态的价值可能会改变其他状态的价值
+- Bootstrapping：估计有偏，偏差就会在迭代过程中不断积累和循环
+- Off-Policy：行为策略不一定向价值高的地方走，导致偏差不会及时发现
+
+control算法收敛性：
+![image.png|400](https://images.ruoruoliu.com/2026/01/e5392c6cbeb6de212b57ad1b379ec3d6.png)
+
+## Batch Methods（DQN）
+
+为了更有效率地利用样本，我们通常利用agent的经验序列作为数据集，不断采样（经验回放）然后进行SGD求解Least Squares Prediction：
+![image.png|200](https://images.ruoruoliu.com/2026/01/0a11e6d7c7ddb986393dbfd1535cdc26.png)
+
+DQN使用经验回放和固定Q-targets的方式：
+- 基于Q-network的计算结果$Q(s,a,w_i)$，根据$\epsilon-greedy$策略选择action $a_t$
+- 存储四元组$(s_t, a_t, r_{t+1}, s_{t+1})$进入回放memory
+- 每次从memory中采样minibatch
+- 基于旧参数$w^-$计算Q-targets
+- 利用SGD优化Q-network和Q-targets之间的MSE，更新Q-network的参数权重
+	![image.png|400](https://images.ruoruoliu.com/2026/01/0a8d638ec1179d8df4ba29658415aafa.png)
+- 每隔一段时间（～1000步），更新$w^-$到最新参数
+
+DQN能够稳定收敛的两个原因：
+- 经验回放打散了序列训练数据，让minibatch样本直接减少关联
+- 使用两套网络参数，每次冻结Q-target的网络，更新Q-network，避免在不固定的target上进行bootstrapping
+
+另一种绕过梯度更新的方式是LSPI，基于特征的线性映射，直接通过矩阵运算一次求解参数：
+[Least-Squares Policy Iteration是什么？](../Answers/Least-Squares%20Policy%20Iteration%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F.md)
+
+# Policy Gradient
+--- 
+
+相比求解value function的方式来迭代policy，policy gradient直接优化policy
+![image.png|200](https://images.ruoruoliu.com/2026/01/6ebe40c981dac23eaa50c8fd95fb6cf9.png)
+
+Policy Gradient的优点，主要在于避免了value-based方法的max操作：
+- 更好的收敛性质：相比value-based方法中取max的操作会导致参数剧烈波动，policy-based的学习目标是一个分布，不会跳变
+- 在高纬度或连续action空间更有效：这种空间本身就很难取max
+- 可以学习随机策略：即最终的策略是一个分布，而不是基于value的max
+
+Policy Gradient的缺点：
+- 通常收敛到局部最优，而不是全局最优
+- 评估policy通常效率低，且高variance
+
+Policy Objective Function，即如何评价policy：
+- 在周期性任务中以初始状态$s_1$起始的value：$J_1(\theta) = V^{\pi_\theta}(s_1) = \mathbb{E}_{\pi_\theta} [v_1]$
+- 在连续性任务中的平均value：$J_{avV}(\theta) = \sum_{s} d^{\pi_\theta}(s) V^{\pi_\theta}(s)$
+	- 其中 $d^{\pi_\theta}(s)$ 是策略 $\pi_\theta$ 下状态的平稳分布
+- 在连续性任务中的每步平均value：$J_{avR}(\theta) = \sum_{s} d^{\pi_\theta}(s) \sum_{a} \pi_\theta(s, a) \mathcal{R}_s^a$
+
+## Finite Difference Policy Gradient
+
+通过对当前policy不同参数进行微小扰动，评估objective得到对应的delta，作为该参数的梯度：
+![image.png|200](https://images.ruoruoliu.com/2026/01/8f5f98a476a69fa2af44eae7a82e5ef0.png)
+
+## Monte-Carlo Policy Gradient（REINFORCE）
+
+目标$J(\theta)$是在当前策略下，所有可能路径$\tau$的总回报$R(\tau)$的期望值：
+
+$J(\theta) = \mathbb{E}_{\pi_\theta}[R(\tau)] = \sum_{\tau} P(\tau|\theta) R(\tau)$
+
+对$J(\theta)$求导，将策略的导数转化为策略对数的导数的期望：
+$$\begin{flalign*}
+\nabla_\theta J(\theta) &= \sum_{\tau} \nabla_\theta P(\tau|\theta) R(\tau) &\\
+&= \sum_{\tau} P(\tau|\theta) \nabla_\theta \log P(\tau|\theta) R(\tau) &\\
+&= \mathbb{E}_{\pi_\theta} [\nabla_\theta \log P(\tau|\theta) R(\tau)] &
+\end{flalign*}$$
+
+展开$P(\tau|\theta)$，即一条路径的概率等于：初始状态概率 × 策略概率 × 环境转移概率：
+$P(\tau|\theta) = \mu(s_0) \prod_{t=0}^{T} \pi_\theta(a_t|s_t) P(s_{t+1}|s_t, a_t)$
+
+取log得到：
+$\log P(\tau|\theta) = \log \mu(s_0) + \sum_{t=0}^{T} \log \pi_\theta(a_t|s_t) + \sum_{t=0}^{T} \log P(s_{t+1}|s_t, a_t)$
+
+其中$\mu(s_0)$（初始状态）和 $P(s_{t+1}|s_t, a_t)$（环境物理规则）都与$\theta$无关，可以舍弃：
+
+因此梯度简化为：
+$\nabla_\theta \log P(\tau|\theta) = \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t)$
+
+最终我们得到：
+$\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta} \left[ \left( \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t) \right) R(\tau) \right]$
+
+可以用一次或几次真实的采样来近似这个期望：
+$\nabla_\theta J(\theta) \approx \sum_{t=0}^{T} R(\tau) \nabla_\theta \log \pi_\theta(a_t|s_t)$
+
+其中，log prob的梯度我们称为score function
+
+当动作空间是离散的，假设策略是softmax policy，策略$\pi$的prob是通过$\phi(s, a)^\top \theta$的softmax得到，那么：$\nabla_\theta \log \pi_\theta(s, a) = \phi(s, a) - \mathbb{E}_{\pi_\theta} [\phi(s, \cdot)]$
+其中：
+- **$\phi(s, a)$**：是你实际采样做出的动作$a$的特征
+- **$\mathbb{E}_{\pi_\theta} [\phi(s, \cdot)]$**：是你当前模型下，对所有可能动作特征的平均预期
+
+当动作空间是连续的，假设策略是gaussian policy，均值为$\mu(s) = \phi(s)^\top \theta$，即$a \sim \mathcal{N}(\mu(s), \sigma^2)$
+那么：$\nabla_\theta \log \pi_\theta(s, a) = \frac{(a - \mu(s))\phi(s)}{\sigma^2}$
+
+上述两者都可以理解为，当你的action包含这个特征较多且最终证明是正确的时候，加强这个特征
+
+Policy Gradient定理
+只要你的目标函数可以表示为某种加权状态分布下的期望收益，其梯度都可以统一写成以下公式：
+![image.png|400](https://images.ruoruoliu.com/2026/01/042e1f34ea7d4eab9e24819da9bb3a42.png)
+
+总结Monte-Carlo Policy Gradient（REINFORCE）的思路：
+- 通过采样获得一组轨迹，以及最终的return
+- 根据return（一般+1或者-1，代表方向）与log prob的梯度得到整体参数关于objective的梯度
+- 更新参数，优化objective
+![image.png|400](https://images.ruoruoliu.com/2026/01/7f45260a367c49d125fe101f6e50d3c7.png)
+
+## Actor-Critic Policy Gradient
+
+![image.png|200](https://images.ruoruoliu.com/2026/01/a412c17e5c650ef3eb981c06c37f894d.png)
+
+REINFORCE的奖励是最终累积，且训练数据来自于相同序列，导致方差较大
+为减小variance，添加critic部分：
+- critic：
+	- 采用MC或者TD（更常用），基于最小化MSE的目标更新参数$w$
+	- 进行对当前状态的价值 $Q_w(s, a)$进行预测，避免累积奖励导致的波动问题
+- actor：
+	- 根据critic给出的价值进行policy gradient的计算和更新
+![image.png|400](https://images.ruoruoliu.com/2026/01/88cb104b4b89b3b7646d246496d7a934.png)
+
+critic的引入带来的bias，即目标价值不一定是无偏的：
+[Compatible Function Approximation解决critic的bias](../Answers/Compatible%20Function%20Approximation%E8%A7%A3%E5%86%B3critic%E7%9A%84bias.md)
+
+引入value function作为baseline可以进一步减少方差
+同时计算Q和V（维护两套参数w和v），相减得到优势函数：
+![image.png|200](https://images.ruoruoliu.com/2026/01/655c7d74454cc97713dddce9098761d4.png)
+
+进一步的，V的TD error就是优势函数的期望：
+![image.png|350](https://images.ruoruoliu.com/2026/01/838c4d2d6aaa07a589efad7711850ccf.png)
+只需要维护一套参数v，来计算状态的价值函数V，就可以把TD error当成优势函数
+[用V的TD error作为actor的policy gradient？](../Answers/%E7%94%A8V%E7%9A%84TD%20error%E4%BD%9C%E4%B8%BAactor%E7%9A%84policy%20gradient%EF%BC%9F.md)
+
+与value-based的方案一样，我们考虑到TD(0)的更新方式bias较高，希望引入TD($\lambda$)减小bias：
+[如何通过资格迹解决actor的在线更新？](../Answers/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E8%B5%84%E6%A0%BC%E8%BF%B9%E8%A7%A3%E5%86%B3actor%E7%9A%84%E5%9C%A8%E7%BA%BF%E6%9B%B4%E6%96%B0%EF%BC%9F.md)
+
+总结actor的不同实现：
+![image.png|400](https://images.ruoruoliu.com/2026/01/8dbd19209d6e113e6eb018239ee33e04.png)
+
+## Deterministic Policy Gradient
+
+相比于上述随机策略（stochastic）输出动作的概率分布，DPG直接输出确定的动作值：
+- SPG由于使用的是似然比技巧（Likelihood Ratio Trick），当训练接近后期，概率分布的variance非常小，很难探索其他动作
+- DPG采用链式法则（Chain Rule），即使策略已经非常稳定，只要Critic发现更好的Q，动作也会调整：
+	![image.png|300](https://images.ruoruoliu.com/2026/01/2c1edb0192f947a51241bfb65fe8c564.png)
+换一个角度理解：
+- SPG$\approx$On-policy：为了计算$\nabla_\theta J(\theta) = \mathbb{E}_{a \sim \pi_\theta} [\nabla_\theta \log \pi_\theta(a|s) Q^\pi(s,a)]$，最直接的方法就是让策略$\pi_\theta$去环境中跑出数据，一旦策略更新了，旧的数据就不能直接用了（除非important sampling）
+- DPG$\approx$Off-policy：由于DPG输出的是确定的动作$a = \mu_\theta(s)$，它本身缺乏探索能力。为了训练它，我们必须使用一个“带噪声的动作”去探索环境，这本质上就是Off-policy
+
+# Integrating Learning and Planning
+--- 
+
+相比value-based（通过经验学习value function）和policy-based（通过经验学习policy），我们还可以通过经验学习model，然后通过planning来构造value function和policy
+![image.png|200](https://images.ruoruoliu.com/2026/01/9af2cbf0ef97e8fc65acd3db6f72bbe5.png)
+[RL中Planning和Control的区别](../Answers/RL%E4%B8%ADPlanning%E5%92%8CControl%E7%9A%84%E5%8C%BA%E5%88%AB.md)：
+对于求解最优策略：model-based称为planning，model-free称为control
+
+优点：
+- 可以快速利用监督学习的方法学习model
+- 可以基于model的不确定性进行推理：agent会针对不确定的区域进行保守动作/主动学习
+缺点：
+- 先学model，再学value function，引入了两次误差
+
+model是一个MDP的表示，包含S（状态空间）、A（动作空间）、P（转移方程）、R（reward方程），其中我们一般假设S和A是已知的，因此model的学习是基于监督数据：
+![image.png|150](https://images.ruoruoliu.com/2026/01/5ee5082c840a0253523f54bee609bf2e.png)
+其中：
+- R的学习是一个regression问题
+- P的学习是一个密度估计问题（概率分布）
+
+## Model-Based RL
+
+- 通过不同类型的方法学习model：包括Table Lookup、Linear Expectation、Linear Gaussian、Gaussian Process、Deep Belief Network等
+- 基于model，利用model-based的planning方法：Value Iteration、Policy Iteration、Tree Search等，求解MDP
+- 或者基于model生成样本，利用model-free的control方法：Monte-Carlo、Sarsa、Q-learning等
+	- [Sample-Based Planning相比直接Model-free Planning的优势](../Answers/Sample-Based%20Planning%E7%9B%B8%E6%AF%94%E7%9B%B4%E6%8E%A5Model-free%20Planning%E7%9A%84%E4%BC%98%E5%8A%BF.md)
+- 基于不准确的model，使用model-based的方法势必得到非最优解：
+	- 当模型完全错误的时候，转而采用model-free的方法
+	- 对模型不确定性显示建模：[RL中对Model Uncertainty显式建模的方法](../Answers/RL%E4%B8%AD%E5%AF%B9Model%20Uncertainty%E6%98%BE%E5%BC%8F%E5%BB%BA%E6%A8%A1%E7%9A%84%E6%96%B9%E6%B3%95.md)
+
+## Integrated Architectures（Dyna-Q）
+
+Dyna将model-free和model-based结合在一起：
+- 从真实样本学习model
+- 从真实和模拟样本学习value function和policy
+![image.png|200](https://images.ruoruoliu.com/2026/01/6637e20502295eeb21618fb0ba324894.png)![image.png|300](https://images.ruoruoliu.com/2026/01/64e160ec681c5243059ddbc0152664fa.png)
+
+## Simulation-Based Search（MCTS）
+
+Forward Search：
+- 基于当前state进行模拟：随机生成样本，截止到n步，构造sub-MDP
+- 基于sub-MDP进行model-free的学习，更新Q和policy
+	- 利用MC叫Monte-Carlo Search，利用Sarsa叫TD Search
+- 学习只在sub-MDP上，每次学完就抛弃，并不维护全局Q
+![image.png|300](https://images.ruoruoliu.com/2026/01/136ed954eec838fcec7c11d48d4f0ecb.png)
+[Forward Search和Dyna的优劣对比](../Answers/Forward%20Search%E5%92%8CDyna%E7%9A%84%E4%BC%98%E5%8A%A3%E5%AF%B9%E6%AF%94.md)
+
+Monte-Carlo Tree Search：
+- 在MC Search的基础上，不对每一个动作采样，而是根据动作的价值期望采样
+	- 价值大的动作采样更多，保证探索充分，预估精准
+	- 价值期望一般通过UCB策略来判断
+	- 相比MC Search按固定policy采样，MCTS每次采样分为两个阶段，不断迭代这两个阶段，使采样policy不断提升，最终搜索树会逐渐长成最有效的形状：
+		- in-tree：当前state在已探索过的tree内部，采用$\epsilon-greedy$或者UCB策略
+		- out-of-tree：当前state在tree外部，采用random来快速获得大致价值
+
+Dyna-2：
+- 基于Dyna的思路，TD learning+TD search：
+	- Long-term memory：通过TD learning迭代全局价值信息
+	- Short-term memory：通过TD search模拟当前局部价值信息
+	- 最终的value function是两者的和
+
+# Exploration and Exploitation
+--- 
+
+寻求exploration和exploitation的平衡：
+- exploration收集信息
+- exploitation基于当前信息选择最好的action
+
+探索的三种策略：
+- 随机探索：探索随机的action（$\epsilon-greedy$，softmax）
+- 不确定性乐观：判断不确定性的价值，倾向于探索高不确定性的action（UCB）
+- information state space（信息状态空间）：
+	- 将agent的信息作为状态的一部分（state=环境（agent外部）+信息（agent内部））
+	- 预判信息是否对reward有帮助
+
+探索的两种维度：
+- state-action探索：在state和action中探索，比较常见
+- parameter探索：尝试不同的参数，比如policy gradient中的policy参数
+	- 优点：在一定步数内保持相同的探索（参数），相比state-action基本上每一步确定是否探索
+	- 缺点：对state/action未知，相当于在黑盒中按不同parameter探索
+
+## Multi-Armed Bandits
+
+多臂赌博机问题中，我们希望最小化总体regret（与最优action的gap）：
+- greedy和$\epsilon-greedy$策略都是随次数线性增加的总体regret
+- Optimistic Initialization：
+	- 所有action初始设为最大值，通过采样慢慢收敛到真实值，保证所有action都会被探索到
+	- policy使用greedy或者$\epsilon-greedy$，仍然线性增加的总体regret
+- Decaying $\epsilon_t-greedy$：假设我们知道gap（现实中不可能），可以设置一个衰减速率达到logarithmic asymptotic的总体regret 
+- Lai&Robbins定理说明多臂赌博机问题的总体regret下界是logarithmic asymptotic的：
+	![image.png|400](https://images.ruoruoliu.com/2026/01/c972e572d838f7d4eee0ce5f511f6d29.png)
+	- $\triangle_a$是最优action收益和其他action收益的差值
+	- $KL(R^a||R^{a^*})$是最优action的收益分布和其他action的收益分布的KL散度（分布差异大小）
+	- 如果最优和其他action的平均差异大，但是分布又很接近，则总体regret就会大
+- UCB：通过动作的置信上界（upper confidence）来判断action的好坏：
+		![image.png|300](https://images.ruoruoliu.com/2026/01/975afe88f450115b1bc46b595c987027.png)
+	- 根据Hoeffding不等式，如果我们希望真值超过UCB的概率是p，则$U_t(a) = \sqrt{\frac{-\log p}{2N_t(a)}}$
+	- 我们希望随次数变大，p变小，可以设$p=t^{-4}$，则$U_t(a) = \sqrt{\frac{2 \log t}{N_t(a)}}$
+	- 最终：$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, Q(a) + \sqrt{\frac{2 \log t}{N_t(a)}}$
+- Bayesian Bandits：基于价值的先验分布，根据采样得到后验分布，通过后验分布判断action：
+	- Bayesian UCB：利用后验分布的variance作为UCB的不确定分数，$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, \mu_a + c \sigma_a / \sqrt{N(a)}$
+	- Probability Matching：基于一个action是最优action的概率来进行采样
+		- Thompson Sampling： 通过对每个动作的value随机采样实现
+- Information State Search：基于信息的价值（长期收益-短期损失）来判断
+	- 衡量value of information：不确定性高且与最优action相关的action，包含较大信息价值
+		[RL中信息价值与不确定性的关系](../Answers/RL%E4%B8%AD%E4%BF%A1%E6%81%AF%E4%BB%B7%E5%80%BC%E4%B8%8E%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%9A%84%E5%85%B3%E7%B3%BB.md)
+	- Information State Space Bandits：通过将历史统计作为state的一部分，构成一个新的MDP，可以使用不同的方式求解：
+		- Model-free RL：Q-learning
+		- Bayesian Model-based RL：Gittins Indices、Bayesian-adaptive MDPs
+
+## Contextual Bandits
+
+[什么是Contextual Bandits？](../Answers/%E4%BB%80%E4%B9%88%E6%98%AFContextual%20Bandits%EF%BC%9F.md)
+
+## MDPs
+
+上述所有的探索策略，都可以应用于MDP上：
+- 以UCB为例，$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, Q(s_t, a) + U_1(s_t, a) + U_2(s_t, a)$：
+	- 评估不确定性可以简单的加入UCB的不确定项$U_1$
+	- 对于Q的预测不管是评估不确定性，还有策略改进带来的不确定性$U_2$，这部分计算比较困难
 
 参考链接：
 - [DeepMind x UCL | Introduction to Reinforcement Learning 2015](https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ)

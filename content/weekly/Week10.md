@@ -1,5 +1,5 @@
 ---
-title: Week10 大模型强化学习进展跟进
+title: Week10 强化学习基础知识
 date: 2026-01-05
 tags:
   - 周记
