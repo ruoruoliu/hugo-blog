@@ -12,7 +12,7 @@ draft: false
 
 > [!info] Javascript面向对象编程
 
-- [Javascript学习手册-面向对象](../Blogs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1)	```
+- [Javascript学习手册-面向对象](../Blogs/Javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1)
 - 课程链接：
 	- [# Object-oriented Programming in JavaScript: Made Super Simple | Mosh](https://www.youtube.com/watch?v=PFmuCDHHpwk)
 

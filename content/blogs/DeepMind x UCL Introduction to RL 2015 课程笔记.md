@@ -633,7 +633,7 @@ Dyna将model-free和model-based结合在一起：
 
 - greedy和$\epsilon-greedy$策略都是随次数线性增加的总体regret
 
-### Optimism In The Face Of Uncertainty
+### Optimism in the face of Uncertainty
 
 - Optimistic Initialization：
 	- 所有action初始设为最大值，通过采样慢慢收敛到真实值，保证所有action都会被探索到
@@ -673,6 +673,60 @@ Dyna将model-free和model-based结合在一起：
 - 以UCB为例，$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, Q(s_t, a) + U_1(s_t, a) + U_2(s_t, a)$：
 	- 评估不确定性可以简单的加入UCB的不确定项$U_1$
 	- 对于Q的预测不管是评估不确定性，还有策略改进带来的不确定性$U_2$，这部分计算比较困难
+
+# Classic Games
+--- 
+## Game Theory
+
+作为单独的agent：
+- 其他agent变成了环境的一部分，游戏变成了MDP，最优策略就是这个MDP的最优策略
+- 纳什均衡是self-play RL中的一个固定点，$\pi^i = \pi^i_*(\pi^{-i})$：
+	- 经验序列通过agent间进行游戏产生
+	- 每个agent学习如何迭代policy，适应其他agent并构成其他agent的环境
+	- 在学习的过程中，每个agent的最优策略都会被学习到
+
+寻找纳什均衡的两种方法：
+- Game tree search（planning）
+- Self-play RL
+
+游戏分为perfect游戏和imperfect游戏：
+- perfect即完全可观测：国际象棋、围棋等
+- imperfect即不完全可观测：扑克等
+
+## Minimax Search
+
+以两个玩家的游戏为例，$\pi = \langle \pi^1, \pi^2 \rangle$
+- minimax value function是指在最小化玩家二的value的策略下（玩家二的目标就是最小化reward，从他的视角），最大化玩家一的value：$v_{*}(s) = \max_{\pi^1} \min_{\pi^2} v_{\pi}(s)$
+- minimax policy是指达到minimax value function的policy，即纳什均衡
+
+通过minimax search的树状结构，搜索每一条路径的value，然后交替使用min和max来决策：
+![image.png|300](https://images.ruoruoliu.com/2026/01/2cc6bfb2ba7a7da70a112cef8cec8310.png)
+- 树的大小指数增长
+- 替代查表，可以使用value function approximator来表示value
+- 通过固定步深度left的value，向上进行min和max的操作
+
+## Self-Play RL
+
+ value function：可以直接应用MC或者TD算法
+ policy improvement：由于游戏是deterministic的，即当前state下action的下一个state是确定的，因此可以直接选择max或者min来迭代policy，即$A_t = \arg\max_a v_{*}(\operatorname{succ}(S_t, a))$
+
+## Combining RL and Minimax Search
+
+将基础RL算法和minimax search相结合的几种方式：
+- Simple TD：先用TD learning计算value function，然后用minimax search再过一遍更新
+- TD Root：利用下一步state的minimax search得到的value学习当前步的value function
+- TD Leaf：利用下一步state的minimax search选取的leaf的value，更新当前state的minimax search选取的leaf的value
+	[TD Leaf算法没落的原因](../Answers/TD%20Leaf%E7%AE%97%E6%B3%95%E6%B2%A1%E8%90%BD%E7%9A%84%E5%8E%9F%E5%9B%A0.md)
+- TreeStrap：利用当前state的minimax search所有选取路径上的search value更新路径上全部对应state的value
+	![image.png|100](https://images.ruoruoliu.com/2026/01/7962ad825a4e731e50943830f8c88515.png)
+- Simulation-Based Search：用self-play代替minimax search，比如MCTS
+
+## RL in Imperfect-Information Games
+
+在imperfect游戏中，由于看不到对手的信息，许多不同的真实状态可能对应于同一个状态（以你的视角），因此，双方各自维护自己的搜索树
+
+Smooth UCT Search是在MCTS的UCT算法的基础上，以一定概率基于对方平均行为进行应对：
+![image.png|250](https://images.ruoruoliu.com/2026/01/33b278632c3abecf4738dc8928b3b206.png)
 
 参考链接：
 - [DeepMind x UCL | Introduction to Reinforcement Learning 2015](https://www.youtube.com/playlist?list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ)
