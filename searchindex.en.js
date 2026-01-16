@@ -12,14 +12,6 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Weeklies",
-    "uri": "/hugo-blog/weekly/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
     "title": "Blogs",
     "uri": "/hugo-blog/blogs/index.html"
   },
@@ -58,6 +50,14 @@ var relearn_searchindex = [
     ],
     "title": "Week11 强化学习基础知识",
     "uri": "/hugo-blog/weekly/week11/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Weeklies",
+    "uri": "/hugo-blog/weekly/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
@@ -510,13 +510,5 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Categories",
     "uri": "/hugo-blog/categories/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Projects",
-    "uri": "/hugo-blog/projects/index.html"
   }
 ]
