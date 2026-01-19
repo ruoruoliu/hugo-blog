@@ -6,14 +6,21 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Week12 强化学习技术跟进</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week12/index.html</link>
+      <pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week12/index.html</guid>
+      <description>总结 强化学习基础知识 跟进大模型强化学习技术 强化学习基础知识 Reinforcement Learning学习手册 跟进大模型强化学习技术 LLM和agent的训练 知识 value-based方法在DQN的基础上： target network：target network同结构不同参数，用来选择和预估下一时刻的动作的价值，短时间内固定参数来缓解预估目标移动导致的训练稳定性问题 double DQN：通过online network负责选择下一时刻action，target network负责预估下一时刻动作的价值，来彻底解决Q-learning中价值预估高估问题 dueling network：拆分价值预估中状态和动作的价值，提高训练的效率和鲁棒性 经验回放避免了训练数据的浪费，不过使学习变为了off-policy（在线策略学习旧策略的数据分布），需要重要性采样修正 优先经验回放替代了原始的随机采样经验，而采用对新经验高优先级、对TD error较大的高优先级的采样方式，提高难样本的重要性（小步多跑） policy-based方法在Actor-Critic的基础上： TRPO基于置信域，替代了原始的对参数设定学习率（步长）的做法，改为保证策略变化不大（KL散度）的情况下，求解最优收益的带约束最优化问题，使训练收敛稳定，减小方差 PPO解决了TRPO求解带约束最优化问题计算量大的问题，用clip的方式代替KL散度约束，使得工程上训练加速 对于连续控制问题，DDPG将actor网络的输出直接设定为action（数值而不是概率），然后通过梯度链式法则直接求解最优action，同时优化critic网络 同样对于连续控制问题，SAC使用随机策略的方法，actor网络输出action分布的 $\mu$ 和 $\sigma$，通过对这个分布的采样得到action，通过重参数化的技巧仍然支持梯度链式法则，可以让actor直接对收益求梯度 待办 强化学习技术实战</description>
+    </item>
     <item>
       <title>Week11 强化学习基础知识</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week11/index.html</link>
       <pubDate>Mon, 12 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week11/index.html</guid>
-      <description>总结 强化学习基础知识 强化学习基础知识 DeepMind x UCL Introduction to RL 2015 课程笔记-Model-Free Prediction DeepMind x UCL Introduction to RL 2015 课程笔记-Model-Free Control DeepMind x UCL Introduction to RL 2015 课程笔记-Value Function Approximation DeepMind x UCL Introduction to RL 2015 课程笔记-Policy Gradient DeepMind x UCL Introduction to RL 2015 课程笔记-Integrating Learning and Planning DeepMind x UCL Introduction to RL 2015 课程笔记-Exploration and Exploitation 知识 当我们不知道环境的具体信息（model）时，如何进行策略的评估（prediction）和最优策略的选择（control），称为model-free RL model-free主要基于采样，即在环境中通过采样拿到真实reward，来迭代value function，从而评价state/action的好坏 采样完整序列的reward的方式称为Monte-Carlo采样，采样下一步然后基于下一步的value function进行bootstrapping的方式称为TD learning；进一步地，通过TD($\lambda$)可以在MC和TD之间平滑，效果一般更优 选择最优策略的方式一般是基于评估后通过greedy或者$\epsilon-greedy$的方式选取action；如果行为策略和目标策略相同，称为on-policy，如果不同，称为off-policy TD learning + $\epsilon-greedy$ = SARSA（on-policy） TD learning + max = Q-learning（off-policy） 简单问题可以通过查表完成，但是真实环境的RL问题状态空间通常很大，需要使用Value Function Approximator来表示，一般可以理解为神经网络的近似，比如DQN policy gradient的方法直接计算最优策略，避免了value-based的max操作，具有更好的收敛性质 可以通过采样reward结合策略梯度的方式，计算最优策略对应的action的分布 actor-critic通过同时优化evaluation（critic）和improvement（actor）减小variance 另外我们可以先通过采样求解model，把问题转化为model-based RL，再求解策略 同时结合model-based以及model-free来充分的压榨样本数据，比如Dyna-Q 基于价值函数进行动作采样，基于model生成sub MDP，再通过model-free求解，比如MCTS 利用和探索是希望我们在”最大化即时收益“和”获取新信息“之间做出权衡，人们通过多臂赌博机问题发展出很多策略：包括UCB和Thompson Sampling，且这些策略均可以在MDP上应用 待办 跟进大模型强化学习技术</description>
+      <description>总结 强化学习基础知识 强化学习基础知识 DeepMind x UCL Introduction to RL 2015 课程笔记-Model-Free Prediction DeepMind x UCL Introduction to RL 2015 课程笔记-Model-Free Control DeepMind x UCL Introduction to RL 2015 课程笔记-Value Function Approximation DeepMind x UCL Introduction to RL 2015 课程笔记-Policy Gradient DeepMind x UCL Introduction to RL 2015 课程笔记-Integrating Learning and Planning DeepMind x UCL Introduction to RL 2015 课程笔记-Exploration and Exploitation 知识 当我们不知道环境的具体信息（model）时，如何进行策略的评估（prediction）和最优策略的选择（control），称为model-free RL model-free主要基于采样，即在环境中通过采样拿到真实reward，来迭代value function，从而评价state/action的好坏 采样完整序列的reward的方式称为Monte-Carlo采样，采样下一步然后基于下一步的value function进行bootstrapping的方式称为TD learning；进一步地，通过TD($\lambda$)可以在MC和TD之间平滑，效果一般更优 选择最优策略的方式一般是基于评估后通过greedy或者$\epsilon-greedy$的方式选取action；如果行为策略和目标策略相同，称为on-policy，如果不同，称为off-policy TD learning + $\epsilon-greedy$ = SARSA（on-policy） TD learning + max = Q-learning（off-policy） 简单问题可以通过查表完成，但是真实环境的RL问题状态空间通常很大，需要使用Value Function Approximator来表示，一般可以理解为神经网络的近似，比如DQN policy gradient的方法直接计算最优策略，避免了value-based的max操作，具有更好的收敛性质 可以通过采样reward结合策略梯度的方式，计算最优策略对应的action的分布 actor-critic通过同时优化evaluation（critic）和improvement（actor）减小variance 另外我们可以先通过采样求解model，把问题转化为model-based RL，再求解策略 同时结合model-based以及model-free来充分的压榨样本数据，比如Dyna-Q 基于价值函数进行动作采样，基于model生成sub MDP，再通过model-free求解，比如MCTS 利用和探索是希望我们在”最大化即时收益“和”获取新信息“之间做出权衡，人们通过多臂赌博机问题发展出很多策略：包括UCB和Thompson Sampling，且这些策略均可以在MDP上应用 待办 强化学习基础知识 跟进大模型强化学习技术</description>
     </item>
     <item>
       <title>Week10 强化学习基础知识</title>

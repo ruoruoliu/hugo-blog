@@ -5,21 +5,18 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Exploitation &amp; Exploration #todo 再理解Information State Space
-参考链接：
-# Exploration Strategies in Deep Reinforcement Learning">
+    <meta name="description" content="基础知识 Markov Decision Process Bellman Optimality Equation Model-Free Prediction &amp; Control SARSA Q-Learning Value Function Approximation DQN Policy Gradient Actor-Critic Exploitation &amp; Exploration 参考链接:
+DeepMind x UCL Introduction to RL 2015 课程笔记 Value-based DQN Target Network 为了避免Q-learning中Bootstrapping带来的模型追逐变化的目标导致训练不稳定的情况，DQN引入了两套结构完全一样、但参数不同的网络：">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Reinforcement Learning学习手册 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Exploitation &amp; Exploration #todo 再理解Information State Space
-参考链接：
-# Exploration Strategies in Deep Reinforcement Learning">
+    <meta name="twitter:description" content="基础知识 Markov Decision Process Bellman Optimality Equation Model-Free Prediction &amp; Control SARSA Q-Learning Value Function Approximation DQN Policy Gradient Actor-Critic Exploitation &amp; Exploration 参考链接:
+DeepMind x UCL Introduction to RL 2015 课程笔记 Value-based DQN Target Network 为了避免Q-learning中Bootstrapping带来的模型追逐变化的目标导致训练不稳定的情况，DQN引入了两套结构完全一样、但参数不同的网络：">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="Reinforcement Learning学习手册 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Exploitation &amp; Exploration #todo 再理解Information State Space
-参考链接：
-# Exploration Strategies in Deep Reinforcement Learning">
+    <meta property="og:description" content="基础知识 Markov Decision Process Bellman Optimality Equation Model-Free Prediction &amp; Control SARSA Q-Learning Value Function Approximation DQN Policy Gradient Actor-Critic Exploitation &amp; Exploration 参考链接:
+DeepMind x UCL Introduction to RL 2015 课程笔记 Value-based DQN Target Network 为了避免Q-learning中Bootstrapping带来的模型追逐变化的目标导致训练不稳定的情况，DQN引入了两套结构完全一样、但参数不同的网络：">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
@@ -27,35 +24,34 @@
     <meta property="article:modified_time" content="2026-01-15T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
     <meta itemprop="name" content="Reinforcement Learning学习手册 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Exploitation &amp; Exploration #todo 再理解Information State Space
-参考链接：
-# Exploration Strategies in Deep Reinforcement Learning">
+    <meta itemprop="description" content="基础知识 Markov Decision Process Bellman Optimality Equation Model-Free Prediction &amp; Control SARSA Q-Learning Value Function Approximation DQN Policy Gradient Actor-Critic Exploitation &amp; Exploration 参考链接:
+DeepMind x UCL Introduction to RL 2015 课程笔记 Value-based DQN Target Network 为了避免Q-learning中Bootstrapping带来的模型追逐变化的目标导致训练不稳定的情况，DQN引入了两套结构完全一样、但参数不同的网络：">
     <meta itemprop="datePublished" content="2026-01-15T00:00:00+00:00">
     <meta itemprop="dateModified" content="2026-01-15T00:00:00+00:00">
-    <meta itemprop="wordCount" content="15">
+    <meta itemprop="wordCount" content="620">
     <meta itemprop="keywords" content="技术笔记">
     <title>Reinforcement Learning学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768561251" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768561251" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768561251" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768561251" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768561251" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1768827477" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768827477" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1768827477" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768561251";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768827477";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768561251" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768561251" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768561251" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768561251" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768827477" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768561251" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768561251" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768561251" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768561251" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768561251" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768827477" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1768827477" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1768827477" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -135,7 +131,51 @@
 
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#dqn">DQN</a>
+      <ul>
+        <li><a href="#target-network">Target Network</a></li>
+        <li><a href="#double-dqn">Double DQN</a></li>
+        <li><a href="#dueling-network">Dueling Network</a></li>
+      </ul>
+    </li>
+    <li><a href="#experience-replay">Experience Replay</a>
+      <ul>
+        <li><a href="#prioritized-experience-replay">Prioritized Experience Replay</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#actor-critic">Actor-Critic</a>
+      <ul>
+        <li><a href="#trpo">TRPO</a></li>
+        <li><a href="#ppo">PPO</a></li>
+        <li><a href="#ddpg">DDPG</a></li>
+        <li><a href="#sac">SAC</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#gymnasium">Gymnasium</a></li>
+    <li><a href="#tianshou">TianShou</a></li>
+    <li><a href="#verl">Verl</a></li>
+    <li><a href="#sim2real">Sim2Real</a></li>
+    <li><a href="#alphago">AlphaGo</a></li>
+    <li><a href="#muzero">MuZero</a></li>
+    <li><a href="#dreamer">Dreamer</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#imitation-learning">Imitation Learning</a></li>
+    <li><a href="#model-predictive-control">Model Predictive Control</a></li>
+    <li><a href="#offline-rl">Offline RL</a></li>
+    <li><a href="#multi-agent-rl">Multi-agent RL</a></li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
@@ -197,6 +237,443 @@
 
 <h1 id="reinforcement-learning学习手册">Reinforcement Learning学习手册</h1>
 
+<h1 id="基础知识">
+  基础知识
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<ul>
+<li>Markov Decision Process
+<ul>
+<li>Bellman Optimality Equation</li>
+</ul>
+</li>
+<li>Model-Free
+<ul>
+<li>Prediction &amp; Control
+<ul>
+<li>SARSA</li>
+<li>Q-Learning</li>
+</ul>
+</li>
+<li>Value Function Approximation
+<ul>
+<li>DQN</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Policy Gradient
+<ul>
+<li>Actor-Critic</li>
+</ul>
+</li>
+<li>Exploitation &amp; Exploration</li>
+</ul>
+<p>参考链接:</p>
+<ul>
+<li>
+
+
+
+    
+<a href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
+</ul>
+<h1 id="value-based">
+  Value-based
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="dqn">
+  DQN
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="target-network">
+  Target Network
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>为了避免Q-learning中Bootstrapping带来的模型追逐变化的目标导致训练不稳定的情况，DQN引入了两套结构完全一样、但参数不同的网络：</p>
+<ul>
+<li>Online Network（在线网络 / 评估网络）：负责产生即时的 $Q(s, a)$，并进行反向传播更新参数，每一步都在更新</li>
+<li>Target Network（目标网络）：专门用来计算目标值（TD Target）中的 $Q(s&rsquo;, a&rsquo;)$ 部分，不经过梯度更新，而是每隔一段时间（比如1000步），从Online Network拷贝参数</li>
+</ul>
+<p>$Q_{online}(s, a) \leftarrow R + \gamma Q_{target}(s&rsquo;, \arg\max_{a&rsquo;} Q_{target}(s&rsquo;, a&rsquo;))$</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf" target="_blank">Human-level control through deep reinforcement learning</a></li>
+</ul>
+<h3 id="double-dqn">
+  Double DQN
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>DQN采用Bootstrapping估计Q，而Bootstrapping与Q-learning中的最大化操作会导致对Q的高估：</p>
+<ul>
+<li>在训练初期或由于函数近似的不精确，预估通常包含噪声，而max操作会自动选择噪声并将包含噪声的Q+noise作为更新目标</li>
+<li>Bootstrapping用高估的目标去估计下一个目标，导致高估被传递并放大</li>
+</ul>
+<p>高估问题对当前state的不同action是不均匀的，因为每次数据采样到就会被高估一次，采样多的 $（s_t, a_t）$ 就会被高估的严重，导致最终最优policy有问题</p>
+<p>为了缓解DQN的高估问题，Double DQN将选action和计算action的value拆分为两部分，分别交给Online Network和Target Network完成：</p>
+<ul>
+<li>Online Network：负责选动作</li>
+<li>Target Network：负责估计动作的value</li>
+</ul>
+<p>这样即便由于高估选择了一个错误的动作，在计算value的时候，由于是另一个网络，仍然会给他较低的分数，防止高估传递下去</p>
+<p>$Q_{online}(s, a) \leftarrow R + \gamma Q_{target}(s&rsquo;, \arg\max_{a&rsquo;} Q_{online}(s&rsquo;, a&rsquo;))$</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1509.06461" target="_blank">Deep Reinforcement Learning with Double Q-learning</a></li>
+</ul>
+<h3 id="dueling-network">
+  Dueling Network
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>在Dueling Network中，DQN中的Q被分成了两部分，$Q(s, a) = V(s) + A(s, a)$：</p>
+<ul>
+<li>状态价值函数 $V(s)$：评估当前state本身有多好</li>
+<li>优势函数 $A(s, a)$：评估在当前state下，选择某个action比平均水平好多少</li>
+</ul>
+<p>为了让优势函数A的均值为0，强制V分支去捕捉状态的平均价值，采用对A去中心化的方法：
+$Q(s, a) = V(s) + \left( A(s, a) - \frac{1}{n} \sum_{a&rsquo;} A(s, a&rsquo;) \right)$</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1511.06581" target="_blank">Dueling Network Architectures for Deep Reinforcement Learning</a></li>
+</ul>
+<h2 id="experience-replay">
+  Experience Replay
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>经验回放有两个主要优点：</p>
+<ul>
+<li>避免训练数据($s_t, a_t, r_t, s_{t+1}$)的浪费，可以重复使用</li>
+<li>避免训练过程中采样的同分布，即相邻序列在训练过程中相邻，防止过拟合</li>
+</ul>
+<p>经验回放引入了off-policy，即训练数据的策略（旧）已经不是当前学习的策略（新），因此对于policy-based的算法，需要重要性采样（Importance Sampling）进行修正
+
+
+
+
+<a href="../Answers/Policy-Based%E5%9C%A8%E7%BB%8F%E9%AA%8C%E5%9B%9E%E6%94%BE%E6%97%B6%E4%BD%BF%E7%94%A8%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7%E4%BF%AE%E6%AD%A3%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7.md">Policy-Based在经验回放时使用重要性采样修正的必要性</a></p>
+<h3 id="prioritized-experience-replay">
+  Prioritized Experience Replay
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>用非均匀采样代替均匀采样，对于TD error（$\delta_t$）较大的样本采样权重更大：</p>
+<ul>
+<li>基于TD error：$p_t \propto |\delta_t| + \epsilon$</li>
+<li>基于TD error的排序：$p_t \propto \frac{1}{\text{rank}(t)}$
+
+
+
+
+<a href="../Answers/Prioritized%20Experience%20Replay%E4%B8%AD%E7%9A%84%E9%87%87%E6%A0%B7%E6%95%88%E7%8E%87%E9%97%AE%E9%A2%98.md">Prioritized Experience Replay中的采样效率问题</a></li>
+</ul>
+<p>由于采样权重导致数据分布发生变化（参考off policy），需要对学习率进行调整，即采样权重大的样本，学习率调小：$w_i = \left( \frac{1}{N} \cdot \frac{1}{P(i)} \right)^\beta$，其中在均匀采样中 $P(i)=\frac{1}{N}$，不影响学习率
+
+
+
+
+<a href="../Answers/DQN%E5%9C%A8PER%E6%97%B6%E4%BD%BF%E7%94%A8%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7%E4%BF%AE%E6%AD%A3%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7.md">DQN在PER时使用重要性采样修正的必要性</a></p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1511.05952" target="_blank">PRIORITIZED EXPERIENCE REPLAY</a></li>
+</ul>
+<h1 id="policy-based">
+  Policy-based
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="actor-critic">
+  Actor-Critic
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="trpo">
+  TRPO
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>TRPO的背景在于RL中梯度更新的难度远比监督学习大，按监督学习的learning rate方案极不稳定：
+
+
+
+
+<a href="../Answers/RL%E4%B8%8E%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E5%9C%A8SGD%E4%B8%8A%E7%9A%84%E5%B7%AE%E5%BC%82.md">RL与监督学习在SGD上的差异</a></p>
+<p>置信域算法（Trust Region Methods）分为两个阶段：</p>
+<ul>
+<li>Approximation：在当前点 $x_k$ 附近，用一个简单的数学模型来代替复杂的原始函数 $f(x)$</li>
+<li>Maximization：在信任范围内（满足单调性），找到能让模型下降（或增益极大化）的最佳位移 $p$</li>
+</ul>
+<p>置信域算法通过自适应方法来确定置信域区间，从而在置信域区间进行迭代求解原函数最小值：
+$$\rho_k = \frac{f(x_k) - f(x_k + p_k)}{m_k(0) - m_k(p_k)}$$
+其中：</p>
+<ul>
+<li>当 $\rho_k$ 接近1时，近似非常准确，优化阶段可以更激进，增大 $\Delta_k$</li>
+<li>当 $\rho_k$ 接近0或负数时，近似完全失效，缩小 $\Delta_k$，重新进行近似</li>
+<li>当 $\rho_k$ 适中时，近似尚可，保持现状</li>
+</ul>
+<p>
+
+
+
+<a href="../Answers/%E4%BB%80%E4%B9%88%E6%98%AF%E7%BD%AE%E4%BF%A1%E5%9F%9F%E7%AE%97%E6%B3%95%EF%BC%88Trust%20Region%20Methods%EF%BC%89%EF%BC%9F.md">什么是置信域算法（Trust Region Methods）？</a></p>
+<p>TRPO不直接约束参数空间的步长，而是约束策略空间的距离（新旧policy之间的KL 散度），确保了新旧policy之间的差距在“置信域”内，尽可能取最大的有效步长，避免了手动设置学习率，使训练收敛更稳定：
+$$\max_{\theta} E_{s \sim \rho_{\theta_{old}}, a \sim \pi_{\theta_{old}}} \left[ \frac{\pi_{\theta}(a|s)}{\pi_{\theta_{old}}(a|s)} A_{\theta_{old}}(s,a) \right]$$</p>
+<p>$$\text{subject to } E_{s \sim \rho_{\theta_{old}}} [D_{KL}(\pi_{\theta_{old}}(\cdot|s) || \pi_{\theta}(\cdot|s))] \le \delta$$
+这转化为一个约束最优化问题的求解，使用泰勒展开：</p>
+<ul>
+<li>对目标函数进行一阶展开（得到梯度 $g$）</li>
+<li>对约束条件进行二阶展开（得到费雪信息矩阵 $H$，也叫Hessian矩阵）
+最后推导出来的参数更新位置公式为：
+$$\Delta \theta \approx \sqrt{\frac{2\delta}{g^T H^{-1} g}} H^{-1} g$$
+直接把 $\theta$ 推到了那个理论上在约束范围内最完美的位置</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1502.05477" target="_blank">Trust Region Policy Optimization</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=fcSYiyvPjm4" target="_blank"># TRPO 置信域策略优化 (Trust Region Policy Optimization)</a></li>
+</ul>
+<h3 id="ppo">
+  PPO
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>PPO的背景在于TRPO中 $H^{-1}g$ 计算量巨大，于是简化约束条件KL散度，而采用截断的方式来控制新旧策略的差异，假设新旧策略差异为：
+$$r_t(\theta) = \frac{\pi_{\theta}(a|s)}{\pi_{\theta_{old}}(a|s)}$$
+截断损失函数为：
+$$L^{CLIP} = \min \left( r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t \right)$$
+假设 $\epsilon=0.2$，有以下几种情况：</p>
+<ul>
+<li>$r_t(\theta) &lt; 0.8$：新策略action概率变得过小
+<ul>
+<li>如果 $\hat{A}_t &gt; 0$（action是好动作）：min取真实$r_t(\theta)$，即修正错误（变大）不设限</li>
+<li>如果 $\hat{A}_t &lt; 0$（action是坏动作）：min取0.8，梯度停止更新，即不会继续让action概率更小</li>
+</ul>
+</li>
+<li>$r_t(\theta) &gt; 1.2$：新策略action概率变得过大
+<ul>
+<li>如果 $\hat{A}_t &gt; 0$（action是好动作）：min取1.2，梯度停止更新，即不会继续让action概率更大</li>
+<li>如果 $\hat{A}_t &lt; 0$（action是坏动作）：min取真实$r_t(\theta)$，即修正错误（变小）不设限</li>
+</ul>
+</li>
+<li>$0.8 &lt; r_t(\theta) &lt; 1.2$：新策略action小幅变化，clip不生效，取真实$r_t(\theta)$
+<ul>
+<li>如果 $\hat{A}_t &gt; 0$（action是好动作）：继续梯度更新，让action概率变大</li>
+<li>如果 $\hat{A}_t &lt; 0$（action是坏动作）：继续梯度更新，让action概率变小</li>
+</ul>
+</li>
+</ul>
+<p>PPO两大工程优势：</p>
+<ul>
+<li>防止策略崩溃：即使你把 Learning Rate 设得稍微大了一点，clip也会挡住那些过度的更新</li>
+<li>数据高效利用：只要 $r_t$ 还没被clip，这批数据就可以反复用来跑好几次 SGD
+
+
+
+
+<a href="../Answers/PPO%E4%B8%AD%E9%87%87%E6%A0%B7%E6%95%B0%E6%8D%AE%E8%A2%AB%E9%AB%98%E6%95%88%E5%88%A9%E7%94%A8%E7%9A%84%E5%8E%9F%E5%9B%A0.md">PPO中采样数据被高效利用的原因</a></li>
+</ul>
+<p>
+
+
+
+<a href="../Answers/PPO%E4%B8%ADClip%E6%93%8D%E4%BD%9C%E5%AF%B9Bias%E5%92%8CVariance%E7%9A%84Trade-Off.md">PPO中Clip操作对Bias和Variance的Trade-Off</a></p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1707.06347" target="_blank">Proximal Policy Optimization Algorithms</a></li>
+</ul>
+<h3 id="ddpg">
+  DDPG
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>离散控制与连续控制：</p>
+<ul>
+<li>离散动作空间只包含有限个动作，比如grid中的四个方向的运动</li>
+<li>连续动作空间的动作是连续的，比如机械手转动的角度，属于一个连续范围</li>
+<li>对连续动作离散化可以近似解决，但是会有维度爆炸的问题，所以只适用于维度小的问题</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=rRIjgdxSvg8&amp;list=PLvOO0btloRnsNfDgwv0OCLVTsm5bUyE6L" target="_blank"># 离散控制与连续控制 (连续控制 1/3)</a>)</li>
+</ul>
+<p>由于连续动作空间中，action是一个数值变量：</p>
+<ul>
+<li>如果还按离散控制的方式，采样来计算梯度，会发现由于维度爆炸，采样数据稀疏导致极不稳定</li>
+<li>action是数值变量意味着可以求导，因此可以通过链式法则，直接对 $\theta$ 求导：
+$$\mathbf{g} = \frac{\partial q(s, \pi(s; \boldsymbol{\theta}); \mathbf{w})}{\partial \boldsymbol{\theta}} = \frac{\partial a}{\partial \boldsymbol{\theta}} \cdot \frac{\partial q(s, a; \mathbf{w})}{\partial a}$$</li>
+</ul>
+<p>DPG中由于critic和actor的梯度更新都依赖于critic的 $Q$ ，会导致不稳定相比离散控制更强烈：</p>
+<ul>
+<li>target network：引入target actor和target critic</li>
+<li>参数软更新： target网络的参数 $w^-$ 以极小的比例 $\tau$（如 0.001）缓慢跟随主网络</li>
+</ul>
+<p><a href="#R-image-bad5a2f18c944ac24bda705ce4958587" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9624880b724caa65646153cd9e7c8208.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bad5a2f18c944ac24bda705ce4958587"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9624880b724caa65646153cd9e7c8208.png?width=400px"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://proceedings.mlr.press/v32/silver14.pdf" target="_blank">Deterministic Policy Gradient Algorithms</a></li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1509.02971" target="_blank">CONTINUOUS CONTROL WITH DEEP REINFORCEMENT LEARNING</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=cmWejKRWLA8" target="_blank"># 确定策略梯度 Deterministic Policy Gradient, DPG (连续控制 2/3)</a></li>
+</ul>
+<h3 id="sac">
+  SAC
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>SAC通过随机策略来解决连续控制问题，预测action的均值 $\mu$ 和方差 $\sigma$，将确定性action转化为高斯分布，从而最大化动作的累积收益</p>
+<p>在 SAC 的目标函数中，除了奖励 $r$ 之外，还最大化熵 ($H$)：
+$$J(\pi) = \sum_{t=0}^{T} E_{(s_t, a_t) \sim \rho_\pi} [r(s_t, a_t) + \alpha H(\pi(\cdot|s_t))]$$</p>
+<ul>
+<li>防止模型过早陷入局部最优解，鼓励去尝试不同的动作</li>
+<li>随机策略可以学到多种种同样好的解法，如果环境发生轻微扰动，表现得更稳健</li>
+</ul>
+<p>连续控制中使用 $\nabla_{\theta} J(\theta) = \mathbb{E}<em>{a \sim \pi</em>{\theta}} [ \nabla_{\theta} \log \pi_{\theta}(a|s) \cdot Q(s, a) ]$ 求解策略梯度方差极大，因此SAC采用了和DDPG同样的确定性梯度的路径（链式法则）；由于action不是数值变量，而是从分布中采样得到的，因此需要重参数化的技巧，将随机采样的过程转化为一个确定的函数：
+$$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)$$</p>
+<p><a href="#R-image-6d8c2923fe28c7d52bcfc35985b61941" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8b76631eceafc626642117e9be110ef5.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6d8c2923fe28c7d52bcfc35985b61941"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8b76631eceafc626642117e9be110ef5.png?width=250px"></a>
+</p>
+<p>
+
+
+
+<a href="../Answers/SAC%E5%8D%95%E5%B3%B0%E5%81%87%E8%AE%BE%E9%81%87%E5%88%B0%E5%A4%9A%E5%B3%B0%E6%83%85%E5%86%B5%E6%97%B6%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F.md">SAC单峰假设遇到多峰情况时如何解决？</a></p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1801.01290" target="_blank">Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=McqFyl_W5Wc&amp;list=PLvOO0btloRnsNfDgwv0OCLVTsm5bUyE6L&amp;index=3" target="_blank"># 随机策略做连续控制 (连续控制 3/3)</a></li>
+</ul>
 <h1 id="exploitation--exploration">
   Exploitation &amp; Exploration
 
@@ -208,7 +685,7 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<p>#todo 再理解Information State Space</p>
+<p>#todo 看下面这篇blog</p>
 <p>参考链接：</p>
 <ul>
 <li>
@@ -216,6 +693,249 @@
 
 
 <a href="https://lilianweng.github.io/posts/2020-06-07-exploration-drl/" target="_blank"># Exploration Strategies in Deep Reinforcement Learning</a></li>
+</ul>
+<h1 id="应用">
+  应用
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="gymnasium">
+  Gymnasium
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>
+
+
+
+<a href="https://gymnasium.farama.org/" target="_blank">官网链接</a></p>
+<h2 id="tianshou">
+  TianShou
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="verl">
+  Verl
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="sim2real">
+  Sim2Real
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="alphago">
+  AlphaGo
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="muzero">
+  MuZero
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules/" target="_blank"># MuZero: Mastering Go, chess, shogi and Atari without rules</a></li>
+</ul>
+<h2 id="dreamer">
+  Dreamer
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://research.google/blog/introducing-dreamer-scalable-reinforcement-learning-using-world-models/" target="_blank"># Introducing Dreamer: Scalable Reinforcement Learning Using World Models</a></li>
+<li>
+
+
+
+<a href="https://research.google/blog/mastering-atari-with-discrete-world-models/" target="_blank"># Mastering Atari with Discrete World Models</a></li>
+<li>
+
+
+
+<a href="https://danijar.com/project/dreamerv3/" target="_blank"># Mastering Diverse Control Tasks through World Models</a></li>
+<li>
+
+
+
+<a href="https://danijar.com/project/dreamer4/" target="_blank"># Training Agents Inside of Scalable World Models</a></li>
+</ul>
+<h1 id="相关领域">
+  相关领域
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>#todo 动手学强化学习这些章节</p>
+<h2 id="imitation-learning">
+  Imitation Learning
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="model-predictive-control">
+  Model Predictive Control
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="offline-rl">
+  Offline RL
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="multi-agent-rl">
+  Multi-agent RL
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>多agent之间的关系分为以下几种：</p>
+<ul>
+<li>完全合作（fully cooperative）：多agent目标相同</li>
+<li>完全竞争（fully competitive）：零和博弈</li>
+<li>合作/竞争混合（mixed cooperative &amp; competitive）：自己团队内部为合作，对方团队为竞争</li>
+<li>利己主义（self-interested）：只考虑自己，不在乎对方</li>
+</ul>
+<p>多agent策略收敛：</p>
+<ul>
+<li>纳什均衡时策略收敛，即当一个agent改变策略而其他agent不变时，他的return不会变好</li>
+<li>除非所有agent彼此独立，才能用单agent方法求解最优策略
+<ul>
+<li>单agent方法有可能无法收敛，因为改变自己参数时，会改变其他agent的目标</li>
+</ul>
+</li>
+<li>多agent（合作）需要通过通信共享信息从而达到最优策略的收敛</li>
+</ul>
+<p>多agent的通信方式与训练：</p>
+<ul>
+<li>完全去中心化（fully decentralized）：多agent不通信
+<ul>
+<li>agent视角与单agent完全一样，最终可能无法收敛</li>
+</ul>
+</li>
+<li>完全中心化（fully centralized）：agent将信息发送给controller，controller为所有agent决策
+<ul>
+<li>由于controller的决策需要用到所有agent的观测，因此不能在agent上独立执行</li>
+<li>可以把多agent理解为一个大的agent，汇合了所有agent的state、action和reward</li>
+<li>同步比较耗时，很难做到实时性</li>
+</ul>
+</li>
+<li>中心训练、去中心执行：训练时使用controller，执行时不使用
+<ul>
+<li>controller根据全部的信息为每个agent训练专属的critic网络</li>
+<li>每个agent根据controller的critic训练自己的actor，然后在执行中使用</li>
+</ul>
+</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=KN-XMQFTD0o&amp;list=PLvOO0btloRntPRHgQo75wuMNFvtXHGn5A" target="_blank"># 多智能体强化学习(1/2)：基本概念 Multi-Agent Reinforcement Learning</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=0HV1hsjd1y8&amp;list=PLvOO0btloRntPRHgQo75wuMNFvtXHGn5A&amp;index=2" target="_blank"># 多智能体强化学习(2/2)：三种架构 Multi-Agent Reinforcement Learning</a></li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=VnpRp7ZglfA" target="_blank"># The FASTEST introduction to Reinforcement Learning on the internet</a></li>
+<li>
+
+
+
+<a href="https://hrl.boyuai.com/" target="_blank">动手学强化学习</a></li>
+<li>
+
+
+
+<a href="https://www.youtube.com/playlist?list=PLvOO0btloRnsiqM72G4Uid0UWljikENlU" target="_blank"># 深度强化学习基础【王树森】</a></li>
+<li>
+
+
+
+<a href="https://spinningup.openai.com/en/latest/#" target="_blank">OpenAI Spinning Up</a></li>
 </ul>
 
   <footer class="footline">
@@ -327,9 +1047,9 @@
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768561251"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768561251" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768561251" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768827477"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1768827477" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

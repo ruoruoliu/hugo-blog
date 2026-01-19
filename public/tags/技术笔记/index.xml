@@ -13,14 +13,14 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
-      <description>Exploitation &amp; Exploration #todo 再理解Information State Space&#xA;参考链接：&#xA;# Exploration Strategies in Deep Reinforcement Learning</description>
+      <description>基础知识 Markov Decision Process Bellman Optimality Equation Model-Free Prediction &amp; Control SARSA Q-Learning Value Function Approximation DQN Policy Gradient Actor-Critic Exploitation &amp; Exploration 参考链接:&#xA;DeepMind x UCL Introduction to RL 2015 课程笔记 Value-based DQN Target Network 为了避免Q-learning中Bootstrapping带来的模型追逐变化的目标导致训练不稳定的情况，DQN引入了两套结构完全一样、但参数不同的网络：</description>
     </item>
     <item>
       <title>DeepMind x UCL Introduction to RL 2015 课程笔记</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html</link>
       <pubDate>Fri, 09 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html</guid>
-      <description>基本概念 强化学习与机器学习的差别：&#xA;没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：&#xA;一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策是什么：&#xA;目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：&#xA;state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） agent agent的组成：</description>
+      <description>Intro 强化学习与机器学习的差别：&#xA;没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：&#xA;一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策是什么：&#xA;目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：&#xA;state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） agent agent的组成：</description>
     </item>
     <item>
       <title>LLM和agent的训练</title>

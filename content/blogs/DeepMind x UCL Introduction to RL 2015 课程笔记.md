@@ -5,7 +5,7 @@ tags:
   - 技术笔记
 draft: false
 ---
-# 基本概念
+# Intro
 --- 
 
 强化学习与机器学习的差别：
@@ -79,7 +79,7 @@ Markov Process通过状态和状态转移矩阵来描述：
 未来的状态由转移矩阵确定：
 ![image.png|180](https://images.ruoruoliu.com/2026/01/1886ec69db0a18cc317c3b8902a9b66e.png)
 
-直接求解线性方程复杂度为$O(n^3)$，因此只适合小规模MRP的求解；
+直接求解线性方程复杂度为 $O(n^3)$，因此只适合小规模MRP的求解；
 对于大规模MRP，通常使用迭代求解的方式：
 - 动态规划
 - Monte-Carlo evaluation
@@ -124,12 +124,12 @@ state/action value function也都可以转化为Bellman方程的形式：
 最优state/action value function分别是：
 ![image.png|400](https://images.ruoruoliu.com/2026/01/f51052af1a5f404c20ba445f7f7728f3.png)
 
-对于$q_*(s,a)$，因为知道了当前状态不同action的value，直接选择最大的action就可以了；但是如果知道了$v_*(s)$，即知道我下一步想去哪个state，但是由于不知道action对应的状态转移矩阵（一般情况），没办法知道要选择哪个action最终value最大
+对于 $q_*(s,a)$，因为知道了当前状态不同action的value，直接选择最大的action就可以了；但是如果知道了 $v_*(s)$，即知道我下一步想去哪个state，但是由于不知道action对应的状态转移矩阵（一般情况），没办法知道要选择哪个action最终value最大
 
 [Optimal Value Function中q和v的差别](../Answers/Optimal%20Value%20Function%E4%B8%ADq%E5%92%8Cv%E7%9A%84%E5%B7%AE%E5%88%AB.md)
 
 在任意state上实现optimal value function的policy，称为optimal policy
-根据$q_*(s,a)$选择action的policy即optimal policy
+根据 $q_*(s,a)$ 选择action的policy即optimal policy
 
 ### Bellman Optimality Equation
 
@@ -163,10 +163,10 @@ Markov Process满足动态规划的两个性质：
 
 ## Policy Iteration
 
-基于原始$\pi$迭代计算所有state的value，收敛后得到$v_\pi(s)$：
+基于原始 $\pi$ 迭代计算所有state的value，收敛后得到 $v_\pi(s)$：
 - 在某一个state下选择value最大的action：
 	![image.png|350](https://images.ruoruoliu.com/2026/01/11579ec535d6e62e258fe880d81e04c5.png)
-- 在每一个state选择value最大的action，那么你就得到了一个在全局所有状态下都表现得更好的新策略$\pi^{\prime}$，更接近$\pi^*$：
+- 在每一个state选择value最大的action，那么你就得到了一个在全局所有状态下都表现得更好的新策略 $\pi^{\prime}$，更接近 $\pi^*$：
 	![image.png|450](https://images.ruoruoliu.com/2026/01/d14ec55f31c6a66ecc8a7963aa2f186d.png)
 
 通过不断地：
@@ -179,11 +179,11 @@ Markov Process满足动态规划的两个性质：
 ## Value Iteration
 
 我们是否需要value收敛到真值后再优化policy？
-- 可以选择value的$\epsilon$足够小的时候停止迭代value并优化
+- 可以选择value的 $\epsilon$ 足够小的时候停止迭代value并优化
 - 可以选择每k步优化
 - 是否可以每步优化？
 
-每步评估进行一次优化（取max）：每次采用可达state中最大的value来计算当前state的新一轮value，通过这种方式不断更新value，最终得到每个状态的$v^*(s)$，称为value iteration
+每步评估进行一次优化（取max）：每次采用可达state中最大的value来计算当前state的新一轮value，通过这种方式不断更新value，最终得到每个状态的 $v^*(s)$，称为value iteration
 
 Policy Evaluation、Policy Iteration和Value Iteration的对比
 ![image.png|400](https://images.ruoruoliu.com/2026/01/b19aaf93fc21d9632bbb765b1b944c6d.png)
@@ -214,10 +214,10 @@ Model-Free中的model指的是环境，即我们不知道环境如何基于我�
 - 相比于MC中的目标值最终return $G_t$，TD（以TD(0)为例）基于下一状态的return作为目标值：
 	$V(S_t) \leftarrow V(S_t)+\alpha(R_{t+1}+\gamma V(S_{t+1}) - V(S_t))$
 	其中：
-	- $R_{t+1}+\gamma V(S_{t+1})$被称为TD target
-	- $\delta_t = R_{t+1}+\gamma V(S_{t+1}) - V(S_t)$被称为TD error
+	- $R_{t+1}+\gamma V(S_{t+1})$ 被称为TD target
+	- $\delta_t = R_{t+1}+\gamma V(S_{t+1}) - V(S_t)$ 被称为TD error
 - TD和MC在bias/variance上的对比：
-	- TD target是有偏的，因为是基于一个有偏的$V（S_{t+1}）$来估计的；而MC是无偏的，因为是真实样本的平均
+	- TD target是有偏的，因为是基于一个有偏的 $V（S_{t+1}）$ 来估计的；而MC是无偏的，因为是真实样本的平均
 	- TD的variance是小的，因为只包含当前的reward和对value的估计；而MC的variance是大的，因为MC中每一步的action和transition都引入variance
 	- TD对初始值敏感；而MC不敏感
 	- [TD learning相比MC learning效率高的原因](../Answers/TD%20learning%E7%9B%B8%E6%AF%94MC%20learning%E6%95%88%E7%8E%87%E9%AB%98%E7%9A%84%E5%8E%9F%E5%9B%A0.md)
@@ -273,21 +273,21 @@ TD($\lambda$)的正向视角是坐在现在看未来，需要完整序列；而�
 Model-Free Control用来解决那些未知MDP，或者已知MDP，但由于复杂所以只能采样的问题
 
 Model-Free Control主要分为：
-- On Policy：基于策略$\pi$上的采样学习策略$\pi$，在自己的认知范围内，行动后调整
+- On Policy：基于策略 $\pi$ 上的采样学习策略 $\pi$，在自己的认知范围内，行动后调整
 	- Sarsa
-- Off Policy：基于策略$\mu$上的采样学习策略$\pi$，可以复用其他策略的数据，总结别人的经验
+- Off Policy：基于策略 $\mu$ 上的采样学习策略 $\pi$，可以复用其他策略的数据，总结别人的经验
 	- Q-Learning、DQN（经验回放）
 
 ## On-Policy Monte-Carlo Control
 
-为了使MC能在policy iteration中使用，由于我们是model-free的，不能采样$v(s)$，而需要采样$q(s, a)$，从而直接基于采样结果选择最佳action，来进行greedy policy improvement
+为了使MC能在policy iteration中使用，由于我们是model-free的，不能采样 $v(s)$，而需要采样 $q(s, a)$，从而直接基于采样结果选择最佳action，来进行greedy policy improvement
 
 如何进行greedy policy improvement：
 - 与MDP已知不同，我们需要探索所有行为的可能，而没办法确定某个行为是最优的，这也是从planning到learning的跨越
-- 通过$\epsilon-greedy$策略来选择action，在保证探索的前提下，同时保证收敛到更优：
+- 通过 $\epsilon-greedy$ 策略来选择action，在保证探索的前提下，同时保证收敛到更优：
 	![image.png|350](https://images.ruoruoliu.com/2026/01/1ad577de44e5229b5090aca95e497c7b.png)
-- 不需要过多采样来精确得到$q(s,a)$，可以只采样一条序列，更新序列中每一个s和a的pair的action value function，然后进行$\epsilon-greedy$操作来加速迭代
-- 如果探索最终满足GLIE（Greedy in the Limit with Infinite Exploration），则能够保证最终收敛到全局最优，比如$\epsilon_k=\frac{1}{k}$就是一个例子：
+- 不需要过多采样来精确得到 $q(s,a)$，可以只采样一条序列，更新序列中每一个s和a的pair的action value function，然后进行 $\epsilon-greedy$ 操作来加速迭代
+- 如果探索最终满足GLIE（Greedy in the Limit with Infinite Exploration），则能够保证最终收敛到全局最优，比如 $\epsilon_k=\frac{1}{k}$ 就是一个例子：
 	![image.png|400](https://images.ruoruoliu.com/2026/01/e3742620387147805768190503e0632f.png)
 	[GLIE条件及其工程实现](../Answers/GLIE%E6%9D%A1%E4%BB%B6%E5%8F%8A%E5%85%B6%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0.md)
 
@@ -297,8 +297,8 @@ Model-Free Control主要分为：
 ![image.png|300](https://images.ruoruoliu.com/2026/01/9a897256dc31958c6f6059cb262c5eb7.png)![image.png|450](https://images.ruoruoliu.com/2026/01/0a0bbaad45ac7c1fadd06e91b95d218b.png)
 
 Sarsa算法收敛到最优策略的条件：
-- 满足GLIE，例如通过$\epsilon-greedy$选择动作即可
-- 步长$\alpha$满足Robbins-Monro条件：
+- 满足GLIE，例如通过 $\epsilon-greedy$ 选择动作即可
+- 步长 $\alpha$ 满足Robbins-Monro条件：
 	- $\sum\limits_{t=1}^{\infty} \alpha_t = \infty$：确保算法有足够的动力消除初始误差
 	- $\sum\limits_{t=1}^{\infty} \alpha_t^2 < \infty$：确保随机噪声最终会被抵消，实现稳定
 - 实际应用中，大部分不考虑Robbins-Monro条件，甚至有时候不考虑GLIE，Sarsa也能work
@@ -324,7 +324,7 @@ Off-Policy的意义：
 ![image.png|250](https://images.ruoruoliu.com/2026/01/7a5f37f92309f8820969065b904e928f.png)
 
 由于以下两个原因，off-policy的MC在实际应用中几乎不可用：
-- 数据饥渴：当$\mu(A|S)=0$但是$\pi(A|S)\neq0$的时候，这条样本不可用，即便可以通过$\epsilon-greedy$的策略保证$\mu(A|S)\neq0$，但是这时候的权重会极小，$\epsilon/m$，依然不可用
+- 数据饥渴：当 $\mu(A|S)=0$ 但是 $\pi(A|S)\neq0$ 的时候，这条样本不可用，即便可以通过 $\epsilon-greedy$ 的策略保证 $\mu(A|S)\neq0$，但是这时候的权重会极小，$\epsilon/m$，依然不可用
 - 数值爆炸：重要性采样会因为概率的连乘很大程度增加方差
 
 off-policy的TD Learning使用了bootstrapping，重要性权重只加在最近的一次reward上，大大缓解数据饥渴和数值爆炸的问题：
@@ -333,14 +333,15 @@ off-policy的TD Learning使用了bootstrapping，重要性权重只加在最近�
 ### Q-Learning
 
 Q-Learning可以避免使用重要性采样，更方便地进行off policy的control：
-- 通过Q和行为策略$\mu$（通常使用$\epsilon-greedy$来保证探索）选择当前state $S_t$要更新的action $A_t$
-- 确定$S_t$和$A_t$后，环境给出reward，$R_{t+1}$和下一个state，$S_{t+1}$
+- 通过Q和行为策略 $\mu$（通常使用 $\epsilon-greedy$ 来保证探索）选择当前state $S_t$ 要更新的action $A_t$
+- 确定 $S_t$ 和 $A_t$ 后，环境给出reward，$R_{t+1}$ 和下一个state，$S_{t+1}$
 	- 这部分称为SARS四元组，可以使用历史数据进行回放的方式复用数据
-- 在计算Q的更新时，$A'$是通过目标策略$\pi$选择出来的（max选择最优action），这样可以避免使用重要性采样（因为目标策略$\pi$是确定性的，不是分布，不需要纠偏）
+- 在计算Q的更新时，$A'$ 是通过目标策略 $\pi$ 选择出来的（max选择最优action），这样可以避免使用重要性采样（因为目标策略 $\pi$ 是确定性的，不是分布，不需要纠偏）
 	![image.png|400](https://images.ruoruoliu.com/2026/01/db2e4f606f38387ba0c460a50e398685.png)
 	[为什么Q-Learning有逃避“重要性采样”的特权？](../Answers/%E4%B8%BA%E4%BB%80%E4%B9%88Q-Learning%E6%9C%89%E9%80%83%E9%81%BF%E2%80%9C%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7%E2%80%9D%E7%9A%84%E7%89%B9%E6%9D%83%EF%BC%9F.md)
-- 可以理解为：行为策略$\mu$决定更新哪个state和action，目标策略$\pi$决定怎么更新（具体数值）
+- 可以理解为：行为策略 $\mu$ 决定更新哪个state和action，目标策略 $\pi$ 决定怎么更新（具体数值）
 
+可以理解成：SARSA通过迭代 $Q_{\pi}$，然后最终 $Q_{\pi}=Q_*$ 的方式找到 $Q_*$；而Q-Learning直接迭代 $Q_*$
 [Q-Learning和Sarsa之间的关系](../Answers/Q-Learning%E5%92%8CSarsa%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.md)
 
 TD和DP的关系对比：
@@ -405,13 +406,13 @@ control算法收敛性：
 ### DQN
 
 DQN使用经验回放和固定Q-targets的方式：
-- 基于Q-network的计算结果$Q(s,a,w_i)$，根据$\epsilon-greedy$策略选择action $a_t$
-- 存储四元组$(s_t, a_t, r_{t+1}, s_{t+1})$进入回放memory
+- 基于Q-network的计算结果 $Q(s,a,w_i)$，根据 $\epsilon-greedy$ 策略选择action $a_t$
+- 存储四元组 $(s_t, a_t, r_{t+1}, s_{t+1})$ 进入回放memory
 - 每次从memory中采样minibatch
-- 基于旧参数$w^-$计算Q-targets
+- 基于旧参数 $w^-$ 计算Q-targets
 - 利用SGD优化Q-network和Q-targets之间的MSE，更新Q-network的参数权重
 	![image.png|400](https://images.ruoruoliu.com/2026/01/0a8d638ec1179d8df4ba29658415aafa.png)
-- 每隔一段时间（～1000步），更新$w^-$到最新参数
+- 每隔一段时间（～1000步），更新 $w^-$ 到最新参数
 
 DQN能够稳定收敛的两个原因：
 - 经验回放打散了序列训练数据，让minibatch样本直接减少关联
@@ -424,7 +425,7 @@ DQN能够稳定收敛的两个原因：
 --- 
 
 相比求解value function的方式来迭代policy，policy gradient直接优化policy
-![image.png|200](https://images.ruoruoliu.com/2026/01/6ebe40c981dac23eaa50c8fd95fb6cf9.png)
+![image.png|150](https://images.ruoruoliu.com/2026/01/6ebe40c981dac23eaa50c8fd95fb6cf9.png)
 
 Policy Gradient的优点，主要在于避免了value-based方法的max操作：
 - 更好的收敛性质：相比value-based方法中取max的操作会导致参数剧烈波动，policy-based的学习目标是一个分布，不会跳变
@@ -436,7 +437,7 @@ Policy Gradient的缺点：
 - 评估policy通常效率低，且高variance
 
 Policy Objective Function，即如何评价policy：
-- 在周期性任务中以初始状态$s_1$起始的value：$J_1(\theta) = V^{\pi_\theta}(s_1) = \mathbb{E}_{\pi_\theta} [v_1]$
+- 在周期性任务中以初始状态 $s_1$ 起始的value：$J_1(\theta) = V^{\pi_\theta}(s_1) = \mathbb{E}_{\pi_\theta} [v_1]$
 - 在连续性任务中的平均value：$J_{avV}(\theta) = \sum_{s} d^{\pi_\theta}(s) V^{\pi_\theta}(s)$
 	- 其中 $d^{\pi_\theta}(s)$ 是策略 $\pi_\theta$ 下状态的平稳分布
 - 在连续性任务中的每步平均value：$J_{avR}(\theta) = \sum_{s} d^{\pi_\theta}(s) \sum_{a} \pi_\theta(s, a) \mathcal{R}_s^a$
@@ -448,24 +449,24 @@ Policy Objective Function，即如何评价policy：
 
 ## Monte-Carlo Policy Gradient（REINFORCE）
 
-目标$J(\theta)$是在当前策略下，所有可能路径$\tau$的总回报$R(\tau)$的期望值：
+目标 $J(\theta)$ 是在当前策略下，所有可能路径 $\tau$ 的总回报 $R(\tau)$ 的期望值：
 
 $J(\theta) = \mathbb{E}_{\pi_\theta}[R(\tau)] = \sum_{\tau} P(\tau|\theta) R(\tau)$
 
-对$J(\theta)$求导，将策略的导数转化为策略对数的导数的期望：
+对 $J(\theta)$ 求导，将策略的导数转化为策略对数的导数的期望：
 $$\begin{flalign*}
 \nabla_\theta J(\theta) &= \sum_{\tau} \nabla_\theta P(\tau|\theta) R(\tau) &\\
 &= \sum_{\tau} P(\tau|\theta) \nabla_\theta \log P(\tau|\theta) R(\tau) &\\
 &= \mathbb{E}_{\pi_\theta} [\nabla_\theta \log P(\tau|\theta) R(\tau)] &
 \end{flalign*}$$
 
-展开$P(\tau|\theta)$，即一条路径的概率等于：初始状态概率 × 策略概率 × 环境转移概率：
+展开 $P(\tau|\theta)$，即一条路径的概率等于：初始状态概率 × 策略概率 × 环境转移概率：
 $P(\tau|\theta) = \mu(s_0) \prod_{t=0}^{T} \pi_\theta(a_t|s_t) P(s_{t+1}|s_t, a_t)$
 
 取log得到：
 $\log P(\tau|\theta) = \log \mu(s_0) + \sum_{t=0}^{T} \log \pi_\theta(a_t|s_t) + \sum_{t=0}^{T} \log P(s_{t+1}|s_t, a_t)$
 
-其中$\mu(s_0)$（初始状态）和 $P(s_{t+1}|s_t, a_t)$（环境物理规则）都与$\theta$无关，可以舍弃：
+其中 $\mu(s_0)$（初始状态）和 $P(s_{t+1}|s_t, a_t)$（环境物理规则）都与 $\theta$ 无关，可以舍弃：
 
 因此梯度简化为：
 $\nabla_\theta \log P(\tau|\theta) = \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t)$
@@ -478,12 +479,12 @@ $\nabla_\theta J(\theta) \approx \sum_{t=0}^{T} R(\tau) \nabla_\theta \log \pi_\
 
 其中，log prob的梯度我们称为score function
 
-当动作空间是离散的，假设策略是softmax policy，策略$\pi$的prob是通过$\phi(s, a)^\top \theta$的softmax得到，那么：$\nabla_\theta \log \pi_\theta(s, a) = \phi(s, a) - \mathbb{E}_{\pi_\theta} [\phi(s, \cdot)]$
+当动作空间是离散的，假设策略是softmax policy，策略 $\pi$ 的prob是通过 $\phi(s, a)^\top \theta$ 的softmax得到，那么：$\nabla_\theta \log \pi_\theta(s, a) = \phi(s, a) - \mathbb{E}_{\pi_\theta} [\phi(s, \cdot)]$
 其中：
-- **$\phi(s, a)$**：是你实际采样做出的动作$a$的特征
+- **$\phi(s, a)$**：是你实际采样做出的动作 $a$ 的特征
 - **$\mathbb{E}_{\pi_\theta} [\phi(s, \cdot)]$**：是你当前模型下，对所有可能动作特征的平均预期
 
-当动作空间是连续的，假设策略是gaussian policy，均值为$\mu(s) = \phi(s)^\top \theta$，即$a \sim \mathcal{N}(\mu(s), \sigma^2)$
+当动作空间是连续的，假设策略是gaussian policy，均值为 $\mu(s) = \phi(s)^\top \theta$，即 $a \sim \mathcal{N}(\mu(s), \sigma^2)$
 那么：$\nabla_\theta \log \pi_\theta(s, a) = \frac{(a - \mu(s))\phi(s)}{\sigma^2}$
 
 上述两者都可以理解为，当你的action包含这个特征较多且最终证明是正确的时候，加强这个特征
@@ -505,8 +506,8 @@ Policy Gradient定理
 REINFORCE的奖励是最终累积，且训练数据来自于相同序列，导致方差较大
 为减小variance，添加critic部分：
 - critic：
-	- 采用MC或者TD（更常用），基于最小化MSE的目标更新参数$w$
-	- 进行对当前状态的价值 $Q_w(s, a)$进行预测，避免累积奖励导致的波动问题
+	- 采用MC或者TD（更常用），基于最小化MSE的目标更新参数 $w$
+	- 进行对当前状态的价值 $Q_w(s, a)$ 进行预测，避免累积奖励导致的波动问题
 - actor：
 	- 根据critic给出的价值进行policy gradient的计算和更新
 ![image.png|400](https://images.ruoruoliu.com/2026/01/88cb104b4b89b3b7646d246496d7a934.png)
@@ -514,14 +515,14 @@ REINFORCE的奖励是最终累积，且训练数据来自于相同序列，导�
 critic的引入带来的bias，即目标价值不一定是无偏的：
 [Compatible Function Approximation解决critic的bias](../Answers/Compatible%20Function%20Approximation%E8%A7%A3%E5%86%B3critic%E7%9A%84bias.md)
 
-引入value function作为baseline可以进一步减少方差
+Advantage Actor-Critic（A2C）引入value function作为baseline可以进一步减少方差
 同时计算Q和V（维护两套参数w和v），相减得到优势函数：
 ![image.png|200](https://images.ruoruoliu.com/2026/01/655c7d74454cc97713dddce9098761d4.png)
 
 进一步的，V的TD error就是优势函数的期望：
 ![image.png|350](https://images.ruoruoliu.com/2026/01/838c4d2d6aaa07a589efad7711850ccf.png)
 只需要维护一套参数v，来计算状态的价值函数V，就可以把TD error当成优势函数
-[用V的TD error作为actor的policy gradient？](../Answers/%E7%94%A8V%E7%9A%84TD%20error%E4%BD%9C%E4%B8%BAactor%E7%9A%84policy%20gradient%EF%BC%9F.md)
+[Actor-Critic中用V的TD error作为actor的policy gradient？](../Answers/Actor-Critic%E4%B8%AD%E7%94%A8V%E7%9A%84TD%20error%E4%BD%9C%E4%B8%BAactor%E7%9A%84policy%20gradient%EF%BC%9F.md)
 
 与value-based的方案一样，我们考虑到TD(0)的更新方式bias较高，希望引入TD($\lambda$)减小bias：
 [如何通过资格迹解决actor的在线更新？](../Answers/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E8%B5%84%E6%A0%BC%E8%BF%B9%E8%A7%A3%E5%86%B3actor%E7%9A%84%E5%9C%A8%E7%BA%BF%E6%9B%B4%E6%96%B0%EF%BC%9F.md)
@@ -536,8 +537,8 @@ critic的引入带来的bias，即目标价值不一定是无偏的：
 - DPG采用链式法则（Chain Rule），即使策略已经非常稳定，只要Critic发现更好的Q，动作也会调整：
 	![image.png|300](https://images.ruoruoliu.com/2026/01/2c1edb0192f947a51241bfb65fe8c564.png)
 换一个角度理解：
-- SPG$\approx$On-policy：为了计算$\nabla_\theta J(\theta) = \mathbb{E}_{a \sim \pi_\theta} [\nabla_\theta \log \pi_\theta(a|s) Q^\pi(s,a)]$，最直接的方法就是让策略$\pi_\theta$去环境中跑出数据，一旦策略更新了，旧的数据就不能直接用了（除非important sampling）
-- DPG$\approx$Off-policy：由于DPG输出的是确定的动作$a = \mu_\theta(s)$，它本身缺乏探索能力。为了训练它，我们必须使用一个“带噪声的动作”去探索环境，这本质上就是Off-policy
+- SPG$\approx$On-policy：为了计算 $\nabla_\theta J(\theta) = \mathbb{E}_{a \sim \pi_\theta} [\nabla_\theta \log \pi_\theta(a|s) Q^\pi(s,a)]$，最直接的方法就是让策略 $\pi_\theta$ 去环境中跑出数据，一旦策略更新了，旧的数据就不能直接用了（除非important sampling）
+- DPG$\approx$Off-policy：由于DPG输出的是确定的动作 $a = \mu_\theta(s)$，它本身缺乏探索能力。为了训练它，我们必须使用一个“带噪声的动作”去探索环境，这本质上就是Off-policy
 
 # Integrating Learning and Planning
 --- 
@@ -595,7 +596,7 @@ Dyna将model-free和model-based结合在一起：
 	- 价值大的动作采样更多，保证探索充分，预估精准
 	- 价值期望一般通过UCB策略来判断
 	- 相比MC Search按固定policy采样，MCTS每次采样分为两个阶段，不断迭代这两个阶段，使采样policy不断提升，最终搜索树会逐渐长成最有效的形状：
-		- in-tree：当前state在已探索过的tree内部，采用$\epsilon-greedy$或者UCB策略
+		- in-tree：当前state在已探索过的tree内部，采用 $\epsilon-greedy$ 或者UCB策略
 		- out-of-tree：当前state在tree外部，采用random来快速获得大致价值
 
 ### Dyna-2
@@ -631,23 +632,23 @@ Dyna将model-free和model-based结合在一起：
 
 ### Random Exploration
 
-- greedy和$\epsilon-greedy$策略都是随次数线性增加的总体regret
+- greedy和 $\epsilon-greedy$ 策略都是随次数线性增加的总体regret
 
 ### Optimism in the face of Uncertainty
 
 - Optimistic Initialization：
 	- 所有action初始设为最大值，通过采样慢慢收敛到真实值，保证所有action都会被探索到
-	- policy使用greedy或者$\epsilon-greedy$，仍然线性增加的总体regret
+	- policy使用greedy或者 $\epsilon-greedy$，仍然线性增加的总体regret
 - Decaying $\epsilon_t-greedy$：假设我们知道gap（现实中不可能），可以设置一个衰减速率达到logarithmic asymptotic的总体regret 
 - Lai&Robbins定理说明多臂赌博机问题的总体regret下界是logarithmic asymptotic的：
 	![image.png|400](https://images.ruoruoliu.com/2026/01/c972e572d838f7d4eee0ce5f511f6d29.png)
-	- $\triangle_a$是最优action收益和其他action收益的差值
-	- $KL(R^a||R^{a^*})$是最优action的收益分布和其他action的收益分布的KL散度（分布差异大小）
+	- $\triangle_a$ 是最优action收益和其他action收益的差值
+	- $KL(R^a||R^{a^*})$ 是最优action的收益分布和其他action的收益分布的KL散度（分布差异大小）
 	- 如果最优和其他action的平均差异大，但是分布又很接近，则总体regret就会大
 - UCB：通过动作的置信上界（upper confidence）来判断action的好坏：
 		![image.png|300](https://images.ruoruoliu.com/2026/01/975afe88f450115b1bc46b595c987027.png)
-	- 根据Hoeffding不等式，如果我们希望真值超过UCB的概率是p，则$U_t(a) = \sqrt{\frac{-\log p}{2N_t(a)}}$
-	- 我们希望随次数变大，p变小，可以设$p=t^{-4}$，则$U_t(a) = \sqrt{\frac{2 \log t}{N_t(a)}}$
+	- 根据Hoeffding不等式，如果我们希望真值超过UCB的概率是p，则 $U_t(a) = \sqrt{\frac{-\log p}{2N_t(a)}}$
+	- 我们希望随次数变大，p变小，可以设 $p=t^{-4}$，则 $U_t(a) = \sqrt{\frac{2 \log t}{N_t(a)}}$
 	- 最终：$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, Q(a) + \sqrt{\frac{2 \log t}{N_t(a)}}$
 - Bayesian Bandits：基于价值的先验分布，根据采样得到后验分布，通过后验分布判断action：
 	- Bayesian UCB：利用后验分布的variance作为UCB的不确定分数，$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, \mu_a + c \sigma_a / \sqrt{N(a)}$
@@ -671,8 +672,8 @@ Dyna将model-free和model-based结合在一起：
 
 上述所有的探索策略，都可以应用于MDP上：
 - 以UCB为例，$a_t = \underset{a \in \mathcal{A}}{\operatorname{argmax}} \, Q(s_t, a) + U_1(s_t, a) + U_2(s_t, a)$：
-	- 评估不确定性可以简单的加入UCB的不确定项$U_1$
-	- 对于Q的预测不管是评估不确定性，还有策略改进带来的不确定性$U_2$，这部分计算比较困难
+	- 评估不确定性可以简单的加入UCB的不确定项 $U_1$
+	- 对于Q的预测不管是评估不确定性，还有策略改进带来的不确定性 $U_2$，这部分计算比较困难
 
 # Classic Games
 --- 
@@ -708,7 +709,7 @@ Dyna将model-free和model-based结合在一起：
 ## Self-Play RL
 
  value function：可以直接应用MC或者TD算法
- policy improvement：由于游戏是deterministic的，即当前state下action的下一个state是确定的，因此可以直接选择max或者min来迭代policy，即$A_t = \arg\max_a v_{*}(\operatorname{succ}(S_t, a))$
+ policy improvement：由于游戏是deterministic的，即当前state下action的下一个state是确定的，因此可以直接选择max或者min来迭代policy，即 $A_t = \arg\max_a v_{*}(\operatorname{succ}(S_t, a))$
 
 ## Combining RL and Minimax Search
 
