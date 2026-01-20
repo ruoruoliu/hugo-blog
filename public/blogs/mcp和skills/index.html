@@ -27,27 +27,27 @@
     <meta itemprop="wordCount" content="252">
     <meta itemprop="keywords" content="技术笔记">
     <title>MCP和Skills :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768827477" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768827477" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768827477" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1768920743" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768920743" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768920743" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1768920743" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1768920743" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768827477";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768920743";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1768920743" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768920743" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768920743" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768920743" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768827477" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768827477" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768827477" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768920743" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768920743" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768920743" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1768920743" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1768920743" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -212,8 +212,8 @@
 <li>用于方便大模型agent获取和操作内部数据或者外部API接口</li>
 <li>MCP规定了MCP client（agent）和MCP server上的tool、resource、prompt之间的交互协议</li>
 <li>MCP中的分工：
-<a href="#R-image-b3dc1cf880a2cbbe353900ec8eb3d636" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b3dc1cf880a2cbbe353900ec8eb3d636"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png"></a>
+<a href="#R-image-4ca63feabbbabe47a7179a98f6afb9bb" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4ca63feabbbabe47a7179a98f6afb9bb"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4730359ecf928ff325e2712856a02eac.png"></a>
 </li>
 </ul>
 <h2 id="mcp-server">
@@ -320,8 +320,8 @@ if __name__ == &#34;__main__&#34;:
 <li>使用MCP网关可以帮我们减少在host上的mcp server的配置工作，简单说就是只用配置一个MCP server，即MCP网关，而MCP网关内部帮我们配置了多个MCP server</li>
 <li>如果后续切换Host，或者你有多个Host，也不用重新设置一遍配置，或者在多个Host修改配置</li>
 <li>这种网关比如docker desktop：
-<a href="#R-image-d0dc21bd2bc365554cf70b1dac991ea5" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d0dc21bd2bc365554cf70b1dac991ea5"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png"></a>
+<a href="#R-image-16d61553a767f6137f6374670ca6c59f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-16d61553a767f6137f6374670ca6c59f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5d7fd03b3dd78c6e927757988da3f88e.png"></a>
 </li>
 </ul>
 <p>参考链接：</p>
@@ -368,8 +368,8 @@ if __name__ == &#34;__main__&#34;:
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<p><a href="#R-image-eec6d9361ce624c143d100d4513d3a7c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-eec6d9361ce624c143d100d4513d3a7c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png"></a>
+<p><a href="#R-image-86493f79eb27dcc5f31dc0630e007e3e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-86493f79eb27dcc5f31dc0630e007e3e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d3ab21e85f1b6db6145d3e0376bd17c8.png"></a>
 </p>
 <ul>
 <li>Claude发布，用于将一些重复的能力固化在md文件中，当用户问题与之相关时，自动读取Skill的md文件，加载到prompt中</li>
@@ -455,14 +455,13 @@ if __name__ == &#34;__main__&#34;:
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM推理技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html">LLM和agent的训练</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM训练技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">大模型工程实践</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">大模型在其他技术中的应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E7%9A%84%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E7%9A%84%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html">LLM的技术应用</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
@@ -487,6 +486,7 @@ if __name__ == &#34;__main__&#34;:
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
           </ul>
         </div>
@@ -516,9 +516,9 @@ if __name__ == &#34;__main__&#34;:
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768827477"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768827477" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768920743"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768920743" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1768920743" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

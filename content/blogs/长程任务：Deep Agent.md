@@ -173,3 +173,8 @@ Deep Agent一个具体应用方向，通过分析用户问题，指定研究计�
 - [# How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
 - [open-source prompts in our Cookbook](https://github.com/anthropics/claude-cookbooks/tree/main/patterns/agents/prompts)
 ### Claude Code
+
+### 其他
+
+参考链接：
+- [# ART·E: How We Built an Email Research Agent That Beats o3](https://openpipe.ai/blog/art-e-mail-agent?refresh=1767907860843)

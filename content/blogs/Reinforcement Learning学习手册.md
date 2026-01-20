@@ -211,39 +211,60 @@ $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsi
 参考链接：
 - [# Exploration Strategies in Deep Reinforcement Learning](https://lilianweng.github.io/posts/2020-06-07-exploration-drl/)
 
-# 应用
---- 
-## Gymnasium
-
-[官网链接](https://gymnasium.farama.org/)
-
-## TianShou
-
-## Verl
-
-## Sim2Real
-
-
-## AlphaGo
-
-
-## MuZero
-
-参考链接：
-- [# MuZero: Mastering Go, chess, shogi and Atari without rules](https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules/)
-
-## Dreamer
-
-参考链接：
-- [# Introducing Dreamer: Scalable Reinforcement Learning Using World Models](https://research.google/blog/introducing-dreamer-scalable-reinforcement-learning-using-world-models/)
-- [# Mastering Atari with Discrete World Models](https://research.google/blog/mastering-atari-with-discrete-world-models/)
-- [# Mastering Diverse Control Tasks through World Models](https://danijar.com/project/dreamerv3/)
-- [# Training Agents Inside of Scalable World Models](https://danijar.com/project/dreamer4/)
 
 # 相关领域
 --- 
 #todo 动手学强化学习这些章节
+
+## Sparse Rewards
+
+真实场景中奖励过于稀疏，学习很难，解决方向有以下几个：
+- 设计奖励：
+	- 在初期对Q建模不够好或者未来价值衰减过大时，需要人为设计奖励来鼓励进行特定action
+	- 人为设计的奖励需要领域知识，使策略与目标更近
+- 好奇心驱动的奖励：
+	- 基于当前状态和动作，对下一次状态进行预测，预测越不准奖励越大
+	- 为防止预测与动作无关（单纯环境的不可预测），另外对状态进行特征提取，并基于特征学习状态间的动作，特征网络学习好后，特征只与动作相关
+		![image.png|300](https://images.ruoruoliu.com/2026/01/02e6b983d1df5d1164910da6f17d19e9.png)
+- 课程学习：
+	- 通过安排学习的难度从易到难，需要人为设计
+	- 通过逆课程学习，从目标状态倒退找到合适学习的状态，避免人为设计
+- 分层强化学习：
+	- 将一个复杂强化学习问题分解成多个子问题，每个子问题（包含高层次策略和低层次策略），多agent采用合作的模式，分别处理不同层次的策略
+
+参考链接：
+- [蘑菇书EasyRL 第10章 稀疏奖励](https://datawhalechina.github.io/easy-rl/#/chapter10/chapter10?id=%e7%ac%ac10%e7%ab%a0-%e7%a8%80%e7%96%8f%e5%a5%96%e5%8a%b1)
 ## Imitation Learning
+
+在模仿学习中，有一些专家的示范，智能体也可以与环境交互，但它无法从环境里得到任何的奖励，它只能通过专家的示范来学习动作的好坏
+
+### Behavior Cloning
+
+行为克隆可以看成是监督学习的问题，给定一组专家数据（ $s_t$ 到 $a_t$ 的映射），agent进行拟合。
+
+专家数据覆盖不全，out-of-distribution的情况agent不知道怎么处理：
+- 数据集聚合（DAgger）：通过agent运行过程中遇到危险情况时，专家给出的action建议，加入数据中，进一步训练agent
+
+行为克隆的其他问题：
+- 行为克隆会学习专家全部action，即便有些action是无意义或者低效的
+- 任何时刻action偏差了一点，会导致后续状态的偏差，慢慢累积，最终会相差很多
+
+### Inverse RL
+
+通过专家数据以及环境，反向找到奖励函数，有了奖励函数后，我们就可以用强化学习的方法来处理问题，这个过程称为逆强化学习
+
+逆强化学习流程：
+- 观察专家：收集大量人类专家的驾驶轨迹（状态 $s$ 和动作 $a$ 的序列）
+- 假设与反推：不断尝试建立一个奖励函数 $R(s, a)$，使得专家在这个函数下看起来是最优的
+- 验证与循环：用奖励函数去跑一遍，如果结果和专家不像，回来修改奖励函数，直到一致
+
+逆强化学习问题：
+- 计算量巨大：每推测一次奖励函数，都要完整地进行一次强化学习训练来验证，非常耗时
+- 专家未必完美：人类专家也非最优，把这些“坏习惯”背后的逻辑也学走也不好
+- 多解性：专家的一个动作可能有多种解释
+
+参考链接：
+- [蘑菇书EasyRL 第11章 模仿学习](https://datawhalechina.github.io/easy-rl/#/chapter11/chapter11?id=%e7%ac%ac11%e7%ab%a0-%e6%a8%a1%e4%bb%bf%e5%ad%a6%e4%b9%a0)
 
 ## Model Predictive Control
 
@@ -278,8 +299,48 @@ $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsi
 - [# 多智能体强化学习(1/2)：基本概念 Multi-Agent Reinforcement Learning](https://www.youtube.com/watch?v=KN-XMQFTD0o&list=PLvOO0btloRntPRHgQo75wuMNFvtXHGn5A)
 - [# 多智能体强化学习(2/2)：三种架构 Multi-Agent Reinforcement Learning](https://www.youtube.com/watch?v=0HV1hsjd1y8&list=PLvOO0btloRntPRHgQo75wuMNFvtXHGn5A&index=2)
 
+# 应用
+--- 
+## Gymnasium
+
+[官网链接](https://gymnasium.farama.org/)
+
+## TianShou
+
+## Verl
+
+参考链接：
+- [RL4LLM PPO workflow 及 OpenRLHF、veRL 初步介绍，ray distributed debugger](https://www.bilibili.com/video/BV1Pz9tYbEeZ)
+## Sim2Real
+
+
+## AlphaGo
+
+## AlphaStar
+
+参考链接：
+- [蘑菇书EasyRL 第13章 AlphaStar 论文解读](https://datawhalechina.github.io/easy-rl/#/chapter13/chapter13?id=%e7%ac%ac13%e7%ab%a0-alphastar-%e8%ae%ba%e6%96%87%e8%a7%a3%e8%af%bb)
+## AlphaZero
+
+
+
+## MuZero
+
+参考链接：
+- [# MuZero: Mastering Go, chess, shogi and Atari without rules](https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules/)
+
+## Dreamer
+
+参考链接：
+- [# Introducing Dreamer: Scalable Reinforcement Learning Using World Models](https://research.google/blog/introducing-dreamer-scalable-reinforcement-learning-using-world-models/)
+- [# Mastering Atari with Discrete World Models](https://research.google/blog/mastering-atari-with-discrete-world-models/)
+- [# Mastering Diverse Control Tasks through World Models](https://danijar.com/project/dreamerv3/)
+- [# Training Agents Inside of Scalable World Models](https://danijar.com/project/dreamer4/)
+
+
 参考链接： 
 - [# The FASTEST introduction to Reinforcement Learning on the internet](https://www.youtube.com/watch?v=VnpRp7ZglfA)
 - [动手学强化学习](https://hrl.boyuai.com/)
 - [# 深度强化学习基础【王树森】](https://www.youtube.com/playlist?list=PLvOO0btloRnsiqM72G4Uid0UWljikENlU)
+- [蘑菇书EasyRL](https://datawhalechina.github.io/easy-rl/#/)
 - [OpenAI Spinning Up](https://spinningup.openai.com/en/latest/#)
