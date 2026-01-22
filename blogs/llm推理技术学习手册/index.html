@@ -5,15 +5,24 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
+    <meta name="description" content="Latency KV Cache 在 Transformer 的 Self-Attention 层中，计算公式为： $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$ 其中：
+Q (Query)：代表当前的字 K (Key) &amp; V (Value)：代表上下文的信息 由于前面的计算结果已经算完，可以直接存在显存里，方便解码时快速使用：
+Prefill（预填充）阶段：模型处理你输入的 Prompt，计算出所有已存在字符的K和V，并把它们存在显存里 Decoding（解码）阶段：每生成一个新词，模型只需要计算这个新词的K和V，然后直接从显存里读取之前存好的K和V进行拼接，计算Attention KV Cache让生成每个新词的时间复杂度从 $O(n^2)$ 降低到了 $O(n)$，但是显存占用很高，并随着序列长度增长而线性增加，另外传统的显存分配方式会导致很多浪费（类似磁盘碎片），这也是为什么后来出现了vLLM (PagedAttention)技术来优化它
+PD分离 由于Prefill阶段是计算密集型，而Decoding阶段时访存密集型，因此如果用同一种类型的显卡进行两个阶段，对导致在Prefill阶段对显存的浪费和在Decoding阶段对计算能力的浪费，因此将两阶段分离，分开部署在不同的显卡上：">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="LLM推理技术学习手册 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
+    <meta name="twitter:description" content="Latency KV Cache 在 Transformer 的 Self-Attention 层中，计算公式为： $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$ 其中：
+Q (Query)：代表当前的字 K (Key) &amp; V (Value)：代表上下文的信息 由于前面的计算结果已经算完，可以直接存在显存里，方便解码时快速使用：
+Prefill（预填充）阶段：模型处理你输入的 Prompt，计算出所有已存在字符的K和V，并把它们存在显存里 Decoding（解码）阶段：每生成一个新词，模型只需要计算这个新词的K和V，然后直接从显存里读取之前存好的K和V进行拼接，计算Attention KV Cache让生成每个新词的时间复杂度从 $O(n^2)$ 降低到了 $O(n)$，但是显存占用很高，并随着序列长度增长而线性增加，另外传统的显存分配方式会导致很多浪费（类似磁盘碎片），这也是为什么后来出现了vLLM (PagedAttention)技术来优化它
+PD分离 由于Prefill阶段是计算密集型，而Decoding阶段时访存密集型，因此如果用同一种类型的显卡进行两个阶段，对导致在Prefill阶段对显存的浪费和在Decoding阶段对计算能力的浪费，因此将两阶段分离，分开部署在不同的显卡上：">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="LLM推理技术学习手册 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
+    <meta property="og:description" content="Latency KV Cache 在 Transformer 的 Self-Attention 层中，计算公式为： $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$ 其中：
+Q (Query)：代表当前的字 K (Key) &amp; V (Value)：代表上下文的信息 由于前面的计算结果已经算完，可以直接存在显存里，方便解码时快速使用：
+Prefill（预填充）阶段：模型处理你输入的 Prompt，计算出所有已存在字符的K和V，并把它们存在显存里 Decoding（解码）阶段：每生成一个新词，模型只需要计算这个新词的K和V，然后直接从显存里读取之前存好的K和V进行拼接，计算Attention KV Cache让生成每个新词的时间复杂度从 $O(n^2)$ 降低到了 $O(n)$，但是显存占用很高，并随着序列长度增长而线性增加，另外传统的显存分配方式会导致很多浪费（类似磁盘碎片），这也是为什么后来出现了vLLM (PagedAttention)技术来优化它
+PD分离 由于Prefill阶段是计算密集型，而Decoding阶段时访存密集型，因此如果用同一种类型的显卡进行两个阶段，对导致在Prefill阶段对显存的浪费和在Decoding阶段对计算能力的浪费，因此将两阶段分离，分开部署在不同的显卡上：">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
@@ -21,33 +30,36 @@
     <meta property="article:modified_time" content="2026-01-20T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
     <meta itemprop="name" content="LLM推理技术学习手册 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离">
+    <meta itemprop="description" content="Latency KV Cache 在 Transformer 的 Self-Attention 层中，计算公式为： $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$ 其中：
+Q (Query)：代表当前的字 K (Key) &amp; V (Value)：代表上下文的信息 由于前面的计算结果已经算完，可以直接存在显存里，方便解码时快速使用：
+Prefill（预填充）阶段：模型处理你输入的 Prompt，计算出所有已存在字符的K和V，并把它们存在显存里 Decoding（解码）阶段：每生成一个新词，模型只需要计算这个新词的K和V，然后直接从显存里读取之前存好的K和V进行拼接，计算Attention KV Cache让生成每个新词的时间复杂度从 $O(n^2)$ 降低到了 $O(n)$，但是显存占用很高，并随着序列长度增长而线性增加，另外传统的显存分配方式会导致很多浪费（类似磁盘碎片），这也是为什么后来出现了vLLM (PagedAttention)技术来优化它
+PD分离 由于Prefill阶段是计算密集型，而Decoding阶段时访存密集型，因此如果用同一种类型的显卡进行两个阶段，对导致在Prefill阶段对显存的浪费和在Decoding阶段对计算能力的浪费，因此将两阶段分离，分开部署在不同的显卡上：">
     <meta itemprop="datePublished" content="2026-01-20T00:00:00+00:00">
     <meta itemprop="dateModified" content="2026-01-20T00:00:00+00:00">
-    <meta itemprop="wordCount" content="4">
+    <meta itemprop="wordCount" content="47">
     <meta itemprop="keywords" content="技术笔记">
     <title>LLM推理技术学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768920743" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768920743" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768920743" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768920743" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768920743" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1769091855" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1769091855" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1769091855" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1769091855" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1769091855" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768920743";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1769091855";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768920743" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768920743" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768920743" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768920743" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1769091855" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1769091855" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1769091855" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1769091855" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768920743" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768920743" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768920743" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768920743" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768920743" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1769091855" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1769091855" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1769091855" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1769091855" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1769091855" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -130,8 +142,15 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#kv-cache">KV-cache</a></li>
+    <li><a href="#kv-cache">KV Cache</a></li>
     <li><a href="#pd分离">PD分离</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#mqa">MQA</a></li>
+    <li><a href="#gqa">GQA</a></li>
+    <li><a href="#pagedattention">PagedAttention</a></li>
+    <li><a href="#quantization">Quantization</a></li>
   </ul>
 </nav>
                 </div>
@@ -149,7 +168,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html" title="简历项目Q&A (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -195,8 +214,8 @@
 
 <h1 id="llm推理技术学习手册">LLM推理技术学习手册</h1>
 
-<h2 id="kv-cache">
-  KV-cache
+<h1 id="latency">
+  Latency
 
 
 
@@ -205,7 +224,31 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><h2 id="pd分离">
+</h1><hr>
+<h2 id="kv-cache">
+  KV Cache
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>在 Transformer 的 Self-Attention 层中，计算公式为：
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+其中：</p>
+<ul>
+<li>Q (Query)：代表当前的字</li>
+<li>K (Key) &amp; V (Value)：代表上下文的信息</li>
+</ul>
+<p>由于前面的计算结果已经算完，可以直接存在显存里，方便解码时快速使用：</p>
+<ul>
+<li>Prefill（预填充）阶段：模型处理你输入的 Prompt，计算出所有已存在字符的K和V，并把它们存在显存里</li>
+<li>Decoding（解码）阶段：每生成一个新词，模型只需要计算这个新词的K和V，然后直接从显存里读取之前存好的K和V进行拼接，计算Attention</li>
+</ul>
+<p>KV Cache让生成每个新词的时间复杂度从 $O(n^2)$ 降低到了 $O(n)$，但是显存占用很高，并随着序列长度增长而线性增加，另外传统的显存分配方式会导致很多浪费（类似磁盘碎片），这也是为什么后来出现了vLLM (PagedAttention)技术来优化它</p>
+<h2 id="pd分离">
   PD分离
 
 
@@ -215,8 +258,69 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p>#todo 什么是PD分离，为什么要用PD分离</p>
+</h2><p>由于Prefill阶段是计算密集型，而Decoding阶段时访存密集型，因此如果用同一种类型的显卡进行两个阶段，对导致在Prefill阶段对显存的浪费和在Decoding阶段对计算能力的浪费，因此将两阶段分离，分开部署在不同的显卡上：</p>
+<ul>
+<li>Prefill节点算力强，显存小，保证首字延迟（TTFT）较低，不负责字间延迟（TPOT）</li>
+<li>Decode节点算力弱，显存大，可以存储长上文的kv cache</li>
+</ul>
+<p>PD分离计算流程：</p>
+<ul>
+<li>将prompt发送到Prefill节点，计算所有的kv cache</li>
+<li>缓存迁移：将kv cache的结果传送到Decoding节点上</li>
+<li>在Decoding节点进行逐字生成</li>
+</ul>
+<h1 id="显存">
+  显存
 
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="mqa">
+  MQA
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="gqa">
+  GQA
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="pagedattention">
+  PagedAttention
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h2 id="quantization">
+  Quantization
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2>
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> Jan 20, 2026
   </footer>
@@ -266,6 +370,7 @@
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html"><a class="padding" href="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html">简历项目Q&amp;A</a></li>
             <li class="active " data-nav-url="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM推理技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
@@ -326,9 +431,9 @@
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768920743"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768920743" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768920743" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1769091855"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1769091855" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1769091855" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
