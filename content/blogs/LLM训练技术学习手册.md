@@ -10,6 +10,13 @@ draft: false
 
 利用大量文本序列，通过预测下一个token的任务训练，得到基座模型（base model），此时模型具备序列文本生成能力
 
+## DeepSeek
+
+参考链接：
+- [# deepseek技术解读(1)-彻底理解MLA（Multi-Head Latent Attention）](https://zhuanlan.zhihu.com/p/16730036197)
+- [# deepseek技术解读(2)-MTP（Multi-Token Prediction）的前世今生](https://zhuanlan.zhihu.com/p/18056041194)
+- [# deepseek技术解读(3)-MoE的演进之路](https://zhuanlan.zhihu.com/p/18565423596)
+
 # SFT
 --- 
 
@@ -141,6 +148,8 @@ PRM针对推理过程进行reward预测，细粒度帮助模型学习推理的�
 
 参考链接：
 - [Let’s Verify Step by Step](https://arxiv.org/pdf/2305.20050)
+
+
 
 
 参考链接：

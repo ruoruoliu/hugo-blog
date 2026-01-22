@@ -215,6 +215,14 @@ agent通过context engineering维护可靠性（这里可靠性主要指任务�
 参考链接：
 - [autogen](https://github.com/microsoft/autogen)
 
+## 如何训练agent
+--- 
+
+
+
+参考链接：
+- [# Build Hour: Agent RFT](https://www.youtube.com/watch?v=1s_7RMG4O4U)
+
 ## 如何构建agent
 --- 
 构建可靠Agent的12个关键：
