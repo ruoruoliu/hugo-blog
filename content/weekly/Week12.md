@@ -36,5 +36,6 @@ draft: false
 > 	- PRM首先利用人工标注每一个推理步的正确与否，学习process reward model模型，并将这个reward的预测加入到critic模型的学习中，帮助actor模型加强正确中间步骤的生成概率
 
 > [!warning] 待办
+> - 跟进大模型强化学习技术
 > - 强化学习技术实战
 

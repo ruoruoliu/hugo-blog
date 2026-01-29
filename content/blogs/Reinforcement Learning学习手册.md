@@ -307,12 +307,7 @@ $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsi
 
 ## TianShou
 
-## Verl
-
-参考链接：
-- [RL4LLM PPO workflow 及 OpenRLHF、veRL 初步介绍，ray distributed debugger](https://www.bilibili.com/video/BV1Pz9tYbEeZ)
 ## Sim2Real
-
 
 ## AlphaGo
 

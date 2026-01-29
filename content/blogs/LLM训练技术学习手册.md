@@ -17,6 +17,10 @@ draft: false
 - [# deepseek技术解读(2)-MTP（Multi-Token Prediction）的前世今生](https://zhuanlan.zhihu.com/p/18056041194)
 - [# deepseek技术解读(3)-MoE的演进之路](https://zhuanlan.zhihu.com/p/18565423596)
 
+## Moe
+
+#todo 主流大模型采用moe结构
+
 # SFT
 --- 
 
@@ -44,6 +48,10 @@ draft: false
 ## PPO
 
 算法原理：[Reinforcement Learning学习手册-PPO](Reinforcement%20Learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#PPO)
+
+$\mathcal{J}_{\text{PPO}}(\theta) = \mathbb{E}_{(q,a) \sim \mathcal{D}, o \le t \sim \pi_{\theta_{\text{old}}}(\cdot|q)} \left[ \min \left( \frac{\pi_\theta(o_t | q, o_{<t})}{\pi_{\theta_{\text{old}}}(o_t | q, o_{<t})} \hat{A}_t, \text{clip} \left( \frac{\pi_\theta(o_t | q, o_{<t})}{\pi_{\theta_{\text{old}}}(o_t | q, o_{<t})}, 1 - \varepsilon, 1 + \varepsilon \right) \hat{A}_t \right) \right]$
+
+其中：$\hat{A}_t^{\text{GAE}(\gamma, \lambda)} = \sum_{l=0}^{\infty} (\gamma \lambda)^l \delta_{t+l}, \quad \delta_l = R_l + \gamma V(s_{l+1}) - V(s_l)$
 
 PPO在RLHF中包含：
 - actor模型：LLM本身，输出下一个token，得到当前状态
@@ -95,6 +103,10 @@ DeepSeek R1等模型利用GRPO+RLVR实现逻辑推理能力
 
 ![image.png|400](https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png)
 
+GRPO的目标函数：
+$\mathcal{J}_{GRPO}(\theta) = \mathbb{E}_{(q,a) \sim \mathcal{D}, \{o_i\}_{i=1}^G \sim \pi_{\theta_{\text{old}}}(\cdot|q)} \left[ \frac{1}{G} \sum_{i=1}^G \frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \left( \min \left( r_{i,t}(\theta) \hat{A}_{i,t}, \text{clip}(r_{i,t}(\theta), 1 - \varepsilon, 1 + \varepsilon) \hat{A}_{i,t} \right) - \beta D_{\text{KL}}(\pi_\theta || \pi_{\text{ref}}) \right) \right]$
+其中：$\hat{A}_{i,t} = \frac{r_i - \text{mean}(\{R_i\}_{i=1}^G)}{\text{std}(\{R_i\}_{i=1}^G)}$，$r_{i,t}(\theta) = \frac{\pi_\theta(o_{i,t} | q, o_{i,<t})}{\pi_{\theta_{\text{old}}}(o_{i,t} | q, o_{i,<t})}$
+
 针对PPO训练复杂且显存占用高的问题，相比DPO直接去掉RL框架，GRPO选择只去掉critic模型：
 - 分组采样：针对同一个Prompt，让模型一次性生成一组回答
 - 计算奖励：用验证器（如RLVR）给这组回答分别打分
@@ -112,13 +124,51 @@ DeepSeek R1等模型利用GRPO+RLVR实现逻辑推理能力
 [GRPO与DPO在使用场景上的区分](../Answers/GRPO%E4%B8%8EDPO%E5%9C%A8%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%8A%E7%9A%84%E5%8C%BA%E5%88%86.md)
 
 为什么GRPO没有学习过程reward也能实现长链路的推理能力？
-- 只要你的采样组里有多个回答共享了相同的前缀（即推理的前半部分是一样的），GRPO就会自动执行“步骤级”的信用分配，是一个隐形的“PRM”
+- 只要你的采样组里有多个回答共享了相同的前缀，GRPO就会自动执行“步骤级”的信用分配，是一个隐形的“PRM”
 
 参考链接：
 - [DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning](https://arxiv.org/pdf/2501.12948)
 - [DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models](https://arxiv.org/pdf/2402.03300)
 - [# 【大白话04】一文理清强化学习PPO和GRPO算法流程 | 原理图解](https://www.bilibili.com/video/BV15cZYYvEhz/?spm_id_from=333.788.recommend_more_video.0&trackid=web_related_0.router-related-2206419-76tx6.1768750473576.907&vd_source=c8a3c83e361aa2a357093342a046ceed)
 - [GRPO IS SECRETLY A PROCESS REWARD MODEL](https://arxiv.org/pdf/2509.21154)
+
+## DAPO
+
+DAPO的目标函数：
+$\mathcal{J}_{DAPO}(\theta) = \mathbb{E}_{(q,a) \sim \mathcal{D}, \{o_i\}_{i=1}^G \sim \pi_{\theta_{\text{old}}}(\cdot|q)} \left[ \frac{1}{\sum_{i=1}^G |o_i|} \sum_{i=1}^G \sum_{t=1}^{|o_i|} \min \left( r_{i,t}(\theta) \hat{A}_{i,t}, \text{clip}(r_{i,t}(\theta), 1 - \varepsilon_{\text{low}}, 1 + \varepsilon_{\text{high}}) \hat{A}_{i,t} \right) \right]$
+$\text{s.t.} \quad 0 < |\{o_i \mid \text{is\_equivalent}(a, o_i)\}| < G$
+
+其中：$r_{i,t}(\theta) = \frac{\pi_\theta(o_{i,t} | q, o_{i,<t})}{\pi_{\theta_{\text{old}}}(o_{i,t} | q, o_{i,<t})}$，$\hat{A}_{i,t} = \frac{r_i - \text{mean}(\{R_i\}_{i=1}^G)}{\text{std}(\{R_i\}_{i=1}^G)}$
+
+DAPO的全称：Decouple Clip and Dynamic sAmpling Policy Optimization
+- Decouple Clip：GRPO的clip的上下限是固定的（比如0.2），导致actor模型的探索不够，容易出现熵崩溃（重复模式）的情况：对于高概率token，乘1.2都已经超过1了，对于低概率token，乘1.2基本变化不大；对clip的上下限解耦，下限保持0.2，上限提高到0.28
+- Dynamic Sampling：如果一个batch内reward都是0或者1，则梯度消失，浪费算力，因此DAPO过滤掉那些全对或全错的无效样本组，通过反复采样直到这一组里既有对的也有错的，大幅提升了训练效率
+- Token-Level Policy Gradient Loss：按token进行损失平均，防止长思维链（Long CoT）训练中的“奖励稀释”问题
+- Overlong Reward Shaping：一般对于超长回复直接reward置零；DAPO改为分段软惩罚，在长度进入缓冲区后开始慢慢加入惩罚，由于是token级别的loss，可以防止模型不知道过长和做错的区别
+
+参考链接：
+- [DAPO: An Open-Source LLM Reinforcement Learning System at Scale](https://arxiv.org/pdf/2503.14476)
+
+## GSPO
+
+GSPO认为reward是在序列级给出的，但GRPO却在token级计算重要性比率，粒度不匹配，token级的局部概率变化会导致重要性权重极端化，累积产生高方差梯度，最终引发不可逆的模型崩溃，因此GSPO将重要性ratio和裁剪改为序列级，可以原生支持MoE训练，不需要[Routing Replay](LLM%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#Routing%20Replay)
+
+$\mathcal{J}_{\text{GSPO}}(\theta) = \mathbb{E}_{x \sim \mathcal{D}, \{y_i\}_{i=1}^G \sim \pi_{\theta_{\text{old}}}(\cdot|x)} \left[ \frac{1}{G} \sum_{i=1}^G \min \left( s_i(\theta) \hat{A}_i, \text{clip} \left( s_i(\theta), 1 - \varepsilon, 1 + \varepsilon \right) \hat{A}_i \right) \right]$
+
+其中：$s_i(\theta) = \left( \frac{\pi_\theta(y_i|x)}{\pi_{\theta_{\text{old}}}(y_i|x)} \right)^{\frac{1}{|y_i|}} = \exp \left( \frac{1}{|y_i|} \sum_{t=1}^{|y_i|} \log \frac{\pi_\theta(y_{i,t}|x, y_{i,<t})}{\pi_{\theta_{\text{old}}}(y_{i,t}|x, y_{i,<t})} \right)$
+
+GSPO牺牲了token级的策略优化，但是在RLHF下，这种牺牲往往是利大于弊的：
+- 奖励模型的局限性：现有的RM通常也是序列级的，用Token级的GRPO去强行拟合一个序列级的RM，本身就会引入巨大的噪声
+- 训练稳定性：Token 级的重要性权重比率波动极大，极易触发clipping导致训练停滞。GSPO 通过长度归一化（Length Normalization），让梯度的更新更加平滑
+
+GSPO的长度归一化：
+- 随着生成序列变长，重要性权重会由于乘法效应发生剧烈的数值波动
+- 使用几何平均，将累乘转变为累加，避免了数值溢出
+- 除以 $|y_i|$：将整条路径的总偏离度转化成了平均每个Token的偏离度
+
+参考链接：
+- [Group Sequence Policy Optimization](https://arxiv.org/pdf/2507.18071)
+
 ## RLVR
 
 RLVR在PPO/GRPO中用可验证奖励（Verifiable Rewards）替换原始reward model：
@@ -136,6 +186,7 @@ RLVR在PPO/GRPO中用可验证奖励（Verifiable Rewards）替换原始reward m
 值得注意的是：
 - RL训练只是提升模型在Pass@1上采样正确路径的概率，但并没有提升推理能力
 - 过度RL训练会导致模型多样性坍塌
+
 [Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?](https://arxiv.org/pdf/2504.13837)
 
 ## PRM
@@ -150,8 +201,6 @@ PRM针对推理过程进行reward预测，细粒度帮助模型学习推理的�
 - [Let’s Verify Step by Step](https://arxiv.org/pdf/2305.20050)
 
 
-
-
 参考链接：
 - [# LLM Training & Reinforcement Learning from Google Engineer | SFT + RLHF | PPO vs GRPO vs DPO](https://www.youtube.com/watch?v=aB7ddsbhhaU)
 
@@ -161,3 +210,19 @@ PRM针对推理过程进行reward预测，细粒度帮助模型学习推理的�
 #todo [R1论文解析]([https://www.bilibili.com/video/BV15yA3eWE5b/](https://www.bilibili.com/video/BV15yA3eWE5b/?spm_id_from=333.1387.collection.video_card.click&vd_source=c8a3c83e361aa2a357093342a046ceed))
 #todo Search-R1、interleaving thinking后训练
 #todo verl slime
+
+
+# 框架
+
+#todo  框架学习
+
+## vLLM
+
+## DeepSpeed
+
+## Megatron
+
+## Verl
+
+参考链接：
+- [RL4LLM PPO workflow 及 OpenRLHF、veRL 初步介绍，ray distributed debugger](https://www.bilibili.com/video/BV1Pz9tYbEeZ)

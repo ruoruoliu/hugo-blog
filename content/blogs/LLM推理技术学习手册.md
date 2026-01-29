@@ -33,6 +33,11 @@ PD分离计算流程：
 - 缓存迁移：将kv cache的结果传送到Decoding节点上
 - 在Decoding节点进行逐字生成
 
+## 投机采样
+
+
+### Eagle
+
 # 显存
 --- 
 
@@ -42,4 +47,19 @@ PD分离计算流程：
 
 ## PagedAttention
 
+
+## Continuous Batching
+
+
 ## Quantization
+
+
+# 训推一致
+--- 
+
+## Routing Replay
+
+[MoE模型中的Routing Replay技巧](../Answers/MoE%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84Routing%20Replay%E6%8A%80%E5%B7%A7.md)
+
+ 参考链接：
+ - [When Speed Kills Stability: Demystifying RL Collapse from the Training-Inference Mismatch](https://yingru.notion.site/When-Speed-Kills-Stability-Demystifying-RL-Collapse-from-the-Training-Inference-Mismatch-271211a558b7808d8b12d403fd15edda)
