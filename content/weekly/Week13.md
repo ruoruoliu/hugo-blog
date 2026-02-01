@@ -3,11 +3,10 @@ title: Week1 开发环境配置
 date: 2025-11-13
 tags:
   - 周记
-draft: true
+draft: false
 ---
 > [!note] 总结
 > - 跟进大模型强化学习技术
-> - 强化学习技术实战
 
 > [!info]+ 跟进大模型强化学习技术
 
@@ -24,6 +23,6 @@ draft: true
 > 	- 解决MoE模型需要Routing Replay的复杂度问题
 
 > [!warning] 待办
-> - 跟进大模型强化学习技术
-> - 强化学习技术实战
+> - 强化学习框架学习
+> - agent框架学习
 

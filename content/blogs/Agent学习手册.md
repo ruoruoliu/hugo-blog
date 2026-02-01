@@ -218,7 +218,7 @@ agent通过context engineering维护可靠性（这里可靠性主要指任务�
 ## 如何训练agent
 --- 
 
-
+[LLM训练技术学习手册](LLM%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)
 
 参考链接：
 - [# Build Hour: Agent RFT](https://www.youtube.com/watch?v=1s_7RMG4O4U)
@@ -271,6 +271,3 @@ Google在2025年发布的agent搭建开源框架，通过提供模块化、结�
 参考链接：
 - [ADK是什么](../Answers/ADK%E6%98%AF%E4%BB%80%E4%B9%88.md)
 
-## 如何训练agent
----
-[LLM训练技术学习手册](LLM%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)

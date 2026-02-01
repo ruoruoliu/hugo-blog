@@ -5,6 +5,14 @@ tags:
   - 技术笔记
 draft: false
 ---
+LLM训练主要包含三部分：
+- Pre-training：通过大量互联网文本数据，训练base model
+- SFT：通过人工标注对话预料进行微调，让base model掌握对话（ai assistant）能力
+- RLHF：通过强化学习让模型知道人类偏好，什么是好的回复，什么是不好的回复
+
+参考链接：
+- [# Deep Dive into LLMs like ChatGPT](https://www.youtube.com/watch?v=7xTGNNLPyMI)
+
 # Pre-training
 --- 
 
@@ -44,6 +52,9 @@ draft: false
 	- 模型生成回答
 	- 奖励模型给回答打分
 	- 使用强化学习算法根据分数更新LLM参数
+
+参考链接：
+- [# LLM Training & Reinforcement Learning from Google Engineer | SFT + RLHF | PPO vs GRPO vs DPO](https://www.youtube.com/watch?v=aB7ddsbhhaU)
 
 ## PPO
 
@@ -200,16 +211,16 @@ PRM针对推理过程进行reward预测，细粒度帮助模型学习推理的�
 参考链接：
 - [Let’s Verify Step by Step](https://arxiv.org/pdf/2305.20050)
 
+## Reward Hacking
 
-参考链接：
-- [# LLM Training & Reinforcement Learning from Google Engineer | SFT + RLHF | PPO vs GRPO vs DPO](https://www.youtube.com/watch?v=aB7ddsbhhaU)
+[不可验证任务如何缓解Reward Hacking？](../Answers/%E4%B8%8D%E5%8F%AF%E9%AA%8C%E8%AF%81%E4%BB%BB%E5%8A%A1%E5%A6%82%E4%BD%95%E7%BC%93%E8%A7%A3Reward%20Hacking%EF%BC%9F.md)
+
 
 #todo 强化学习调整agent行为模式：retroformer、voyager
 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm
 #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed
 #todo [R1论文解析]([https://www.bilibili.com/video/BV15yA3eWE5b/](https://www.bilibili.com/video/BV15yA3eWE5b/?spm_id_from=333.1387.collection.video_card.click&vd_source=c8a3c83e361aa2a357093342a046ceed))
 #todo Search-R1、interleaving thinking后训练
-#todo verl slime
 
 
 # 框架

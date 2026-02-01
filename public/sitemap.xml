@@ -5,8 +5,16 @@
     <lastmod>2025-11-14T22:03:36+08:00</lastmod>
   </url>
   <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</loc>
+    <lastmod>2026-02-02T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/index.html</loc>
-    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-31T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html</loc>
+    <lastmod>2026-01-31T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/blogs/transformer%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</loc>
@@ -30,10 +38,6 @@
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week12/index.html</loc>
-    <lastmod>2026-01-19T00:00:00+00:00</lastmod>
-  </url>
-  <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/index.html</loc>
     <lastmod>2026-01-19T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -65,7 +69,7 @@
     <lastmod>2026-01-05T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E7%9A%84%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8/index.html</loc>
+    <loc>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E5%BA%94%E7%94%A8/index.html</loc>
     <lastmod>2025-12-31T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -223,6 +227,10 @@
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week2/index.html</loc>
     <lastmod>2025-11-14T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week13/index.html</loc>
+    <lastmod>2025-11-13T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://ruoruoliu.github.io/hugo-blog/weekly/week1/index.html</loc>
