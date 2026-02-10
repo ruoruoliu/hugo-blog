@@ -213,8 +213,8 @@ with PostgresSaver.from_conn_string(DB_URI) as checkpointer:
 - 添加重试、兜底和提前结束策略
 - 添加rate limit、guardrails、PII检测（personally identifiable information）
 
-中间件将agent loop从左图转变为右图：
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px;"> <img src="https://images.ruoruoliu.com/2026/02/68037f23d52d3f1d93fb9ec48770ee3b.png" width="160"> <img src="https://images.ruoruoliu.com/2026/02/cf01a584cf262de26513c608591a2fe6.png" width="250"> </div>
+中间件在agent loop中可以在下图紫色部分中使用：
+![image.png|200](https://images.ruoruoliu.com/2026/02/cf01a584cf262de26513c608591a2fe6.png)
 
 ## Prebuilt middleware
 
