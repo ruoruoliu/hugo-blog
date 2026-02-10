@@ -1,5 +1,5 @@
 ---
-title: Week1 开发环境配置
+title: Week13 大模型强化学习技术跟进
 date: 2025-11-13
 tags:
   - 周记
