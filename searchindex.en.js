@@ -584,7 +584,7 @@ var relearn_searchindex = [
     "tags": [
       "周记"
     ],
-    "title": "Week1 开发环境配置",
+    "title": "Week13 大模型强化学习技术跟进",
     "uri": "/hugo-blog/weekly/week13/index.html"
   },
   {
