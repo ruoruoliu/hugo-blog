@@ -6,8 +6,57 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/blogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LangChain学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>Agents 通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件 核心组件包括：&#xA;Model： 支持静态模型，即初始化固定后，交互过程中不变 支持动态选择的，可以使用wrap_model_call中间件，基于请求拦截并override模型 Tools： 多工具串行调用、工具并行调用 基于之前结果的工具动态选择 工具的错误重试和处理逻辑：使用wrap_tool_call中间件 保持工具调用之间的状态一致 动态工具：即在运行过程中进行工具变更，包括： 根据当前状态和上下文，利用wrap_model_call中间件动态筛选已注册工具，这种方式适用于所有工具在创建agent时已明确 如果工具是运行时动态发现的，比如来自MCP server、用户数据等，需要运行时注册工具，包括添加（wrap_model_call）和处理（wrap_tool_call）逻辑 System prompt： 可以接受str或者SystemMessage类型（支持claude的prompt caching） 通过dynamic_prompt中间件基于request修改system prompt Invocation： state就是message的序列，通过invoke来输入一条新的message 可以通过stream触发流式输出 高级概念：&#xA;Structured output 通过response_format对agent的回复进行格式化： 使用ToolStrategy对一个结构化数据格式进行包装，利用模型tool的能力来进行格式化 如果模型支持native structured output，可以直接使用ProviderStrategy进行包装 Memory： agent本身通过State（message序列）记录对话过程，可以通过以下方式扩展memory： 定义基于AgentState的扩展state，再通过中间件（比如内部的before_model的hook）实现state的修改，这种方式可以把逻辑和所需要的工具绑定在state修改的时刻，而不用在create_agent的时候绑定 定义基于AgentState的扩展state，传入state_schema字段，只适合大模型直接通过工具（而不是中间件）访问的memory，不够可控 Middleware： 在模型调用前：message裁剪、上下文注入 修改或者验证模型输出：guardrails和内容过滤 处理工具调用失败 基于state或者context进行动态模型选择 加入定制化log、监控和分析 Models Model的常见使用：</description>
+    </item>
+    <item>
+      <title>LangGraph学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>TypedDict 通常的字典类型无法限制dict的key字段：&#xA;type User = dict[str, str | int] bob: User = {&#39;job&#39;: &#39;chef&#39;, &#39;wage&#39;: 1000} TypedDict帮助限制dict的字段结构:&#xA;from typing import TypedDict, Required, NotRequired, ReadOnly class User(TypedDict, total=False): name: ReadOnly[str] age: int email: Required[str] TypeDict的使用方式：&#xA;TypedDict可以嵌套 TypedDict中的成员名称要和dict中的key一致，包括大小写 total字段设置False表示某些字段是optional的 可以使用Required和NotRequired表示字段级别的是否必需 可以使用ReadOnly表示某个字段是否只读 注意：上述如果不符合要求，只会警告提示，不会报错&#xA;参考链接：&#xA;# TypedDict is Awesome in Python Pydantic 相比TypedDict的约定形式，Pydantic是更严格的运行时格式校验，是dataclass的第三方强化版，通常用于构建健壮的API、配置和复杂数据模型</description>
+    </item>
+    <item>
+      <title>大模型观点：Andrej Karpathy和Richard Sutton</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html</link>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html</guid>
+      <description>Andrej Karpathy 与动物的进化和学习过程类比： 动物在出生的时候就用一套基础配置（物理设备和算法），比如斑马出生一个小时就会跟着妈妈走，这不是强化学习学到的，而是类似DNA中遗传的某种算法 这部分类比大模型的预训练，但是不同的是： 大模型花费大量时间（动物很快）从零开始（动物出生有DNA）进行预训练， 不光把思维模式学到了，还学习了知识 应该有一种方式可以剥离预训练学到的知识，因为这部分知识反而会阻碍后续的发展（比如知识陈旧或者思维定式） RL应该只在运动类任务（如走跑跳），但在需要智力任务中不应该完全依赖RL RL在LLM中的问题： RL基于一个reward对路径上的所有token进行加权或者减权，这不合理，因为中间的过程可能是错的 人类在做智力任务（比如数学题）的时候，会反思，判断哪部分做对了，哪部分做错了，而不是基于最终的一个答案来调整所有的路径 需要过程奖励，但是目前只能用LLM as judge来判断，而LLM是参数化的，因此可以进行reward hacking，因此这个过程也不可信 LLM的预训练过程缺乏深度理解： 预训练过程需要反思，但是这个很难，因为LLM通常都有坍缩的问题，缺少多样性，如果在这种样本（比如阅读某一本书，然后让他总结这本书）继续训练，会加大坍缩的问题 儿童就比成年人多样性强，随着经验增多，熵变小；人类因为记忆能力不如LLM，因此强迫需要掌握规律；这里又一次说明是否有一种方式可以将学习过程中的知识去掉，保留逻辑推理能力 如何解决预训练带来的多样性问题？用naive的方式增加多样性（比如强制prob平滑）也不合理，因为有些任务就是需要确定性 参考链接：&#xA;# Andrej Karpathy — “We’re summoning ghosts, not building animals” Richard Sutton 关于LLM是不是智能的体现 应该关注人类与动物相同的部分，这部分才是智能的体现（了解松鼠的进化已经完成了90%的工作），而不应该关注人类与动物不同的部分（语言） LLM只是通过在静态数据集上训练，预测下一句话说什么，静态数据集不预测世界会发生什么，所以不是真正的世界模型 智能需要经历真实世界，交互并获得反馈，持续学习，而LLM生成的时候没有反馈，不知道生成的句子是好是坏，也没有从对方的回复中获得反馈，进而改变自己 John McCarthy关于智能的定义：智能是通往目标的计算能力 参考链接：&#xA;# Richard Sutton – Father of RL thinks LLMs are a dead end</description>
+    </item>
+    <item>
+      <title>Transformer学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/transformer%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/transformer%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>经典结构 参考链接：&#xA;Attention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-head attention）：多头注意力，每个head维护自己的KV，在KV-Cache中占用显存很大 MQA（multi-query attention）：所有head共享KV，只有Q会被切分为多份，KV-Cache显存占用减小head-size倍 GQA（Grouped-Query Attention）：在MHA和MQA（效果和缓存）之间折中，KV分为若干份 参考链接：</description>
+    </item>
+    <item>
+      <title>简历项目Q&amp;A</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html</link>
+      <pubDate>Wed, 21 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html</guid>
+      <description>字节跳动-懂车帝（2023.11-2025.4） 懂车帝AI助手懂咔咔项目 构建具有专业汽车知识及工具辅助功能的多轮对话AI助手 多轮对话Query改写与扩展以及实体（车系/车款）识别，改写准确率达91%，车系识别f1指标达91%,车款识别f1指标达82%，配合召回侧增强召回内容准确性和丰富性 构建多轮对话意图需求一二级分类体系，基于大模型prompt打标构建训练数据集，分类准确率达89.2%，拒答率下降77%，业务需求支持选车卡片等多种工具辅助功能 针对特定选车场景，设计构建并迭代多轮Memory模块，实现选车标签识别能力，模型线上准确率达83%，支持新车和二手车选车业务多轮对话能力接入 在多轮对话最终回复效果上与标注团队精细打磨，并进行汽车领域知识和回复样式风格模型微调，在与Base模型的汽车领域多轮对话SBS评估中整体正向6% 背景：&#xA;懂车帝C端大模型尝试，在app中加入口，解决用户汽车领域问题，在app中多个页面连接大模型回复功能 大模型基座训练&amp;应用，我们负责应用，应用大模型sft训练及基于rag的整体对话链路的算法部分 技术细节：&#xA;由于首字延迟问题，希望全链路除了回复模型采用参数较大的模型（100B左右），其他均采用bert或者lite版本的模型（13B） 多轮改写： 主要解决指代消解、主题和属性省略、以及表述标准化（价格/多少钱/贵不贵）等问题，改写query给下一步做rag召回使用 基于GPT4构造多轮对话及改写query，改写query（主query）拆分多个子query 主query包含完整信息，走意图判断；如果需要，全部query同时并发召回 改写准确率91%，主query和子query拆分都正确 实体识别： 最终用于品牌、车系、车款识别，替代原本懂车帝的da ner使用bert+global pointer，识别start和end，处理一下嵌套 识别出实体后，做检索召回，属性包括年款（25款、新款）、车类型（自动、手动）等，然后根据字短匹配规则返回，整体车系f1在90，车款f1在78左右 意图识别： router的概念，对不同意图的回复策略不同 比如查参配信息（价格、轴距）就更看重事实性，直接查参数库 对比类，就需要识别多个车款，然后进行全方位的对比 泛知识类，就依赖文章内容做rag 对话类，不用走rag，可以响应速度更快 某些类别也是一些前端样式的触发器，比如卡片、新闻链接、创作者 基于大模型prompt生成百万量级训练数据，训练bert prompt分为粗筛和精筛：粗筛用一个prompt找所有类别，精筛对每一个类别写一个prompt，在测试集上迭代，88左右的整体f1 memory模块： 基于选车类别query才生效，存选车意图memory，其他类型对话只走working memory（最大32轮对话，不压缩） memory以json字典方式保存，在一个session中存在，不跨session，支持增删改操作 包含固定几个字段，比如品牌，类型，用车需求等，字段内容基于用户app原始选车字段，保持尽可能一致，可以复用app选车逻辑 训练一个lite模型基于对话内容更新memory字典，数据基于线上app选车日志用大模型生成 基于更新的memory字典识别具体字段内容，走选车逻辑（召回同学负责），出选车卡片 模型sft 基本只做格式（回复长短）、风格化（比如对车辆介绍的分点）以及对召回内容权威性/时效性判断方面上的sft，保证以markdown格式输出一些内容 拒绝采样（人工标注负例）的方法来筛选训练数据 追问使用lite模型直接生成三个下一步可能的问题 按意图类别统计了用户下一个问题的意图分布，基于这个分布生成的问题 后期有专门同学做召回排序了，但是不清楚具体细节了 评估&amp;指标： 每周都会有标注同学基于线上结果和豆包进行整体sbs打分，同时在事实性（改写query/召回/幻觉/模型选择错误等）、相关性、用户体验等方面进行标注，每周50q，24年中达到6%正向 线上dau从一开始10w，涨到50w左右，但是轮次很低，主要由于入口在搜索的占比不小，年中后开始减少投入 懂车帝用户增长Push策略 基于uplift的付费push策略 通过Uplift模型建模用户对Push条数敏感度，基于Treatment条数设计Push规划策略，在Vivo品牌上验证带来6.77%DAU增长，较大提升广告与线索收益</description>
+    </item>
+    <item>
+      <title>LLM推理技术学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Tue, 20 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>Latency KV Cache 在 Transformer 的 Self-Attention 层中，计算公式为： $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$ 其中：&#xA;Q (Query)：代表当前的字 K (Key) &amp; V (Value)：代表上下文的信息 由于前面的计算结果已经算完，可以直接存在显存里，方便解码时快速使用：&#xA;Prefill（预填充）阶段：模型处理你输入的 Prompt，计算出所有已存在字符的K和V，并把它们存在显存里 Decoding（解码）阶段：每生成一个新词，模型只需要计算这个新词的K和V，然后直接从显存里读取之前存好的K和V进行拼接，计算Attention KV Cache让生成每个新词的时间复杂度从 $O(n^2)$ 降低到了 $O(n)$，但是显存占用很高，并随着序列长度增长而线性增加，另外传统的显存分配方式会导致很多浪费（类似磁盘碎片），这也是为什么后来出现了vLLM (PagedAttention)技术来优化它&#xA;PD分离 由于Prefill阶段是计算密集型，而Decoding阶段时访存密集型，因此如果用同一种类型的显卡进行两个阶段，对导致在Prefill阶段对显存的浪费和在Decoding阶段对计算能力的浪费，因此将两阶段分离，分开部署在不同的显卡上：</description>
+    </item>
     <item>
       <title>Reinforcement Learning学习手册</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
@@ -23,11 +72,11 @@
       <description>Intro 强化学习与机器学习的差别：&#xA;没有supervisor，只有reward 反馈是滞后的，不是实时的 时间序列，每一个时间步不是i.i.d的 agent的行为会影响后续数据 reward是什么：&#xA;一个标量的反馈信号 表示agent在t时刻的表现 agent的目标是最大化累积reward 序列决策是什么：&#xA;目标是选择action，最大化累积reward action有长期的影响，因为reward是滞后的，意味着可能需要牺牲短期reward来获取长期reward 序列H包含observation、action、reward的循环：O1、A1、R1、O2、A2、R2、… state是什么：&#xA;state是序列的函数，即当前的状态包含了观察、行为、奖励序列的全部信息 environment state是指环境的内部状态表示，通常是agent不可见的；即使可见，也通常包含一些不相关的噪音 agent state是agent的内部状态表示，作为下一次action选择的输入，也可理解为RL算法的输入 markov state是指包含之前全部信息的当前状态，只依赖于当前状态，与之前状态独立 在完全可观测环境中，agent state等于environment state，构成MDP（markov decision process）；在部分可观测环境中，agent state不等于environment state，构成POMDP（partially observable markov decision process） agent agent的组成：</description>
     </item>
     <item>
-      <title>LLM和agent的训练</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html</link>
+      <title>LLM训练技术学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html</guid>
-      <description>强化学习 RLHF PPO DPO RLVR #todo 强化学习调整agent行为模式：retroformer、voyager #todo rlvr， 清华上交paper：提高pass@1的稳定性 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed #todo PRM #todo interleaving thinking后训练 #todo verl slime #todo Search-R1</description>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>LLM训练主要包含三部分：&#xA;Pre-training：通过大量互联网文本数据，训练base model SFT：通过人工标注对话预料进行微调，让base model掌握对话（ai assistant）能力 RLHF：通过强化学习让模型知道人类偏好，什么是好的回复，什么是不好的回复 参考链接：&#xA;# Deep Dive into LLMs like ChatGPT Pre-training 利用大量文本序列，通过预测下一个token的任务训练，得到基座模型（base model），此时模型具备序列文本生成能力&#xA;DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强迫模型预测长期未来 预测的时候，MTP作为 投机解码的提议者，由MTP生成n个token，然后主干模型再计算是否正确，即符合主干模型的概率分布，如果正确则保留，不正确则抛弃，以此循环 MTP像一个滑动窗口在每个主干模型截止的位置发起下一次多token预测 MTP可以比主干模型小一些，但整体速度收益还是在于多token的并发预测 接受MTP结果的判断通常使用拒绝采样来完成 投机解码中使用拒绝采样判断是否接受 投机解码中使用拒绝采样的修正逻辑 # 为什么LLM投机推理小模型被拒绝后要从修正分布获取正确的token？ 参考链接：</description>
     </item>
     <item>
       <title>从零开始构建商品收货系统</title>
@@ -37,18 +86,11 @@
       <description>背景 需求：老家亲戚是做衣服加工的，分为横机和套口两个种类，现在要做一个功能，来汇总和清晰的展示一些统计数据 现状：目前使用excel来完成：图1包含了横机的单位重量（重量/件）、施工单位和套口的施工单位的基础信息；图2包含了横机按时间、施工单位、件数、重量（件数 * 重量/件）的明细；图3包含了套口按时间、施工单位、件数（包含发出和收回）的明细 痛点：亲戚目前每天手动填写当天的新增条目（哪个单位给了多少，什么款式，如果是套口还包含收回多少），然后需要下拉excel单元格显示结果（excel的列目前用公式指定怎么计算结果）。现在希望可以只用手动添加条目，不用excel下拉的方式，且统一品类在同一页面方便截图 想法：做一个网页，加一个后台数据库，直接访问网页操作，但是考虑数据隐私和亲戚电脑没有联网的情况，设计为本地保存数据 整体思路 基于上述要求，gemini的思路： 方案二细节： 从零开始构建商品收货系统-方案细节&#xA;具体实现 代码链接 product-record-manager</description>
     </item>
     <item>
-      <title>大模型工程实践</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html</link>
-      <pubDate>Fri, 02 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html</guid>
-      <description>KV-cache PD分离 #todo 什么是PD分离，为什么要用PD分离</description>
-    </item>
-    <item>
-      <title>大模型在其他技术中的应用</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html</link>
+      <title>LLM进展与应用</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html</link>
       <pubDate>Wed, 31 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html</guid>
-      <description>NLP #todo langextract&#xA;推荐</description>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html</guid>
+      <description>应用 NLP #todo langextract&#xA;推荐 产品 对话助手 Perplexity Claude Gemini Kimi Kimi K2.5 参考链接：</description>
     </item>
     <item>
       <title>长程任务：Deep Agent</title>

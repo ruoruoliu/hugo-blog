@@ -36,30 +36,30 @@ planning tool：前期任务规划 将计划写入文件，标注状态（pendin
 # What are Deep Agents? # Implementing deepagents: a technical walkthrough # Build AI Agents That Work While You Sleep | Deep Agents Human-in-the-loop 在长程任务中的三大作用：">
     <meta itemprop="datePublished" content="2025-12-27T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-12-27T00:00:00+00:00">
-    <meta itemprop="wordCount" content="243">
+    <meta itemprop="wordCount" content="119">
     <meta itemprop="keywords" content="技术笔记">
     <title>长程任务：Deep Agent :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768827477" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768827477" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768827477" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1770712005" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770712005" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1770712005" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768827477";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770712005";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770712005" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768827477" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768827477" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768827477" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712005" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712005" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770712005" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1770712005" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1770712005" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -150,13 +150,7 @@ planning tool：前期任务规划 将计划写入文件，标注状态（pendin
         <li><a href="#browsecamp-plus">BrowseCamp Plus</a></li>
       </ul>
     </li>
-    <li><a href="#产品形态">产品形态</a>
-      <ul>
-        <li><a href="#manus">Manus</a></li>
-        <li><a href="#openai-deep-research">OpenAI Deep Research</a></li>
-        <li><a href="#claude-code">Claude Code</a></li>
-      </ul>
-    </li>
+    <li><a href="#产品形态">产品形态</a></li>
   </ul>
 </nav>
                 </div>
@@ -174,7 +168,7 @@ planning tool：前期任务规划 将计划写入文件，标注状态（pendin
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html" title="大模型在其他技术中的应用 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html" title="LLM进展与应用 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -410,194 +404,13 @@ planning tool：前期任务规划 将计划写入文件，标注状态（pendin
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><h3 id="manus">
-  Manus
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><h4 id="context-engineering的一些思考">
-  Context Engineering的一些思考
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h4><p>
+</h2><p>
 
 
 
     
-<a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">Manus中的Context Engineering</a></p>
-<h4 id="context-offloading的三层抽象">
-  Context Offloading的三层抽象
+<a href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/">LLM进展与应用-长程任务</a></p>
 
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h4><ul>
-<li>Function Calling：保留10个左右基础的工具调用，例如文件读写、shell命令执行、网页搜索等，这些原子工具写在system prompt中，基本固定</li>
-<li>Sandbox Utilities：每个session都运行在虚拟环境中，环境中预安装了很多自定义的命令供agent调用</li>
-<li>Packages &amp; APIs：通过编写的python脚本直接请求api获取数据</li>
-</ul>
-<h4 id="技术细节">
-  技术细节
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h4><blockquote>
-<p>Q：agent如何知道有哪些命令，以及如何使用这些命令？
-A：由于agent在sandbox中执行，可以在system prompt中加入hint，告诉他查看/usr/bin中的命令，由于这些命令都是manus自己开发的，都包含相同格式的&ndash;help文档，供agent查看学习</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus在使用file system的时候是否实时构建索引，怎么搜索内容？
-A：Manus没有实时构建索引，还是通过grep和glob命令来查询中间的文件结果，但是如果需要长期或者企业级知识库，还是需要建索引来完成</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus如何处理长期的跨session的memory呢，是否也有像claude.md文件这样的东西？
-A：每次session都会总结并向用户确认是否要保存这份知识（当前session的关键信息），目前也在探索如何自动化的处理用户偏好</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus会随着模型进步逐渐简化一些基础逻辑吗？
-A：会的，从25年3月到10月已经更新了五个版本，需要根据最新最强的模型的能力变化，预先判断架构是否仍然合理，做好准备</p>
-</blockquote>
-<blockquote>
-<p>Q：怎么确定文件的存储格式，是使用markdown、plain text还是什么？
-A：一般使用line based的plain text，方便进行grep以及查询一定范围行数的内容，markdown有一个问题是某些模型厂商的模型在markdown上训练过于充分导致太容易出现bullet point</p>
-</blockquote>
-<blockquote>
-<p>Q：Summarization的prompt的怎么写的，如果写不好会损失信息，一般的做法是基于高召回来调整，Manus呢？
-A：不要让模型自由发挥，设定一个类似schema的东西，一些field让模型填写，保持稳定以及保证某些内容一定会被总结到（比如目标）</p>
-</blockquote>
-<blockquote>
-<p>Q：Compaction就是把工具的结果写入文件，然后返回一个文件名吗？
-A：是的，但是不光是文件，基本所有操作都有一个外部存储方式，比如网页操作有一个url、搜索操作有一个query，他们都天然的有一个用于compaction的外部存储方式</p>
-</blockquote>
-<blockquote>
-<p>Q：比如对于搜索，如果返回的token很多，是先做summarization在返回还是整体返回再等着compaction？
-A：如果搜索是个复杂搜索，比如多个query那种，会调用高级搜索，本质就是一个sub-agent，他会进行agentic workflow的处理，然后返回固定格式的结果，但是如果是简单的搜索，比如google一下，就是全文返回，然后等待compaction，这种情况下也会让模型写下一些中间的insight存入文件</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus是怎么处理agent和agent之间的交流的？
-A：由于Manus是在sandbox中运行的，因此agent之间的sharing context就是共用sandbox就可以了，这不难，难得是怎么确保从sub-agent能得到期望的输出。我们指定主agent在创建sub-agent的时候，就需要制定好返回的structured output，然后在sub-agent返回结果的时候，使用限制解码来控制得到我们期望的输出</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus是使用anthropic的模型，但是你们有尝试过开源模型吗，怎么选择的？
-A：更多是成本上的考虑。当需要使用distributed kv-cache的时候，更前沿的模型厂商拥有更有保障的架构支持，反而比你自己实现成本更低。另外每个大模型厂商的模型技术优势各不相同（claude在代码上强，gemini在多模态上强，openai在数学和推理上强），可以进行task、subtask甚至step粒度的routing</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus是不是一种混合模式，在有些时候使用原子操作，有些时候使用codeact模式？
-A：是的，这很重要，因为如果都用codeact模式，没办法进行限制解码，导致结果不可控</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus的planning是怎么样的？
-A：一开始Manus也是使用todo.md，这样你会发现三分之一的操作都是在执行todo.md的更新，很浪费token，后来我们使用了一个agent as tool来专门规划，节省token</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus的multi agent是怎么样规划设计的？
-A：Manus的agent不是传统的按角色定义的，只有planner agent、executor agent、knowledge management agent以及api registration agent这么几个，我们对于添加agent很谨慎，因为agent之间的交流很难，更多的是使用agent as tool</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus是如何做安全防护的？
-A：由于Manus是运行在sandbox里的，只要能连接到互联网都不安全，所以我们会监控从sandbox流出的信息，确保不含有带有token信息的内容，即便这样，Manus在agent使用一些敏感操作时，还是会向用户确认，或者直接让用户接手</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus是如何进行评估的？
-A：一开始刚发布的时候是使用gaia评估集，但是发现分数高的模型反而用户不喜欢。目前是采取以下三种方式：1、每个完成的session都要求用户打分（1-5分）；2、自己构建了一些关于execution的自动化评测集，可以在sandbox里面跑测试；3、招实习生来标注，因为一些如web generation、data visualization的任务需要人工评估（很难有好的reward model）</p>
-</blockquote>
-<blockquote>
-<p>Q：Manus会基于提供的工具进行RL训练吗？
-A：如果要支持MCP，agent的action space就会非常自由多变，这个情况下RL的方式很难训练。如果有充足的资源可以尝试，但是大模型的厂商都在做这件事，所以我们不需要重复造轮子，我们尽量使用parameter free的方式（不改变模型权重）</p>
-</blockquote>
-<p>参考链接：</p>
-<ul>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=6_BcCthVvb8" target="_blank">Context Engineering for AI Agents with LangChain and Manus</a>
-#todo monica插件使用体验</li>
-</ul>
-<h3 id="openai-deep-research">
-  OpenAI Deep Research
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-9caaa53d778f23b7c54b5d11c47073a4" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9caaa53d778f23b7c54b5d11c47073a4"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png?width=600px"></a>
-</p>
-<ul>
-<li>lead agent根据用户query设计策略，创建子agent进行不同方面的探索</li>
-<li>子agent通过多步搜索动态分析每次的搜索结果</li>
-<li>citation agent单独在最终完成citation插入的定向任务
-<a href="#R-image-38ef9087b50dfe9b0708e3ece5f7cce6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-38ef9087b50dfe9b0708e3ece5f7cce6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png?width=600px"></a>
-</li>
-</ul>
-<p>主要通过prompt engineering解决multi-agent的以下问题，</p>
-<ul>
-<li>简单query创建过多子agent</li>
-<li>在web中持续搜索不存在内容</li>
-<li>过度更新context产生互相干扰</li>
-</ul>
-<p>如何有效评估multi-agent：</p>
-<ul>
-<li>从很小的评测集开始，快速迭代</li>
-<li>到某一阶段后通过llm-as-judge来评估：事实性、引用准确、完整性、来源质量和工具效率等</li>
-<li>人工校验自动化疏漏（通过prompt修改）：如自动化流程通常倾向于seo较好的文档来源</li>
-</ul>
-<p>工业可靠性：</p>
-<ul>
-<li>通过agent的state来快速恢复出现错误之前的state并retry，包括tool call的错误</li>
-<li>添加trace，包括决策、交互结构等，方便debug</li>
-<li>agent的更新升级，不是同时的（会导致运行中的agent报错），而是以agent粒度渐进的</li>
-<li>期待后续实现异步调用，目前的同步方式会使通信成为瓶颈，且耗时（等待最慢的子agent）</li>
-</ul>
-<p>参考链接：</p>
-<ul>
-<li>
-
-
-
-<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank"># How we built our multi-agent research system</a></li>
-<li>
-
-
-
-<a href="https://github.com/anthropics/claude-cookbooks/tree/main/patterns/agents/prompts" target="_blank">open-source prompts in our Cookbook</a></li>
-</ul>
-<h3 id="claude-code">
-  Claude Code
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3>
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> Dec 27, 2025
   </footer>
@@ -648,12 +461,17 @@ A：如果要支持MCP，agent的action space就会非常自由多变，这个�
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangChain学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangGraph学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Python学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html">大模型观点：Andrej Karpathy和Richard Sutton</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html"><a class="padding" href="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html">简历项目Q&amp;A</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM推理技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html">LLM和agent的训练</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM训练技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">大模型工程实践</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">大模型在其他技术中的应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">LLM进展与应用</a></li>
             <li class="active " data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
@@ -707,9 +525,9 @@ A：如果要支持MCP，agent的action space就会非常自由多变，这个�
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768827477"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768827477" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770712005"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1770712005" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

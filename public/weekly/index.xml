@@ -6,14 +6,35 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/weekly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Week15 Agent框架学习：LangGraph</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week15/index.html</link>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week15/index.html</guid>
+      <description>总结 Agent框架学习：LangGraph Agent框架学习：LangGraph LangGraph学习手册 知识 LangGraph [!warning] 待办</description>
+    </item>
+    <item>
+      <title>Week14 Agent框架学习：LangChain</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week14/index.html</link>
+      <pubDate>Mon, 02 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week14/index.html</guid>
+      <description>总结 Agent框架学习：LangChain Agent框架学习：LangChain LangChain学习手册 知识 typedDict通过约定的方式说明dict中的字段有哪些，如果不符合则会在运行前警告；而pydantic是dataclass的第三方强化版本，定义一个数据类，并保证类中的字段，如果不符合则会在运行时报错，pydantic可以进行自动转化，并支持字段级别的初始化处理逻辑 asyncio支持python中的异步逻辑，使用单线程避免任务等待 将函数定义为async，使用await来挂起等待结果返回 如果多个任务同时触发，可以使用asyncio.gather 使用asyncio.run来启动事件循环（EventLoop），触发全部协程 LangChain是帮助用户快速搭建agent的平台，用户通过设计system prompt、tool、中间件等，实现agentic逻辑，在交互过程中更新agent的state，控制模型上下文，得到结果 Model：LangChain支持各大厂商和开源model Tools：LangChain支持用@tool将函数封装为工具使用 中间件：中间件方便用户在模型调用前后，工具调用前后进行拦截，并实现特定逻辑，包括模型、工具、system prompt的修改等 一些内置的中间件，包括Human-in-the-loop中间件等 Memory：LangChain的短期记忆就是state，长期记忆就是store state就是对话序列，包含AIMessage、ToolMessage、HumanMessage等，以及用户定义的一些字段，通过state_schema传入 store就是外部存储，默认内存，可以选择数据库 response_format：通过ToolStrategy或者厂商原生能力，支持结构化输出 待办 Agent框架学习：LangGraph</description>
+    </item>
+    <item>
+      <title>Week13 大模型强化学习技术跟进</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week13/index.html</link>
+      <pubDate>Mon, 26 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week13/index.html</guid>
+      <description>总结 跟进大模型强化学习技术 跟进大模型强化学习技术 LLM训练技术学习手册 知识 DAPO 通过对gradient的clip的上下限解耦，防止模型探索不够的问题 通过只采样reward不都等于0或1的batch，来提升训练效率，防止噪声引入的波动 通过缓冲区软长度惩罚，配合token-level的loss，提升模型对过长序列和错误的区分 GSPO 将策略梯度转化为序列级，使之与reward粒度对齐 通过几何平均的形式避免数值溢出，并对长度归一化 解决MoE模型需要Routing Replay的复杂度问题 待办 Agent框架学习</description>
+    </item>
     <item>
       <title>Week12 强化学习技术跟进</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week12/index.html</link>
       <pubDate>Mon, 19 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week12/index.html</guid>
-      <description>总结 强化学习基础知识 跟进大模型强化学习技术 强化学习基础知识 Reinforcement Learning学习手册 跟进大模型强化学习技术 LLM和agent的训练 知识 value-based方法在DQN的基础上： target network：target network同结构不同参数，用来选择和预估下一时刻的动作的价值，短时间内固定参数来缓解预估目标移动导致的训练稳定性问题 double DQN：通过online network负责选择下一时刻action，target network负责预估下一时刻动作的价值，来彻底解决Q-learning中价值预估高估问题 dueling network：拆分价值预估中状态和动作的价值，提高训练的效率和鲁棒性 经验回放避免了训练数据的浪费，不过使学习变为了off-policy（在线策略学习旧策略的数据分布），需要重要性采样修正 优先经验回放替代了原始的随机采样经验，而采用对新经验高优先级、对TD error较大的高优先级的采样方式，提高难样本的重要性（小步多跑） policy-based方法在Actor-Critic的基础上： TRPO基于置信域，替代了原始的对参数设定学习率（步长）的做法，改为保证策略变化不大（KL散度）的情况下，求解最优收益的带约束最优化问题，使训练收敛稳定，减小方差 PPO解决了TRPO求解带约束最优化问题计算量大的问题，用clip的方式代替KL散度约束，使得工程上训练加速 对于连续控制问题，DDPG将actor网络的输出直接设定为action（数值而不是概率），然后通过梯度链式法则直接求解最优action，同时优化critic网络 同样对于连续控制问题，SAC使用随机策略的方法，actor网络输出action分布的 $\mu$ 和 $\sigma$，通过对这个分布的采样得到action，通过重参数化的技巧仍然支持梯度链式法则，可以让actor直接对收益求梯度 待办 强化学习技术实战</description>
+      <description>总结 强化学习基础知识 跟进大模型强化学习技术 强化学习基础知识 Reinforcement Learning学习手册 跟进大模型强化学习技术 LLM训练技术学习手册 知识 value-based方法在DQN的基础上： target network：target network同结构不同参数，用来选择和预估下一时刻的动作的价值，短时间内固定参数来缓解预估目标移动导致的训练稳定性问题 double DQN：通过online network负责选择下一时刻action，target network负责预估下一时刻动作的价值，来彻底解决Q-learning中价值预估高估问题 dueling network：拆分价值预估中状态和动作的价值，提高训练的效率和鲁棒性 经验回放避免了训练数据的浪费，不过使学习变为了off-policy（在线策略学习旧策略的数据分布），需要重要性采样修正 优先经验回放替代了原始的随机采样经验，而采用对新经验高优先级、对TD error较大的高优先级的采样方式，提高难样本的重要性（小步多跑） policy-based方法在Actor-Critic的基础上： TRPO基于置信域，替代了原始的对参数设定学习率（步长）的做法，改为保证策略变化不大（KL散度）的情况下，求解最优收益的带约束最优化问题，使训练收敛稳定，减小方差 PPO解决了TRPO求解带约束最优化问题计算量大的问题，用clip的方式代替KL散度约束，使得工程上训练加速 对于连续控制问题，DDPG将actor网络的输出直接设定为action（数值而不是概率），然后通过梯度链式法则直接求解最优action，同时优化critic网络 同样对于连续控制问题，SAC使用随机策略的方法，actor网络输出action分布的 $\mu$ 和 $\sigma$，通过对这个分布的采样得到action，通过重参数化的技巧仍然支持梯度链式法则，可以让actor直接对收益求梯度 LLM的后训练中，RLHF通过强化学习帮助模型的回复接近人类偏好： GRPO在PPO的基础上去掉Critic模型，用组内平均计算优势值，并调整分布，适合逻辑推理、代码或者有明确reward衡量方式的问题 DPO直接舍弃RL框架，只比较两个结果的相对好坏，并调整分布，适合没有明确reward衡量的人类偏好对齐的问题 RLVR是指利用verifiable reward（比如数学题答案、代码运行结果等可准确衡量的reward）来替代reward model，避免模型出现reward hacking，适合推理任务的学习 PRM首先利用人工标注每一个推理步的正确与否，学习process reward model模型，并将这个reward的预测加入到critic模型的学习中，帮助actor模型加强正确中间步骤的生成概率 待办 跟进大模型强化学习技术 强化学习技术实战</description>
     </item>
     <item>
       <title>Week11 强化学习基础知识</title>

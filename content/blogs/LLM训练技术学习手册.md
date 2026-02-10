@@ -238,7 +238,7 @@ PRM针对推理过程进行reward预测，细粒度帮助模型学习推理的�
 #todo 强化学习调整agent行为模式：retroformer、voyager
 #todo 田渊栋：latent reasoning coconut / attention sync / streaming llm
 #todo thinking machine lab: tinker api / 自己搭megatron、deepspeed
-#todo [R1论文解析]([https://www.bilibili.com/video/BV15yA3eWE5b/](https://www.bilibili.com/video/BV15yA3eWE5b/?spm_id_from=333.1387.collection.video_card.click&vd_source=c8a3c83e361aa2a357093342a046ceed))
+#todo [R1论文解析](https://www.bilibili.com/video/BV15yA3eWE5b/?spm_id_from=333.1387.collection.video_card.click&vd_source=c8a3c83e361aa2a357093342a046ceed)
 #todo Search-R1、interleaving thinking后训练
 
 # Distillation

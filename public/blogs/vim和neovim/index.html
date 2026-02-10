@@ -27,29 +27,29 @@
 编辑器指ui，功能提供的模块，在neovim中进行插件化配置优化 motion指vim的基础操作命令，这部分在neovim中通用 操作命令 删除：d 修改：c 替换：r 撤销：u 重做：ctrl&#43;r 移动： 按字符移动：上：k；下：j；左：h；右：l 行数&#43;上下：例如向上8行是8k 按词移动，向前到词首：b；向后到下一个词首：w，向后到词尾：e 到行首：0，到行首非空字符：_ ，到行尾：$ 到指定字符： 到下一个指定字符：f，例如ft到下一个t；F到上一个 到下一个指定字符前：t，例如ta到下一个a前；T到上一个 重复到下一个：; 重复到上一个：, 按paragraph移动：上：{；下：}; 按页移动：ctrl&#43;u：向上半页；ctrl&#43;d：向下半页 进入insert mode： 到下一个字符：a 到最后一个字符后面：A 到第一个字符前面：I 新建下一行：o 新建上一行：O 手动缩进：向左：&lt;；向右：&gt;； 可以同时缩进多行，在首行&gt;4j：包括首行一共缩进5行 搜索： /：搜索下一个；？：默认搜索上一个 *：搜索下一个当前光标对应单词；#：搜索上一个当前光标对应单词 光标居中（中间行）：zz text object：动作（v/y/d）&#43;选中类型（i/a）&#43;object类型（w/W/s/p） 例如：viw（选中当前单词）；viW（选中当前连续字符） 将下一行拼接到当前行，用空格分割： J 重复上一次操作：. 重要概念 Text Object">
     <meta itemprop="datePublished" content="2025-11-28T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-11-28T00:00:00+00:00">
-    <meta itemprop="wordCount" content="187">
+    <meta itemprop="wordCount" content="191">
     <title>Vim和NeoVim :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1768827477" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1768827477" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1768827477" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1770712005" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770712005" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1770712005" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1768827477";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770712005";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1768827477" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770712005" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1768827477" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1768827477" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1768827477" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1768827477" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712005" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712005" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770712005" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1770712005" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1770712005" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -150,6 +150,7 @@
       <ul>
         <li><a href="#neo-tree">neo-tree</a></li>
         <li><a href="#bufferline">bufferline</a></li>
+        <li><a href="#comment">comment</a></li>
         <li><a href="#telescope">telescope</a></li>
         <li><a href="#treesitter">treesitter</a></li>
         <li><a href="#nvim-cmp">nvim-cmp</a></li>
@@ -320,8 +321,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-15b2a0dd0351c7dbf98babeee2e0bae4" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-15b2a0dd0351c7dbf98babeee2e0bae4"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a>
+</h3><p><a href="#R-image-a05c2c0e3e108bcda3d1692aca3e1bb9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a05c2c0e3e108bcda3d1692aca3e1bb9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6c341cc9c3f7372cf147392f7c85a23e.png"></a>
 </p>
 <p>参考链接：</p>
 <ul>
@@ -432,8 +433,8 @@
 <li>提供左侧文件目录，可以浏览目录结构，进行文件的增删改</li>
 <li>通过ctrl-w + 方向键可以切换目录和文件窗口</li>
 <li>在目录中文件上按t可以在新的tab中打开
-<a href="#R-image-ae8d53867a2a259d4631f31192ca5316" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ae8d53867a2a259d4631f31192ca5316"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png"></a>
+<a href="#R-image-158ddc9bbe201b4568c7b69f428df74e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-158ddc9bbe201b4568c7b69f428df74e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ad808b9982e43df7195cc0ee404c2692.png"></a>
 </li>
 </ul>
 <h3 id="bufferline">
@@ -454,6 +455,24 @@
 </ul>
 </li>
 </ul>
+<h3 id="comment">
+  comment
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>注释toggle：
+<ul>
+<li>对于insert模式下，使用gc</li>
+<li>对于visual模式下，使用gcc</li>
+</ul>
+</li>
+</ul>
 <h3 id="telescope">
   telescope
 
@@ -468,8 +487,8 @@
 <li>方便在目录内查找文件，字符串等</li>
 <li>leader + ff（find files） 进行文件查找</li>
 <li>leader + fg（live grep） 进行关键词查找
-<a href="#R-image-7466041c2853959495af3d1c9c501647" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7466041c2853959495af3d1c9c501647"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png"></a>
+<a href="#R-image-cf04e7c6b521d1cb6fca1596cb59aa6d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cf04e7c6b521d1cb6fca1596cb59aa6d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/099ab0de4b01aef6854778fed49ccc0f.png"></a>
 </li>
 </ul>
 <h3 id="treesitter">
@@ -488,8 +507,8 @@
 <ul>
 <li>text object支持diw（internal delete word）、vap（visual around paragraph）等操作</li>
 <li>incremental selection：ctrl+space
-<a href="#R-image-368470500daa64c012d8274a947a8a0f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-368470500daa64c012d8274a947a8a0f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png"></a>
+<a href="#R-image-9f7816926e4d6ff2ddf8f65da78884a6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9f7816926e4d6ff2ddf8f65da78884a6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/a3324ddca0d0d53239db2d3bc845ffd0.png"></a>
 </li>
 </ul>
 </li>
@@ -507,8 +526,8 @@
 </h3><ul>
 <li>基于treesitter的理解，实现代码补全</li>
 <li>另外autopair实现引号等配对补全，autotag实现html标签配对补全
-<a href="#R-image-67ad75a233a5cedb0b91365c22fd2282" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-67ad75a233a5cedb0b91365c22fd2282"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png"></a>
+<a href="#R-image-eabd8ec8268412d5fbbfb133acb7de5b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-eabd8ec8268412d5fbbfb133acb7de5b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/1c9a7dd499156746db7ee818dff3ad85.png"></a>
 </li>
 </ul>
 <h3 id="mason">
@@ -530,8 +549,8 @@
 <li>定义跳转：gd</li>
 <li>引用跳转：gR</li>
 <li>显示诊断：leader+d（当前行），leader+D（当前文件）
-<a href="#R-image-c2dbab96084664a1a7c0d37836f37183" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c2dbab96084664a1a7c0d37836f37183"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png"></a>
+<a href="#R-image-8c99d4735596405c288b4d3d410db12c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8c99d4735596405c288b4d3d410db12c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/6bb4bc7a2a955f111c048dd54ecc0166.png"></a>
 </li>
 </ul>
 </li>
@@ -554,8 +573,8 @@
 
 
 <a href="https://www.youtube.com/watch?v=Ihg37znaiBo" target="_blank"># Lazygit - The Best Way To Use Git On The Terminal &amp; Neovim</a>
-<a href="#R-image-ad1685e093bcd86a2faed334e2b91be1" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ad1685e093bcd86a2faed334e2b91be1"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png"></a>
+<a href="#R-image-fb2b80324763af20d09565fedb895d32" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fb2b80324763af20d09565fedb895d32"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c975a21d832bda5348799fd7b51bf78e.png"></a>
 </li>
 </ul>
 <p>参考链接：</p>
@@ -627,12 +646,17 @@
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangChain学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangGraph学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Python学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html">大模型观点：Andrej Karpathy和Richard Sutton</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html"><a class="padding" href="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html">简历项目Q&amp;A</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM推理技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E5%92%8Cagent%E7%9A%84%E8%AE%AD%E7%BB%83/index.html">LLM和agent的训练</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM训练技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/index.html">大模型工程实践</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">大模型在其他技术中的应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">LLM进展与应用</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
@@ -686,9 +710,9 @@
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1768827477"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1768827477" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1768827477" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770712005"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770712005" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1770712005" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
