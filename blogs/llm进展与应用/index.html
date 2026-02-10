@@ -5,32 +5,32 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
-Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
+    <meta name="description" content="应用 NLP #todo langextract
+推荐 产品 对话助手 Perplexity Claude Gemini Kimi Kimi K2.5 参考链接：">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Context Engineering学习手册 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
-Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <meta name="twitter:title" content="LLM进展与应用 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="应用 NLP #todo langextract
+推荐 产品 对话助手 Perplexity Claude Gemini Kimi Kimi K2.5 参考链接：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="Context Engineering学习手册 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
-Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
+    <meta property="og:title" content="LLM进展与应用 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="应用 NLP #todo langextract
+推荐 产品 对话助手 Perplexity Claude Gemini Kimi Kimi K2.5 参考链接：">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-12-24T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-12-24T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-12-31T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-31T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="Context Engineering学习手册 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Context Rot 虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象 参考链接：
-Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Contexts Fail Context Engineering 大模型回复的context应该包含以下几方面： system prompt：系统提示词，回复的高级指导 long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息 RAG：外部参考数据 tools：工具返回数据 structured output：回复的格式要求 user prompt：用户的上文">
-    <meta itemprop="datePublished" content="2025-12-24T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-12-24T00:00:00+00:00">
-    <meta itemprop="wordCount" content="130">
+    <meta itemprop="name" content="LLM进展与应用 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="应用 NLP #todo langextract
+推荐 产品 对话助手 Perplexity Claude Gemini Kimi Kimi K2.5 参考链接：">
+    <meta itemprop="datePublished" content="2025-12-31T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-12-31T00:00:00+00:00">
+    <meta itemprop="wordCount" content="167">
     <meta itemprop="keywords" content="技术笔记">
-    <title>Context Engineering学习手册 :: Ruoruoliu 2.0</title>
+    <title>LLM进展与应用 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1770710598" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770710598" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770710598" defer></script>
@@ -56,7 +56,7 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
+      window.relearn.path='\/blogs\/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -104,7 +104,7 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -134,14 +134,29 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#nlp">NLP</a></li>
+    <li><a href="#推荐">推荐</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#对话助手">对话助手</a>
       <ul>
-        <li><a href="#围绕kv缓存进行设计">围绕KV缓存进行设计</a></li>
-        <li><a href="#遮蔽而非移除">遮蔽，而非移除</a></li>
-        <li><a href="#使用文件系统作为上下文">使用文件系统作为上下文</a></li>
-        <li><a href="#通过复述操控注意力">通过复述操控注意力</a></li>
-        <li><a href="#保留错误的内容">保留错误的内容</a></li>
-        <li><a href="#不要被少样本示例所困">不要被少样本示例所困</a></li>
+        <li><a href="#perplexity">Perplexity</a></li>
+        <li><a href="#claude">Claude</a></li>
+        <li><a href="#gemini">Gemini</a></li>
+        <li><a href="#kimi">Kimi</a></li>
+      </ul>
+    </li>
+    <li><a href="#长程任务">长程任务</a>
+      <ul>
+        <li><a href="#manus">Manus</a></li>
+        <li><a href="#openai-deep-research">OpenAI Deep Research</a></li>
+        <li><a href="#其他">其他</a></li>
+      </ul>
+    </li>
+    <li><a href="#agent应用">Agent应用</a>
+      <ul>
+        <li><a href="#clawdbot--moltbot">Clawdbot / Moltbot</a></li>
       </ul>
     </li>
   </ul>
@@ -150,7 +165,7 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Context Engineering学习手册</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">LLM进展与应用</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -161,7 +176,7 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="Agent学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html" title="从零开始构建商品收货系统 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -171,7 +186,7 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="RAG学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html" title="长程任务：Deep Agent (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -205,10 +220,10 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 </div>
   </header>
 
-<h1 id="context-engineering学习手册">Context Engineering学习手册</h1>
+<h1 id="llm进展与应用">LLM进展与应用</h1>
 
-<h1 id="context-rot">
-  Context Rot
+<h1 id="应用">
+  应用
 
 
 
@@ -218,8 +233,111 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
+<h2 id="nlp">
+  NLP
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><hr>
+<p>#todo 
+
+
+
+<a href="https://github.com/google/langextract" target="_blank">langextract</a></p>
+<h2 id="推荐">
+  推荐
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><hr>
+<h1 id="产品">
+  产品
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="对话助手">
+  对话助手
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="perplexity">
+  Perplexity
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h3 id="claude">
+  Claude
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h3 id="gemini">
+  Gemini
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h3 id="kimi">
+  Kimi
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="kimi-k25">
+  Kimi K2.5
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
 <ul>
-<li>虽然大模型上下文窗口的上限不断增加，但任性的塞满上下文窗口其实反而会带来回复效果的损失，造成context rot现象</li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2602.02276" target="_blank">KIMI K2.5: VISUAL AGENTIC INTELLIGENCE</a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -227,15 +345,10 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 
 
-<a href="https://research.trychroma.com/context-rot" target="_blank">Context Rot: How Increasing Input Tokens Impacts LLM Performance</a></li>
-<li>
-
-
-
-<a href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html" target="_blank"># How Long Contexts Fail</a></li>
+<a href="https://www.youtube.com/watch?v=EWvNQjAaOHw" target="_blank"># How I use LLMs</a></li>
 </ul>
-<h1 id="context-engineering">
-  Context Engineering
+<h2 id="长程任务">
+  长程任务
 
 
 
@@ -244,210 +357,224 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<p><a href="#R-image-5045e07425c7470e5b614cde28a919f8" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5045e07425c7470e5b614cde28a919f8"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/3b55de8f97dd39689378922ea9357b6c.png"></a>
+</h2><h3 id="manus">
+  Manus
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="context-engineering的一些思考">
+  Context Engineering的一些思考
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>
+
+
+
+    
+<a href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">Manus中的Context Engineering</a></p>
+<h4 id="context-offloading的三层抽象">
+  Context Offloading的三层抽象
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><ul>
+<li>Function Calling：保留10个左右基础的工具调用，例如文件读写、shell命令执行、网页搜索等，这些原子工具写在system prompt中，基本固定</li>
+<li>Sandbox Utilities：每个session都运行在虚拟环境中，环境中预安装了很多自定义的命令供agent调用</li>
+<li>Packages &amp; APIs：通过编写的python脚本直接请求api获取数据</li>
+</ul>
+<h4 id="技术细节">
+  技术细节
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><blockquote>
+<p>Q：agent如何知道有哪些命令，以及如何使用这些命令？
+A：由于agent在sandbox中执行，可以在system prompt中加入hint，告诉他查看/usr/bin中的命令，由于这些命令都是manus自己开发的，都包含相同格式的&ndash;help文档，供agent查看学习</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus在使用file system的时候是否实时构建索引，怎么搜索内容？
+A：Manus没有实时构建索引，还是通过grep和glob命令来查询中间的文件结果，但是如果需要长期或者企业级知识库，还是需要建索引来完成</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus如何处理长期的跨session的memory呢，是否也有像claude.md文件这样的东西？
+A：每次session都会总结并向用户确认是否要保存这份知识（当前session的关键信息），目前也在探索如何自动化的处理用户偏好</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus会随着模型进步逐渐简化一些基础逻辑吗？
+A：会的，从25年3月到10月已经更新了五个版本，需要根据最新最强的模型的能力变化，预先判断架构是否仍然合理，做好准备</p>
+</blockquote>
+<blockquote>
+<p>Q：怎么确定文件的存储格式，是使用markdown、plain text还是什么？
+A：一般使用line based的plain text，方便进行grep以及查询一定范围行数的内容，markdown有一个问题是某些模型厂商的模型在markdown上训练过于充分导致太容易出现bullet point</p>
+</blockquote>
+<blockquote>
+<p>Q：Summarization的prompt的怎么写的，如果写不好会损失信息，一般的做法是基于高召回来调整，Manus呢？
+A：不要让模型自由发挥，设定一个类似schema的东西，一些field让模型填写，保持稳定以及保证某些内容一定会被总结到（比如目标）</p>
+</blockquote>
+<blockquote>
+<p>Q：Compaction就是把工具的结果写入文件，然后返回一个文件名吗？
+A：是的，但是不光是文件，基本所有操作都有一个外部存储方式，比如网页操作有一个url、搜索操作有一个query，他们都天然的有一个用于compaction的外部存储方式</p>
+</blockquote>
+<blockquote>
+<p>Q：比如对于搜索，如果返回的token很多，是先做summarization在返回还是整体返回再等着compaction？
+A：如果搜索是个复杂搜索，比如多个query那种，会调用高级搜索，本质就是一个sub-agent，他会进行agentic workflow的处理，然后返回固定格式的结果，但是如果是简单的搜索，比如google一下，就是全文返回，然后等待compaction，这种情况下也会让模型写下一些中间的insight存入文件</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是怎么处理agent和agent之间的交流的？
+A：由于Manus是在sandbox中运行的，因此agent之间的sharing context就是共用sandbox就可以了，这不难，难得是怎么确保从sub-agent能得到期望的输出。我们指定主agent在创建sub-agent的时候，就需要制定好返回的structured output，然后在sub-agent返回结果的时候，使用限制解码来控制得到我们期望的输出</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是使用anthropic的模型，但是你们有尝试过开源模型吗，怎么选择的？
+A：更多是成本上的考虑。当需要使用distributed kv-cache的时候，更前沿的模型厂商拥有更有保障的架构支持，反而比你自己实现成本更低。另外每个大模型厂商的模型技术优势各不相同（claude在代码上强，gemini在多模态上强，openai在数学和推理上强），可以进行task、subtask甚至step粒度的routing</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是不是一种混合模式，在有些时候使用原子操作，有些时候使用codeact模式？
+A：是的，这很重要，因为如果都用codeact模式，没办法进行限制解码，导致结果不可控</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus的planning是怎么样的？
+A：一开始Manus也是使用todo.md，这样你会发现三分之一的操作都是在执行todo.md的更新，很浪费token，后来我们使用了一个agent as tool来专门规划，节省token</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus的multi agent是怎么样规划设计的？
+A：Manus的agent不是传统的按角色定义的，只有planner agent、executor agent、knowledge management agent以及api registration agent这么几个，我们对于添加agent很谨慎，因为agent之间的交流很难，更多的是使用agent as tool</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是如何做安全防护的？
+A：由于Manus是运行在sandbox里的，只要能连接到互联网都不安全，所以我们会监控从sandbox流出的信息，确保不含有带有token信息的内容，即便这样，Manus在agent使用一些敏感操作时，还是会向用户确认，或者直接让用户接手</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus是如何进行评估的？
+A：一开始刚发布的时候是使用gaia评估集，但是发现分数高的模型反而用户不喜欢。目前是采取以下三种方式：1、每个完成的session都要求用户打分（1-5分）；2、自己构建了一些关于execution的自动化评测集，可以在sandbox里面跑测试；3、招实习生来标注，因为一些如web generation、data visualization的任务需要人工评估（很难有好的reward model）</p>
+</blockquote>
+<blockquote>
+<p>Q：Manus会基于提供的工具进行RL训练吗？
+A：如果要支持MCP，agent的action space就会非常自由多变，这个情况下RL的方式很难训练。如果有充足的资源可以尝试，但是大模型的厂商都在做这件事，所以我们不需要重复造轮子，我们尽量使用parameter free的方式（不改变模型权重）</p>
+</blockquote>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.youtube.com/watch?v=6_BcCthVvb8" target="_blank">Context Engineering for AI Agents with LangChain and Manus</a></li>
+</ul>
+<p>#todo monica插件使用体验</p>
+<h3 id="openai-deep-research">
+  OpenAI Deep Research
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p><a href="#R-image-ca1e53ba479115032b0ae7355f92597e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ca1e53ba479115032b0ae7355f92597e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f82704be3aa3e0376524bdd673dc27c8.png?width=600px"></a>
 </p>
 <ul>
-<li>大模型回复的context应该包含以下几方面：
-<ul>
-<li>system prompt：系统提示词，回复的高级指导</li>
-<li>long-term/short-term memory：长短期，用户对话过程中对后续有用的关键信息</li>
-<li>RAG：外部参考数据</li>
-<li>tools：工具返回数据</li>
-<li>structured output：回复的格式要求</li>
-<li>user prompt：用户的上文</li>
-</ul>
+<li>lead agent根据用户query设计策略，创建子agent进行不同方面的探索</li>
+<li>子agent通过多步搜索动态分析每次的搜索结果</li>
+<li>citation agent单独在最终完成citation插入的定向任务
+<a href="#R-image-e18ca0bea27395e95e8480727dcb6354" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e18ca0bea27395e95e8480727dcb6354"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/d97fe4001651208886576d9e08b740bf.png?width=600px"></a>
 </li>
 </ul>
-<p><a href="#R-image-e941f15e79bef1e1a3702974bb61de01" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e941f15e79bef1e1a3702974bb61de01"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9b377d59eec51932b8bcccbdd8e9c819.png"></a>
-</p>
+<p>主要通过prompt engineering解决multi-agent的以下问题，</p>
 <ul>
-<li>context engineering的工作主要包含以下四个方面：
+<li>简单query创建过多子agent</li>
+<li>在web中持续搜索不存在内容</li>
+<li>过度更新context产生互相干扰</li>
+</ul>
+<p>如何有效评估multi-agent：</p>
 <ul>
-<li>写入：长期记忆（用户偏好的总结）、短期记忆（当前会话的摘要和状态）</li>
-<li>选取：选取相关工具和知识、选取当前会话摘要和长期记忆
+<li>从很小的评测集开始，快速迭代</li>
+<li>到某一阶段后通过llm-as-judge来评估：事实性、引用准确、完整性、来源质量和工具效率等</li>
+<li>人工校验自动化疏漏（通过prompt修改）：如自动化流程通常倾向于seo较好的文档来源</li>
+</ul>
+<p>工业可靠性：</p>
 <ul>
-<li>通过规则，比如指定读取某个memory文件</li>
-<li>通过大模型，比如判断合适的工具</li>
-<li>通过检索，比如RAG</li>
+<li>通过agent的state来快速恢复出现错误之前的state并retry，包括tool call的错误</li>
+<li>添加trace，包括决策、交互结构等，方便debug</li>
+<li>agent的更新升级，不是同时的（会导致运行中的agent报错），而是以agent粒度渐进的</li>
+<li>期待后续实现异步调用，目前的同步方式会使通信成为瓶颈，且耗时（等待最慢的子agent）</li>
 </ul>
-</li>
-<li>压缩：基本分为compaction和summarization，经常同时使用
-<ul>
-<li>compaction：将信息offload到文件系统中，减少context长度，无损，可以回溯</li>
-<li>summarization：直接通过大模型总结，容易造成信息损失</li>
-<li>为什么需要压缩：
-
-
-
-<a href="https://cognition.ai/blog/dont-build-multi-agents#principles-of-context-engineering" target="_blank"># Don’t Build Multi-Agents</a></li>
-</ul>
-</li>
-<li>隔离：设定信息的边界，也可以理解为一种信息筛选
-<ul>
-<li>tool的调用相当于一种context隔离，只将tool需要的context传递</li>
-<li>多agent相当于每个子agent对信息进行隔离，只关注自己需要处理的部分
-参考链接：</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-
-
-
-<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank"># Effective context engineering for AI agents</a></li>
-<li>
-
-
-
-<a href="https://www.philschmid.de/context-engineering" target="_blank"># The New Skill in AI is Not Prompting, It&rsquo;s Context Engineering</a></li>
-<li>
-
-
-
-<a href="https://rlancemartin.github.io/2025/06/23/context_engineering/" target="_blank"># Context Engineering for Agents</a></li>
-<li>
-
-
-
-<a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank"># Effective context engineering for AI agents</a></li>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=WsGVXiWzTpI" target="_blank"># Build Hour: Agent Memory Patterns</a></li>
-</ul>
-<h1 id="manus中的context-engineering">
-  Manus中的Context Engineering
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<h3 id="围绕kv缓存进行设计">
-  围绕KV缓存进行设计
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>考虑到大模型token成本在有缓存和无缓存情况下的价格相差巨大，且agent相比chatbot而言输入输出token比大得多（由于每一步都包含工具调用结果等），需要面向kv-cache缓存命中率设计context策略：</p>
-<ul>
-<li>保持前缀稳定，注意system prompt中不要包含时间戳</li>
-<li>context只追加，注意一些json库会变动内部结构顺序</li>
-<li>在需要时明确标记缓存断点，某些大模型厂商不支持自动前缀缓存，需要人工添加
-<a href="#R-image-3c5b8257f8dd512bd950fd83e8fd27e3" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d84e7ddc6ebdfc0348b0c5e50fc0bb44.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3c5b8257f8dd512bd950fd83e8fd27e3"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d84e7ddc6ebdfc0348b0c5e50fc0bb44.png"></a>
-</li>
-</ul>
-<h3 id="遮蔽而非移除">
-  遮蔽，而非移除
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>在agent任务迭代过程中，不要中途减少工具，这由于以下原因：</p>
-<ul>
-<li>工具定义一般在system prompt的上下，修改定义会导致前缀缓存失效</li>
-<li>模型对于当前轮的观察如果基于不存在的工具，会导致下一步出现工具幻觉</li>
-</ul>
-<p>更好的方式是对某些token的logits进行mask，从而达到杜绝工具使用的目的。一般模型厂商提供响应预填充选项：</p>
-<ul>
-<li>自动：模型可以选择调用或不调用函数，通过仅预填充回复前缀实现：&lt;|im_start|&gt;assistant</li>
-<li>必需：模型必须调用函数，但选择不受约束。通过预填充到工具调用令牌实现：&lt;|im_start|&gt;assistant&lt;tool_call&gt;</li>
-<li>指定：模型必须从特定子集中调用函数。通过预填充到函数名称的开头实现：&lt;|im_start|&gt;assistant&lt;tool_call&gt;{&ldquo;name&rdquo;: &ldquo;browser_</li>
-</ul>
-<p>因此可以通过指定+mask指定工具的首token来完成对于对工具的禁用
-<a href="#R-image-8062b791e8e313c86e804cc68e351f9c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b530651026d07b47fa9c448ad3a2b5b6.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8062b791e8e313c86e804cc68e351f9c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/b530651026d07b47fa9c448ad3a2b5b6.png"></a>
-</p>
-<h3 id="使用文件系统作为上下文">
-  使用文件系统作为上下文
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>固定窗口上下文具有以下三个痛点：</p>
-<ul>
-<li>观察结果可能非常庞大，尤其是当代理与网页或PDF等非结构化数据交互时，很容易溢出</li>
-<li>模型性能往往会下降，超过一定的上下文长度后，即使技术上支持该窗口大小</li>
-<li>长输入成本高昂，即使使用前缀缓存。你仍然需要为传输和预填充每个token付费</li>
-</ul>
-<p>而文件系统大小不受限制，天然持久化，并且代理可以直接操作
-<a href="#R-image-142826bf99f3399dbfc2657a628baf6b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6d421649407b9914ee54b76f0b09ab7f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-142826bf99f3399dbfc2657a628baf6b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/6d421649407b9914ee54b76f0b09ab7f.png"></a>
-</p>
-<h3 id="通过复述操控注意力">
-  通过复述操控注意力
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>Manus通过创建一个todo.md文件，并在任务进行过程中逐步更新它，勾选已完成的项目，来帮助agent保持对任务目标的注意力
-<a href="#R-image-a38837b154c203cb4360be29549a1081" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f5a1a34c1b074b4dc2d5c8d6aa7abce5.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a38837b154c203cb4360be29549a1081"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/f5a1a34c1b074b4dc2d5c8d6aa7abce5.png"></a>
-</p>
-<h3 id="保留错误的内容">
-  保留错误的内容
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>当模型看到一个失败的行动，以及由此产生的观察结果或堆栈跟踪，它会隐式地更新其内部信念，即改变其先验，降低重复相同错误的可能性。因此不要将agent的错误痕迹擦除，保留在上下文中
-<a href="#R-image-c3d27c925cc30e4fc41f37eb6b1f3cf6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/80ad86fe606ea7ebafc62a6f95b24fe8.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c3d27c925cc30e4fc41f37eb6b1f3cf6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/80ad86fe606ea7ebafc62a6f95b24fe8.png"></a>
-</p>
-<h3 id="不要被少样本示例所困">
-  不要被少样本示例所困
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p>如果你的上下文充满了类似的过去行动-观察对，模型将倾向于遵循该模式，即使这不再是最优的。解决方法是增加few-shot的多样性，即不同的序列化模板、替代性措辞、顺序或格式上的微小噪音
-<a href="#R-image-997c082c005f8aec97de45ab7997845d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/4078410a061a1c95a77b86d92ce3935a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-997c082c005f8aec97de45ab7997845d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/4078410a061a1c95a77b86d92ce3935a.png"></a>
-
-参考链接：</p>
+<p>参考链接：</p>
 <ul>
 <li>
 
 
 
-<a href="https://manus.im/zh-cn/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus" target="_blank"># Context Engineering for AI Agents: Lessons from Building Manus</a></li>
-</ul>
+<a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank"># How we built our multi-agent research system</a></li>
+<li>
 
+
+
+<a href="https://github.com/anthropics/claude-cookbooks/tree/main/patterns/agents/prompts" target="_blank">open-source prompts in our Cookbook</a></li>
+</ul>
+<h3 id="其他">
+  其他
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://openpipe.ai/blog/art-e-mail-agent?refresh=1767907860843" target="_blank"># ART·E: How We Built an Email Research Agent That Beats o3</a></li>
+</ul>
+<h2 id="agent应用">
+  Agent应用
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="clawdbot--moltbot">
+  Clawdbot / Moltbot
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3>
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Dec 24, 2025
+              <i class='fa-fw fas fa-calendar'></i> Dec 31, 2025
   </footer>
 </article>
         </div>
@@ -506,10 +633,10 @@ Context Rot: How Increasing Input Tokens Impacts LLM Performance # How Long Cont
             <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM训练技术学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">LLM进展与应用</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">LLM进展与应用</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
