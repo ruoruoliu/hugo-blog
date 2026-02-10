@@ -1,14 +1,14 @@
 ---
-title: Week14 Agent框架学习：LangChain
+title: Week14 LangChain框架学习
 date: 2026-02-02
 tags:
   - 周记
 draft: false
 ---
 > [!note] 总结
-> - Agent框架学习：LangChain
+> - LangChain框架学习
 
-> [!info]+ Agent框架学习：LangChain
+> [!info]+ LangChain框架学习
 
 - [LangChain学习手册](../Blogs/LangChain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)
 
@@ -29,5 +29,5 @@ draft: false
 > 	- response_format：通过ToolStrategy或者厂商原生能力，支持结构化输出
 
 > [!warning] 待办
-> - Agent框架学习：LangGraph
+> - LangGraph框架学习
 
