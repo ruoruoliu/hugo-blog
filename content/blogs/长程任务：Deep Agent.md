@@ -81,4 +81,4 @@ Deep Agent一个具体应用方向，通过分析用户问题，指定研究计�
 
 ## 产品形态
 
-[LLM应用-长程任务](LLM%E5%BA%94%E7%94%A8.md#%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1)
+[LLM进展与应用-长程任务](LLM%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8.md#%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1)

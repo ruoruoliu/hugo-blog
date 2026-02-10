@@ -1,11 +1,11 @@
 ---
-title: LLM应用
+title: LLM进展与应用
 date: 2025-12-31
 tags:
   - 技术笔记
 draft: false
 ---
-# 技术应用
+# 应用
 --- 
 ## NLP
 ---
@@ -16,7 +16,7 @@ draft: false
 --- 
 
 
-# 产品应用
+# 产品
 --- 
 
 ## 对话助手
@@ -26,6 +26,13 @@ draft: false
 ### Claude
 
 ### Gemini
+
+### Kimi
+
+#### Kimi K2.5
+
+参考链接：
+- [KIMI K2.5: VISUAL AGENTIC INTELLIGENCE](https://arxiv.org/pdf/2602.02276)
 
 参考链接：
 - [# How I use LLMs](https://www.youtube.com/watch?v=EWvNQjAaOHw)
@@ -95,6 +102,7 @@ draft: false
 
 参考链接：
 - [Context Engineering for AI Agents with LangChain and Manus](https://www.youtube.com/watch?v=6_BcCthVvb8)
+
 #todo monica插件使用体验
 
 ### OpenAI Deep Research

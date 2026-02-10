@@ -79,6 +79,10 @@ Vim分为两个概念，编辑器和motion
 - 管理buffer的工具，可以方便在buffer之间切换：
 	- 上一个buffer：\[b
 	- 下一个buffer：\]b
+### comment
+- 注释toggle：
+	- 对于insert模式下，使用gc
+	- 对于visual模式下，使用gcc
 ### telescope
 - 方便在目录内查找文件，字符串等
 - leader + ff（find files） 进行文件查找

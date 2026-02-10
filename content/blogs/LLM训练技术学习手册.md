@@ -20,6 +20,18 @@ LLM训练主要包含三部分：
 
 ## DeepSeek
 
+### MTP
+
+- 训练过程中通过多个head同时预测后续多个token，强迫模型预测长期未来
+- 预测的时候，MTP作为[投机解码](LLM%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#%E6%8A%95%E6%9C%BA%E8%A7%A3%E7%A0%81)的提议者，由MTP生成n个token，然后主干模型再计算是否正确，即符合主干模型的概率分布，如果正确则保留，不正确则抛弃，以此循环
+	- MTP像一个滑动窗口在每个主干模型截止的位置发起下一次多token预测
+	- MTP可以比主干模型小一些，但整体速度收益还是在于多token的并发预测
+	- 接受MTP结果的判断通常使用拒绝采样来完成
+		- [投机解码中使用拒绝采样判断是否接受](../Answers/%E6%8A%95%E6%9C%BA%E8%A7%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8B%92%E7%BB%9D%E9%87%87%E6%A0%B7%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%8E%A5%E5%8F%97.md)
+		- [投机解码中使用拒绝采样的修正逻辑](../Answers/%E6%8A%95%E6%9C%BA%E8%A7%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%8B%92%E7%BB%9D%E9%87%87%E6%A0%B7%E7%9A%84%E4%BF%AE%E6%AD%A3%E9%80%BB%E8%BE%91.md)
+		- [# 为什么LLM投机推理小模型被拒绝后要从修正分布获取正确的token？](https://www.zhihu.com/question/1925342080953222752)
+
+
 参考链接：
 - [# deepseek技术解读(1)-彻底理解MLA（Multi-Head Latent Attention）](https://zhuanlan.zhihu.com/p/16730036197)
 - [# deepseek技术解读(2)-MTP（Multi-Token Prediction）的前世今生](https://zhuanlan.zhihu.com/p/18056041194)
@@ -180,6 +192,13 @@ GSPO的长度归一化：
 参考链接：
 - [Group Sequence Policy Optimization](https://arxiv.org/pdf/2507.18071)
 
+## Tree-GRPO
+
+#todo 看tree-based的方法
+
+参考链接：
+- [TREE SEARCH FOR LLM AGENT REINFORCEMENT LEARNING](https://arxiv.org/pdf/2509.21240)
+
 ## RLVR
 
 RLVR在PPO/GRPO中用可验证奖励（Verifiable Rewards）替换原始reward model：
@@ -222,8 +241,14 @@ PRM针对推理过程进行reward预测，细粒度帮助模型学习推理的�
 #todo [R1论文解析]([https://www.bilibili.com/video/BV15yA3eWE5b/](https://www.bilibili.com/video/BV15yA3eWE5b/?spm_id_from=333.1387.collection.video_card.click&vd_source=c8a3c83e361aa2a357093342a046ceed))
 #todo Search-R1、interleaving thinking后训练
 
+# Distillation
+--- 
+
+#todo on-policy distillation
 
 # 框架
+--- 
+
 
 #todo  框架学习
 

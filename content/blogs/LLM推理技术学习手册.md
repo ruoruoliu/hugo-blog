@@ -33,7 +33,7 @@ PD分离计算流程：
 - 缓存迁移：将kv cache的结果传送到Decoding节点上
 - 在Decoding节点进行逐字生成
 
-## 投机采样
+## 投机解码
 
 
 ### Eagle

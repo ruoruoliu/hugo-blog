@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="Agents 通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件 核心组件包括：
+Model： 支持静态模型，即初始化固定后，交互过程中不变 支持动态选择的，可以使用wrap_model_call中间件，基于请求拦截并override模型 Tools： 多工具串行调用、工具并行调用 基于之前结果的工具动态选择 工具的错误重试和处理逻辑：使用wrap_tool_call中间件 保持工具调用之间的状态一致 动态工具：即在运行过程中进行工具变更，包括： 根据当前状态和上下文，利用wrap_model_call中间件动态筛选已注册工具，这种方式适用于所有工具在创建agent时已明确 如果工具是运行时动态发现的，比如来自MCP server、用户数据等，需要运行时注册工具，包括添加（wrap_model_call）和处理（wrap_tool_call）逻辑 System prompt： 可以接受str或者SystemMessage类型（支持claude的prompt caching） 通过dynamic_prompt中间件基于request修改system prompt Invocation： state就是message的序列，通过invoke来输入一条新的message 可以通过stream触发流式输出 高级概念：
+Structured output 通过response_format对agent的回复进行格式化： 使用ToolStrategy对一个结构化数据格式进行包装，利用模型tool的能力来进行格式化 如果模型支持native structured output，可以直接使用ProviderStrategy进行包装 Memory： agent本身通过State（message序列）记录对话过程，可以通过以下方式扩展memory： 定义基于AgentState的扩展state，再通过中间件（比如内部的before_model的hook）实现state的修改，这种方式可以把逻辑和所需要的工具绑定在state修改的时刻，而不用在create_agent的时候绑定 定义基于AgentState的扩展state，传入state_schema字段，只适合大模型直接通过工具（而不是中间件）访问的memory，不够可控 Middleware： 在模型调用前：message裁剪、上下文注入 修改或者验证模型输出：guardrails和内容过滤 处理工具调用失败 基于state或者context进行动态模型选择 加入定制化log、监控和分析 Models Model的常见使用：">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LangChain学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="Agents 通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件 核心组件包括：
+Model： 支持静态模型，即初始化固定后，交互过程中不变 支持动态选择的，可以使用wrap_model_call中间件，基于请求拦截并override模型 Tools： 多工具串行调用、工具并行调用 基于之前结果的工具动态选择 工具的错误重试和处理逻辑：使用wrap_tool_call中间件 保持工具调用之间的状态一致 动态工具：即在运行过程中进行工具变更，包括： 根据当前状态和上下文，利用wrap_model_call中间件动态筛选已注册工具，这种方式适用于所有工具在创建agent时已明确 如果工具是运行时动态发现的，比如来自MCP server、用户数据等，需要运行时注册工具，包括添加（wrap_model_call）和处理（wrap_tool_call）逻辑 System prompt： 可以接受str或者SystemMessage类型（支持claude的prompt caching） 通过dynamic_prompt中间件基于request修改system prompt Invocation： state就是message的序列，通过invoke来输入一条新的message 可以通过stream触发流式输出 高级概念：
+Structured output 通过response_format对agent的回复进行格式化： 使用ToolStrategy对一个结构化数据格式进行包装，利用模型tool的能力来进行格式化 如果模型支持native structured output，可以直接使用ProviderStrategy进行包装 Memory： agent本身通过State（message序列）记录对话过程，可以通过以下方式扩展memory： 定义基于AgentState的扩展state，再通过中间件（比如内部的before_model的hook）实现state的修改，这种方式可以把逻辑和所需要的工具绑定在state修改的时刻，而不用在create_agent的时候绑定 定义基于AgentState的扩展state，传入state_schema字段，只适合大模型直接通过工具（而不是中间件）访问的memory，不够可控 Middleware： 在模型调用前：message裁剪、上下文注入 修改或者验证模型输出：guardrails和内容过滤 处理工具调用失败 基于state或者context进行动态模型选择 加入定制化log、监控和分析 Models Model的常见使用：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="LangChain学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="Agents 通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件 核心组件包括：
+Model： 支持静态模型，即初始化固定后，交互过程中不变 支持动态选择的，可以使用wrap_model_call中间件，基于请求拦截并override模型 Tools： 多工具串行调用、工具并行调用 基于之前结果的工具动态选择 工具的错误重试和处理逻辑：使用wrap_tool_call中间件 保持工具调用之间的状态一致 动态工具：即在运行过程中进行工具变更，包括： 根据当前状态和上下文，利用wrap_model_call中间件动态筛选已注册工具，这种方式适用于所有工具在创建agent时已明确 如果工具是运行时动态发现的，比如来自MCP server、用户数据等，需要运行时注册工具，包括添加（wrap_model_call）和处理（wrap_tool_call）逻辑 System prompt： 可以接受str或者SystemMessage类型（支持claude的prompt caching） 通过dynamic_prompt中间件基于request修改system prompt Invocation： state就是message的序列，通过invoke来输入一条新的message 可以通过stream触发流式输出 高级概念：
+Structured output 通过response_format对agent的回复进行格式化： 使用ToolStrategy对一个结构化数据格式进行包装，利用模型tool的能力来进行格式化 如果模型支持native structured output，可以直接使用ProviderStrategy进行包装 Memory： agent本身通过State（message序列）记录对话过程，可以通过以下方式扩展memory： 定义基于AgentState的扩展state，再通过中间件（比如内部的before_model的hook）实现state的修改，这种方式可以把逻辑和所需要的工具绑定在state修改的时刻，而不用在create_agent的时候绑定 定义基于AgentState的扩展state，传入state_schema字段，只适合大模型直接通过工具（而不是中间件）访问的memory，不够可控 Middleware： 在模型调用前：message裁剪、上下文注入 修改或者验证模型输出：guardrails和内容过滤 处理工具调用失败 基于state或者context进行动态模型选择 加入定制化log、监控和分析 Models Model的常见使用：">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2026-02-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-06T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta itemprop="name" content="LangChain学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="Agents 通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件 核心组件包括：
+Model： 支持静态模型，即初始化固定后，交互过程中不变 支持动态选择的，可以使用wrap_model_call中间件，基于请求拦截并override模型 Tools： 多工具串行调用、工具并行调用 基于之前结果的工具动态选择 工具的错误重试和处理逻辑：使用wrap_tool_call中间件 保持工具调用之间的状态一致 动态工具：即在运行过程中进行工具变更，包括： 根据当前状态和上下文，利用wrap_model_call中间件动态筛选已注册工具，这种方式适用于所有工具在创建agent时已明确 如果工具是运行时动态发现的，比如来自MCP server、用户数据等，需要运行时注册工具，包括添加（wrap_model_call）和处理（wrap_tool_call）逻辑 System prompt： 可以接受str或者SystemMessage类型（支持claude的prompt caching） 通过dynamic_prompt中间件基于request修改system prompt Invocation： state就是message的序列，通过invoke来输入一条新的message 可以通过stream触发流式输出 高级概念：
+Structured output 通过response_format对agent的回复进行格式化： 使用ToolStrategy对一个结构化数据格式进行包装，利用模型tool的能力来进行格式化 如果模型支持native structured output，可以直接使用ProviderStrategy进行包装 Memory： agent本身通过State（message序列）记录对话过程，可以通过以下方式扩展memory： 定义基于AgentState的扩展state，再通过中间件（比如内部的before_model的hook）实现state的修改，这种方式可以把逻辑和所需要的工具绑定在state修改的时刻，而不用在create_agent的时候绑定 定义基于AgentState的扩展state，传入state_schema字段，只适合大模型直接通过工具（而不是中间件）访问的memory，不够可控 Middleware： 在模型调用前：message裁剪、上下文注入 修改或者验证模型输出：guardrails和内容过滤 处理工具调用失败 基于state或者context进行动态模型选择 加入定制化log、监控和分析 Models Model的常见使用：">
+    <meta itemprop="datePublished" content="2026-02-06T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-02-06T00:00:00+00:00">
+    <meta itemprop="wordCount" content="554">
+    <meta itemprop="keywords" content="技术笔记">
+    <title>LangChain学习手册 :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1770710598" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770710598" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770710598" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1770710598" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1770710598" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770710598";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1770710598" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770710598" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770710598" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770710598" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770710598" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770710598" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770710598" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1770710598" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1770710598" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#prebuilt-middleware">Prebuilt middleware</a></li>
+    <li><a href="#custom-middleware">Custom middleware</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#subagents">Subagents</a></li>
+    <li><a href="#handoffs">Handoffs</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#router">Router</a></li>
+    <li><a href="#custom-workflow">Custom workflow</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">LangChain学习手册</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="LangGraph学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="langchain学习手册">LangChain学习手册</h1>
+
+<h1 id="agents">
+  Agents
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件
+<a href="#R-image-6896b07a53bd3cec778baeb081ab259b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/9cfc7b50edf44808da5e2d148319e5c2.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6896b07a53bd3cec778baeb081ab259b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/9cfc7b50edf44808da5e2d148319e5c2.png"></a>
+</p>
+<p>核心组件包括：</p>
+<ul>
+<li>Model：
+<ul>
+<li>支持静态模型，即初始化固定后，交互过程中不变</li>
+<li>支持动态选择的，可以使用wrap_model_call中间件，基于请求拦截并override模型</li>
+</ul>
+</li>
+<li>Tools：
+<ul>
+<li>多工具串行调用、工具并行调用</li>
+<li>基于之前结果的工具动态选择</li>
+<li>工具的错误重试和处理逻辑：使用wrap_tool_call中间件</li>
+<li>保持工具调用之间的状态一致</li>
+<li>动态工具：即在运行过程中进行工具变更，包括：
+<ul>
+<li>根据当前状态和上下文，利用wrap_model_call中间件动态筛选已注册工具，这种方式适用于所有工具在创建agent时已明确</li>
+<li>如果工具是运行时动态发现的，比如来自MCP server、用户数据等，需要运行时注册工具，包括添加（wrap_model_call）和处理（wrap_tool_call）逻辑</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>System prompt：
+<ul>
+<li>可以接受str或者SystemMessage类型（支持claude的prompt caching）</li>
+<li>通过dynamic_prompt中间件基于request修改system prompt</li>
+</ul>
+</li>
+<li>Invocation：
+<ul>
+<li>state就是message的序列，通过invoke来输入一条新的message</li>
+<li>可以通过stream触发流式输出</li>
+</ul>
+</li>
+</ul>
+<p>高级概念：</p>
+<ul>
+<li>Structured output
+<ul>
+<li>通过response_format对agent的回复进行格式化：
+<ul>
+<li>使用ToolStrategy对一个结构化数据格式进行包装，利用模型tool的能力来进行格式化</li>
+<li>如果模型支持native structured output，可以直接使用ProviderStrategy进行包装</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Memory：
+<ul>
+<li>agent本身通过State（message序列）记录对话过程，可以通过以下方式扩展memory：
+<ul>
+<li>定义基于AgentState的扩展state，再通过中间件（比如内部的before_model的hook）实现state的修改，这种方式可以把逻辑和所需要的工具绑定在state修改的时刻，而不用在create_agent的时候绑定</li>
+<li>定义基于AgentState的扩展state，传入state_schema字段，只适合大模型直接通过工具（而不是中间件）访问的memory，不够可控</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Middleware：
+<ul>
+<li>在模型调用前：message裁剪、上下文注入</li>
+<li>修改或者验证模型输出：guardrails和内容过滤</li>
+<li>处理工具调用失败</li>
+<li>基于state或者context进行动态模型选择</li>
+<li>加入定制化log、监控和分析</li>
+</ul>
+</li>
+</ul>
+<h1 id="models">
+  Models
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Model的常见使用：</p>
+<ul>
+<li>模型可以以两种形式使用：
+<ul>
+<li>agent内部调用，用于agent行为的决策</li>
+<li>离线调用，即脱离agent框架直接调用，用于做一些文本生成、分类等任务
+<ul>
+<li>通过init_chat_model，然后通过invoke/stream/batch调用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过.bind_tools可以绑定工具
+<ul>
+<li>在agent内可以自动调用，而在离线下需要手动调用</li>
+<li>当模型认为需要多个tool call时，response.tool_calls会返回一个列表</li>
+</ul>
+</li>
+<li>通过pydantic、typeddict或者json进行结构化输出，返回字典
+<ul>
+<li>可以通过.with_structured_output绑定，主要用于model直接调用，agent中不适用</li>
+<li>pydantic提供字段校验，而typeddict和json需要人工校验</li>
+</ul>
+</li>
+<li>通过.profile获取模型基础
+<ul>
+<li>根据context window size触发summarization的中间件</li>
+<li>判断模型是否native结构化输出</li>
+<li>根据模型是否支持多模态来限制输入</li>
+</ul>
+</li>
+<li>通过content_blocks进行多模态的输入和输出</li>
+<li>通过content_blocks中type=“reasoning”的部分获取模型的思考内容</li>
+<li>某些模型厂商提供：
+<ul>
+<li>隐式（前缀命中自动cache）以及显式（基于参数）的prompt caching</li>
+<li>某些模型厂商提供server侧的工具调用，也会以content_blocks的形式返回</li>
+<li>基于base URL/Proxy方式的调用</li>
+<li>输出token的log prob</li>
+<li>token使用情况</li>
+</ul>
+</li>
+<li>通过invoke中的config参数，可以额外给每轮带入特定信息：
+<ul>
+<li>方便通过LangSmith来debug、加入log和监控、控制token使用等</li>
+<li>配置每轮不同的模型：&ldquo;configurable&rdquo;: {&ldquo;model&rdquo;: &ldquo;gpt-5-nano&rdquo;}</li>
+</ul>
+</li>
+</ul>
+<h1 id="messages">
+  Messages
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>message包含三部分：</p>
+<ul>
+<li>Role：角色，比如system、user</li>
+<li>Content：内容，包括文本、图片、文档等</li>
+<li>Metadata：可选属性，比如回复元数据（模型信息、log prob等）、消息id、token usage等</li>
+</ul>
+<p>message的基本用法：</p>
+<ul>
+<li>text prompts：纯文本，当不需要交互对话历史时使用，最简单</li>
+<li>message prompts：
+<ul>
+<li>SystemMessage：system prompt</li>
+<li>HumanMessage：用户输入</li>
+<li>AIMessage：大模型输出，包括对工具发起调用的message</li>
+<li>ToolMessage：工具调用输出</li>
+</ul>
+</li>
+<li>dict：通过字典包含“role”、“content”等信息，适用于openai chat completion的格式</li>
+</ul>
+<p>message的内容可能包含：</p>
+<ul>
+<li>纯文本</li>
+<li>模型厂商支持的内容列表</li>
+<li>LangChain标准的content_blocks，可以根据上述内容转化为content_blocks</li>
+</ul>
+<h1 id="tools">
+  Tools
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>构造工具的方法：</p>
+<ul>
+<li>@tool：使用函数装饰器，要求函数包含明确且简介的docstring，且type hint完整</li>
+<li>在装饰器上可以添加自定义参数：
+<ul>
+<li>@tool(&ldquo;web_search&rdquo;)：覆盖tool的名字</li>
+<li>@tool(&ldquo;calculator&rdquo;, description=&ldquo;Performs arithmetic calculations&hellip;&quot;)：覆盖tool的描述</li>
+<li>@tool(args_schema=XXX)：通过pydantic的方式，给tool的输入提供更详细的描述</li>
+</ul>
+</li>
+<li>注意：config和runtime是保留关键字，不能用于tool的参数名</li>
+</ul>
+<p><a href="#R-image-712b9caf8a4c756eb846d9efc2bab73a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/753b206b40471502c0763bb042b3d2aa.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-712b9caf8a4c756eb846d9efc2bab73a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/753b206b40471502c0763bb042b3d2aa.png"></a>
+
+通过ToolRuntime可以获取工具所需要的信息，包括：</p>
+<ul>
+<li>State：短期记忆，包括对话历史等
+<ul>
+<li>通过Command命令更新State：Command(update={&ldquo;user_name&rdquo;: new_name})</li>
+</ul>
+</li>
+<li>Context：外部传入的属性信息，可以基于用户属性定制化回复</li>
+<li>Store：长期记忆，跨对话的数据，包括用户偏好、知识库等
+<ul>
+<li>通过定义存储和读取的tool，来和runtime.store进行交互</li>
+<li>store是一个层次化结构，由命名空间（Namespace，类型是tuple）和具体的key组成
+<ul>
+<li>store.put((&ldquo;users&rdquo;,), user_id, user_info)</li>
+<li>store.get((&ldquo;users&rdquo;,), user_id)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Stream Writer：实时输出过程信息，类似进度条</li>
+<li>Config：执行配置信息</li>
+<li>Tool Call ID：当前工具调用id</li>
+</ul>
+<p>ToolNode是LangGraph中预定义的节点，负责并行工具执行、错误处理和状态注入：</p>
+<ul>
+<li>builder = StateGraph(MessagesState)之后
+<ul>
+<li>并行工具执行：builder.add_node(&ldquo;tools&rdquo;, tool_node)，tool_node包含多个tool</li>
+<li>错误处理：
+<ul>
+<li>tool_node = ToolNode(tools, handle_tool_errors=True)</li>
+<li>tool_node = ToolNode(tools, handle_tool_errors=&ldquo;Something went wrong.&rdquo;)</li>
+<li>tool_node = ToolNode(tools, handle_tool_errors=handle_error)，填入处理逻辑</li>
+</ul>
+</li>
+<li>tool call调用判断：builder.add_conditional_edges(&ldquo;llm&rdquo;, tools_condition)</li>
+<li>状态注入：tool_node = ToolNode([get_message_count])，get_message_count通过runtime.state来计数的工具</li>
+</ul>
+</li>
+</ul>
+<h1 id="short-term-memory">
+  Short-term memory
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>通过在create_agent中加载checkpointer来支持对话内的状态保持，即short-term memory：</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>from langchain.agents import create_agent
+from langgraph.checkpoint.memory import InMemorySaver  
+
+agent = create_agent(
+    &#34;gpt-5&#34;,
+    tools=[get_user_info],
+    checkpointer=InMemorySaver(),  
+)
+
+agent.invoke(
+    {&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hi! My name is Bob.&#34;}]},
+    {&#34;configurable&#34;: {&#34;thread_id&#34;: &#34;1&#34;}},  
+)</code></pre></div>
+<p>在生产环境中，可以使用数据库来存储：</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>from langchain.agents import create_agent
+
+from langgraph.checkpoint.postgres import PostgresSaver  
+
+DB_URI = &#34;postgresql://postgres:postgres@localhost:5442/postgres?sslmode=disable&#34;
+with PostgresSaver.from_conn_string(DB_URI) as checkpointer:
+    checkpointer.setup() # auto create tables in PostgresSql
+    agent = create_agent(
+        &#34;gpt-5&#34;,
+        tools=[get_user_info],
+        checkpointer=checkpointer,  
+    )</code></pre></div>
+<p>解决过长的context，可以通过以下几种方式：</p>
+<ul>
+<li>Trim messages：利用before_model或after_model，messages数量过多时，保留最近的几条</li>
+<li>Delete messages：利用内置的RemoveMessage删除指定id的message</li>
+<li>Summarize messages：为了避免直接删除损失信息，在用总结的方式，利用SummarizationMiddleware中间件，设置参数举例：
+<ul>
+<li>model=&ldquo;gpt-4.1-mini&rdquo;</li>
+<li>trigger=(&ldquo;tokens&rdquo;, 4000)</li>
+<li>keep=(&ldquo;messages&rdquo;, 20)</li>
+</ul>
+</li>
+</ul>
+<h1 id="streaming">
+  Streaming
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>流式输出总体有四类：</p>
+<ul>
+<li>agent进度（updates）：基于每个agent step的状态更新，比如model、tools、model&hellip;</li>
+<li>LLM token（messages）：基于每个token的生成</li>
+<li>用户自定义（custom）：比如每获取10个文件一次输出，类似log</li>
+<li>多模式：以上updates、messages、custom的混合</li>
+</ul>
+<p>常见的几种情景：</p>
+<ul>
+<li>工具调用：通过updates捕捉tool call的调用结果，也可以通过custom在工具中写入，然后在主逻辑里打印</li>
+<li>human-in-the-loop：通过HumanInTheLoopMiddleware中间件，在某些工具调用时拦截，收集到decisions后利用Command的resume继续主逻辑
+<ul>
+<li>
+
+
+
+<a href="../Answers/LangChain%E4%B8%ADinterrupt_on%E8%A7%A6%E5%8F%91%E5%90%8E%E7%9A%84%E6%B5%81%E7%A8%8B.md">LangChain中interrupt_on触发后的流程</a></li>
+</ul>
+</li>
+<li>多agent：当涉及多agent时，子agent创建时设定name，stream过程中通过metadata的lc_agent_name字段确定当前输出的agent</li>
+</ul>
+<p>#todo 基于react构建生成式UI：
+
+
+
+<a href="https://docs.langchain.com/oss/python/langchain/streaming/frontend" target="_blank"># Frontend</a></p>
+<h1 id="structured-output">
+  Structured output
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>通过response_format可以让模型输出指定格式的回复：</p>
+<ul>
+<li>ToolStrategy(T)：把格式包装成工具，让模型通过工具的方式调用，tool的参数就是指定格式</li>
+<li>ProviderStrategy(T)：模型厂商原生支持某种格式，比如OpenAI的json_schema（受限解码），不需要包装为工具，需要在prompt里配合，减少token消耗</li>
+<li>type(T)：不用strategy封装，model.with_structured_output(T)，langchain自动判断模型是否支持此格式</li>
+</ul>
+<p>
+
+
+
+<a href="../Answers/LangChain%E7%9A%84response_format%E4%B8%AD%EF%BC%8Cjson_schema%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F.md">LangChain的response_format中，json_schema是什么？</a></p>
+<h1 id="middleware">
+  Middleware
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>中间件帮助你控制和定制化agent的每一步：</p>
+<ul>
+<li>通过log、分析和debug追踪agent的行为</li>
+<li>转换prompt、工具选择和输出格式</li>
+<li>添加重试、兜底和提前结束策略</li>
+<li>添加rate limit、guardrails、PII检测（personally identifiable information）</li>
+</ul>
+<p>中间件将agent loop从左图转变为右图：</p>
+<!-- raw HTML omitted -->
+<h2 id="prebuilt-middleware">
+  Prebuilt middleware
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>LangChain提供一下内置中间件：</p>
+<ul>
+<li>Summarization：当context超长时自动总结，保留最近的轮次，压缩之前的轮次</li>
+<li>Human-in-the-loop：对于高风险操作进行截断，并寻求用户对于工具的许可、编辑或拒绝</li>
+<li>Model call limit：防止模型进入循环而导致调用过多</li>
+<li>Tool call limit：防止工具调用过多</li>
+<li>Model fallback：当主模型失败后，回退到兜底模型</li>
+<li>PII detection：通过可配制策略，检测是否存在PII内容</li>
+<li>To-do list：给agent配备todo list，来解决复杂问题
+<ul>
+<li>给agent提供了write_todos的工具，以及在prompt中引导进行有效的任务规划</li>
+<li>还有专为deep agent配置的特殊版本中间件，在create_deep_agent时默认自动加载</li>
+</ul>
+</li>
+<li>LLM tool selector：专门使用LLM处理多个tool的筛选问题</li>
+<li>Tool retry：工具失败后的自动重试</li>
+<li>Model retry：模型调用失败后的自动重试</li>
+<li>LLM tool emulator：模拟工具执行，不实际调用工具，方便测试模型行为</li>
+<li>Context editing：通过应规则对不必要的工具记录进行删减，控制context长度</li>
+<li>Shell tool：提供持久化的shell session，用于命令行执行</li>
+<li>File search：提供glob和grep操作，搜索文件系统</li>
+<li>FilesystemMiddleware：提供了一整套交互工具，包括ls、read_file、write_file和edit_file，方便进行短期记忆，另外可以通过StoreBackend指定保存到/memories/，存储为长期记忆（不同的会话可以共享）</li>
+<li>Subagent：为当前agent指定subagent，包括他的名字、描述、任务（system prompt）和可用工具</li>
+</ul>
+<h2 id="custom-middleware">
+  Custom middleware
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>通过hook自定义中间件可以在agent执行的指定节点实现拦截逻辑：</p>
+<ul>
+<li>Node-style：作为一个执行步，通常用于log、验证和状态更新
+<ul>
+<li>before_agent和after_agent：在agent交互（invocation）前后</li>
+<li>before_model和after_model：在模型调用前后</li>
+</ul>
+</li>
+<li>Wrap-style：在handler执行过程中进行拦截，通常用于重试、缓存和转换
+<ul>
+<li>什么是handler：handler封装了当前序列后续所有操作
+<ul>
+<li>如果当前中间件后面还有其他中间件，handler就是下一个中间件</li>
+<li>如果当前中间件已经是最后一个，handler就是模型调用</li>
+</ul>
+</li>
+<li>wrap_model_call：包裹每次模型调用</li>
+<li>wrap_tool_call：包裹每次工具调用</li>
+</ul>
+</li>
+</ul>
+<p>创建中间件有以下两种方式：</p>
+<ul>
+<li>基于装饰器：通过装饰器包裹函数，即可实现简单的单hook中间件</li>
+<li>基于类，通常在以下场景使用：
+<ul>
+<li>包含多个hook</li>
+<li>包含复杂配置</li>
+<li>同时包含同步/异步版本</li>
+</ul>
+</li>
+</ul>
+<p>通过中间件可以更新自定义state schema，从而可以扩展agent的state：</p>
+<ul>
+<li>贯穿多轮的状态信息，实现用户状态跟踪，可以进而做条件判断</li>
+<li>在中间件之间共享信息，比如从before_model到after_model</li>
+</ul>
+<p>中间件的执行顺序，对于以下代码：</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>agent = create_agent(
+    model=&#34;gpt-4.1&#34;,
+    middleware=[middleware1, middleware2, middleware3],
+    tools=[...],
+)</code></pre></div>
+<ul>
+<li>before_*：从前向后执行</li>
+<li>after_*：从后向前执行</li>
+<li>wrap_*：从前向后执行（前面的包裹后面的所有）</li>
+</ul>
+<p>中间件通过返回字典，key=jump_to，可以实现逻辑跳转：</p>
+<ul>
+<li>end：到agent执行的最后（如果有after_agent，到after_agent之前）</li>
+<li>tools：到工具节点</li>
+<li>model：到模型节点（如果有before_model，到before_model之前）</li>
+</ul>
+<h1 id="guardrails">
+  Guardrails
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Guardrails通常使用于以下场景：</p>
+<ul>
+<li>防止PII泄露</li>
+<li>检测和阻止prompt注入攻击</li>
+<li>阻止有害内容</li>
+<li>强制商业规则和合规要求</li>
+<li>验证输出质量和准确性</li>
+</ul>
+<p>Guardrails的实现：</p>
+<ul>
+<li>通过确定性策略（关键字匹配等）和基于模型的方式互补</li>
+<li>LangChain提供了内置的PII detection和Huma-in-the-loop中间件</li>
+<li>自定义guardrails可以通过中间件的方式实现（before_agent和after_agent）</li>
+</ul>
+<h1 id="runtime">
+  Runtime
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>LangChain的create_agent底层在LangGraph的runtime上运行，runtime包含：</p>
+<ul>
+<li>Context：静态信息，包括用户id，数据库连接等
+<ul>
+<li>通过create_agent的context_schema参数明确context结构，每次invoke的时候填入内容</li>
+<li>通过tools获取context（runtime.context）、读写长期记忆、写入custom stream</li>
+<li>通过中间件
+<ul>
+<li>node-style：直接通过runtime.context获取</li>
+<li>wrap-style：通过ModelRequest的runtime.context获取</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Store：长期记忆的存储
+<a href="#R-image-95b2c415d98170f97a2f62c4690673b9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/3f1a32f60606bb220c8e1a8999fe98ea.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-95b2c415d98170f97a2f62c4690673b9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/3f1a32f60606bb220c8e1a8999fe98ea.png?width=500px"></a>
+</li>
+<li>Stream writer：用于custom模式的agent写出</li>
+</ul>
+<h1 id="context-engineering">
+  Context engineering
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>LangChain通过中间件的方式在以下三个方面做agent的context engineering：</p>
+<ul>
+<li>Model Context：瞬时，只在模型调用时存在的context
+<ul>
+<li>System Prompt：通过@dynamic_prompt中间件控制prompt内容，过长时进行提示</li>
+<li>Messages：从state、store和runtime context提取内容（如文件内容、风格描述等），加载到message中</li>
+<li>Tools：工具选择来控制工具数量，简化context</li>
+<li>Model：根据context长度可以动态选择模型，不同模型的context大小不同</li>
+<li>Response format：根据对话选择不同的回复格式，简单或者详细</li>
+</ul>
+</li>
+<li>Tool Context：工具的调用结果会更新state
+<ul>
+<li>读：可以从state、store和runtime context中读取信息</li>
+<li>写：可以将信息直接写入model context，也可以更新state或者store，供后续调用</li>
+</ul>
+</li>
+<li>Lift-cycle Context：指生命周期中的context，包括中间件等，也会更新state
+<ul>
+<li>中间件可以更新context</li>
+<li>中间件可以跳转到指定节点</li>
+</ul>
+</li>
+</ul>
+<h1 id="model-context-protocol">
+  Model Context Protocol
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>LangChain中使用MCP的方法：</p>
+<ul>
+<li>LangChain内置了langchain_mcp_adapter模块，帮助调用mcp server的工具
+<ul>
+<li>通过MultiServerMCPClient初始化client，加载mcp server</li>
+<li>通过await client.get_tools()获取所有的工具，在create_agent时候填入</li>
+</ul>
+</li>
+<li>通过FastMCP库将本地函数封装为mcp server，包括两种连接方式：
+<ul>
+<li>stdio：通过本地文件标准输出获取结果</li>
+<li>HTTP：通过http协议请求获取结果，填入url即可，服务可本地也可远程</li>
+</ul>
+</li>
+<li>通常MCP请求是无状态的，如果想在生命周期保持，可以通过client.session()维持</li>
+<li>通过client.get_resources()可以获取MCP的数据资源，load_mcp_resources可以直接载入session，方便后续处理</li>
+<li>client.get_prompt()和load_mcp_prompt和上面resources一样，针对prompt</li>
+</ul>
+<p>更多高级用法，如工具拦截、进度通知、日志以及交互式对话，参考：
+
+
+
+<a href="https://docs.langchain.com/oss/python/langchain/mcp#advanced-features" target="_blank">Advanced features</a></p>
+<h1 id="human-in-the-loop">
+  Human-in-the-loop
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Human-in-the-loop的流程：</p>
+<ul>
+<li>通过HumanInTheLoopMiddleware中间件配置每个工具是否需要人工干预
+<ul>
+<li>中间件的原理是实现了一个after_model的hook，在调用工具前判断是否需要interrupt</li>
+<li>
+
+
+
+<a href="../Answers/LangChain%E4%B8%ADHITL%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%98%AFafter_model%E7%9A%84%E5%8E%9F%E5%9B%A0.md">LangChain中HITL中间件实现是after_model的原因</a></li>
+</ul>
+</li>
+<li>当工具被interrupt，LangGraph的persistence layer会固定graph state，用于之后的resume</li>
+<li>用户的decision用来判断resume之后具体怎么做，包括approve、edit和reject
+<ul>
+<li>当有多个action需要干预时，decision按工具的请求顺序返回</li>
+</ul>
+</li>
+</ul>
+<h1 id="multi-agent">
+  Multi-agent
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="subagents">
+  Subagents
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>主agent给多个subagent分配任务，决定什么时候调用哪个subagent，最终由主agent回复</p>
+<p>Subagents包括以下特点：</p>
+<ul>
+<li>集中控制，所有路径最终经过主agent</li>
+<li>只有主agent与用户交互，subagent不会</li>
+<li>subagent以类似tool的方式被调用</li>
+<li>主agent可以同时调用多个subagent，实现并行处理</li>
+</ul>
+<p>实现方式：</p>
+<ul>
+<li>通过create_agent创建subagent，通过tool的方式调用subagent的invoke</li>
+</ul>
+<p>设计策略：</p>
+<ul>
+<li>Sync vs async：主agent是否需要等待subagent结果
+<ul>
+<li>异步一般通过三个tool完成：
+<ul>
+<li>通过启动一个job，并返回job ID</li>
+<li>根据job ID检查状态</li>
+<li>当完成后通知用户，点击确认后返回结果（类似HITL方式）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tool patterns，有以下两种方式：
+<ul>
+<li>Tool per agent：每个agent一个tool，精确控制输入输出</li>
+<li>Single dispatch tool：只有一个task工具，这个工具可以调用不同的subagent，subagent独立开发，可扩展性强，有自己独立的context，且被渐进式披露，增加subagent几乎对主agent逻辑没有影响</li>
+</ul>
+</li>
+<li>Context engineering，主agent和subagent如何交互：
+<ul>
+<li>Subagent specs：给subagent设置合适的name和description，包括
+<ul>
+<li>System prompt enumeration：当subagent数量较少，且相对固定的时候，可以在prompt中写死</li>
+<li>Enum constraint：通过enum类型保证选择subagent时的类型正确，可以提前报错</li>
+<li>Tool-based discovery：当subagent数量较大或动态加载时，使用工具进行search，达到渐进式披露的效果</li>
+</ul>
+</li>
+<li>Subagent inputs：通过state获取subagent需要的context信息，而不是直接把主agent的context传给subagent</li>
+<li>Subagent outputs：对subagent的回复做后处理，包括
+<ul>
+<li>Prompt the subagent：通过prompt要求subagent如何回复</li>
+<li>Format in code：通过Command(update=XXX)，subagent可以更新主agent的state</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="handoffs">
+  Handoffs
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>基于state进行agent的切换，具体指行为的切换，包括tools和prompt，或者agent本体的切换</p>
+<p>使用场景：</p>
+<ul>
+<li>一个顺序的逻辑，条件触发进入到下一个环节</li>
+<li>每个环节都需要和用户进行直接交互（相比于通过主agent间接交互）</li>
+<li>常见包括人工客服：需要收集一系列用户信息，然后推进流程（退款等）</li>
+</ul>
+<p>可以通过以下两种方式实现：</p>
+<ul>
+<li>Single agent with middleware：通过动态配置的方式切换行为，使用@wrap_model_call中间件重载agent的system prompt和tools</li>
+<li>通过LangGraph的多个node实现mutiple agent，通过状态机判断去哪一个node
+<ul>
+<li>需要传递上一轮的AIMessage（触发handoff）以及ToolMessage（实施handoff）给下一轮的subagent，防止subagent失去背景信息</li>
+</ul>
+</li>
+</ul>
+<h2 id="skills">
+  Skills
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>主agent根据需要加载特定的prompt和知识，相当于虚拟handoff，即主agent行为能力发生变化</p>
+<p>Skills具有如下特点：</p>
+<ul>
+<li>prompt驱动的能力：skills是基于prompt定义的</li>
+<li>渐进式披露：skills是基于状态和context来加载的
+<ul>
+<li>skills可以是层级式的，高层级的skill触发暴露低层级的skill</li>
+</ul>
+</li>
+<li>分布式开发：不同的团队并行开发skills</li>
+<li>相比其他的subagent系统更简单</li>
+<li>可以参考脚本、模板文件和其他资源</li>
+</ul>
+<p>Skills的使用场景：</p>
+<ul>
+<li>当你希望一个agent具备很多能力时，比如code assistant（不同语言、技术栈）</li>
+</ul>
+<h2 id="router">
+  Router
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>通过一个router将query进行拆分，分配给一个或多个subagent并发执行，最终将结果汇总</p>
+<p>Router可以设计成stateless和stateful：</p>
+<ul>
+<li>stateless：router调用subagent as tool</li>
+<li>stateful：将router包装为一个tool，外层用一个agent调用router，router本身stateless，外层agent有状态</li>
+</ul>
+<h2 id="custom-workflow">
+  Custom workflow
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>通过LangGraph构建执行图，混合确定性逻辑和agentic逻辑，将不同模式作为node嵌入图中
+
+
+
+
+    
+<a href="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">LangGraph学习手册</a></p>
+<h1 id="retrieval">
+  Retrieval
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>如何在LangChain中搭建向量知识库：
+
+
+
+
+<a href="https://docs.langchain.com/oss/python/langchain/knowledge-base" target="_blank"># Build a semantic search engine with LangChain</a></p>
+<p>RAG的几种方式：</p>
+<ul>
+<li>2-step RAG：先检索，再生成，
+
+
+
+<a href="https://docs.langchain.com/oss/python/langchain/rag#rag-chains" target="_blank"># Build a RAG agent with LangChain</a>
+<a href="#R-image-8a4e0001003106e57db7a4cddac08cd6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/5edb35bb74265fe0c6c3f9366bc192c9.png?width=350px" style="height: auto;width: 350px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8a4e0001003106e57db7a4cddac08cd6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/5edb35bb74265fe0c6c3f9366bc192c9.png?width=350px"></a>
+</li>
+<li>Agentic RAG：通过LLM判断检索的时间点和目标，这种方式与普通agent唯一的差异在于拥有一个能够搜索外界知识的工具
+<a href="#R-image-d8ecb996a038da15f453b5ecc4b0c093" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0d1032a67473385851c1831ff058e64c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d8ecb996a038da15f453b5ecc4b0c093"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0d1032a67473385851c1831ff058e64c.png"></a>
+</li>
+<li>Hybrid：加入一些中间步，相比2-step更灵活，相比Agentic更可控
+<ul>
+<li>query预处理：模糊query改写、多query扩展，query细化</li>
+<li>检索验证：判断检索结果是否与query相关，不相关就修改query重新检索</li>
+<li>答案验证：判断答案是否准确、完整且与query相关，如果需要的话就重新生成或修改答案
+<a href="#R-image-f35ed9f2646737a14ec5b6a51e9a490e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/a074086b74c1a04516b4d3a017180a18.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f35ed9f2646737a14ec5b6a51e9a490e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/a074086b74c1a04516b4d3a017180a18.png"></a>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="long-term-memory">
+  Long-term memory
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Long-term memory的实现方式</p>
+<ul>
+<li>通过LangGraph的store来实现long-term memory</li>
+<li>每个memory保存在namespace下，再用key区分
+<ul>
+<li>namespace通常包含user或组织id信息</li>
+</ul>
+</li>
+<li>从runtime获取store，通过工具实现get（或者search）和put来读写memory</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://docs.langchain.com/oss/python/langchain/overview" target="_blank">LangChain Docs: LangChain</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Feb 6, 2026
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="active " data-nav-url="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangChain学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangGraph学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Python学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html">大模型观点：Andrej Karpathy和Richard Sutton</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html"><a class="padding" href="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html">简历项目Q&amp;A</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM推理技术学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM训练技术学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">LLM进展与应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770710598"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770710598" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1770710598" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
