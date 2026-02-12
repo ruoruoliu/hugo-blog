@@ -31,27 +31,27 @@ DeepMind x UCL Introduction to RL 2015 课程笔记 Value-based DQN Target Netwo
     <meta itemprop="wordCount" content="692">
     <meta itemprop="keywords" content="技术笔记">
     <title>Reinforcement Learning学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1770712255" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770712255" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1770712255" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1770866785" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770866785" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1770866785" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770712255";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770866785";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770712255" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770866785" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712255" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712255" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770712255" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1770712255" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1770712255" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770866785" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1770866785" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1770866785" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -620,8 +620,8 @@ $$\mathbf{g} = \frac{\partial q(s, \pi(s; \boldsymbol{\theta}); \mathbf{w})}{\pa
 <li>target network：引入target actor和target critic</li>
 <li>参数软更新： target网络的参数 $w^-$ 以极小的比例 $\tau$（如 0.001）缓慢跟随主网络</li>
 </ul>
-<p><a href="#R-image-36a745fb3d3e8791654285c42d8cf059" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9624880b724caa65646153cd9e7c8208.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-36a745fb3d3e8791654285c42d8cf059"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9624880b724caa65646153cd9e7c8208.png?width=400px"></a>
+<p><a href="#R-image-672f697180438138757cac935af8b775" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9624880b724caa65646153cd9e7c8208.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-672f697180438138757cac935af8b775"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9624880b724caa65646153cd9e7c8208.png?width=400px"></a>
 </p>
 <p>参考链接：</p>
 <ul>
@@ -660,8 +660,8 @@ $$J(\pi) = \sum_{t=0}^{T} E_{(s_t, a_t) \sim \rho_\pi} [r(s_t, a_t) + \alpha H(\
 </ul>
 <p>连续控制中使用 $\nabla_{\theta} J(\theta) = \mathbb{E}<em>{a \sim \pi</em>{\theta}} [ \nabla_{\theta} \log \pi_{\theta}(a|s) \cdot Q(s, a) ]$ 求解策略梯度方差极大，因此SAC采用了和DDPG同样的确定性梯度的路径（链式法则）；由于action不是数值变量，而是从分布中采样得到的，因此需要重参数化的技巧，将随机采样的过程转化为一个确定的函数：
 $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)$$</p>
-<p><a href="#R-image-df24705ea2174415bd7c29b7986322c6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8b76631eceafc626642117e9be110ef5.png?width=250px" style="height: auto;width: 250px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-df24705ea2174415bd7c29b7986322c6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8b76631eceafc626642117e9be110ef5.png?width=250px"></a>
+<p><a href="#R-image-8b4a1731027a1a58123d785a929d181a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8b76631eceafc626642117e9be110ef5.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8b4a1731027a1a58123d785a929d181a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/8b76631eceafc626642117e9be110ef5.png?width=250px"></a>
 </p>
 <p>
 
@@ -735,8 +735,8 @@ $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsi
 <ul>
 <li>基于当前状态和动作，对下一次状态进行预测，预测越不准奖励越大</li>
 <li>为防止预测与动作无关（单纯环境的不可预测），另外对状态进行特征提取，并基于特征学习状态间的动作，特征网络学习好后，特征只与动作相关
-<a href="#R-image-efba4cba7fe70cdb0544fdd8893f2aa4" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/02e6b983d1df5d1164910da6f17d19e9.png?width=300px" style="height: auto;width: 300px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-efba4cba7fe70cdb0544fdd8893f2aa4"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/02e6b983d1df5d1164910da6f17d19e9.png?width=300px"></a>
+<a href="#R-image-6c4a4a3eb1d3adc9146ca7b4901a6d3a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/02e6b983d1df5d1164910da6f17d19e9.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6c4a4a3eb1d3adc9146ca7b4901a6d3a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/02e6b983d1df5d1164910da6f17d19e9.png?width=300px"></a>
 </li>
 </ul>
 </li>
@@ -1189,9 +1189,9 @@ $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsi
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770712255"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1770712255" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770866785"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1770866785" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -5,13 +5,21 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="">
+    <meta name="description" content="LangGraph是一个底层的agent编排工具
+from langgraph.graph import StateGraph, MessagesState, START, END def mock_llm(state: MessagesState): return {&#34;messages&#34;: [{&#34;role&#34;: &#34;ai&#34;, &#34;content&#34;: &#34;hello world&#34;}]} graph = StateGraph(MessagesState) graph.add_node(mock_llm) graph.add_edge(START, &#34;mock_llm&#34;) graph.add_edge(&#34;mock_llm&#34;, END) graph = graph.compile() graph.invoke({&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;hi!&#34;}]}) 参考链接：
+LangChain Docs: LangGraph">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="LangGraph学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="LangGraph是一个底层的agent编排工具
+from langgraph.graph import StateGraph, MessagesState, START, END def mock_llm(state: MessagesState): return {&#34;messages&#34;: [{&#34;role&#34;: &#34;ai&#34;, &#34;content&#34;: &#34;hello world&#34;}]} graph = StateGraph(MessagesState) graph.add_node(mock_llm) graph.add_edge(START, &#34;mock_llm&#34;) graph.add_edge(&#34;mock_llm&#34;, END) graph = graph.compile() graph.invoke({&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;hi!&#34;}]}) 参考链接：
+LangChain Docs: LangGraph">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="LangGraph学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="LangGraph是一个底层的agent编排工具
+from langgraph.graph import StateGraph, MessagesState, START, END def mock_llm(state: MessagesState): return {&#34;messages&#34;: [{&#34;role&#34;: &#34;ai&#34;, &#34;content&#34;: &#34;hello world&#34;}]} graph = StateGraph(MessagesState) graph.add_node(mock_llm) graph.add_edge(START, &#34;mock_llm&#34;) graph.add_edge(&#34;mock_llm&#34;, END) graph = graph.compile() graph.invoke({&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;hi!&#34;}]}) 参考链接：
+LangChain Docs: LangGraph">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
@@ -19,31 +27,35 @@
     <meta property="article:modified_time" content="2026-02-04T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
     <meta itemprop="name" content="LangGraph学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="LangGraph是一个底层的agent编排工具
+from langgraph.graph import StateGraph, MessagesState, START, END def mock_llm(state: MessagesState): return {&#34;messages&#34;: [{&#34;role&#34;: &#34;ai&#34;, &#34;content&#34;: &#34;hello world&#34;}]} graph = StateGraph(MessagesState) graph.add_node(mock_llm) graph.add_edge(START, &#34;mock_llm&#34;) graph.add_edge(&#34;mock_llm&#34;, END) graph = graph.compile() graph.invoke({&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;hi!&#34;}]}) 参考链接：
+LangChain Docs: LangGraph">
     <meta itemprop="datePublished" content="2026-02-04T00:00:00+00:00">
     <meta itemprop="dateModified" content="2026-02-04T00:00:00+00:00">
+    <meta itemprop="wordCount" content="38">
     <meta itemprop="keywords" content="技术笔记">
     <title>LangGraph学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1770712255" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770712255" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1770712255" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1770866785" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770866785" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1770866785" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770712255";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770866785";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770712255" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770866785" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712255" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770712255" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770712255" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1770712255" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1770712255" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770866785" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1770866785" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1770866785" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -185,6 +197,27 @@
 
 <h1 id="langgraph学习手册">LangGraph学习手册</h1>
 
+<p>LangGraph是一个底层的agent编排工具</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langgraph.graph <span style="color:#f92672">import</span> StateGraph, MessagesState, START, END
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mock_llm</span>(state: MessagesState):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;messages&#34;</span>: [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;ai&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;hello world&#34;</span>}]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> StateGraph(MessagesState)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_node(mock_llm)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_edge(START, <span style="color:#e6db74">&#34;mock_llm&#34;</span>)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;mock_llm&#34;</span>, END)
+</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> graph<span style="color:#f92672">.</span>compile()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;messages&#34;</span>: [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;hi!&#34;</span>}]})</span></span></code></pre></div>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://docs.langchain.com/oss/python/langgraph/overview" target="_blank">LangChain Docs: LangGraph</a></li>
+</ul>
 
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> Feb 4, 2026
@@ -300,9 +333,9 @@
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770712255"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770712255" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1770712255" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770866785"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1770866785" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

@@ -137,7 +137,7 @@ ToolNode是LangGraph中预定义的节点，负责并行工具执行、错误处
 ---
 
 通过在create_agent中加载checkpointer来支持对话内的状态保持，即short-term memory：
-```
+```python
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver  
 
@@ -154,7 +154,7 @@ agent.invoke(
 ```
 
 在生产环境中，可以使用数据库来存储：
-```
+```python
 from langchain.agents import create_agent
 
 from langgraph.checkpoint.postgres import PostgresSaver  
@@ -263,7 +263,7 @@ LangChain提供一下内置中间件：
 - 在中间件之间共享信息，比如从before_model到after_model
 
 中间件的执行顺序，对于以下代码：
-```
+```python
 agent = create_agent(
     model="gpt-4.1",
     middleware=[middleware1, middleware2, middleware3],
