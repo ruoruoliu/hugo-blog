@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Hugo 0.156.0">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
     <meta name="description" content="Agent整体概括 Agent和workflow的主要区别在于，workflow的工作流是用户预定义好的，而Agent基于用户目标自己探索工作流。Agent的优势在于给予模型自由度，从而当模型的能力提升时，Agent的能力也会随着提升 Generative Agents通过在虚拟环境中多个agent的交互，证明拥有plan、reflect和memory能力的agent可以更好的作出符合人类共识的判断 Agent的四个核心部分：LLM &#43; 规划 &#43; 记忆 &#43; 工具使用 参考链接：
 # Building effective agents A practical guide to building agents # LLM Powered Autonomous Agents Planning COT">
@@ -31,27 +31,27 @@
     <meta itemprop="wordCount" content="512">
     <meta itemprop="keywords" content="技术笔记">
     <title>Agent学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1771772287" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1771772287" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1771772287" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1771772396" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1771772396" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1771772396" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1771772287";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1771772396";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1771772396" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1771772287" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1771772287" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1771772287" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772396" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772396" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1771772396" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1771772396" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1771772396" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -252,14 +252,14 @@
 
 
 <a href="https://arxiv.org/pdf/2304.03442" target="_blank">Generative Agents</a>通过在虚拟环境中多个agent的交互，证明拥有plan、reflect和memory能力的agent可以更好的作出符合人类共识的判断
-<a href="#R-image-98ef70fc1aa84beb6a4cb1117929d894" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a39d883a7782f9d06e0b8b65263a8e4.png?width=420px" style="height: auto;width: 420px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-98ef70fc1aa84beb6a4cb1117929d894"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a39d883a7782f9d06e0b8b65263a8e4.png?width=420px"></a>
-<a href="#R-image-c94f19033c04cba251c6e3320582c531" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d693ce5f4232776974006ec0a7dc6c4d.png?width=240px" style="height: auto;width: 240px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c94f19033c04cba251c6e3320582c531"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d693ce5f4232776974006ec0a7dc6c4d.png?width=240px"></a>
+<a href="#R-image-2d1339bb248da1ce56903238ce044500" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a39d883a7782f9d06e0b8b65263a8e4.png?width=420px" style="height: auto;width: 420px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2d1339bb248da1ce56903238ce044500"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a39d883a7782f9d06e0b8b65263a8e4.png?width=420px"></a>
+<a href="#R-image-3f2b3c2113cfda986c3dc2b77697f748" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d693ce5f4232776974006ec0a7dc6c4d.png?width=240px" style="height: auto;width: 240px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3f2b3c2113cfda986c3dc2b77697f748"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d693ce5f4232776974006ec0a7dc6c4d.png?width=240px"></a>
 </li>
 <li>Agent的四个核心部分：LLM + 规划 + 记忆 + 工具使用
-<a href="#R-image-fd4ef82822cbb5f5e4f2505b8fc349df" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fd4ef82822cbb5f5e4f2505b8fc349df"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png?width=600px"></a>
+<a href="#R-image-fc4119a61114498a0ab9f967a3dc3df5" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fc4119a61114498a0ab9f967a3dc3df5"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/783433fea9fda53816a561abf519d1a6.png?width=600px"></a>
 </li>
 </ul>
 <p>参考链接：</p>
@@ -301,8 +301,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-6e5c0d62dcb1d2674dc1b4282e3fc048" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png?width=500px" style="height: auto;width: 500px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6e5c0d62dcb1d2674dc1b4282e3fc048"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png?width=500px"></a>
+</h3><p><a href="#R-image-890288df91dd5b26b72cbee295c5566e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-890288df91dd5b26b72cbee295c5566e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/2c0f420f4115b6baea6b25c910963a1e.png?width=500px"></a>
 </p>
 <ul>
 <li>通过强制模型将问题分成多个步骤，形成思维链（chain of thoughts），提升回复准确性</li>
@@ -325,8 +325,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-3dbee6258ca715287c25410c104151f0" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png?width=500px" style="height: auto;width: 500px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3dbee6258ca715287c25410c104151f0"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png?width=500px"></a>
+</h3><p><a href="#R-image-ff22d774740412a8936fa44fd3a31876" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ff22d774740412a8936fa44fd3a31876"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b73c9c70625a29a046ab6746fcfb9bb1.png?width=500px"></a>
 </p>
 <ul>
 <li>Tree of thoughts：构建解决任务的树状结构路径，在每一层扩展N种方案，并进行评估可行性，如果当前分支看起来行不通，可以回溯到之前的节点，尝试另一个分支</li>
@@ -349,8 +349,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-fa23cab275be541c78a044a900958832" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fa23cab275be541c78a044a900958832"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png?width=600px"></a>
+</h3><p><a href="#R-image-bb973bfa96949e6ff13e8c51e7387937" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bb973bfa96949e6ff13e8c51e7387937"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7d748eaa04af674f221a668f66c6fbf7.png?width=600px"></a>
 </p>
 <ul>
 <li>将大模型交互的过程拆分为thought、action和observation的循环</li>
@@ -389,8 +389,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-0bd36a81b9ca2e17a6d2665edf2c829c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png?width=500px" style="height: auto;width: 500px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0bd36a81b9ca2e17a6d2665edf2c829c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png?width=500px"></a>
+</h3><p><a href="#R-image-ce2201d54620e91e472b1ece92ef7ce3" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ce2201d54620e91e472b1ece92ef7ce3"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/dac6cc5a6bfd24be1089233ee4cb4bcb.png?width=500px"></a>
 </p>
 <ul>
 <li>为了弥补ReAct中一步步方式可能导致的短视问题，采取先整体规划再执行的策略</li>
@@ -414,8 +414,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-b2082cecf1e5e1d71b036bb76374eff8" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png?width=500px" style="height: auto;width: 500px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b2082cecf1e5e1d71b036bb76374eff8"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png?width=500px"></a>
+</h3><p><a href="#R-image-0a122d12608fd9f273c78fb990009048" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0a122d12608fd9f273c78fb990009048"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ac5f477f32a2caa47cc33eb9f7b957df.png?width=500px"></a>
 </p>
 <ul>
 <li>Reasoning Without Observation</li>
@@ -439,13 +439,13 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-4e6198758694911d95e502b6285d0cfa" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4e6198758694911d95e502b6285d0cfa"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png?width=600px"></a>
+</h3><p><a href="#R-image-a821ae609472150807bbd05d818be7e3" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a821ae609472150807bbd05d818be7e3"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/ccc46a5b377c6956a7b2cd22be1b7f06.png?width=600px"></a>
 </p>
 <ul>
 <li>Reflection是指在推理-观察之后的反思步骤，相比之下ReAct只是观察后的下一步推理
-<a href="#R-image-02c9bb9ef5267303dd3267d078f2dda6" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/de6d17ee643e6d06484ed4fcf7ec8942.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-02c9bb9ef5267303dd3267d078f2dda6"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/de6d17ee643e6d06484ed4fcf7ec8942.png"></a>
+<a href="#R-image-5e762b3205760afb6001efcf107b1c82" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/de6d17ee643e6d06484ed4fcf7ec8942.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5e762b3205760afb6001efcf107b1c82"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/de6d17ee643e6d06484ed4fcf7ec8942.png"></a>
 </li>
 <li>Reflexion 可以被视为一种将 Reflection模式制度化、结构化的特定 Agent 框架</li>
 <li>Reflexion框架包括三个核心部分：
@@ -479,8 +479,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-d9f1c1edb2e23d7e7dc93622c1b227d5" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d9f1c1edb2e23d7e7dc93622c1b227d5"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png?width=600px"></a>
+</h3><p><a href="#R-image-e9f89554dc04bc4343c38e0af91338ad" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e9f89554dc04bc4343c38e0af91338ad"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/df75344b0ea419f362628735a9abd81b.png?width=600px"></a>
 </p>
 <ul>
 <li>和ReWOO的思想类似，是个进化版，做了以下两点优化：
@@ -508,8 +508,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-ead07c840559086d0d402c20a10cbe8f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ead07c840559086d0d402c20a10cbe8f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png?width=600px"></a>
+</h3><p><a href="#R-image-9a84a3ad442d89277bccb30e42d8ee31" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-9a84a3ad442d89277bccb30e42d8ee31"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7dd12ba4533a5e6a5a4497e00c81c14c.png?width=600px"></a>
 </p>
 <ul>
 <li>LATS (Language Agent Tree Search)是一种将蒙特卡洛树搜索 (MCTS)与 LLM 的Reflection（反思）能力结合的高级规划框架</li>
@@ -523,8 +523,8 @@
 </ul>
 </li>
 <li>和TOT的对比：
-<a href="#R-image-186009ca1a25ee0008f21695b0a39c09" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-186009ca1a25ee0008f21695b0a39c09"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png"></a>
+<a href="#R-image-455d85182d756de83e973391efd843f0" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-455d85182d756de83e973391efd843f0"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/e8275f51051cf6e56eb79adbfefa8699.png"></a>
 </li>
 </ul>
 <p>参考链接：</p>
@@ -557,8 +557,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-d528fe381303a3ffe79b6072de94bb83" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d528fe381303a3ffe79b6072de94bb83"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png"></a>
+</h3><p><a href="#R-image-18ba6a6fb4f1ed9ffe4c425f28310cf7" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-18ba6a6fb4f1ed9ffe4c425f28310cf7"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/792b082d53633f8e12e2c9cc0cf3fd7c.png"></a>
 </p>
 <ul>
 <li>将生成和执行可执行代码（如 Python）作为智能体与环境交互的统一接口，而不是传统的 JSON 或简单的工具调用</li>
@@ -589,8 +589,8 @@
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><hr>
-<p><a href="#R-image-6ee6426b695a76941dc306b04c833cdd" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7415cd08f834f74dc5b0f80b7546f187.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6ee6426b695a76941dc306b04c833cdd"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7415cd08f834f74dc5b0f80b7546f187.png"></a>
+<p><a href="#R-image-fea11d417da010ff42ee468972e76880" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7415cd08f834f74dc5b0f80b7546f187.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fea11d417da010ff42ee468972e76880"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7415cd08f834f74dc5b0f80b7546f187.png"></a>
 
 参考
 
@@ -634,8 +634,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-d6d66839cc93612ece60abd7cbab11d7" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9943b47aaf389723fc0ce6542400fb92.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d6d66839cc93612ece60abd7cbab11d7"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9943b47aaf389723fc0ce6542400fb92.png?width=600px"></a>
+</h3><p><a href="#R-image-296778794bd484c6497d23ce094be1a2" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9943b47aaf389723fc0ce6542400fb92.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-296778794bd484c6497d23ce094be1a2"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/9943b47aaf389723fc0ce6542400fb92.png?width=600px"></a>
 </p>
 <p>提出“虚拟内存管理”概念，将向量数据库视为硬盘，将 Context Window 视为内存，实现按需调入</p>
 <p>参考链接：</p>
@@ -656,8 +656,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-d2108d7e7dc0ec03b89f3cb794935758" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5da39810d3d54fb89f1c59de868de42f.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d2108d7e7dc0ec03b89f3cb794935758"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5da39810d3d54fb89f1c59de868de42f.png?width=600px"></a>
+</h3><p><a href="#R-image-ebcd808268893c1a16f4ca4f3663880e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5da39810d3d54fb89f1c59de868de42f.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ebcd808268893c1a16f4ca4f3663880e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5da39810d3d54fb89f1c59de868de42f.png?width=600px"></a>
 </p>
 <p>Mem0采用了一种增量处理模式，主要分为两个阶段：</p>
 <ul>
@@ -690,8 +690,8 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-a515c61c50d5baffdfa9b3173484cf2a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2750363010258c1d908650809e5b8f0.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a515c61c50d5baffdfa9b3173484cf2a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2750363010258c1d908650809e5b8f0.png?width=600px"></a>
+</h3><p><a href="#R-image-91bf4e253157e7bdd7d694671093fdea" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2750363010258c1d908650809e5b8f0.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-91bf4e253157e7bdd7d694671093fdea"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2750363010258c1d908650809e5b8f0.png?width=600px"></a>
 </p>
 <p>A-Mem的工作流程模仿了卡片笔记的构建过程，主要包含以下四个步骤：</p>
 <ul>
@@ -762,8 +762,8 @@
 
     
 <a href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/">长程任务</a>中会导致context overflow的问题，需要agent之间进行context compression，但这很难：
-<a href="#R-image-03378da3b9f728f52de604c084614829" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/70d87c536898e7f37a8ae021ae39e7ea.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-03378da3b9f728f52de604c084614829"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/70d87c536898e7f37a8ae021ae39e7ea.png?width=400px"></a>
+<a href="#R-image-d13dfd42133f64747ffaca1eee76273d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/70d87c536898e7f37a8ae021ae39e7ea.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d13dfd42133f64747ffaca1eee76273d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/70d87c536898e7f37a8ae021ae39e7ea.png?width=400px"></a>
 </p>
 <p>可行的multi-agent：</p>
 <ul>
@@ -937,8 +937,8 @@
 
 
 
-<a href="LangChain.md#LangGraph">LangGraph</a>来搭建不同范式的workflow和Agent	<a href="#R-image-547898fd2637ee3ae54e8a2aba78c46c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-547898fd2637ee3ae54e8a2aba78c46c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png"></a>
+<a href="LangChain.md#LangGraph">LangGraph</a>来搭建不同范式的workflow和Agent	<a href="#R-image-4b03d1d0a184d052956960ac210b826e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b03d1d0a184d052956960ac210b826e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/b5225a0fe9be7b00f275c8c314871d5a.png"></a>
 
 参考链接：</p>
 <ul>
@@ -1125,9 +1125,9 @@
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1771772287"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1771772287" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1771772396"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1771772396" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

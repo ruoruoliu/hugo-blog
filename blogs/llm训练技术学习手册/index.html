@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Hugo 0.156.0">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
     <meta name="description" content="LLM训练主要包含三部分：
 Pre-training：通过大量互联网文本数据，训练base model SFT：通过人工标注对话预料进行微调，让base model掌握对话（ai assistant）能力 RLHF：通过强化学习让模型知道人类偏好，什么是好的回复，什么是不好的回复 参考链接：
@@ -39,27 +39,27 @@ DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强�
     <meta itemprop="wordCount" content="621">
     <meta itemprop="keywords" content="技术笔记">
     <title>LLM训练技术学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1771772287" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1771772287" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1771772287" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1771772396" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1771772396" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1771772396" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1771772287";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1771772396";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1771772396" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1771772287" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1771772287" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1771772287" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772396" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772396" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1771772396" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1771772396" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1771772396" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -472,8 +472,8 @@ DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强�
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-d1474cf570d679d6f72b852632fe195d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d1474cf570d679d6f72b852632fe195d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px"></a>
+</h2><p><a href="#R-image-00afc2637edc9517e3a4ab4ba6aa0538" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-00afc2637edc9517e3a4ab4ba6aa0538"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px"></a>
 </p>
 <p>PPO存在以下问题：</p>
 <ul>
@@ -522,8 +522,8 @@ DPO的优缺点：</li>
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>DeepSeek R1等模型利用GRPO+RLVR实现逻辑推理能力</p>
-<p><a href="#R-image-807ecea6d8c4d9baf9d146ab60b0423d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-807ecea6d8c4d9baf9d146ab60b0423d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px"></a>
+<p><a href="#R-image-d746343ec1b222723f663708bb59768e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d746343ec1b222723f663708bb59768e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px"></a>
 </p>
 <p>GRPO的目标函数：
 $\mathcal{J}<em>{GRPO}(\theta) = \mathbb{E}</em>{(q,a) \sim \mathcal{D}, {o_i}<em>{i=1}^G \sim \pi</em>{\theta_{\text{old}}}(\cdot|q)} \left[ \frac{1}{G} \sum_{i=1}^G \frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \left( \min \left( r_{i,t}(\theta) \hat{A}<em>{i,t}, \text{clip}(r</em>{i,t}(\theta), 1 - \varepsilon, 1 + \varepsilon) \hat{A}<em>{i,t} \right) - \beta D</em>{\text{KL}}(\pi_\theta || \pi_{\text{ref}}) \right) \right]$
@@ -930,9 +930,9 @@ $\text{s.t.} \quad 0 &lt; |{o_i \mid \text{is_equivalent}(a, o_i)}| &lt; G$</p>
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1771772287"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1771772287" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1771772287" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1771772396"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1771772396" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1771772396" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
