@@ -32,27 +32,27 @@
     <meta itemprop="wordCount" content="258">
     <meta itemprop="keywords" content="技术笔记,Javascript">
     <title>React学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1770866785" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770866785" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1770866785" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1771772287" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1771772287" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1771772287" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770866785";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1771772287";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1771772287" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770866785" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1770866785" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1770866785" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1771772287" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1771772287" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1771772287" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -233,8 +233,8 @@
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><ul>
 <li>npx create-react-app appName
-<a href="#R-image-c8edf395512837010ffae5e223f269a0" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png?width=180px" style="height: auto;width: 180px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c8edf395512837010ffae5e223f269a0"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png?width=180px"></a>
+<a href="#R-image-d94a8143132487464ea5683f1472e142" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png?width=180px" style="height: auto;width: 180px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d94a8143132487464ea5683f1472e142"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/36d100b57757cc1b208873234b466693.png?width=180px"></a>
 </li>
 <li>node_modules：保存依赖的库</li>
 <li>public：保存静态文件
@@ -246,16 +246,16 @@
 <li>src：源代码
 <ul>
 <li>index.js：app启动入口，连接到index.html的root节点
-<a href="#R-image-8f128f26fde1f712a5aecfc5115973d9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png?width=500px" style="height: auto;width: 500px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-8f128f26fde1f712a5aecfc5115973d9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png?width=500px"></a>
+<a href="#R-image-aed29cf83ed8b1aa68857de4e13c9e5d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-aed29cf83ed8b1aa68857de4e13c9e5d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/d2afe203a541004e6cd32b7e97555d7b.png?width=500px"></a>
 </li>
 <li>App.js：具体app逻辑，可以理解为html的index.html
 <ul>
 <li>语法为JSX（Javascript XML），将javascript和html结合</li>
 <li>采用function component，即App这个函数，返回一个“动态的html”</li>
 <li>export default，外部可以复用
-<a href="#R-image-a4cfb0a6ed424b4f63ef0f8bccbc20dc" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a4cfb0a6ed424b4f63ef0f8bccbc20dc"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png?width=400px"></a>
+<a href="#R-image-5946371fc15f455ee31f5e142aab393c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5946371fc15f455ee31f5e142aab393c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c9974ff86922910618422809bba76b93.png?width=400px"></a>
 </li>
 </ul>
 </li>
@@ -382,8 +382,8 @@
 <ul>
 <li>
 <p>与原生JS实现的区别：
-<a href="#R-image-a732cd90396d46c5ae91ebbff273f214" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a3f763a7a2211d2ab1fe24e879cc861.png?width=600px" style="height: auto;width: 600px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a732cd90396d46c5ae91ebbff273f214"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a3f763a7a2211d2ab1fe24e879cc861.png?width=600px"></a>
+<a href="#R-image-6d3cf0ced27434d956c81d81515cf90f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a3f763a7a2211d2ab1fe24e879cc861.png?width=600px" style="height: auto;width: 600px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6d3cf0ced27434d956c81d81515cf90f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/7a3f763a7a2211d2ab1fe24e879cc861.png?width=600px"></a>
 </p>
 </li>
 <li>
@@ -392,8 +392,8 @@
 <li>立即执行：<code>onClick={func()}</code>，还没点就运行了</li>
 <li>函数引用：<code>onClick={() =&gt; func()}</code> 或 <code>onClick={func}</code> ，只有点的那下才运行</li>
 <li>监听函数传入一定是函数引用，否则
-<a href="#R-image-fb21fd80d966d1afc37f81aacc003927" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5e5a1eb2b6e4b61e3dbeed707bc4f45d.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-fb21fd80d966d1afc37f81aacc003927"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5e5a1eb2b6e4b61e3dbeed707bc4f45d.png"></a>
+<a href="#R-image-dc1c3142ad1dd40f9ec6946881193824" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5e5a1eb2b6e4b61e3dbeed707bc4f45d.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-dc1c3142ad1dd40f9ec6946881193824"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/5e5a1eb2b6e4b61e3dbeed707bc4f45d.png"></a>
 </li>
 </ul>
 </li>
@@ -442,8 +442,8 @@ import { MyContext } from &#39;./ComponentA;</code></pre></div>
 </ul>
 </li>
 <li>MyContext只能通过value（规定属性名称）传递一个对象，可以把想要传递的所有内容组成一个大的对象传递下去，也是通用做法
-<a href="#R-image-71033c2b00c6a19835d60acb9787764a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c6ac7b698c458538b754d0b418d7be6d.png?width=300px" style="height: auto;width: 300px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-71033c2b00c6a19835d60acb9787764a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c6ac7b698c458538b754d0b418d7be6d.png?width=300px"></a>
+<a href="#R-image-0d238618df47ec45d59598e1b5b69b0c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c6ac7b698c458538b754d0b418d7be6d.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0d238618df47ec45d59598e1b5b69b0c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c6ac7b698c458538b754d0b418d7be6d.png?width=300px"></a>
 </li>
 </ul>
 <h3 id="reference-hooksuseref">
@@ -487,8 +487,8 @@ import { MyContext } from &#39;./ComponentA;</code></pre></div>
 </ul>
 </li>
 <li>在effect里面返回一个箭头函数，用于组件unmount时清理资源，如remove listener
-<a href="#R-image-5d1182770fe427ff4ed4e36693769e98" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5d1182770fe427ff4ed4e36693769e98"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png?width=400px"></a>
+<a href="#R-image-1e4c2d0808320c642a9a1f0b9d7c8b4f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1e4c2d0808320c642a9a1f0b9d7c8b4f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/332bcfc5450d2b89043a644e00896186.png?width=400px"></a>
 </li>
 <li>一般用于：
 <ul>
@@ -750,9 +750,9 @@ import { MyContext } from &#39;./ComponentA;</code></pre></div>
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770866785"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1770866785" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1771772287"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1771772287" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
