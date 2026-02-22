@@ -36,30 +36,30 @@ Pre-training：通过大量互联网文本数据，训练base model SFT：通过
 DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强迫模型预测长期未来 预测的时候，MTP作为 投机解码的提议者，由MTP生成n个token，然后主干模型再计算是否正确，即符合主干模型的概率分布，如果正确则保留，不正确则抛弃，以此循环 MTP像一个滑动窗口在每个主干模型截止的位置发起下一次多token预测 MTP可以比主干模型小一些，但整体速度收益还是在于多token的并发预测 接受MTP结果的判断通常使用拒绝采样来完成 投机解码中使用拒绝采样判断是否接受 投机解码中使用拒绝采样的修正逻辑 # 为什么LLM投机推理小模型被拒绝后要从修正分布获取正确的token？ 参考链接：">
     <meta itemprop="datePublished" content="2026-01-05T00:00:00+00:00">
     <meta itemprop="dateModified" content="2026-01-05T00:00:00+00:00">
-    <meta itemprop="wordCount" content="622">
+    <meta itemprop="wordCount" content="621">
     <meta itemprop="keywords" content="技术笔记">
     <title>LLM训练技术学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1770866785" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1770866785" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1770866785" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1771772287" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1771772287" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1771772287" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1770866785";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1771772287";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1770866785" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1771772287" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1770866785" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1770866785" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1770866785" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1770866785" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1771772287" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1771772287" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1771772287" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1771772287" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -167,7 +167,6 @@ DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强�
   </ul>
 
   <ul>
-    <li><a href="#vllm">vLLM</a></li>
     <li><a href="#deepspeed">DeepSpeed</a></li>
     <li><a href="#megatron">Megatron</a></li>
     <li><a href="#verl">Verl</a></li>
@@ -473,8 +472,8 @@ DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强�
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-9a1a22735e02cf3caceaac558bf10dd2" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9a1a22735e02cf3caceaac558bf10dd2"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px"></a>
+</h2><p><a href="#R-image-d1474cf570d679d6f72b852632fe195d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d1474cf570d679d6f72b852632fe195d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px"></a>
 </p>
 <p>PPO存在以下问题：</p>
 <ul>
@@ -523,8 +522,8 @@ DPO的优缺点：</li>
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>DeepSeek R1等模型利用GRPO+RLVR实现逻辑推理能力</p>
-<p><a href="#R-image-926789d2f858c56f96cb109b6a6e18e7" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-926789d2f858c56f96cb109b6a6e18e7"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px"></a>
+<p><a href="#R-image-807ecea6d8c4d9baf9d146ab60b0423d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-807ecea6d8c4d9baf9d146ab60b0423d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px"></a>
 </p>
 <p>GRPO的目标函数：
 $\mathcal{J}<em>{GRPO}(\theta) = \mathbb{E}</em>{(q,a) \sim \mathcal{D}, {o_i}<em>{i=1}^G \sim \pi</em>{\theta_{\text{old}}}(\cdot|q)} \left[ \frac{1}{G} \sum_{i=1}^G \frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \left( \min \left( r_{i,t}(\theta) \hat{A}<em>{i,t}, \text{clip}(r</em>{i,t}(\theta), 1 - \varepsilon, 1 + \varepsilon) \hat{A}<em>{i,t} \right) - \beta D</em>{\text{KL}}(\pi_\theta || \pi_{\text{ref}}) \right) \right]$
@@ -778,17 +777,7 @@ $\text{s.t.} \quad 0 &lt; |{o_i \mid \text{is_equivalent}(a, o_i)}| &lt; G$</p>
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
 <p>#todo  框架学习</p>
-<h2 id="vllm">
-  vLLM
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><h2 id="deepspeed">
+<h2 id="deepspeed">
   DeepSpeed
 
 
@@ -941,9 +930,9 @@ $\text{s.t.} \quad 0 &lt; |{o_i \mid \text{is_equivalent}(a, o_i)}| &lt; G$</p>
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1770866785"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1770866785" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1770866785" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1771772287"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1771772287" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1771772287" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

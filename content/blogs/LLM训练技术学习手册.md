@@ -251,9 +251,6 @@ PRM针对推理过程进行reward预测，细粒度帮助模型学习推理的�
 
 
 #todo  框架学习
-
-## vLLM
-
 ## DeepSpeed
 
 ## Megatron

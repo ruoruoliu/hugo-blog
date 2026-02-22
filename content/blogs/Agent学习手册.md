@@ -195,25 +195,20 @@ agent通过context engineering维护可靠性（这里可靠性主要指任务�
 
 ### 框架实现
 
-#### langgraph
-- 基于工具：构建handoffs工具，供agent调用
-- 子agent共同连接到一个parent上，parent保存global的信息，每次子agent调用handoffs工具，会把message更新到global里，同时跳转到另一个子agent上
-
-参考链接：
-- [# Building a multi-agent researcher with llms.txt](https://www.youtube.com/watch?v=DU_W9tgFcqo)
-- [# Understanding multi-agent handoffs](https://www.youtube.com/watch?v=WTr6mHTw5cM)
-
-#### A2A
-#todo a2a介绍
-
-#### swarm
-
-参考链接：
-- [swarm](https://github.com/openai/swarm)
-#### autgen
-
-参考链接：
-- [autogen](https://github.com/microsoft/autogen)
+- langgraph
+	- 基于工具：构建handoffs工具，供agent调用
+	- 子agent共同连接到一个parent上，parent保存global的信息，每次子agent调用handoffs工具，会把message更新到global里，同时跳转到另一个子agent上
+	- 参考链接：
+		- [# Building a multi-agent researcher with llms.txt](https://www.youtube.com/watch?v=DU_W9tgFcqo)
+		- [# Understanding multi-agent handoffs](https://www.youtube.com/watch?v=WTr6mHTw5cM)
+- A2A
+	#todo a2a介绍
+- swarm
+	- 参考链接：
+		- [swarm](https://github.com/openai/swarm)
+- autgen
+	- 参考链接：
+		- [autogen](https://github.com/microsoft/autogen)
 
 ## 如何训练agent
 --- 

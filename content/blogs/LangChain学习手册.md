@@ -458,3 +458,4 @@ Long-term memory的实现方式
 
 参考链接：
 - [LangChain Docs: LangChain](https://docs.langchain.com/oss/python/langchain/overview)
+- [# Quickstart: LangChain Essentials - Python](https://academy.langchain.com/courses/take/langchain-essentials-python/)

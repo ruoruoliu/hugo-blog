@@ -116,5 +116,8 @@ asyncio.run(main()) # 总耗时约为 3 秒（最长的那个），而不是 2+1
 - CPU密集型计算
 - 可以使用asyncio.to_thread来使用没有异步版本的阻塞函数
 
+对于异步请求迭代器，可以使用async for来逐个处理：
+[LangGraph中graph.astream的async for](../Answers/LangGraph%E4%B8%ADgraph.astream%E7%9A%84async%20for.md)
+
 参考链接：
 - [# 异步IO AsyncIO 使用详解](https://www.youtube.com/watch?v=YCVQPL8bxqY)

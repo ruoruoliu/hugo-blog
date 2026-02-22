@@ -21,7 +21,7 @@ draft: false
 > - LangChain是帮助用户快速搭建agent的平台，用户通过设计system prompt、tool、中间件等，实现agentic逻辑，在交互过程中更新agent的state，控制模型上下文，得到结果
 > 	- Model：LangChain支持各大厂商和开源model
 > 	- Tools：LangChain支持用@tool将函数封装为工具使用
-> 	- 中间件：中间件方便用户在模型调用前后，工具调用前后进行拦截，并实现特定逻辑，包括模型、工具、system prompt的修改等
+> 	- Middleware：中间件方便用户在模型调用前后，工具调用前后进行拦截，并实现特定逻辑，包括模型、工具、system prompt的修改等
 > 		- 一些内置的中间件，包括Human-in-the-loop中间件等
 > 	- Memory：LangChain的短期记忆就是state，长期记忆就是store
 > 		- state就是对话序列，包含AIMessage、ToolMessage、HumanMessage等，以及用户定义的一些字段，通过state_schema传入
