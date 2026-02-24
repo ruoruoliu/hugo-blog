@@ -114,8 +114,6 @@ Persistence层概念：
 
 ## Streaming
 
-参考LangChain的Streaming：[LangChain学习手册-Streaming](LangChain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#Streaming)
-
 LangGraph的Streaming支持一下模式：
 - values：输出每一步的全部状态值
 - updates：输出状态的更新值
