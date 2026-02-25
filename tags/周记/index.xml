@@ -6,8 +6,15 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Week16 强化学习框架学习</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/weekly/week16/index.html</link>
+      <pubDate>Mon, 23 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/weekly/week16/index.html</guid>
+      <description>[!note] 总结 强化学习框架学习 [!tip] 知识 [!warning] 待办</description>
+    </item>
     <item>
       <title>Week15 LangGraph框架学习</title>
       <link>https://ruoruoliu.github.io/hugo-blog/weekly/week15/index.html</link>

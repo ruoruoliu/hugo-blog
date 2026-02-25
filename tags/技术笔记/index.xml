@@ -6,8 +6,50 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deep Reinforcement Learning Doesn&#39;t Work Yet</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html</guid>
+      <description>本文主要讲述了在2018年的背景下Deep RL的困境，以及后续展望&#xA;样本效率 Deep RL通常需要非常多样本来训练到一个相对好的效果&#xA;以Atari为例，人类通常几分钟可以上手的游戏，DQN类的模型需要数小时： 样本在某些场景方便获取，比如游戏，但在大多数真实场景中难以获取&#xA;算法性价比 如果仅为了获得最佳效果，其他算法性价比更高&#xA;以MuJoCo为例（在仿真世界中拟人跑动），2012年的online trajectory optimization（MPC）算法就可以在近实时在线计算，甚至不需要离线训练；而Model-free RL没办法直接获得MPC这种基于物理世界仿真进行的planning，所以需要大量训练&#xA;另外，再以Atari为例，UCT（MCTS）的agent可以轻松战胜DQN，因为他基于仿真做了search，但是我们对比只看结果，不考虑公平&#xA;总结来说，Deep RL通常可以解决任何问题，但是没有利用具体问题中的环境信息，而这些环境信息有时可以通过硬编码大幅提升效果&#xA;Reward Function RL价值函数的难点在于，要想RL成功，必须百分百确定价值函数：</description>
+    </item>
+    <item>
+      <title>Deep RL在游戏中的应用</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/deep-rl%E5%9C%A8%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/deep-rl%E5%9C%A8%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html</guid>
+      <description>德州扑克 DeepStack 官网&#xA;斗地主 参考链接：&#xA;DouZero: Mastering DouDizhu with Self-Play Deep Reinforcement Learning</description>
+    </item>
+    <item>
+      <title>Meta Learning学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/meta-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/meta-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>参考链接：&#xA;# Learning to Learn</description>
+    </item>
+    <item>
+      <title>MPC学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/mpc%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/mpc%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>#todo 学习mpc&#xA;参考链接：&#xA;Synthesis and Stabilization of Complex Behaviors through Online Trajectory Optimization Optimization-based locomotion planning, estimation, and control design for the atlas humanoid robot</description>
+    </item>
+    <item>
+      <title>Sim-to-Real学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/sim-to-real%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/sim-to-real%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>参考链接：&#xA;Using Simulation and Domain Adaptation to Improve Efficiency of Deep Robotic Grasping 真实世界的机器人学习（TensorFlow 开发顶峰 2018） 参考链接：&#xA;Sim-to-Real: Learning Agile Locomotion For Quadruped Robots Sim-to-Real Transfer in Deep Reinforcement Learning for Robotics: a Survey</description>
+    </item>
+    <item>
+      <title>World Model学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/world-model%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/world-model%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>World Models 参考链接：&#xA;World Models PlaNet 参考链接：&#xA;Learning Latent Dynamics for Planning from Pixels Dreamer 参考链接：&#xA;# Introducing Dreamer: Scalable Reinforcement Learning Using World Models # Mastering Atari with Discrete World Models # Mastering Diverse Control Tasks through World Models # Training Agents Inside of Scalable World Models</description>
+    </item>
     <item>
       <title>LangChain学习手册</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
