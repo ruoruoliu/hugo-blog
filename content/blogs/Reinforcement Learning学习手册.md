@@ -234,6 +234,7 @@ $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsi
 
 参考链接：
 - [蘑菇书EasyRL 第10章 稀疏奖励](https://datawhalechina.github.io/easy-rl/#/chapter10/chapter10?id=%e7%ac%ac10%e7%ab%a0-%e7%a8%80%e7%96%8f%e5%a5%96%e5%8a%b1)
+
 ## Imitation Learning
 
 在模仿学习中，有一些专家的示范，智能体也可以与环境交互，但它无法从环境里得到任何的奖励，它只能通过专家的示范来学习动作的好坏
@@ -327,13 +328,6 @@ $$a = f_{\theta}(s, \epsilon) = \mu_{\theta}(s) + \sigma_{\theta}(s) \odot \epsi
 参考链接：
 - [# MuZero: Mastering Go, chess, shogi and Atari without rules](https://deepmind.google/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules/)
 
-## Dreamer
-
-参考链接：
-- [# Introducing Dreamer: Scalable Reinforcement Learning Using World Models](https://research.google/blog/introducing-dreamer-scalable-reinforcement-learning-using-world-models/)
-- [# Mastering Atari with Discrete World Models](https://research.google/blog/mastering-atari-with-discrete-world-models/)
-- [# Mastering Diverse Control Tasks through World Models](https://danijar.com/project/dreamerv3/)
-- [# Training Agents Inside of Scalable World Models](https://danijar.com/project/dreamer4/)
 
 
 参考链接： 

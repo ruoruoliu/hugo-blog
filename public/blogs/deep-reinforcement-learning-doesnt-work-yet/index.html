@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="本文主要讲述了在2018年的背景下Deep RL的困境，以及后续展望
+样本效率 Deep RL通常需要非常多样本来训练到一个相对好的效果
+以Atari为例，人类通常几分钟可以上手的游戏，DQN类的模型需要数小时： 样本在某些场景方便获取，比如游戏，但在大多数真实场景中难以获取
+算法性价比 如果仅为了获得最佳效果，其他算法性价比更高
+以MuJoCo为例（在仿真世界中拟人跑动），2012年的online trajectory optimization（MPC）算法就可以在近实时在线计算，甚至不需要离线训练；而Model-free RL没办法直接获得MPC这种基于物理世界仿真进行的planning，所以需要大量训练
+另外，再以Atari为例，UCT（MCTS）的agent可以轻松战胜DQN，因为他基于仿真做了search，但是我们对比只看结果，不考虑公平
+总结来说，Deep RL通常可以解决任何问题，但是没有利用具体问题中的环境信息，而这些环境信息有时可以通过硬编码大幅提升效果
+Reward Function RL价值函数的难点在于，要想RL成功，必须百分百确定价值函数：">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Deep Reinforcement Learning Doesn&#39;t Work Yet :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="本文主要讲述了在2018年的背景下Deep RL的困境，以及后续展望
+样本效率 Deep RL通常需要非常多样本来训练到一个相对好的效果
+以Atari为例，人类通常几分钟可以上手的游戏，DQN类的模型需要数小时： 样本在某些场景方便获取，比如游戏，但在大多数真实场景中难以获取
+算法性价比 如果仅为了获得最佳效果，其他算法性价比更高
+以MuJoCo为例（在仿真世界中拟人跑动），2012年的online trajectory optimization（MPC）算法就可以在近实时在线计算，甚至不需要离线训练；而Model-free RL没办法直接获得MPC这种基于物理世界仿真进行的planning，所以需要大量训练
+另外，再以Atari为例，UCT（MCTS）的agent可以轻松战胜DQN，因为他基于仿真做了search，但是我们对比只看结果，不考虑公平
+总结来说，Deep RL通常可以解决任何问题，但是没有利用具体问题中的环境信息，而这些环境信息有时可以通过硬编码大幅提升效果
+Reward Function RL价值函数的难点在于，要想RL成功，必须百分百确定价值函数：">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="Deep Reinforcement Learning Doesn&#39;t Work Yet :: Ruoruoliu 2.0">
+    <meta property="og:description" content="本文主要讲述了在2018年的背景下Deep RL的困境，以及后续展望
+样本效率 Deep RL通常需要非常多样本来训练到一个相对好的效果
+以Atari为例，人类通常几分钟可以上手的游戏，DQN类的模型需要数小时： 样本在某些场景方便获取，比如游戏，但在大多数真实场景中难以获取
+算法性价比 如果仅为了获得最佳效果，其他算法性价比更高
+以MuJoCo为例（在仿真世界中拟人跑动），2012年的online trajectory optimization（MPC）算法就可以在近实时在线计算，甚至不需要离线训练；而Model-free RL没办法直接获得MPC这种基于物理世界仿真进行的planning，所以需要大量训练
+另外，再以Atari为例，UCT（MCTS）的agent可以轻松战胜DQN，因为他基于仿真做了search，但是我们对比只看结果，不考虑公平
+总结来说，Deep RL通常可以解决任何问题，但是没有利用具体问题中的环境信息，而这些环境信息有时可以通过硬编码大幅提升效果
+Reward Function RL价值函数的难点在于，要想RL成功，必须百分百确定价值函数：">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2026-02-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-25T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta itemprop="name" content="Deep Reinforcement Learning Doesn&#39;t Work Yet :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="本文主要讲述了在2018年的背景下Deep RL的困境，以及后续展望
+样本效率 Deep RL通常需要非常多样本来训练到一个相对好的效果
+以Atari为例，人类通常几分钟可以上手的游戏，DQN类的模型需要数小时： 样本在某些场景方便获取，比如游戏，但在大多数真实场景中难以获取
+算法性价比 如果仅为了获得最佳效果，其他算法性价比更高
+以MuJoCo为例（在仿真世界中拟人跑动），2012年的online trajectory optimization（MPC）算法就可以在近实时在线计算，甚至不需要离线训练；而Model-free RL没办法直接获得MPC这种基于物理世界仿真进行的planning，所以需要大量训练
+另外，再以Atari为例，UCT（MCTS）的agent可以轻松战胜DQN，因为他基于仿真做了search，但是我们对比只看结果，不考虑公平
+总结来说，Deep RL通常可以解决任何问题，但是没有利用具体问题中的环境信息，而这些环境信息有时可以通过硬编码大幅提升效果
+Reward Function RL价值函数的难点在于，要想RL成功，必须百分百确定价值函数：">
+    <meta itemprop="datePublished" content="2026-02-25T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-02-25T00:00:00+00:00">
+    <meta itemprop="wordCount" content="357">
+    <meta itemprop="keywords" content="技术笔记">
+    <title>Deep Reinforcement Learning Doesn&#39;t Work Yet :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1772008146" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1772008146" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1772008146" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1772008146" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1772008146" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1772008146";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1772008146" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1772008146" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1772008146" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1772008146" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1772008146" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1772008146" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1772008146" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1772008146" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1772008146" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/deep-reinforcement-learning-doesnt-work-yet\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper"> 
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Deep Reinforcement Learning Doesn&#39;t Work Yet</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/deep-rl%E5%9C%A8%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html" title="Deep RL在游戏中的应用 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="deep-reinforcement-learning-doesnt-work-yet">Deep Reinforcement Learning Doesn&#39;t Work Yet</h1>
+
+<p>本文主要讲述了在2018年的背景下Deep RL的困境，以及后续展望</p>
+<h1 id="样本效率">
+  样本效率
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Deep RL通常需要非常多样本来训练到一个相对好的效果</p>
+<p>以Atari为例，人类通常几分钟可以上手的游戏，DQN类的模型需要数小时：
+<a href="#R-image-02bc6ba71213013a349dde580be15603" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0698c71fe2f3efdbaca1c48b02a2c89f.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-02bc6ba71213013a349dde580be15603"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0698c71fe2f3efdbaca1c48b02a2c89f.png?width=300px"></a>
+</p>
+<p>样本在某些场景方便获取，比如游戏，但在大多数真实场景中难以获取</p>
+<h1 id="算法性价比">
+  算法性价比
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>如果仅为了获得最佳效果，其他算法性价比更高</p>
+<p>以MuJoCo为例（在仿真世界中拟人跑动），2012年的online trajectory optimization（MPC）算法就可以在近实时在线计算，甚至不需要离线训练；而Model-free RL没办法直接获得MPC这种基于物理世界仿真进行的planning，所以需要大量训练</p>
+<p>另外，再以Atari为例，UCT（MCTS）的agent可以轻松战胜DQN，因为他基于仿真做了search，但是我们对比只看结果，不考虑公平</p>
+<p>总结来说，Deep RL通常可以解决任何问题，但是没有利用具体问题中的环境信息，而这些环境信息有时可以通过硬编码大幅提升效果</p>
+<h1 id="reward-function">
+  Reward Function
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>RL价值函数的难点在于，要想RL成功，必须百分百确定价值函数：</p>
+<ul>
+<li>价值函数要不就是已知，要不就是需要在学习的过程中不断修正</li>
+<li>RL通常会过拟合价值函数（hacking）
+<ul>
+<li>
+
+
+
+<a href="../Answers/Evolved%20Hardware%EF%BC%9A%E4%BB%B7%E5%80%BC%E5%87%BD%E6%95%B0%E8%A2%ABhack%E7%9A%84%E4%BE%8B%E5%AD%90.md">Evolved Hardware：价值函数被hack的例子</a></li>
+<li>在
+
+
+
+<a href="https://arxiv.org/pdf/1705.04304" target="_blank">A DEEP REINFORCED MODEL FOR ABSTRACTIVE SUMMARIZATION</a>中，单纯用ROUGE作为价值函数，最后虽然指标高，但是在人类可读性上远低于Supervised+RL的版本</li>
+</ul>
+</li>
+<li>过程价值函数很难设计：既要鼓励正确的行为，又要方便学习
+<ul>
+<li>错误设计过程价值，容易导致学习偏差：
+
+
+
+<a href="https://openai.com/index/faulty-reward-functions/" target="_blank"># Faulty reward functions in the wild</a></li>
+<li>减少过程价值，只用稀疏价值（最终价值），大部分情况让学习变得困难</li>
+<li>精细设计的过程价值有时候有效，但大部分情况性价比低（类比特征工程）</li>
+</ul>
+</li>
+</ul>
+<h1 id="局部最优">
+  局部最优
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>不合适的探索与开发的取舍，会导致系统陷入不好的局部最优，以下是一个用Normalized Advantage Function实现的奔跑的猎豹，陷入用后背跑的困境：</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>可以把Deep RL想象成一个故意扭曲你价值函数的目的，然后搜索最懒的可能局部最优的人</p>
+<h1 id="环境过拟合">
+  环境过拟合
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>Deep RL是唯一一个公众认可的能在test set上训练的领域，对环境的过拟合导致没办法在其他环境中迁移</p>
+<p>在某些场景中，通过大量分散的环境中的训练可以增强环境迁移性，比如导航
+
+
+
+
+<a href="https://proceedings.mlr.press/v37/schaul15.pdf" target="_blank">Universal Value Function Approximators</a></p>
+<p>但目前大部分场景，Deep RL还没有那种ImageNet的泛化时刻</p>
+<p>多agent场景下的学习：</p>
+<ul>
+<li>多agent场景下的RL，经常出现其他agent作为环境的一部分进行训练后，切换到别的多agent后策略就失效的问题，这种切换带来的变化完全由初始的random seed带来</li>
+<li>OpenAI的
+
+
+
+<a href="https://openai.com/index/competitive-self-play/" target="_blank"># Competitive self-play</a>中也有成功的例子</li>
+<li>self-play的双方应该以相同的速度学习，而不能是一个学习得快得多，会导致overfit</li>
+<li>当把self-play这种方式扩展到多agent场景下，很难保证学习速度相同</li>
+</ul>
+<h1 id="鲁棒性">
+  鲁棒性
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>超参在RL中很不稳定，监督学习通常通过一些方式确认超参是在正确的方向上，而RL不能</p>
+<p>仅仅随机的random seed带来的variance就通常很大</p>
+<p>训练算法的样本效率加上不稳定性会让生产效率骤降</p>
+<blockquote>
+<p>If it makes you feel any better, I’ve been doing this for a while and it took me last ~6 weeks to get a from-scratch policy gradients implementation to work 50% of the time on a bunch of RL problems. And I also have a GPU cluster available to me, and a number of friends I get lunch with every day who’ve been in the area for the last few years.</p>
+</blockquote>
+<blockquote>
+<p>Also, what we know about good CNN design from supervised learning land doesn’t seem to apply to reinforcement learning land, because you’re mostly bottlenecked by credit assignment / supervision bitrate, not by a lack of a powerful representation. Your ResNets, batchnorms, or very deep networks have no power here.</p>
+</blockquote>
+<blockquote>
+<p>Supervised learning wants to work. Even if you screw something up you’ll usually get something non-random back. RL must be forced to work. If you screw something up or don’t tune something well enough you’re exceedingly likely to get a policy that is even worse than random. And even if it’s all well tuned you’ll get a bad policy 30% of the time, just because.</p>
+</blockquote>
+<blockquote>
+<p>Long story short your failure is more due to the difficulty of deep RL, and much less due to the difficulty of “designing neural networks”.</p>
+</blockquote>
+<p>引自Andrej Karpathy</p>
+<p>另外基于
+
+
+
+<a href="https://arxiv.org/pdf/1709.06560" target="_blank">Deep Reinforcement Learning that Matters</a>的总结：</p>
+<ul>
+<li>把价值乘以一个常数，会造成结果的巨大差异</li>
+<li>5个随机中字不足以证明效果，因为方差巨大，置信区间都不重叠</li>
+<li>同一个算法的不同实现也会导致结果不同，即便超参都一样</li>
+</ul>
+<h1 id="deep-rl的现实意义">
+  Deep RL的现实意义
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>几乎没有</p>
+<h1 id="deep-rl的使用场景">
+  Deep RL的使用场景
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>能让Deep RL工作的几个条件，不必须，但是满足的越多越好：</p>
+<ul>
+<li>容易生成experience（样本生产速度）</li>
+<li>问题能被简化</li>
+<li>问题能将self-play引入训练</li>
+<li>能清晰地构造一个可学习、不被hack的价值函数</li>
+<li>如果一定要设计过程价值函数，一定要丰富（及时且频繁）</li>
+</ul>
+<p>一个典型的例子：Neural Architecture Search（NAS）</p>
+<h1 id="deep-rl的展望">
+  Deep RL的展望
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<p>以下是一些关于Deep RL未来的展望：</p>
+<ul>
+<li>找到足够好的局部最优：人类也只是局部最优（大概率不是全剧最优），找到比人类更好的局部最优就够了</li>
+<li>硬件的力量：算力越大，越不在乎样本效率，可以暴力解决问题</li>
+<li>添加学习信号：稀疏价值不好学，添加人工构建的奖励、任务或者世界模型
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1707.01495" target="_blank">Hindsight Experience Replay</a>：“幻觉”正奖励，把失败的经验也用来学习</li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1611.05397" target="_blank">REINFORCEMENT LEARNING WITH UNSUPERVISED AUXILIARY TASKS</a>：辅助任务提供密集的学习信号，类似监督学习+RL；</li>
+<li>预测世界模型同理，可以在想象的world model中rollout</li>
+</ul>
+</li>
+<li>Model-based学习解决样本效率问题：通过model可以探索，可以用更少的样本学习，但是model本身的学习是很难的，可以结合model-based（模拟）和model-free</li>
+<li>只用RL做微调：
+
+
+
+<a href="https://arxiv.org/pdf/1611.02796" target="_blank">Sequence Tutor: Conservative Fine-Tuning of Sequence Generation Models with KL-control</a>，和现在RLHF很像</li>
+<li>可学习的价值函数：Imitation learning和Inverse RL都可以学习价值函数</li>
+<li>迁移学习：以sim-to-real在机器人方向为例</li>
+<li>好先验可以大幅减少学习时间：对于真实世界的先验可以帮助我们快速解决真实世界的问题；真实世界先验很难获取，基于元学习是可行的：
+
+
+
+<a href="https://bair.berkeley.edu/blog/2017/07/18/learning-to-learn/" target="_blank"># Learning to Learn</a></li>
+<li>更复杂的环境有时候反而更好学习：减少了模型过拟合环境的风险</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.alexirpan.com/2018/02/14/rl-hard.html" target="_blank"># Deep Reinforcement Learning Doesn&rsquo;t Work Yet</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Feb 25, 2026
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="active " data-nav-url="/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html"><a class="padding" href="/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html">Deep Reinforcement Learning Doesn&#39;t Work Yet</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/deep-rl%E5%9C%A8%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/deep-rl%E5%9C%A8%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">Deep RL在游戏中的应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/meta-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/meta-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Meta Learning学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/mpc%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/mpc%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">MPC学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/sim-to-real%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/sim-to-real%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Sim-to-Real学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/world-model%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/world-model%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">World Model学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangChain学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LangGraph学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Python学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html">大模型观点：Andrej Karpathy和Richard Sutton</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html"><a class="padding" href="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html">简历项目Q&amp;A</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM推理技术学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM训练技术学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">LLM进展与应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1772008146"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1772008146" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1772008146" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
