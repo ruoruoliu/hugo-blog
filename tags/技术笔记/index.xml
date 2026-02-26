@@ -23,6 +23,13 @@
       <description>德州扑克 DeepStack 官网&#xA;斗地主 参考链接：&#xA;DouZero: Mastering DouDizhu with Self-Play Deep Reinforcement Learning</description>
     </item>
     <item>
+      <title>Gymnasium学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/gymnasium%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/gymnasium%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>基础用法 通过gym.make创建环境，gym提供了多样的内置环境 通过env.reset()初始化环境 通过env.step(action)来与环境进行一次交互，得到五元组： observation：交互后的状态 reward：交互发生获得的收益 terminated：交互是否终止，类似任务失败 truncated：交互是否因为最大步数截断 info：一些debug信息 # Run `pip install &#34;gymnasium[classic-control]&#34;` for this example. import gymnasium as gym # Create our training environment - a cart with a pole that needs balancing env = gym.make(&#34;CartPole-v1&#34;, render_mode=&#34;human&#34;) # Reset environment to start a new episode observation, info = env.reset() # observation: what the agent can &#34;see&#34; - cart position, velocity, pole angle, etc. # info: extra debugging information (usually not needed for basic learning) print(f&#34;Starting observation: {observation}&#34;) # Example output: [ 0.01234567 -0.00987654 0.02345678 0.01456789] # [cart_position, cart_velocity, pole_angle, pole_angular_velocity] episode_over = False total_reward = 0 while not episode_over: # Choose an action: 0 = push cart left, 1 = push cart right action = env.action_space.sample() # Random action for now - real agents will be smarter! # Take the action and see what happens observation, reward, terminated, truncated, info = env.step(action) # reward: +1 for each step the pole stays upright # terminated: True if pole falls too far (agent failed) # truncated: True if we hit the time limit (500 steps) total_reward += reward episode_over = terminated or truncated print(f&#34;Episode finished! Total reward: {total_reward}&#34;) env.close() 训练agent 以q-learning为例，训练agent主要在于更新agent的参数，以获得get_action的最优解：</description>
+    </item>
+    <item>
       <title>Meta Learning学习手册</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/meta-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
