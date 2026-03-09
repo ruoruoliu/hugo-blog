@@ -10,7 +10,7 @@ draft: false
 
 > [!info]+ LangChain框架学习
 
-- [LangChain学习手册](../Blogs/LangChain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)
+- [LangChain：agent链式执行库](../Blogs/LangChain%EF%BC%9Aagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93.md)
 
 > [!tip] 知识
 > - typedDict通过约定的方式说明dict中的字段有哪些，如果不符合则会在运行前警告；而pydantic是dataclass的第三方强化版本，定义一个数据类，并保证类中的字段，如果不符合则会在运行时报错，pydantic可以进行自动转化，并支持字段级别的初始化处理逻辑

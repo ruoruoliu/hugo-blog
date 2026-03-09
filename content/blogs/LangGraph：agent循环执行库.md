@@ -1,5 +1,5 @@
 ---
-title: LangGraph学习手册
+title: LangGraph：agent循环执行库
 date: 2026-02-04
 tags:
   - 技术笔记
@@ -164,8 +164,8 @@ Time travel通过对graph中的node进行重跑，来方便理解推理过程、
 ## Memory
 
 参考:
-- [LangChain学习手册-Short-term memory](LangChain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#Short-term%20memory)
-- [LangChain学习手册-Long-term memory](LangChain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md#Long-term%20memory)
+- [LangChain学习手册-Short-term memory](LangChain%EF%BC%9Aagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93.md#Short-term%20memory)
+- [LangChain学习手册-Long-term memory](LangChain%EF%BC%9Aagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93.md#Long-term%20memory)
 
 ## Subgraphs
 

@@ -10,7 +10,7 @@ draft: false
 
 > [!info]+ LangGraph框架学习
 
-- [LangGraph学习手册](../Blogs/LangGraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)
+- [LangGraph：agent循环执行库](../Blogs/LangGraph%EF%BC%9Aagent%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%E5%BA%93.md)
 
 > [!tip] 知识
 > - LangGraph是LangChain 1.0的底层实现，通过定义graph、node和edge来实现确定性的agent workflow

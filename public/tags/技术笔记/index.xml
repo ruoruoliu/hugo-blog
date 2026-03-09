@@ -6,8 +6,29 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 07 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vLLM：大模型加速推理框架</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html</link>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html</guid>
+      <description>源码阅读 vllm/entrypoints 外部交互入口：从“本地推理脚本”转变为“生产级服务”的关键&#xA;api_server.py： vllm/engine vllm/core vllm/worker vllm/model_executor csrc 参考链接：</description>
+    </item>
+    <item>
+      <title>Ray：分布式计算框架</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html</link>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html</guid>
+      <description>为了简化分布式编程，Ray提供了一套简单、通用的分布式编程API，屏蔽了分布式系统中的这些常见的难题，让开发者能够使用像开发单机程序一样简单的方式，开发分布式系统&#xA;Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个无状态的计算单元，异步执行，可以并行执行多个Task 可以把任何python函数包装成Task import ray @ray.remote def square(x): return x * x obj_refs = [] for i in range(5): obj_refs.append(square.remote(i)) assert ray.get(obj_refs) == [0, 1, 4, 9, 16] Actor Ray使用Actor来表示一个有状态的计算单元 可以把任意python的class包装成Actor 通过ActorHandle来远程调用这个Actor的任意方法（Task） 多个Actor的Task在进程中顺序执行，共享Actor状态 import ray @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value += 1 def get_value(self): return self.value counter = Counter.remote() [counter.increment.remote() for _ in range(5)] assert ray.get(counter.get_value.remote()) == 5 Object Store Task的计算结果存放在Object Store中 可以通过put接口，显式地把python对象存放在Object Store中 obj_ref = ray.put(1) assert ray.get(obj_ref) == 1 ray.get()和ray.wait() ray.get()是同步阻塞，如果输入的list，其中最慢的任务会拖累整体结果返回 ray.wait()是异步筛选，会检查list中的任务，返回ready_ids（已完成）和remaining_ids（未完成），可以设置num_returns来控制等待任务数量，默认至少有一个任务ready wait相比get，可以让计算、通信等阶段重叠，同时避免内存峰值压力 构建分布式任务流 可以把一个Task输出的ObjectRef传递给另一个Task（包括Actor task） 可以把一个ActorHandle传递给一个Task，实现在多个远程Worker中同时调用一个Actor import ray @ray.remote def square(x): return x * x obj1 = square.remote(2) obj2 = square.remote(obj1) assert ray.get(obj2) == 16 @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value += 1 def get_value(self): return self.value counter = Counter.remote() @ray.remote def call_actor_in_worker(counter): counter.increment.remote() ray.get([call_actor_in_worker.remote(counter) for _ in range(5)]) assert ray.get(counter.get_value.remote()) == 5 其他功能 其他功能还包括：</description>
+    </item>
+    <item>
+      <title>veRL：大模型强化学习框架</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html</link>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html</guid>
+      <description>在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效&#xA;veRL的主要特点：&#xA;混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：&#xA;HybridFlow: A Flexible and Efficient RLHF Framework</description>
+    </item>
     <item>
       <title>Deep Reinforcement Learning Doesn&#39;t Work Yet</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html</link>
@@ -23,11 +44,11 @@
       <description>德州扑克 DeepStack 官网&#xA;斗地主 参考链接：&#xA;DouZero: Mastering DouDizhu with Self-Play Deep Reinforcement Learning</description>
     </item>
     <item>
-      <title>Gymnasium学习手册</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/gymnasium%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <title>Gymnasium：强化学习交互接口库</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/gymnasium%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E5%BA%93/index.html</link>
       <pubDate>Wed, 25 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/gymnasium%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
-      <description>基础用法 通过gym.make创建环境，gym提供了多样的内置环境 通过env.reset()初始化环境 通过env.step(action)来与环境进行一次交互，得到五元组： observation：交互后的状态 reward：交互发生获得的收益 terminated：交互是否终止，类似任务失败 truncated：交互是否因为最大步数截断 info：一些debug信息 # Run `pip install &#34;gymnasium[classic-control]&#34;` for this example. import gymnasium as gym # Create our training environment - a cart with a pole that needs balancing env = gym.make(&#34;CartPole-v1&#34;, render_mode=&#34;human&#34;) # Reset environment to start a new episode observation, info = env.reset() # observation: what the agent can &#34;see&#34; - cart position, velocity, pole angle, etc. # info: extra debugging information (usually not needed for basic learning) print(f&#34;Starting observation: {observation}&#34;) # Example output: [ 0.01234567 -0.00987654 0.02345678 0.01456789] # [cart_position, cart_velocity, pole_angle, pole_angular_velocity] episode_over = False total_reward = 0 while not episode_over: # Choose an action: 0 = push cart left, 1 = push cart right action = env.action_space.sample() # Random action for now - real agents will be smarter! # Take the action and see what happens observation, reward, terminated, truncated, info = env.step(action) # reward: +1 for each step the pole stays upright # terminated: True if pole falls too far (agent failed) # truncated: True if we hit the time limit (500 steps) total_reward += reward episode_over = terminated or truncated print(f&#34;Episode finished! Total reward: {total_reward}&#34;) env.close() 训练agent 以q-learning为例，训练agent主要在于更新agent的参数，以获得get_action的最优解：</description>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/gymnasium%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E5%BA%93/index.html</guid>
+      <description>基础用法 通过gym.make创建环境，gym提供了多样的内置环境 通过env.reset()初始化环境 通过env.step(action)来与环境进行一次交互，得到五元组： observation：交互后的状态 reward：交互发生获得的收益 terminated：交互是否终止，类似任务失败 truncated：交互是否因为最大步数截断 info：一些debug信息 # Run `pip install &#34;gymnasium[classic-control]&#34;` for this example. import gymnasium as gym # Create our training environment - a cart with a pole that needs balancing env = gym.make(&#34;CartPole-v1&#34;, render_mode=&#34;human&#34;) # Reset environment to start a new episode observation, info = env.reset() # observation: what the agent can &#34;see&#34; - cart position, velocity, pole angle, etc. # info: extra debugging information (usually not needed for basic learning) print(f&#34;Starting observation: {observation}&#34;) # Example output: [ 0.01234567 -0.00987654 0.02345678 0.01456789] # [cart_position, cart_velocity, pole_angle, pole_angular_velocity] episode_over = False total_reward = 0 while not episode_over: # Choose an action: 0 = push cart left, 1 = push cart right action = env.action_space.sample() # Random action for now - real agents will be smarter! # Take the action and see what happens observation, reward, terminated, truncated, info = env.step(action) # reward: +1 for each step the pole stays upright # terminated: True if pole falls too far (agent failed) # truncated: True if we hit the time limit (500 steps) total_reward += reward episode_over = terminated or truncated print(f&#34;Episode finished! Total reward: {total_reward}&#34;) env.close() 训练agent 通过和env的交互，获取obs、action、reward、next_obs的样本，对参数进行更新：</description>
     </item>
     <item>
       <title>Meta Learning学习手册</title>
@@ -58,17 +79,17 @@
       <description>World Models 参考链接：&#xA;World Models PlaNet 参考链接：&#xA;Learning Latent Dynamics for Planning from Pixels Dreamer 参考链接：&#xA;# Introducing Dreamer: Scalable Reinforcement Learning Using World Models # Mastering Atari with Discrete World Models # Mastering Diverse Control Tasks through World Models # Training Agents Inside of Scalable World Models</description>
     </item>
     <item>
-      <title>LangChain学习手册</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <title>LangChain：agent链式执行库</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/langchainagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93/index.html</link>
       <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/langchainagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93/index.html</guid>
       <description>Agents 通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件 核心组件包括：&#xA;Model： 支持静态模型，即初始化固定后，交互过程中不变 支持动态选择的，可以使用wrap_model_call中间件，基于请求拦截并override模型 Tools： 多工具串行调用、工具并行调用 基于之前结果的工具动态选择 工具的错误重试和处理逻辑：使用wrap_tool_call中间件 保持工具调用之间的状态一致 动态工具：即在运行过程中进行工具变更，包括： 根据当前状态和上下文，利用wrap_model_call中间件动态筛选已注册工具，这种方式适用于所有工具在创建agent时已明确 如果工具是运行时动态发现的，比如来自MCP server、用户数据等，需要运行时注册工具，包括添加（wrap_model_call）和处理（wrap_tool_call）逻辑 System prompt： 可以接受str或者SystemMessage类型（支持claude的prompt caching） 通过dynamic_prompt中间件基于request修改system prompt Invocation： state就是message的序列，通过invoke来输入一条新的message 可以通过stream触发流式输出 高级概念：&#xA;Structured output 通过response_format对agent的回复进行格式化： 使用ToolStrategy对一个结构化数据格式进行包装，利用模型tool的能力来进行格式化 如果模型支持native structured output，可以直接使用ProviderStrategy进行包装 Memory： agent本身通过State（message序列）记录对话过程，可以通过以下方式扩展memory： 定义基于AgentState的扩展state，再通过中间件（比如内部的before_model的hook）实现state的修改，这种方式可以把逻辑和所需要的工具绑定在state修改的时刻，而不用在create_agent的时候绑定 定义基于AgentState的扩展state，传入state_schema字段，只适合大模型直接通过工具（而不是中间件）访问的memory，不够可控 Middleware： 在模型调用前：message裁剪、上下文注入 修改或者验证模型输出：guardrails和内容过滤 处理工具调用失败 基于state或者context进行动态模型选择 加入定制化log、监控和分析 Models Model的常见使用：</description>
     </item>
     <item>
-      <title>LangGraph学习手册</title>
-      <link>https://ruoruoliu.github.io/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <title>LangGraph：agent循环执行库</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/langgraphagent%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%E5%BA%93/index.html</link>
       <pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/langgraphagent%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%E5%BA%93/index.html</guid>
       <description>基本概念 LangGraph是一个底层的agent编排工具，底层大模型可以用LangChain，也可以用任意其他的，以下是个简单示例：&#xA;from langgraph.graph import StateGraph, MessagesState, START, END def mock_llm(state: MessagesState): return {&#34;messages&#34;: [{&#34;role&#34;: &#34;ai&#34;, &#34;content&#34;: &#34;hello world&#34;}]} graph = StateGraph(MessagesState) graph.add_node(mock_llm) graph.add_edge(START, &#34;mock_llm&#34;) graph.add_edge(&#34;mock_llm&#34;, END) graph = graph.compile() graph.invoke({&#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;hi!&#34;}]}) LangGraph的核心价值：&#xA;持久执行：构建的agent可以持久运行，并从上次中断处继续执行 Human-in-the-loop：支持用户过程中任意节点的检查和修改 混合memory：提供agent的长短期memory 通过LangSmith进行debug：追踪和可视化agent行为的路径、状态转移和运行时数据 生产环境部署：针对于复杂的agent流程进行可扩展部署 LangGraph支持基于Graph API和基于Functional API的方式创建agent：&#xA;Graph API：定义tool和model的node，通过edge连接在一起，添加到StateGraph中，compile后即可invoke运行 Functional API：定义tool和model后，将他们封装在@task中，实现和graph一样的节点能力（可追踪、并发执行、持久化和状态恢复），然后使用@entrypoint将agent主逻辑封装起来，可以直接invoke运行 本地部署 参考： # Run a local server #todo 学习langsmith</description>
     </item>
     <item>

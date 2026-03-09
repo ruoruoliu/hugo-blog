@@ -1,5 +1,5 @@
 ---
-title: LangChain学习手册
+title: LangChain：agent链式执行库
 date: 2026-02-06
 tags:
   - 技术笔记
@@ -427,7 +427,7 @@ Router可以设计成stateless和stateful：
 ## Custom workflow
 
 通过LangGraph构建执行图，混合确定性逻辑和agentic逻辑，将不同模式作为node嵌入图中
-[LangGraph学习手册](LangGraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C.md)
+[LangGraph学习手册](LangGraph%EF%BC%9Aagent%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%E5%BA%93.md)
 
 # Retrieval
 --- 
