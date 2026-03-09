@@ -12,8 +12,90 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
+    "title": "Tags",
+    "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
+    "content": "总结 veRL框架前置学习 FSDP框架学习 [!tip] 知识 [!warning] 待办",
+    "description": "总结 veRL框架前置学习 FSDP框架学习 [!tip] 知识 [!warning] 待办",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week18 强化学习框架前置学习",
+    "uri": "/hugo-blog/weekly/week18/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Weeklies",
+    "uri": "/hugo-blog/weekly/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 周记",
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
     "title": "Blogs",
     "uri": "/hugo-blog/blogs/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "源码阅读 vllm/entrypoints 外部交互入口：从“本地推理脚本”转变为“生产级服务”的关键\napi_server.py： vllm/engine vllm/core vllm/worker vllm/model_executor csrc 参考链接：\n# Inside vLLM: Anatomy of a High-Throughput LLM Inference System",
+    "description": "源码阅读 vllm/entrypoints 外部交互入口：从“本地推理脚本”转变为“生产级服务”的关键\napi_server.py： vllm/engine vllm/core vllm/worker vllm/model_executor csrc 参考链接：",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "vLLM：大模型加速推理框架",
+    "uri": "/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "为了简化分布式编程，Ray提供了一套简单、通用的分布式编程API，屏蔽了分布式系统中的这些常见的难题，让开发者能够使用像开发单机程序一样简单的方式，开发分布式系统\nRay的API基于以下几个核心的概念： Task Ray使用Task来表示一个无状态的计算单元，异步执行，可以并行执行多个Task 可以把任何python函数包装成Task import ray @ray.remote def square(x): return x * x obj_refs = [] for i in range(5): obj_refs.append(square.remote(i)) assert ray.get(obj_refs) == [0, 1, 4, 9, 16] Actor Ray使用Actor来表示一个有状态的计算单元 可以把任意python的class包装成Actor 通过ActorHandle来远程调用这个Actor的任意方法（Task） 多个Actor的Task在进程中顺序执行，共享Actor状态 import ray @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value += 1 def get_value(self): return self.value counter = Counter.remote() [counter.increment.remote() for _ in range(5)] assert ray.get(counter.get_value.remote()) == 5 Object Store Task的计算结果存放在Object Store中 可以通过put接口，显式地把python对象存放在Object Store中 obj_ref = ray.put(1) assert ray.get(obj_ref) == 1 ray.get()和ray.wait() ray.get()是同步阻塞，如果输入的list，其中最慢的任务会拖累整体结果返回 ray.wait()是异步筛选，会检查list中的任务，返回ready_ids（已完成）和remaining_ids（未完成），可以设置num_returns来控制等待任务数量，默认至少有一个任务ready wait相比get，可以让计算、通信等阶段重叠，同时避免内存峰值压力 构建分布式任务流 可以把一个Task输出的ObjectRef传递给另一个Task（包括Actor task） 可以把一个ActorHandle传递给一个Task，实现在多个远程Worker中同时调用一个Actor import ray @ray.remote def square(x): return x * x obj1 = square.remote(2) obj2 = square.remote(obj1) assert ray.get(obj2) == 16 @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value += 1 def get_value(self): return self.value counter = Counter.remote() @ray.remote def call_actor_in_worker(counter): counter.increment.remote() ray.get([call_actor_in_worker.remote(counter) for _ in range(5)]) assert ray.get(counter.get_value.remote()) == 5 其他功能 其他功能还包括：\n设置Task和Actor所需的资源 Actor生命周期管理 Actor自动故障恢复 自定义调度策略 Python/Java跨语言编程 开源生态 Ray Train：分布式模型训练 Ray Tune：分布式超参数调优 Ray Serve：分布式模型服务部署 RLlib：强化学习库 Ray Data：分布式数据处理 创建dataset，类似DataFrame类型，可以看schema ds.map_batches创建计算任务，指定： 计算函数（udf），可以是一个函数，也可以是一个类（定义__call__函数） compute策略：例如ray.data.ActorPoolStrategy(size=4)，创建4个actor处理请求，类似线程池的概念 资源使用：每个worker分配几个gpu batch_size .take_batch(n)触发部分惰性计算，另外.materialize()触发全量 参考链接：\nRay: A Distributed Framework for Emerging AI Applications 官方github 官方文档 # 分布式计算框架Ray介绍 # Ray 分布式计算框架介绍",
+    "description": "为了简化分布式编程，Ray提供了一套简单、通用的分布式编程API，屏蔽了分布式系统中的这些常见的难题，让开发者能够使用像开发单机程序一样简单的方式，开发分布式系统\nRay的API基于以下几个核心的概念： Task Ray使用Task来表示一个无状态的计算单元，异步执行，可以并行执行多个Task 可以把任何python函数包装成Task import ray @ray.remote def square(x): return x * x obj_refs = [] for i in range(5): obj_refs.append(square.remote(i)) assert ray.get(obj_refs) == [0, 1, 4, 9, 16] Actor Ray使用Actor来表示一个有状态的计算单元 可以把任意python的class包装成Actor 通过ActorHandle来远程调用这个Actor的任意方法（Task） 多个Actor的Task在进程中顺序执行，共享Actor状态 import ray @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value += 1 def get_value(self): return self.value counter = Counter.remote() [counter.increment.remote() for _ in range(5)] assert ray.get(counter.get_value.remote()) == 5 Object Store Task的计算结果存放在Object Store中 可以通过put接口，显式地把python对象存放在Object Store中 obj_ref = ray.put(1) assert ray.get(obj_ref) == 1 ray.get()和ray.wait() ray.get()是同步阻塞，如果输入的list，其中最慢的任务会拖累整体结果返回 ray.wait()是异步筛选，会检查list中的任务，返回ready_ids（已完成）和remaining_ids（未完成），可以设置num_returns来控制等待任务数量，默认至少有一个任务ready wait相比get，可以让计算、通信等阶段重叠，同时避免内存峰值压力 构建分布式任务流 可以把一个Task输出的ObjectRef传递给另一个Task（包括Actor task） 可以把一个ActorHandle传递给一个Task，实现在多个远程Worker中同时调用一个Actor import ray @ray.remote def square(x): return x * x obj1 = square.remote(2) obj2 = square.remote(obj1) assert ray.get(obj2) == 16 @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value += 1 def get_value(self): return self.value counter = Counter.remote() @ray.remote def call_actor_in_worker(counter): counter.increment.remote() ray.get([call_actor_in_worker.remote(counter) for _ in range(5)]) assert ray.get(counter.get_value.remote()) == 5 其他功能 其他功能还包括：",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "Ray：分布式计算框架",
+    "uri": "/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效\nveRL的主要特点：\n混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：\nHybridFlow: A Flexible and Efficient RLHF Framework",
+    "description": "在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效\nveRL的主要特点：\n混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：\nHybridFlow: A Flexible and Efficient RLHF Framework",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "veRL：大模型强化学习框架",
+    "uri": "/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
+    "content": "总结 veRL框架前置学习 Ray框架学习 veRL底层使用Ray做资源调度： Ray：分布式计算框架 vLLM框架学习 veRL支持接入vLLM做模型推理（强化学习中的rollout）： vLLM：大模型加速推理框架 AutoDL平台使用 租用AutoDL平台GPU服务器，进行vLLM以及veRL源码阅读和示例试跑 知识 Ray是一个分布式框架，主要用于数据处理、模型训练、参数调优和推理，相比传统的如Spark的框架，不依赖中心化Master节点，适合处理频繁小任务的分配 @ray.remote：简洁的api实现函数和类的分布式任务转化 共享Object Store：提升worker间数据传输效率 允许为每一个任务设置资源需求（num_gpus=1） 支持自动重启、状态重建等容错机制 包含多个开源库：如Ray Train、Ray Data等 为了进行vLLM的学习，需要GPU服务器，选用AutoDL平台 节点选择4090、5090等卡型，支持10B左右模型的单卡推理 可采用无卡模式启动，进行环境配置，节省成本 安装vLLM需要有卡模式，方便编译过程确认cuda环境 模型数据本地下载，通过rclone上传auto-fs（云盘挂载），再拷贝到auto-tmp（本地数据盘），加速数据读取速度 待办 veRL框架前置学习",
+    "description": "总结 veRL框架前置学习 Ray框架学习 veRL底层使用Ray做资源调度： Ray：分布式计算框架 vLLM框架学习 veRL支持接入vLLM做模型推理（强化学习中的rollout）： vLLM：大模型加速推理框架 AutoDL平台使用 租用AutoDL平台GPU服务器，进行vLLM以及veRL源码阅读和示例试跑 知识 Ray是一个分布式框架，主要用于数据处理、模型训练、参数调优和推理，相比传统的如Spark的框架，不依赖中心化Master节点，适合处理频繁小任务的分配 @ray.remote：简洁的api实现函数和类的分布式任务转化 共享Object Store：提升worker间数据传输效率 允许为每一个任务设置资源需求（num_gpus=1） 支持自动重启、状态重建等容错机制 包含多个开源库：如Ray Train、Ray Data等 为了进行vLLM的学习，需要GPU服务器，选用AutoDL平台 节点选择4090、5090等卡型，支持10B左右模型的单卡推理 可采用无卡模式启动，进行环境配置，节省成本 安装vLLM需要有卡模式，方便编译过程确认cuda环境 模型数据本地下载，通过rclone上传auto-fs（云盘挂载），再拷贝到auto-tmp（本地数据盘），加速数据读取速度 待办 veRL框架前置学习",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week17 强化学习框架前置学习",
+    "uri": "/hugo-blog/weekly/week17/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -37,13 +119,13 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "基础用法 通过gym.make创建环境，gym提供了多样的内置环境 通过env.reset()初始化环境 通过env.step(action)来与环境进行一次交互，得到五元组： observation：交互后的状态 reward：交互发生获得的收益 terminated：交互是否终止，类似任务失败 truncated：交互是否因为最大步数截断 info：一些debug信息 # Run `pip install \"gymnasium[classic-control]\"` for this example. import gymnasium as gym # Create our training environment - a cart with a pole that needs balancing env = gym.make(\"CartPole-v1\", render_mode=\"human\") # Reset environment to start a new episode observation, info = env.reset() # observation: what the agent can \"see\" - cart position, velocity, pole angle, etc. # info: extra debugging information (usually not needed for basic learning) print(f\"Starting observation: {observation}\") # Example output: [ 0.01234567 -0.00987654 0.02345678 0.01456789] # [cart_position, cart_velocity, pole_angle, pole_angular_velocity] episode_over = False total_reward = 0 while not episode_over: # Choose an action: 0 = push cart left, 1 = push cart right action = env.action_space.sample() # Random action for now - real agents will be smarter! # Take the action and see what happens observation, reward, terminated, truncated, info = env.step(action) # reward: +1 for each step the pole stays upright # terminated: True if pole falls too far (agent failed) # truncated: True if we hit the time limit (500 steps) total_reward += reward episode_over = terminated or truncated print(f\"Episode finished! Total reward: {total_reward}\") env.close() 训练agent 以q-learning为例，训练agent主要在于更新agent的参数，以获得get_action的最优解：\nfrom collections import defaultdict import gymnasium as gym import numpy as np class BlackjackAgent: def __init__( self, env: gym.Env, learning_rate: float, initial_epsilon: float, epsilon_decay: float, final_epsilon: float, discount_factor: float = 0.95, ): \"\"\"Initialize a Q-Learning agent. Args: env: The training environment learning_rate: How quickly to update Q-values (0-1) initial_epsilon: Starting exploration rate (usually 1.0) epsilon_decay: How much to reduce epsilon each episode final_epsilon: Minimum exploration rate (usually 0.1) discount_factor: How much to value future rewards (0-1) \"\"\" self.env = env # Q-table: maps (state, action) to expected reward # defaultdict automatically creates entries with zeros for new states self.q_values = defaultdict(lambda: np.zeros(env.action_space.n)) self.lr = learning_rate self.discount_factor = discount_factor # How much we care about future rewards # Exploration parameters self.epsilon = initial_epsilon self.epsilon_decay = epsilon_decay self.final_epsilon = final_epsilon # Track learning progress self.training_error = [] def get_action(self, obs: tuple[int, int, bool]) -\u003e int: \"\"\"Choose an action using epsilon-greedy strategy. Returns: action: 0 (stand) or 1 (hit) \"\"\" # With probability epsilon: explore (random action) if np.random.random() \u003c self.epsilon: return self.env.action_space.sample() # With probability (1-epsilon): exploit (best known action) else: return int(np.argmax(self.q_values[obs])) def update( self, obs: tuple[int, int, bool], action: int, reward: float, terminated: bool, next_obs: tuple[int, int, bool], ): \"\"\"Update Q-value based on experience. This is the heart of Q-learning: learn from (state, action, reward, next_state) \"\"\" # What's the best we could do from the next state? # (Zero if episode terminated - no future rewards possible) future_q_value = (not terminated) * np.max(self.q_values[next_obs]) # What should the Q-value be? (Bellman equation) target = reward + self.discount_factor * future_q_value # How wrong was our current estimate? temporal_difference = target - self.q_values[obs][action] # Update our estimate in the direction of the error # Learning rate controls how big steps we take self.q_values[obs][action] = ( self.q_values[obs][action] + self.lr * temporal_difference ) # Track learning progress (useful for debugging) self.training_error.append(temporal_difference) def decay_epsilon(self): \"\"\"Reduce exploration rate after each episode.\"\"\" self.epsilon = max(self.final_epsilon, self.epsilon - self.epsilon_decay) 通过和env的交互，获取obs、action、reward、next_obs的样本，对参数进行更新\n设计环境 继承gym.Env类，进行函数重写，包括：\n__init__：环境基本信息，包括observation_space和action_space _get_obs和_get_info：对应Env.reset()和Env.step() reset()：随机初始化observation和info step()：包含了env最核心的逻辑，每一次交互环境如何改变，需要返回五元组 可以通过以下方式注册环境，从而使用类似内置环境的gym.make()来获取：\n# Register the environment so we can create it with gym.make() gym.register( id=\"gymnasium_env/GridWorld-v0\", entry_point=GridWorldEnv, max_episode_steps=300, # Prevent infinite episodes ) 环境可以使用wrappers进行包裹，从而在不改变原本env代码的情况下，修改env执行逻辑\n记录agent gym内置了RecordEpisodeStatistics和RecordVideo这两个wrapper：\nRecordEpisodeStatistics：记录指标，比如reward、length、耗时等 RecordVideo：生成MP4视频，agent在环境中的rendering 更复杂的记录可以使用wandb\n训练加速 通过以下三种方式进行训练加速：\n并发环境：让agent在多个环境中同时交互，并发获取更新，注意并发需要对训练代码更新，并可能会导致训练不稳定 代码优化：通过pytorch和jax的jit（just in time compilation），可以从代码执行层面加速 算法优化：探索更有样本效率的算法 参考链接：\nGymnasium: ## An API standard for reinforcement learning with a diverse collection of reference environments",
-    "description": "基础用法 通过gym.make创建环境，gym提供了多样的内置环境 通过env.reset()初始化环境 通过env.step(action)来与环境进行一次交互，得到五元组： observation：交互后的状态 reward：交互发生获得的收益 terminated：交互是否终止，类似任务失败 truncated：交互是否因为最大步数截断 info：一些debug信息 # Run `pip install \"gymnasium[classic-control]\"` for this example. import gymnasium as gym # Create our training environment - a cart with a pole that needs balancing env = gym.make(\"CartPole-v1\", render_mode=\"human\") # Reset environment to start a new episode observation, info = env.reset() # observation: what the agent can \"see\" - cart position, velocity, pole angle, etc. # info: extra debugging information (usually not needed for basic learning) print(f\"Starting observation: {observation}\") # Example output: [ 0.01234567 -0.00987654 0.02345678 0.01456789] # [cart_position, cart_velocity, pole_angle, pole_angular_velocity] episode_over = False total_reward = 0 while not episode_over: # Choose an action: 0 = push cart left, 1 = push cart right action = env.action_space.sample() # Random action for now - real agents will be smarter! # Take the action and see what happens observation, reward, terminated, truncated, info = env.step(action) # reward: +1 for each step the pole stays upright # terminated: True if pole falls too far (agent failed) # truncated: True if we hit the time limit (500 steps) total_reward += reward episode_over = terminated or truncated print(f\"Episode finished! Total reward: {total_reward}\") env.close() 训练agent 以q-learning为例，训练agent主要在于更新agent的参数，以获得get_action的最优解：",
+    "content": "基础用法 通过gym.make创建环境，gym提供了多样的内置环境 通过env.reset()初始化环境 通过env.step(action)来与环境进行一次交互，得到五元组： observation：交互后的状态 reward：交互发生获得的收益 terminated：交互是否终止，类似任务失败 truncated：交互是否因为最大步数截断 info：一些debug信息 # Run `pip install \"gymnasium[classic-control]\"` for this example. import gymnasium as gym # Create our training environment - a cart with a pole that needs balancing env = gym.make(\"CartPole-v1\", render_mode=\"human\") # Reset environment to start a new episode observation, info = env.reset() # observation: what the agent can \"see\" - cart position, velocity, pole angle, etc. # info: extra debugging information (usually not needed for basic learning) print(f\"Starting observation: {observation}\") # Example output: [ 0.01234567 -0.00987654 0.02345678 0.01456789] # [cart_position, cart_velocity, pole_angle, pole_angular_velocity] episode_over = False total_reward = 0 while not episode_over: # Choose an action: 0 = push cart left, 1 = push cart right action = env.action_space.sample() # Random action for now - real agents will be smarter! # Take the action and see what happens observation, reward, terminated, truncated, info = env.step(action) # reward: +1 for each step the pole stays upright # terminated: True if pole falls too far (agent failed) # truncated: True if we hit the time limit (500 steps) total_reward += reward episode_over = terminated or truncated print(f\"Episode finished! Total reward: {total_reward}\") env.close() 训练agent 通过和env的交互，获取obs、action、reward、next_obs的样本，对参数进行更新：\n# 每一个episode是一次行为序列，包含多个step for episode in range(...): # 每一个step是一次基于样本的参数更新 for step in range(...): # 基于当前obs进行action的选择 action = model.get_action(obs, ...) # 基于action进行一次env的交互 new_obs, reward, terminated, truncated, info = env.step(action) # 基于一次交互样本进行模型参数更新 model.update(obs, action, reward, new_obs) # 判断序列是否终止 if terminated or truncated: break obs = new_obs 设计环境 继承gym.Env类，进行函数重写，包括：\n__init__：环境基本信息，包括observation_space和action_space _get_obs和_get_info：对应Env.reset()和Env.step() reset()：随机初始化observation和info step()：包含了env最核心的逻辑，每一次交互环境如何改变，需要返回五元组 可以通过以下方式注册环境，从而使用类似内置环境的gym.make()来获取：\n# Register the environment so we can create it with gym.make() gym.register( id=\"gymnasium_env/GridWorld-v0\", entry_point=GridWorldEnv, max_episode_steps=300, # Prevent infinite episodes ) 环境可以使用wrappers进行包裹，从而在不改变原本env代码的情况下，修改env执行逻辑\n记录agent gym内置了RecordEpisodeStatistics和RecordVideo这两个wrapper：\nRecordEpisodeStatistics：记录指标，比如reward、length、耗时等 RecordVideo：生成MP4视频，agent在环境中的rendering 更复杂的记录可以使用wandb\n训练加速 通过以下三种方式进行训练加速：\n并发环境：让agent在多个环境中同时交互，并发获取更新，注意并发需要对训练代码更新，并可能会导致训练不稳定 代码优化：通过pytorch和jax的jit（just in time compilation），可以从代码执行层面加速 算法优化：探索更有样本效率的算法 参考链接：\nGymnasium: ## An API standard for reinforcement learning with a diverse collection of reference environments",
+    "description": "基础用法 通过gym.make创建环境，gym提供了多样的内置环境 通过env.reset()初始化环境 通过env.step(action)来与环境进行一次交互，得到五元组： observation：交互后的状态 reward：交互发生获得的收益 terminated：交互是否终止，类似任务失败 truncated：交互是否因为最大步数截断 info：一些debug信息 # Run `pip install \"gymnasium[classic-control]\"` for this example. import gymnasium as gym # Create our training environment - a cart with a pole that needs balancing env = gym.make(\"CartPole-v1\", render_mode=\"human\") # Reset environment to start a new episode observation, info = env.reset() # observation: what the agent can \"see\" - cart position, velocity, pole angle, etc. # info: extra debugging information (usually not needed for basic learning) print(f\"Starting observation: {observation}\") # Example output: [ 0.01234567 -0.00987654 0.02345678 0.01456789] # [cart_position, cart_velocity, pole_angle, pole_angular_velocity] episode_over = False total_reward = 0 while not episode_over: # Choose an action: 0 = push cart left, 1 = push cart right action = env.action_space.sample() # Random action for now - real agents will be smarter! # Take the action and see what happens observation, reward, terminated, truncated, info = env.step(action) # reward: +1 for each step the pole stays upright # terminated: True if pole falls too far (agent failed) # truncated: True if we hit the time limit (500 steps) total_reward += reward episode_over = terminated or truncated print(f\"Episode finished! Total reward: {total_reward}\") env.close() 训练agent 通过和env的交互，获取obs、action、reward、next_obs的样本，对参数进行更新：",
     "tags": [
       "技术笔记"
     ],
-    "title": "Gymnasium学习手册",
-    "uri": "/hugo-blog/blogs/gymnasium%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
+    "title": "Gymnasium：强化学习交互接口库",
+    "uri": "/hugo-blog/blogs/gymnasium%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E5%BA%93/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -76,14 +158,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/sim-to-real%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tags",
-    "uri": "/hugo-blog/tags/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
     "content": "World Models 参考链接：\nWorld Models PlaNet 参考链接：\nLearning Latent Dynamics for Planning from Pixels Dreamer 参考链接：\n# Introducing Dreamer: Scalable Reinforcement Learning Using World Models # Mastering Atari with Discrete World Models # Mastering Diverse Control Tasks through World Models # Training Agents Inside of Scalable World Models",
     "description": "World Models 参考链接：\nWorld Models PlaNet 参考链接：\nLearning Latent Dynamics for Planning from Pixels Dreamer 参考链接：\n# Introducing Dreamer: Scalable Reinforcement Learning Using World Models # Mastering Atari with Discrete World Models # Mastering Diverse Control Tasks through World Models # Training Agents Inside of Scalable World Models",
@@ -94,17 +168,9 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/world-model%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "[!note] 总结 强化学习框架学习 [!tip] 知识 [!warning] 待办",
-    "description": "[!note] 总结 强化学习框架学习 [!tip] 知识 [!warning] 待办",
+    "content": "总结 Gymnasium框架学习 强化学习框架学习 阅读Gymnasium框架doc： Gymnasium：强化学习交互接口库 基于Gym进行epsilon-greedy的q-learning算法实现 基于CNN在atari环境breakout中进行DQN算法实现 知识 Gymnasium主要进行了强化学习算法env以及env交互的封装 内置多种基础env，包括gridworld、倒立摆、以及atari游戏等 用户可自行创建env，也可以通过wrapper对已有env进行定制化修改 env提供： reset初始化 step交互 返回observation、reward、terminated、truncated以及info 算法基于上述信息进行参数学习，优化agent 通过并行化环境，可以同时让多个agent进行环境交互，加速样本生成速度 wrapper可以进行环境的定制化，采用洋葱结构，包在外侧的先与环境交互 内置了多种wrapper，包含 RecordEpisodeStatistics：过程指标记录 RecordVideo：视频生成 FrameStackObservation：视频帧stack 支持用户自定义的wrapper，方便进行视频跳针、游戏失败定义等 基于TD learning的DQN算法，loss的变化趋势通常是： 第一阶段：replay buffer几乎都是随机探索样本，TD target很小，loss很小 第二阶段：模型学习期，TD target变大，loss上升 第三阶段：相对稳定的范围波动，最终loss稳定在一个范围内 待办 强化学习框架学习",
+    "description": "总结 Gymnasium框架学习 强化学习框架学习 阅读Gymnasium框架doc： Gymnasium：强化学习交互接口库 基于Gym进行epsilon-greedy的q-learning算法实现 基于CNN在atari环境breakout中进行DQN算法实现 知识 Gymnasium主要进行了强化学习算法env以及env交互的封装 内置多种基础env，包括gridworld、倒立摆、以及atari游戏等 用户可自行创建env，也可以通过wrapper对已有env进行定制化修改 env提供： reset初始化 step交互 返回observation、reward、terminated、truncated以及info 算法基于上述信息进行参数学习，优化agent 通过并行化环境，可以同时让多个agent进行环境交互，加速样本生成速度 wrapper可以进行环境的定制化，采用洋葱结构，包在外侧的先与环境交互 内置了多种wrapper，包含 RecordEpisodeStatistics：过程指标记录 RecordVideo：视频生成 FrameStackObservation：视频帧stack 支持用户自定义的wrapper，方便进行视频跳针、游戏失败定义等 基于TD learning的DQN算法，loss的变化趋势通常是： 第一阶段：replay buffer几乎都是随机探索样本，TD target很小，loss很小 第二阶段：模型学习期，TD target变大，loss上升 第三阶段：相对稳定的范围波动，最终loss稳定在一个范围内 待办 强化学习框架学习",
     "tags": [
       "周记"
     ],
@@ -112,25 +178,9 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/weekly/week16/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Weeklies",
-    "uri": "/hugo-blog/weekly/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 周记",
-    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 LangGraph框架学习 LangGraph框架学习 LangGraph学习手册 知识 LangGraph是LangChain 1.0的底层实现，通过定义graph、node和edge来实现确定性的agent workflow LangGraph通过checkpoint支持durable execution，长程任务中可以中断并resume，避免任务中间计算重做，以及重做带来的不一致性 LangGraph分为Graph API和Functional API Graph API通过图的方式构建workflow，支持复杂逻辑，方便可视化 Functional API通过@entrypoint和@task对原有代码逻辑封装，使其支持LangGraph的特性 待办 强化学习框架学习",
-    "description": "总结 LangGraph框架学习 LangGraph框架学习 LangGraph学习手册 知识 LangGraph是LangChain 1.0的底层实现，通过定义graph、node和edge来实现确定性的agent workflow LangGraph通过checkpoint支持durable execution，长程任务中可以中断并resume，避免任务中间计算重做，以及重做带来的不一致性 LangGraph分为Graph API和Functional API Graph API通过图的方式构建workflow，支持复杂逻辑，方便可视化 Functional API通过@entrypoint和@task对原有代码逻辑封装，使其支持LangGraph的特性 待办 强化学习框架学习",
+    "content": "总结 LangGraph框架学习 LangGraph框架学习 LangGraph：agent循环执行库 知识 LangGraph是LangChain 1.0的底层实现，通过定义graph、node和edge来实现确定性的agent workflow LangGraph通过checkpoint支持durable execution，长程任务中可以中断并resume，避免任务中间计算重做，以及重做带来的不一致性 LangGraph分为Graph API和Functional API Graph API通过图的方式构建workflow，支持复杂逻辑，方便可视化 Functional API通过@entrypoint和@task对原有代码逻辑封装，使其支持LangGraph的特性 待办 强化学习框架学习",
+    "description": "总结 LangGraph框架学习 LangGraph框架学习 LangGraph：agent循环执行库 知识 LangGraph是LangChain 1.0的底层实现，通过定义graph、node和edge来实现确定性的agent workflow LangGraph通过checkpoint支持durable execution，长程任务中可以中断并resume，避免任务中间计算重做，以及重做带来的不一致性 LangGraph分为Graph API和Functional API Graph API通过图的方式构建workflow，支持复杂逻辑，方便可视化 Functional API通过@entrypoint和@task对原有代码逻辑封装，使其支持LangGraph的特性 待办 强化学习框架学习",
     "tags": [
       "周记"
     ],
@@ -144,8 +194,8 @@ var relearn_searchindex = [
     "tags": [
       "技术笔记"
     ],
-    "title": "LangChain学习手册",
-    "uri": "/hugo-blog/blogs/langchain%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
+    "title": "LangChain：agent链式执行库",
+    "uri": "/hugo-blog/blogs/langchainagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -154,8 +204,8 @@ var relearn_searchindex = [
     "tags": [
       "技术笔记"
     ],
-    "title": "LangGraph学习手册",
-    "uri": "/hugo-blog/blogs/langgraph%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
+    "title": "LangGraph：agent循环执行库",
+    "uri": "/hugo-blog/blogs/langgraphagent%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%E5%BA%93/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -169,8 +219,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 LangChain框架学习 LangChain框架学习 LangChain学习手册 知识 typedDict通过约定的方式说明dict中的字段有哪些，如果不符合则会在运行前警告；而pydantic是dataclass的第三方强化版本，定义一个数据类，并保证类中的字段，如果不符合则会在运行时报错，pydantic可以进行自动转化，并支持字段级别的初始化处理逻辑 asyncio支持python中的异步逻辑，使用单线程避免任务等待 将函数定义为async，使用await来挂起等待结果返回 如果多个任务同时触发，可以使用asyncio.gather 使用asyncio.run来启动事件循环（EventLoop），触发全部协程 LangChain是帮助用户快速搭建agent的平台，用户通过设计system prompt、tool、中间件等，实现agentic逻辑，在交互过程中更新agent的state，控制模型上下文，得到结果 Model：LangChain支持各大厂商和开源model Tools：LangChain支持用@tool将函数封装为工具使用 Middleware：中间件方便用户在模型调用前后，工具调用前后进行拦截，并实现特定逻辑，包括模型、工具、system prompt的修改等 一些内置的中间件，包括Human-in-the-loop中间件等 Memory：LangChain的短期记忆就是state，长期记忆就是store state就是对话序列，包含AIMessage、ToolMessage、HumanMessage等，以及用户定义的一些字段，通过state_schema传入 store就是外部存储，默认内存，可以选择数据库 response_format：通过ToolStrategy或者厂商原生能力，支持结构化输出 待办 LangGraph框架学习",
-    "description": "总结 LangChain框架学习 LangChain框架学习 LangChain学习手册 知识 typedDict通过约定的方式说明dict中的字段有哪些，如果不符合则会在运行前警告；而pydantic是dataclass的第三方强化版本，定义一个数据类，并保证类中的字段，如果不符合则会在运行时报错，pydantic可以进行自动转化，并支持字段级别的初始化处理逻辑 asyncio支持python中的异步逻辑，使用单线程避免任务等待 将函数定义为async，使用await来挂起等待结果返回 如果多个任务同时触发，可以使用asyncio.gather 使用asyncio.run来启动事件循环（EventLoop），触发全部协程 LangChain是帮助用户快速搭建agent的平台，用户通过设计system prompt、tool、中间件等，实现agentic逻辑，在交互过程中更新agent的state，控制模型上下文，得到结果 Model：LangChain支持各大厂商和开源model Tools：LangChain支持用@tool将函数封装为工具使用 Middleware：中间件方便用户在模型调用前后，工具调用前后进行拦截，并实现特定逻辑，包括模型、工具、system prompt的修改等 一些内置的中间件，包括Human-in-the-loop中间件等 Memory：LangChain的短期记忆就是state，长期记忆就是store state就是对话序列，包含AIMessage、ToolMessage、HumanMessage等，以及用户定义的一些字段，通过state_schema传入 store就是外部存储，默认内存，可以选择数据库 response_format：通过ToolStrategy或者厂商原生能力，支持结构化输出 待办 LangGraph框架学习",
+    "content": "总结 LangChain框架学习 LangChain框架学习 LangChain：agent链式执行库 知识 typedDict通过约定的方式说明dict中的字段有哪些，如果不符合则会在运行前警告；而pydantic是dataclass的第三方强化版本，定义一个数据类，并保证类中的字段，如果不符合则会在运行时报错，pydantic可以进行自动转化，并支持字段级别的初始化处理逻辑 asyncio支持python中的异步逻辑，使用单线程避免任务等待 将函数定义为async，使用await来挂起等待结果返回 如果多个任务同时触发，可以使用asyncio.gather 使用asyncio.run来启动事件循环（EventLoop），触发全部协程 LangChain是帮助用户快速搭建agent的平台，用户通过设计system prompt、tool、中间件等，实现agentic逻辑，在交互过程中更新agent的state，控制模型上下文，得到结果 Model：LangChain支持各大厂商和开源model Tools：LangChain支持用@tool将函数封装为工具使用 Middleware：中间件方便用户在模型调用前后，工具调用前后进行拦截，并实现特定逻辑，包括模型、工具、system prompt的修改等 一些内置的中间件，包括Human-in-the-loop中间件等 Memory：LangChain的短期记忆就是state，长期记忆就是store state就是对话序列，包含AIMessage、ToolMessage、HumanMessage等，以及用户定义的一些字段，通过state_schema传入 store就是外部存储，默认内存，可以选择数据库 response_format：通过ToolStrategy或者厂商原生能力，支持结构化输出 待办 LangGraph框架学习",
+    "description": "总结 LangChain框架学习 LangChain框架学习 LangChain：agent链式执行库 知识 typedDict通过约定的方式说明dict中的字段有哪些，如果不符合则会在运行前警告；而pydantic是dataclass的第三方强化版本，定义一个数据类，并保证类中的字段，如果不符合则会在运行时报错，pydantic可以进行自动转化，并支持字段级别的初始化处理逻辑 asyncio支持python中的异步逻辑，使用单线程避免任务等待 将函数定义为async，使用await来挂起等待结果返回 如果多个任务同时触发，可以使用asyncio.gather 使用asyncio.run来启动事件循环（EventLoop），触发全部协程 LangChain是帮助用户快速搭建agent的平台，用户通过设计system prompt、tool、中间件等，实现agentic逻辑，在交互过程中更新agent的state，控制模型上下文，得到结果 Model：LangChain支持各大厂商和开源model Tools：LangChain支持用@tool将函数封装为工具使用 Middleware：中间件方便用户在模型调用前后，工具调用前后进行拦截，并实现特定逻辑，包括模型、工具、system prompt的修改等 一些内置的中间件，包括Human-in-the-loop中间件等 Memory：LangChain的短期记忆就是state，长期记忆就是store state就是对话序列，包含AIMessage、ToolMessage、HumanMessage等，以及用户定义的一些字段，通过state_schema传入 store就是外部存储，默认内存，可以选择数据库 response_format：通过ToolStrategy或者厂商原生能力，支持结构化输出 待办 LangGraph框架学习",
     "tags": [
       "周记"
     ],
