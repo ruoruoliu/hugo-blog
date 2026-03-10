@@ -13,7 +13,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html</link>
       <pubDate>Sat, 07 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html</guid>
-      <description>源码阅读 vllm/entrypoints 外部交互入口：从“本地推理脚本”转变为“生产级服务”的关键&#xA;api_server.py： vllm/engine vllm/core vllm/worker vllm/model_executor csrc 参考链接：</description>
+      <description>LLM Engine和Engine Core LLM Engine本身就可以进行推理，只是不能作为服务：&#xA;离线/非分布式 同步阻塞，单进程 单卡GPU执行，没有任何并行策略（DP/TP/PP/EP等） from vllm import LLM, SamplingParams prompts = [ &#34;Hello, my name is&#34;, &#34;The president of the United States is&#34;, ] sampling_params = SamplingParams(temperature=0.8, top_p=0.95) def main(): llm = LLM(model=&#34;TinyLlama/TinyLlama-1.1B-Chat-v1.0&#34;) outputs = llm.generate(prompts, sampling_params) if __name__ == &#34;__main__&#34;: main() LLM Engine构造 LLM Engine的构造配置包含：</description>
     </item>
     <item>
       <title>Ray：分布式计算框架</title>

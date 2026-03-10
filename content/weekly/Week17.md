@@ -31,7 +31,7 @@ draft: false
 > 	- 节点选择4090、5090等卡型，支持10B左右模型的单卡推理
 > 	- 可采用无卡模式启动，进行环境配置，节省成本
 > 	- 安装vLLM需要有卡模式，方便编译过程确认cuda环境
-> 	- 模型数据本地下载，通过rclone上传auto-fs（云盘挂载），再拷贝到auto-tmp（本地数据盘），加速数据读取速度
+> 	- 模型数据通过hugggingface-cli(hf)下载到auto-tmp（本地数据盘），然后拷贝到auto-fs（云盘挂载），实例间共享auto-fs
 
 > [!warning] 待办
 > - veRL框架前置学习
