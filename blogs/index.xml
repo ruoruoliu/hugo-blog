@@ -6,8 +6,15 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/blogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FSDP：Pytorch的完全分片数据并行</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html</guid>
+      <description>DP和DDP DP（数据并行）指多个gpu处理不同batch数据，然后每个step进行梯度的汇总，更新全局模型参数&#xA;最朴素的方法是每个gpu上存一份模型参数，各自直接计算梯度，master汇总更新，这种方法需要全量梯度在gpu之间传递，显卡越多，master越忙，会阻塞&#xA;DDP（分布式数据并行）让每个gpu有自己独立的进程，取消了master，采用分布式，gpu之间平等地交换梯度，all-reduce算法&#xA;不关是DP还是DDP，因为只传递梯度，每个gpu都保存了全量的优化器状态（模型参数的2-3倍）和激活&#xA;Sharded 既然DP和DDP为了不传递优化器状态和激活浪费了这么多显存，要就把这些拆分开，多传递数据以减少显存浪费，这就是sharded&#xA;也就是微软ZeRO的想法： # ZeRO: Memory Optimizations Toward Training Trillion Parameter Models&#xA;ZeRO-1：只切分优化器状态，每个worker计算全量梯度后，通信梯度，然后利用平均梯度和自己部分的优化器状态更新完参数，然后worker之间通信参数，拿到全量参数 ZeRO-2：再切分梯度，每个worker计算全量梯度，算完一部分梯度之后通信完就把不属于自己的梯度扔掉，然后基于平均梯度更新参数，最终参数更新完后再通信，拿到全量参数 ZeRO-3：模型参数也切分，只有在算子执行的时候，才会通信把当前算子的参数拼接起来，边拉参数边计算，prefetching参数使计算和通信overlapp 参考链接：&#xA;# Sharded: A New Technique To Double The Size Of PyTorch Models FSDP FSDP就是ZeRO3的pytorch官方实现，在ZeRO-3的基础上还支持cpu offloading：</description>
+    </item>
     <item>
       <title>vLLM：大模型加速推理框架</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html</link>
@@ -27,7 +34,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html</link>
       <pubDate>Thu, 05 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html</guid>
-      <description>在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效&#xA;veRL的主要特点：&#xA;混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：&#xA;HybridFlow: A Flexible and Efficient RLHF Framework</description>
+      <description>背景 在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效&#xA;veRL的主要特点：&#xA;混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 以RLHF的三种算法为例，从上到下分为三个阶段：&#xA;生成阶段：actor进行rollout，即当前策略的文本生成，auto-regression decoding 准备阶段：critic、reward和reference，只进行prefill计算，不进行decoding 训练阶段：根据生成的样本和对应的奖励，反向传播更新模型参数 以PPO算法为例，由于是on-policy的算法，需要训练结束后再下一批次的rollout，一般PD分离的情况下，会造成资源浪费：&#xA;在训练阶段，actor没办法在参数更新前进行rollout，D部分的资源处于等待状态 在生成阶段，准备和训练阶段的P部分的资源处于等待状态 Hybrid Engine Single-Controller 由一个中央控制器统一管理数据流图中各个节点的进程分配和执行顺序</description>
     </item>
     <item>
       <title>Deep Reinforcement Learning Doesn&#39;t Work Yet</title>
