@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Hugo 0.157.0">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
     <meta name="description" content="为了简化分布式编程，Ray提供了一套简单、通用的分布式编程API，屏蔽了分布式系统中的这些常见的难题，让开发者能够使用像开发单机程序一样简单的方式，开发分布式系统
 Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个无状态的计算单元，异步执行，可以并行执行多个Task 可以把任何python函数包装成Task import ray @ray.remote def square(x): return x * x obj_refs = [] for i in range(5): obj_refs.append(square.remote(i)) assert ray.get(obj_refs) == [0, 1, 4, 9, 16] Actor Ray使用Actor来表示一个有状态的计算单元 可以把任意python的class包装成Actor 通过ActorHandle来远程调用这个Actor的任意方法（Task） 多个Actor的Task在进程中顺序执行，共享Actor状态 import ray @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value &#43;= 1 def get_value(self): return self.value counter = Counter.remote() [counter.increment.remote() for _ in range(5)] assert ray.get(counter.get_value.remote()) == 5 Object Store Task的计算结果存放在Object Store中 可以通过put接口，显式地把python对象存放在Object Store中 obj_ref = ray.put(1) assert ray.get(obj_ref) == 1 ray.get()和ray.wait() ray.get()是同步阻塞，如果输入的list，其中最慢的任务会拖累整体结果返回 ray.wait()是异步筛选，会检查list中的任务，返回ready_ids（已完成）和remaining_ids（未完成），可以设置num_returns来控制等待任务数量，默认至少有一个任务ready wait相比get，可以让计算、通信等阶段重叠，同时避免内存峰值压力 构建分布式任务流 可以把一个Task输出的ObjectRef传递给另一个Task（包括Actor task） 可以把一个ActorHandle传递给一个Task，实现在多个远程Worker中同时调用一个Actor import ray @ray.remote def square(x): return x * x obj1 = square.remote(2) obj2 = square.remote(obj1) assert ray.get(obj2) == 16 @ray.remote class Counter(object): def __init__(self): self.value = 0 def increment(self): self.value &#43;= 1 def get_value(self): return self.value counter = Counter.remote() @ray.remote def call_actor_in_worker(counter): counter.increment.remote() ray.get([call_actor_in_worker.remote(counter) for _ in range(5)]) assert ray.get(counter.get_value.remote()) == 5 其他功能 其他功能还包括：">
@@ -31,27 +31,27 @@ Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个�
     <meta itemprop="wordCount" content="179">
     <meta itemprop="keywords" content="技术笔记">
     <title>Ray：分布式计算框架 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1773574177" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1773574177" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1773574177" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1773574286" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1773574286" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1773574286" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1773574286" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1773574286" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1773574177";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1773574286";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1773574286" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1773574286" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1773574286" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1773574286" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1773574177" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1773574177" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1773574177" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574286" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574286" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1773574286" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1773574286" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1773574286" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -195,8 +195,8 @@ Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个�
 
 <p>为了简化分布式编程，Ray提供了一套简单、通用的分布式编程API，屏蔽了分布式系统中的这些常见的难题，让开发者能够使用像开发单机程序一样简单的方式，开发分布式系统</p>
 <p>Ray的API基于以下几个核心的概念：
-<a href="#R-image-f5aa50c041541783692a78236342f680" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/07a6d9d8aa1861a46bf1fa79fe0bfd18.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f5aa50c041541783692a78236342f680"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/07a6d9d8aa1861a46bf1fa79fe0bfd18.png"></a>
+<a href="#R-image-0eb840c9ae6577b75e5b5095dc1e0f58" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/07a6d9d8aa1861a46bf1fa79fe0bfd18.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-0eb840c9ae6577b75e5b5095dc1e0f58"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/07a6d9d8aa1861a46bf1fa79fe0bfd18.png"></a>
 </p>
 <h1 id="task">
   Task
@@ -213,7 +213,7 @@ Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个�
 <li>Ray使用Task来表示一个无状态的计算单元，异步执行，可以并行执行多个Task</li>
 <li>可以把任何python函数包装成Task</li>
 </ul>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ray
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ray
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ray.remote</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">square</span>(x):
@@ -241,7 +241,7 @@ Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个�
 <li>通过ActorHandle来远程调用这个Actor的任意方法（Task）</li>
 <li>多个Actor的Task在进程中顺序执行，共享Actor状态</li>
 </ul>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ray
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ray
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ray.remote</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Counter</span>(object):
@@ -276,7 +276,7 @@ Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个�
 <li>Task的计算结果存放在Object Store中</li>
 <li>可以通过put接口，显式地把python对象存放在Object Store中</li>
 </ul>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>obj_ref <span style="color:#f92672">=</span> ray<span style="color:#f92672">.</span>put(<span style="color:#ae81ff">1</span>)
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>obj_ref <span style="color:#f92672">=</span> ray<span style="color:#f92672">.</span>put(<span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> ray<span style="color:#f92672">.</span>get(obj_ref) <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span></span></span></code></pre></div>
 <h1 id="rayget和raywait">
   ray.get()和ray.wait()
@@ -312,7 +312,7 @@ Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个�
 <li>可以把一个Task输出的ObjectRef传递给另一个Task（包括Actor task）</li>
 <li>可以把一个ActorHandle传递给一个Task，实现在多个远程Worker中同时调用一个Actor</li>
 </ul>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ray
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ray
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ray.remote</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">square</span>(x):
@@ -546,9 +546,9 @@ Ray的API基于以下几个核心的概念： Task Ray使用Task来表示一个�
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1773574177"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1773574177" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1773574286"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1773574286" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1773574286" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
