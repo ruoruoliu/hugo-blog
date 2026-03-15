@@ -5,24 +5,27 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
+    <meta name="description" content="背景 在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
 veRL的主要特点：
-混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：
-HybridFlow: A Flexible and Efficient RLHF Framework">
+混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 以RLHF的三种算法为例，从上到下分为三个阶段：
+生成阶段：actor进行rollout，即当前策略的文本生成，auto-regression decoding 准备阶段：critic、reward和reference，只进行prefill计算，不进行decoding 训练阶段：根据生成的样本和对应的奖励，反向传播更新模型参数 以PPO算法为例，由于是on-policy的算法，需要训练结束后再下一批次的rollout，一般PD分离的情况下，会造成资源浪费：
+在训练阶段，actor没办法在参数更新前进行rollout，D部分的资源处于等待状态 在生成阶段，准备和训练阶段的P部分的资源处于等待状态 Hybrid Engine Single-Controller 由一个中央控制器统一管理数据流图中各个节点的进程分配和执行顺序">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="veRL：大模型强化学习框架 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
+    <meta name="twitter:description" content="背景 在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
 veRL的主要特点：
-混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：
-HybridFlow: A Flexible and Efficient RLHF Framework">
+混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 以RLHF的三种算法为例，从上到下分为三个阶段：
+生成阶段：actor进行rollout，即当前策略的文本生成，auto-regression decoding 准备阶段：critic、reward和reference，只进行prefill计算，不进行decoding 训练阶段：根据生成的样本和对应的奖励，反向传播更新模型参数 以PPO算法为例，由于是on-policy的算法，需要训练结束后再下一批次的rollout，一般PD分离的情况下，会造成资源浪费：
+在训练阶段，actor没办法在参数更新前进行rollout，D部分的资源处于等待状态 在生成阶段，准备和训练阶段的P部分的资源处于等待状态 Hybrid Engine Single-Controller 由一个中央控制器统一管理数据流图中各个节点的进程分配和执行顺序">
     <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
     <meta property="og:title" content="veRL：大模型强化学习框架 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
+    <meta property="og:description" content="背景 在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
 veRL的主要特点：
-混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：
-HybridFlow: A Flexible and Efficient RLHF Framework">
+混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 以RLHF的三种算法为例，从上到下分为三个阶段：
+生成阶段：actor进行rollout，即当前策略的文本生成，auto-regression decoding 准备阶段：critic、reward和reference，只进行prefill计算，不进行decoding 训练阶段：根据生成的样本和对应的奖励，反向传播更新模型参数 以PPO算法为例，由于是on-policy的算法，需要训练结束后再下一批次的rollout，一般PD分离的情况下，会造成资源浪费：
+在训练阶段，actor没办法在参数更新前进行rollout，D部分的资源处于等待状态 在生成阶段，准备和训练阶段的P部分的资源处于等待状态 Hybrid Engine Single-Controller 由一个中央控制器统一管理数据流图中各个节点的进程分配和执行顺序">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
@@ -30,36 +33,37 @@ HybridFlow: A Flexible and Efficient RLHF Framework">
     <meta property="article:modified_time" content="2026-03-05T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
     <meta itemprop="name" content="veRL：大模型强化学习框架 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
+    <meta itemprop="description" content="背景 在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效
 veRL的主要特点：
-混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 参考链接：
-HybridFlow: A Flexible and Efficient RLHF Framework">
+混合部署：允许Actor、Critic、Reference、Reward分布在不同的显存空间 极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快 灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练 以RLHF的三种算法为例，从上到下分为三个阶段：
+生成阶段：actor进行rollout，即当前策略的文本生成，auto-regression decoding 准备阶段：critic、reward和reference，只进行prefill计算，不进行decoding 训练阶段：根据生成的样本和对应的奖励，反向传播更新模型参数 以PPO算法为例，由于是on-policy的算法，需要训练结束后再下一批次的rollout，一般PD分离的情况下，会造成资源浪费：
+在训练阶段，actor没办法在参数更新前进行rollout，D部分的资源处于等待状态 在生成阶段，准备和训练阶段的P部分的资源处于等待状态 Hybrid Engine Single-Controller 由一个中央控制器统一管理数据流图中各个节点的进程分配和执行顺序">
     <meta itemprop="datePublished" content="2026-03-05T00:00:00+00:00">
     <meta itemprop="dateModified" content="2026-03-05T00:00:00+00:00">
-    <meta itemprop="wordCount" content="16">
+    <meta itemprop="wordCount" content="219">
     <meta itemprop="keywords" content="技术笔记">
     <title>veRL：大模型强化学习框架 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1773175798" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1773175798" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1773175798" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1773574177" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1773574177" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1773574177" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1773175798";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1773574177";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1773175798" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1773574177" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773175798" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773175798" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1773175798" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1773175798" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1773175798" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1773574177" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1773574177" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1773574177" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -139,7 +143,30 @@ HybridFlow: A Flexible and Efficient RLHF Framework">
 
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#single-controller">Single-Controller</a></li>
+    <li><a href="#multi-controller">Multi-Controller</a></li>
+    <li><a href="#hybridflow">HybridFLow</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#准备阶段">准备阶段</a></li>
+    <li><a href="#执行阶段">执行阶段</a></li>
+    <li><a href="#代码逻辑">代码逻辑</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#models">models</a></li>
+    <li><a href="#single_controller">single_controller</a></li>
+    <li><a href="#third_party">third_party</a></li>
+    <li><a href="#trainer">trainer</a></li>
+    <li><a href="#utils">utils</a></li>
+    <li><a href="#workers">workers</a></li>
+    <li><a href="#protocol">protocol</a></li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
@@ -201,6 +228,17 @@ HybridFlow: A Flexible and Efficient RLHF Framework">
 
 <h1 id="verl大模型强化学习框架">veRL：大模型强化学习框架</h1>
 
+<h1 id="背景">
+  背景
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
 <p>在传统的RL训练里，一个模型既要负责“生成回答”（Rollout），又要负责“更新参数”（Learner），这会导致显存分配非常低效</p>
 <p>veRL的主要特点：</p>
 <ul>
@@ -208,13 +246,470 @@ HybridFlow: A Flexible and Efficient RLHF Framework">
 <li>极高的吞吐量：相比于传统的框架，它在处理大语言模型的强化学习时速度极快</li>
 <li>灵活性：支持多种后端，如 vLLM 负责推理，Megatron-LM/FSDP 负责训练</li>
 </ul>
+<p><a href="#R-image-58ac65d8a6106a9134fa6c3085da67ee" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6bf8de3b15ff494bf472b3305ca3eb2a.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-58ac65d8a6106a9134fa6c3085da67ee"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6bf8de3b15ff494bf472b3305ca3eb2a.png?width=400px"></a>
+
+以RLHF的三种算法为例，从上到下分为三个阶段：</p>
+<ul>
+<li>生成阶段：actor进行rollout，即当前策略的文本生成，auto-regression decoding</li>
+<li>准备阶段：critic、reward和reference，只进行prefill计算，不进行decoding</li>
+<li>训练阶段：根据生成的样本和对应的奖励，反向传播更新模型参数</li>
+</ul>
+<p>以PPO算法为例，由于是on-policy的算法，需要训练结束后再下一批次的rollout，一般PD分离的情况下，会造成资源浪费：</p>
+<ul>
+<li>在训练阶段，actor没办法在参数更新前进行rollout，D部分的资源处于等待状态</li>
+<li>在生成阶段，准备和训练阶段的P部分的资源处于等待状态</li>
+</ul>
+<h1 id="hybrid-engine">
+  Hybrid Engine
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="single-controller">
+  Single-Controller
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>由一个中央控制器统一管理数据流图中各个节点的进程分配和执行顺序</p>
+<ul>
+<li>优势：全局视角便于优化，适合构建核心功能集中的数据流</li>
+<li>局限性：在大型集群上发送协调指令会产生调度开销，尤其RLHF下分配算子效率低下</li>
+</ul>
+<h2 id="multi-controller">
+  Multi-Controller
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>每个设备拥有独立的控制器，通过点对点通信协调节点间数据依赖</p>
+<ul>
+<li>优势：调度开销极低，被主流分布式LLM框架采用</li>
+<li>局限性：缺乏中心控制逻辑，实现复杂RLHF数据流时灵活性不足，开发维护困难</li>
+</ul>
 <p>参考链接：</p>
 <ul>
 <li>
 
 
 
+<a href="https://zhuanlan.zhihu.com/p/495592456" target="_blank"># 解读谷歌Pathways架构（一）：Single-controller与Multi-controller</a></li>
+</ul>
+<h2 id="hybridflow">
+  HybridFLow
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>不再把GPU资源分成PD两个组，而是让两个阶段串行执行并且显存复用：</p>
+<ul>
+<li>Rollout模式：释放训练引擎占用显存（offload到cpu或删掉），加载vllm进行推理</li>
+<li>Training模式：释放vllm占用显存，将训练引擎状态从cpu加载回来，做梯度计算</li>
+</ul>
+<p><a href="#R-image-ddebab300e83b996116ae5db2391f762" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/ca36433c08b356a4fd575f6988c62f34.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ddebab300e83b996116ae5db2391f762"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/ca36433c08b356a4fd575f6988c62f34.png?width=400px"></a>
+</p>
+<p>上图是HybridFlow的整体架构：</p>
+<ul>
+<li>用户通过定义数据流图，进行整体流程的设计</li>
+<li>worker进行engine的调用
+<ul>
+<li>3D混合引擎是为了让actor在不同阶段采用不同的并行策略：
+<ul>
+<li>训练显存占用大（DP，需要减少通信），推理延迟要求高（TP/PP，不需要通信，可以拆分模型）</li>
+<li>通过通信协议直接在设备间交换数据，实现模型的数据重分片，包括模型参数、优化器状态和rollout的结果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自动映射算法：离线规划工具，在训练开始前，基于用户模型规格和gpu资源配置，自动为数据流计算出最优的设备放置方案</li>
+</ul>
+<h1 id="训练流程">
+  训练流程
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="准备阶段">
+  准备阶段
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>准备以下三个输入：</p>
+<ul>
+<li>模型规格：Actor/Critic/Reference/Reward的模型架构和参数量</li>
+<li>设备放置方案：通过auto mapping计算得到</li>
+<li>并行策略：每个模型每个阶段的并行配置</li>
+</ul>
+<h2 id="执行阶段">
+  执行阶段
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>分为以下几步：</p>
+<ul>
+<li>初始化：单控制器根据输入，将模型参数分发到对应的gpu上，形成虚拟化资源池</li>
+<li>单控制器将计算任务分发到设备上</li>
+<li>每个设备上的多控制器运行：
+<ul>
+<li>根据设定的并行策略，在设备上构建并行组（TP/PP）</li>
+<li>对于Actor，调用3D混合引擎执行生成和训练</li>
+<li>对于其他模型（Critic等），无缝集成训练和推理引擎
+<ul>
+<li>critic虽然也推理，但是不生成，不用vllm，统一在fsdp上进行就可以，不需要策略切换</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单控制器协调数据流，对数据进行重新分片，确保符合下一个模型的输入要求，比如集那个actor的生成回答传递给critic打分</li>
+</ul>
+<h2 id="代码逻辑">
+  代码逻辑
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>main</p>
+<ul>
+<li>run_ppo
+<ul>
+<li>ray_init</li>
+<li>TaskRunner类通过ray包装remote成actor
+<ul>
+<li>TaskRunner包含role_worker_mapping和mapping
+<ul>
+<li>role_worker_mapping映射Role到Ray的worker class</li>
+<li>mapping映射Role到资源池IDs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>执行TaskRunner的run方法</li>
+</ul>
+</li>
+</ul>
+<p>TaskRunner.run</p>
+<ul>
+<li>add_actor_rollout_worker：
+<ul>
+<li>role_worker_mapping设置成engine_workers里的ActorRolloutRefWorker（actor_rollout_cls）</li>
+<li>mapping设置成global_pool</li>
+</ul>
+</li>
+<li>add_critic_worker：
+<ul>
+<li>role_worker_mapping设置成engine_workers里的TrainingWorker</li>
+<li>mapping设置成global_pool</li>
+</ul>
+</li>
+<li>add_reward_model_resource_pool：
+<ul>
+<li>reward_model不使用worker，因为只推理，资源不会长期占用</li>
+<li>如果指定enable_resource_pool，mapping设置成reward_pool，否则global_pool</li>
+</ul>
+</li>
+<li>add_ref_policy_worker（新版本弃用）：
+<ul>
+<li>基于上面的actor_rollout_cls部署单独的worker，方便分配独立的worker资源</li>
+</ul>
+</li>
+<li>从hf hub拷贝模型到本地</li>
+<li>加载hf的tokenizer和processor（多模态专用）</li>
+<li>init_resource_pool_manager：初始化ResourceManager，resource_pool_spec包含几个node，每个node上几个gpu</li>
+<li>create_rl_dataset：包括train和val</li>
+<li>create_rl_sampler：基于train的dataset构建sampler，用于产出采样的数据索引</li>
+<li>RayPPOTrainer:
+<ul>
+<li>初始化trainer实例并创建dataloader（基于dataset的sampler，每次返回batch）</li>
+<li>init_worker：
+<ul>
+<li>create_resource_pool：基于spec创建RayResourcePool
+<ul>
+<li>RayResourcePool帮助运行worker前，确保资源预留和拓扑优化</li>
+</ul>
+</li>
+<li>resource_pool_to_cls：pool的不同role到worker的映射</li>
+<li>通过RayWorkerGroup创建每个role的多个ray进程（每个进程对应一个gpu（资源），对应一个workerdict（功能）），存在all_wg里：
+<ul>
+<li>create_colocated_worker_cls：
+<ul>
+<li>为同一个resource pool的多个角色，创建统一的WorkerDict，role到worker class的实例的dict，并把各个worker class的方法暴露出来，方便角色融合：即一个worker dict，包含了多个role的不同方法，可以让多个role共享这个进程（gpu）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>初始化critic、reference和actor的model</li>
+<li>创建RewardLoopManager，管理RewardLoopWorker，包装reward计算逻辑</li>
+<li>创建AgentLoopManager（async_rollout_manager），管理rollout，支持多轮工具调用的agentic的rollout模式
+<ul>
+<li>通知actor推理，采样获取token，配合reward_loop_workers打分</li>
+</ul>
+</li>
+<li>创建checkpoint_manager，用于在推理和训练之间同步参数</li>
+</ul>
+</li>
+<li>fit：开始训练主流程</li>
+</ul>
+</li>
+</ul>
+<p>RayPPOTrainer.fit</p>
+<ul>
+<li>从dataloader里面取一个batch，构建dataproto形式的batch</li>
+<li>使用async_rollout_manager来generate_squences</li>
+<li>计算reward</li>
+<li>计算old_log_prob，用来更新actor时计算概率比率</li>
+<li>计算ref_log_prob，用来计算KL散度</li>
+<li>计算adv</li>
+<li>更新critic</li>
+<li>更新actor</li>
+</ul>
+<h1 id="源码阅读">
+  源码阅读
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="models">
+  models
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>目录提供了llama、qwen和transformers等模型接口，内部对这类模型结构进行封装，对于这几种方式的模型接入提供了性能优化，如flash attention的替换、kv cache的管理、计算图的合并等</p>
+<p>其中transformers提供了接入可拓展性，即针对transformers上可以跑的模型的支持，比如deepseek模型可以使用transformers接口运行</p>
+<p>可以参考qwen2目录做定制化模型的支持</p>
+<h2 id="single_controller">
+  single_controller
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>base/worker.py：管理worker进程在workergroup组内信息（如rank和world_size等），以及资源分配信息</p>
+<p>base/worker_group.py：包含ResourcePool和WorkerGroup：</p>
+<ul>
+<li>ResourcePool：管理资源池，包括内部的节点信息和进程信息</li>
+<li>WorkerGroup：管理多个worker组成的worker group，如管理dp
+<ul>
+<li>_bing_worker_method：将用户定义的方法绑定到worker group上，利用Ray的.remote()特性，使用户调用该方法时可以并发异步在目标gpu上执行</li>
+</ul>
+</li>
+</ul>
+<p>base/decorator.py：定义了各种数据分发和函数执行模式的装饰器</p>
+<p>ray/base.py：基于Ray后端管理worker（WorkerDict）和workergroup（RayWorkerGroup），支持上层worker group对于method的灵活绑定</p>
+<h2 id="third_party">
+  third_party
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>主要负责vllm的定制化修改</p>
+<h2 id="trainer">
+  trainer
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>sft_trainer.py：基于FSDP实现sft的基本训练逻辑，作为RL任务的冷启动前置任务</p>
+<p>main_ppo.py：ppo算法训练任务的启动程序</p>
+<ul>
+<li>选择奖励函数，基于reward manager</li>
+<li>选择训练后端：FSDP/Megatron-LM</li>
+<li>调用RayPPOTrainer：开始训练任务</li>
+</ul>
+<p>ppo/ray_trainer.py：</p>
+<ul>
+<li>初始化resource_pool的定义和分配</li>
+<li>初始化RL各个角色的workerdict和workergroup，</li>
+<li>定义了PPO的基础功能接口</li>
+<li>fit函数实现完整的training loop，调用各个worker进行实际计算</li>
+</ul>
+<p>ppo/core_algos.py：定义了PPO基础功能的实现</p>
+<ul>
+<li>各种loss的计算逻辑，policy_loss、value_loss、entropy_loss、KL_loss</li>
+<li>各种advantage的计算逻辑</li>
+</ul>
+<p>main_generation.py：离线生成</p>
+<p>main_eval.py：离线评估</p>
+<h2 id="utils">
+  utils
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>工具函数，包括以下：</p>
+<ul>
+<li>dataset：处理sft、rl和rm的数据集，与训练不绑定，可以方便定制化</li>
+<li>debug：监控perf和trajectory</li>
+<li>logger：打印日志到console或者wandb</li>
+<li>megetron：verl使用megatron的一些适配工具</li>
+<li>reward_score：与奖励函数相关的具体实现逻辑</li>
+<li>等等</li>
+</ul>
+<h2 id="workers">
+  workers
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>这里以fsdp为例：</p>
+<p>首先定义了worker容器：</p>
+<ul>
+<li>fsdp_workers.py：基于FSDP后端实现的RL训练过程中的worker：
+<ul>
+<li>ActorRolloutRefWorker：
+<ul>
+<li>可以扮演Actor、Rollout和Reference中的任意一个或者组合，然后verl通过参数offload/reload和reshard灵活切换</li>
+<li>支持DP和SP</li>
+</ul>
+</li>
+<li>CriticWorker：
+<ul>
+<li>可以扮演Critic，不需要rollout，且额外多出了compute_values来计算token level的adv</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>之后定义了具体实现逻辑的worker类，名字都叫ppo，但是如果想实现其他算法，如grpo，可以复用，具体grpo逻辑在core_algos.py：</p>
+<ul>
+<li>actor/dp_actor.py：扮演Actor的worker
+<ul>
+<li>实现了ppo算法的compute_log_prob和update_policy</li>
+</ul>
+</li>
+<li>critic/dp_critic.py：扮演Critic的worker
+<ul>
+<li>实现了ppo算法的compute_values(计算adv)和update_critic</li>
+</ul>
+</li>
+<li>reward_manager中包含不同类型rm的壳子，通过register的方式，将utils/reward_score里面具体的reward实现注册</li>
+<li>rollout中包含不同的rollout实现，包括：
+<ul>
+<li>rollout/naive/naive_rollout.py：基于pytorch的最基本的实现</li>
+<li>rollout/hf_rollout.py：基于huggingface的实现</li>
+<li>rollout/vllm_rollout/vllm_rollout.py：基于vllm的实现</li>
+</ul>
+</li>
+</ul>
+<p>最后还定义了sharding_manager，主要管理不同并行策略下的sharding：</p>
+<ul>
+<li>data sharding：基于device mesh进行数据的重切分
+<ul>
+<li>通过定义enter和exit方法实现with功能，主要用于sp的数据切分</li>
+</ul>
+</li>
+<li>device mesh的管理</li>
+<li>模型参数的reload和offload</li>
+</ul>
+<h2 id="protocol">
+  protocol
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>protocol.py：verl设计了DataProto这个数据结构</p>
+<ul>
+<li>基于TensorDict实现的batch，用于管理tensor</li>
+<li>基于Dict实现的meta_info，用于管理DataProto</li>
+<li>并实现了DataProtoFuture来支持异步操作</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://verl.readthedocs.io/en/latest/index.html" target="_blank"># Welcome to verl’s documentation!</a></li>
+<li>
+
+
+
 <a href="https://arxiv.org/pdf/2409.19256v2" target="_blank">HybridFlow: A Flexible and Efficient RLHF Framework</a></li>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1ECvzBFEFJ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># 强化学习｜训练框架 verl 介绍</a></li>
+<li>
+
+
+
+<a href="https://zhuanlan.zhihu.com/p/27676081245" target="_blank"># [AI Infra] VeRL 框架入门&amp;代码带读</a></li>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1cWbGz4E1S/?spm_id_from=333.788.recommend_more_video.0&amp;trackid=web_related_0.router-related-2481894-vrj6n.1772714108092.176&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># [EP-5] 字节Verl: 最常用的RL强化学习训练框架</a></li>
 </ul>
 
   <footer class="footline">
@@ -265,8 +760,8 @@ HybridFlow: A Flexible and Efficient RLHF Framework">
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"><a class="padding" href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html">FSDP：Pytorch的完全分片数据并行</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html">vLLM：大模型加速推理框架</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html">Ray：分布式计算框架</a></li>
             <li class="active " data-nav-url="/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html">veRL：大模型强化学习框架</a></li>
@@ -312,6 +807,7 @@ HybridFlow: A Flexible and Efficient RLHF Framework">
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
           </ul>
         </div>
@@ -341,9 +837,9 @@ HybridFlow: A Flexible and Efficient RLHF Framework">
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1773175798"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1773175798" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1773574177"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1773574177" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

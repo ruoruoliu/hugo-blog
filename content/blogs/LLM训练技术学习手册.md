@@ -92,7 +92,7 @@ PPO在RLHF中的流程是：
 			- $R_{penalty}(s_t, a_t) = -\beta \cdot \text{KL}(\pi_{\phi}(a_t|s_t) || \pi_{ref}(a_t|s_t))$ 
 			- $R_{reward\_model} = \text{RM}(prompt + response)$ if $t = T$ else 0 
 - 优化更新 (Optimization)：
-	- actor更新：使用PPO算法，如果一个token的 $A_t$ 是正的，就增加生成它的概率；如果是负的，就降低
+	- actor更新：如果一个token的 $A_t$ 是正的，就增加生成它的概率；如果是负的就降低
 	- critic更新：利用TD目标值的MSE损失更新critic模型参数，让评估更准确
 		[GAE在更新Critic模型参数时的作用](../Answers/GAE%E5%9C%A8%E6%9B%B4%E6%96%B0Critic%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E6%97%B6%E7%9A%84%E4%BD%9C%E7%94%A8.md)
 		[GAE和资格迹（Eligibility Trace）的关系？](../Answers/GAE%E5%92%8C%E8%B5%84%E6%A0%BC%E8%BF%B9%EF%BC%88Eligibility%20Trace%EF%BC%89%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F.md)

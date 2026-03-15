@@ -39,27 +39,27 @@ DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强�
     <meta itemprop="wordCount" content="621">
     <meta itemprop="keywords" content="技术笔记">
     <title>LLM训练技术学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1773175798" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1773175798" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1773175798" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1773574177" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1773574177" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1773574177" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1773175798";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1773574177";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1773175798" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1773574177" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773175798" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773175798" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1773175798" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1773175798" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1773175798" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1773574177" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1773574177" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1773574177" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -447,7 +447,7 @@ DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强�
 </li>
 <li>优化更新 (Optimization)：
 <ul>
-<li>actor更新：使用PPO算法，如果一个token的 $A_t$ 是正的，就增加生成它的概率；如果是负的，就降低</li>
+<li>actor更新：如果一个token的 $A_t$ 是正的，就增加生成它的概率；如果是负的就降低</li>
 <li>critic更新：利用TD目标值的MSE损失更新critic模型参数，让评估更准确
 
 
@@ -472,8 +472,8 @@ DeepSeek MTP 训练过程中通过多个head同时预测后续多个token，强�
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-887765a6db7231e35bf93d920a85e49b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-887765a6db7231e35bf93d920a85e49b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px"></a>
+</h2><p><a href="#R-image-137fc2c374adf3bffd634a3affa6bcb5" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-137fc2c374adf3bffd634a3affa6bcb5"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/7671020b4ccbe488a483f4771c4a7ba8.png?width=400px"></a>
 </p>
 <p>PPO存在以下问题：</p>
 <ul>
@@ -522,8 +522,8 @@ DPO的优缺点：</li>
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h2><p>DeepSeek R1等模型利用GRPO+RLVR实现逻辑推理能力</p>
-<p><a href="#R-image-f4696a1e3f7cdbcbab029bb6bbd68725" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-f4696a1e3f7cdbcbab029bb6bbd68725"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px"></a>
+<p><a href="#R-image-8765f357d53c58d67b481427d6d799bd" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8765f357d53c58d67b481427d6d799bd"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/82060490fe3d0d9a1297c68559644ea3.png?width=400px"></a>
 </p>
 <p>GRPO的目标函数：
 $\mathcal{J}<em>{GRPO}(\theta) = \mathbb{E}</em>{(q,a) \sim \mathcal{D}, {o_i}<em>{i=1}^G \sim \pi</em>{\theta_{\text{old}}}(\cdot|q)} \left[ \frac{1}{G} \sum_{i=1}^G \frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \left( \min \left( r_{i,t}(\theta) \hat{A}<em>{i,t}, \text{clip}(r</em>{i,t}(\theta), 1 - \varepsilon, 1 + \varepsilon) \hat{A}<em>{i,t} \right) - \beta D</em>{\text{KL}}(\pi_\theta || \pi_{\text{ref}}) \right) \right]$
@@ -864,8 +864,8 @@ $\text{s.t.} \quad 0 &lt; |{o_i \mid \text{is_equivalent}(a, o_i)}| &lt; G$</p>
         <div class="R-sidebarmenu R-shortcutmenu-main">
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"><a class="padding" href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html">FSDP：Pytorch的完全分片数据并行</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html">vLLM：大模型加速推理框架</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html">Ray：分布式计算框架</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html">veRL：大模型强化学习框架</a></li>
@@ -911,6 +911,7 @@ $\text{s.t.} \quad 0 &lt; |{o_i \mid \text{is_equivalent}(a, o_i)}| &lt; G$</p>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
             <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
           </ul>
         </div>
@@ -940,9 +941,9 @@ $\text{s.t.} \quad 0 &lt; |{o_i \mid \text{is_equivalent}(a, o_i)}| &lt; G$</p>
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1773175798"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1773175798" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1773175798" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1773574177"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1773574177" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
