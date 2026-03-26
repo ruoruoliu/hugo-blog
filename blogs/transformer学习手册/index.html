@@ -27,29 +27,29 @@ Attention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-hea
 Attention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-head attention）：多头注意力，每个head维护自己的KV，在KV-Cache中占用显存很大 MQA（multi-query attention）：所有head共享KV，只有Q会被切分为多份，KV-Cache显存占用减小head-size倍 GQA（Grouped-Query Attention）：在MHA和MQA（效果和缓存）之间折中，KV分为若干份 参考链接：">
     <meta itemprop="datePublished" content="2026-01-22T00:00:00+00:00">
     <meta itemprop="dateModified" content="2026-01-22T00:00:00+00:00">
-    <meta itemprop="wordCount" content="190">
+    <meta itemprop="wordCount" content="222">
     <title>Transformer学习手册 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1773574177" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1773574177" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1773574177" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1774536776" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1774536776" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1774536776" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1773574177";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1774536776";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1773574177" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1774536776" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1773574177" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1773574177" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1773574177" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1773574177" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1774536776" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1774536776" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1774536776" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1774536776" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1774536776" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -136,6 +136,7 @@ Attention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-hea
       <ul>
         <li><a href="#mhamqagqa">MHA、MQA、GQA</a></li>
         <li><a href="#mla">MLA</a></li>
+        <li><a href="#flashattention">FlashAttention</a></li>
       </ul>
     </li>
     <li><a href="#位置编码">位置编码</a>
@@ -223,8 +224,8 @@ Attention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-hea
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<p><a href="#R-image-b6799917ede0a06d31980250b708c507" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e8b1e062cbf75aa4dac3a39fdd6c59f5.png?width=250px" style="height: auto;width: 250px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b6799917ede0a06d31980250b708c507"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e8b1e062cbf75aa4dac3a39fdd6c59f5.png?width=250px"></a>
+<p><a href="#R-image-482a7462ca3927a24bb3012b331235ce" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e8b1e062cbf75aa4dac3a39fdd6c59f5.png?width=250px" style="height: auto;width: 250px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-482a7462ca3927a24bb3012b331235ce"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/e8b1e062cbf75aa4dac3a39fdd6c59f5.png?width=250px"></a>
 </p>
 <p>参考链接：</p>
 <ul>
@@ -269,12 +270,12 @@ Attention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-hea
 </h3><ul>
 <li>MHA（multi-head attention）：多头注意力，每个head维护自己的KV，在KV-Cache中占用显存很大</li>
 <li>MQA（multi-query attention）：所有head共享KV，只有Q会被切分为多份，KV-Cache显存占用减小head-size倍
-<a href="#R-image-c65d8d7db300a8efb55a2a05064a608d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/57ebd17f7bf47d43b3c8a047228a7f21.png?width=300px" style="height: auto;width: 300px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c65d8d7db300a8efb55a2a05064a608d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/57ebd17f7bf47d43b3c8a047228a7f21.png?width=300px"></a>
+<a href="#R-image-cea4ccf31d14b5dd4bebc917153291a2" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/57ebd17f7bf47d43b3c8a047228a7f21.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-cea4ccf31d14b5dd4bebc917153291a2"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/57ebd17f7bf47d43b3c8a047228a7f21.png?width=300px"></a>
 </li>
 <li>GQA（Grouped-Query Attention）：在MHA和MQA（效果和缓存）之间折中，KV分为若干份
-<a href="#R-image-7fd7f18b229ad27df24c00e8c9d00111" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ac864257abbefa6442b01cba38a21c6c.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7fd7f18b229ad27df24c00e8c9d00111"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ac864257abbefa6442b01cba38a21c6c.png?width=400px"></a>
+<a href="#R-image-d56097ecb72b29ed3fef91430b21910c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ac864257abbefa6442b01cba38a21c6c.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d56097ecb72b29ed3fef91430b21910c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/ac864257abbefa6442b01cba38a21c6c.png?width=400px"></a>
 </li>
 </ul>
 <p>参考链接：</p>
@@ -324,6 +325,31 @@ $$\text{Score} = (q_t^{(s)} W_{uk}^{(s)\top}) \cdot c_i^\top$$
 
 <a href="https://spaces.ac.cn/archives/10091" target="_blank">缓存与效果的极限拉扯：从MHA、MQA、GQA到MLA</a></li>
 </ul>
+<h3 id="flashattention">
+  FlashAttention
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><ul>
+<li>如果上下文长度为128k，模型维度为4096，head size为32，则attention矩阵的显存占用为：128 * 1024 * 16 * 128 * 1024 * 16 * (4096/32) * (4096/32) / 1024 / 1024 / 1024 = 32G，单层的attention矩阵在标准情况下是随上下文窗口平方增长</li>
+<li>把attention矩阵分片计算，在sm中直接处理掉后，再返回HBM（显存）中，显存占用下降到线性</li>
+<li>分片过程中会遇到softmax公式中全局最大值的获取问题，通过增加一个局部最大值的统计量，然后再后续汇总中结合不同分片的局部最大值做缩放</li>
+<li>在反向传播时，需要使用中间结果，采用重计算的方式，相比显存读写也快得多</li>
+<li>整体时间是计算时间+IO时间，通过减少attention矩阵的搬运，大幅减少IO时间，从而加速整体时间</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1irPTzGEhG?spm_id_from=333.788.videopod.sections&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># 什么是FlashAttention？为什么它能大大减少显存的需要并加快速度？</a></li>
+</ul>
 <h2 id="位置编码">
   位置编码
 
@@ -358,8 +384,8 @@ $$\begin{bmatrix} \sin(\omega_i(pos+k)) \ \cos(\omega_i(pos+k)) \end{bmatrix} = 
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h3><p><a href="#R-image-232098cba91998cd1e897ffb70a74a95" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9fd81290c14485a66bb39351668c311e.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-232098cba91998cd1e897ffb70a74a95"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9fd81290c14485a66bb39351668c311e.png?width=400px"></a>
+</h3><p><a href="#R-image-4f808c17394cc684dc1328fb996aa992" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9fd81290c14485a66bb39351668c311e.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4f808c17394cc684dc1328fb996aa992"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/9fd81290c14485a66bb39351668c311e.png?width=400px"></a>
 </p>
 <p>RoPE的表示：</p>
 <ul>
@@ -374,8 +400,8 @@ $$f_{{q,k}}(\mathbf{x}<em>m, m) = \begin{pmatrix} \cos m\theta &amp; -\sin m\the
 <li>相对位置的含义：由于点积结果严格遵循 $\cos((m-n)\theta)$，模型在训练过程中会意识到：“当这个维度的点积达到某个值时，意味着这两个词距离是 $k$“</li>
 </ul>
 <p>RoPE对于长距离间的点积，距离越长，结果越小：
-<a href="#R-image-3ffb2582d751a00bf5565af740753499" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/44240108cb3cccb58dc657934da36905.png?width=400px" style="height: auto;width: 400px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3ffb2582d751a00bf5565af740753499"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/44240108cb3cccb58dc657934da36905.png?width=400px"></a>
+<a href="#R-image-8edc678e6921b9e71abd5fdcb1cfd496" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/44240108cb3cccb58dc657934da36905.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8edc678e6921b9e71abd5fdcb1cfd496"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/01/44240108cb3cccb58dc657934da36905.png?width=400px"></a>
 </p>
 <p>参考链接：</p>
 <ul>
@@ -495,6 +521,9 @@ $$f_{{q,k}}(\mathbf{x}<em>m, m) = \begin{pmatrix} \cos m\theta &amp; -\sin m\the
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">VLA学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">具身智能学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">世界模型学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"><a class="padding" href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html">FSDP：Pytorch的完全分片数据并行</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html">vLLM：大模型加速推理框架</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html">Ray：分布式计算框架</a></li>
@@ -571,9 +600,9 @@ $$f_{{q,k}}(\mathbf{x}<em>m, m) = \begin{pmatrix} \cos m\theta &amp; -\sin m\the
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1773574177"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1773574177" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1773574177" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1774536776"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1774536776" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

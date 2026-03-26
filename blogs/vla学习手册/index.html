@@ -5,28 +5,44 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
+    <meta name="description" content="具身智能 Manipulation存在的挑战：
+训练数据缺失：人工遥操成本过高 Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题 不同的机器人本体形态导致模型训练无法简单适配 任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的 VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化
+RT-1 从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：
+视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令 指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量 Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作 动作输出：它将动作空间（7 自由度手臂 &#43; 3 自由度底盘 &#43; 终止标志）离散化为256个 bin，以分类任务的形式输出 参考链接：
+RT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE RT-2 基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="游戏编程基本概念 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+    <meta name="twitter:title" content="VLA学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="具身智能 Manipulation存在的挑战：
+训练数据缺失：人工遥操成本过高 Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题 不同的机器人本体形态导致模型训练无法简单适配 任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的 VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化
+RT-1 从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：
+视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令 指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量 Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作 动作输出：它将动作空间（7 自由度手臂 &#43; 3 自由度底盘 &#43; 终止标志）离散化为256个 bin，以分类任务的形式输出 参考链接：
+RT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE RT-2 基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="游戏编程基本概念 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
+    <meta property="og:title" content="VLA学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="具身智能 Manipulation存在的挑战：
+训练数据缺失：人工遥操成本过高 Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题 不同的机器人本体形态导致模型训练无法简单适配 任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的 VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化
+RT-1 从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：
+视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令 指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量 Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作 动作输出：它将动作空间（7 自由度手臂 &#43; 3 自由度底盘 &#43; 终止标志）离散化为256个 bin，以分类任务的形式输出 参考链接：
+RT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE RT-2 基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-12-10T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-12-10T00:00:00+00:00">
+    <meta property="article:published_time" content="2026-03-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-23T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="游戏编程基本概念 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
-    <meta itemprop="datePublished" content="2025-12-10T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-12-10T00:00:00+00:00">
-    <meta itemprop="wordCount" content="28">
+    <meta itemprop="name" content="VLA学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="具身智能 Manipulation存在的挑战：
+训练数据缺失：人工遥操成本过高 Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题 不同的机器人本体形态导致模型训练无法简单适配 任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的 VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化
+RT-1 从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：
+视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令 指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量 Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作 动作输出：它将动作空间（7 自由度手臂 &#43; 3 自由度底盘 &#43; 终止标志）离散化为256个 bin，以分类任务的形式输出 参考链接：
+RT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE RT-2 基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）">
+    <meta itemprop="datePublished" content="2026-03-23T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-03-23T00:00:00+00:00">
+    <meta itemprop="wordCount" content="144">
     <meta itemprop="keywords" content="技术笔记">
-    <title>游戏编程基本概念 :: Ruoruoliu 2.0</title>
+    <title>VLA学习手册 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1774536776" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1774536776" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1774536776" defer></script>
@@ -52,7 +68,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5\/index.html';
+      window.relearn.path='\/blogs\/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -100,7 +116,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -127,12 +143,23 @@
 
 <span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#rt-1">RT-1</a></li>
+    <li><a href="#rt-2">RT-2</a></li>
+    <li><a href="#rt-x">RT-X</a></li>
+    <li><a href="#rt-h">RT-H</a></li>
+    <li><a href="#openvla">OpenVLA</a></li>
+    <li><a href="#huge-pi_0">$\huge \pi_0$</a></li>
+    <li><a href="#huge-pi_05">$\huge \pi_{0.5}$</a></li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">游戏编程基本概念</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">VLA学习手册</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -143,7 +170,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html" title="像素工具Asperite (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/index.html" title="Blogs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -153,7 +180,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html" title="从零开始构建Flappy Bird (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="具身智能学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -187,48 +214,10 @@
 </div>
   </header>
 
-<h1 id="游戏编程基本概念">游戏编程基本概念</h1>
+<h1 id="vla学习手册">VLA学习手册</h1>
 
-<h1 id="game-loop">
-  Game Loop
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><ul>
-<li>Game Loop的结构通常是以下三步的循环：
-<ul>
-<li>Process Input</li>
-<li>Update Game State</li>
-<li>Draw Game</li>
-</ul>
-</li>
-<li>参考链接：
-<ul>
-<li>
-
-
-
-<a href="https://gameprogrammingpatterns.com/" target="_blank">Game Programming Patterns</a></li>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=E0Al0-sOO_c" target="_blank"># Game States and Game Loops</a></li>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=lW6ZtvQVzyg" target="_blank"># Getting The Game Loop Right</a></li>
-</ul>
-</li>
-</ul>
-<h1 id="扩展阅读">
-  扩展阅读
+<h1 id="具身智能">
+  具身智能
 
 
 
@@ -237,9 +226,213 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1>
+</h1><hr>
+<p>Manipulation存在的挑战：</p>
+<ul>
+<li>训练数据缺失：人工遥操成本过高</li>
+<li>Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题</li>
+<li>不同的机器人本体形态导致模型训练无法简单适配</li>
+<li>任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的</li>
+</ul>
+<p>VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化</p>
+<h2 id="rt-1">
+  RT-1
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：</p>
+<ul>
+<li>视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令</li>
+<li>指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量</li>
+<li>Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作</li>
+<li>动作输出：它将动作空间（7 自由度手臂 + 3 自由度底盘 + 终止标志）离散化为256个 bin，以分类任务的形式输出</li>
+</ul>
+<p><a href="#R-image-e2d8a102ff19d7dacf63b5926a48ecc7" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/17a8bdf9f47c2faf8c3fad00be821ba9.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e2d8a102ff19d7dacf63b5926a48ecc7"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/17a8bdf9f47c2faf8c3fad00be821ba9.png?width=400px"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2212.06817" target="_blank">RT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE</a></li>
+</ul>
+<h2 id="rt-2">
+  RT-2
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）</p>
+<p>基于预训练过的VLM得到的模型，可以理解“put strawberry into the correct bowl”以及“pick up the bag about to fall off the table”这样的需要理解的指令</p>
+<p><a href="#R-image-4baf03fbe806a779e1364934c82e940e" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/aea6ea57c28eb9a3b1fa04533d146dcb.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4baf03fbe806a779e1364934c82e940e"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/aea6ea57c28eb9a3b1fa04533d146dcb.png"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2307.15818" target="_blank">RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control</a></li>
+</ul>
+<h2 id="rt-x">
+  RT-X
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>在RT-2基础上的改进，引入了跨本体的训练数据，支持不同本体使用</p>
+<ul>
+<li>跨本体训练数据Open X-Embodiment，来自22种本体，100万个episodes，527个技能</li>
+<li>通过对自由度归一化到通用空间来进行统一训练</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2310.08864" target="_blank">Open X-Embodiment: Robotic Learning Datasets and RT-X Models</a></li>
+</ul>
+<h2 id="rt-h">
+  RT-H
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>提出了Hierarchical的思维方式，将任务拆解为语言任务和动作序列两部分</p>
+<ul>
+<li>任务分解：利用一个 VLM 将复杂的、高层级的文本指令转化为一系列具身的语言指令，比如将洗杯子分解为：移动到水槽、打开水龙头、拿起杯子等</li>
+<li>条件化动作执行：基于当前图像和任务分解后的中间指令，执行多模态transformer，生成动作</li>
+</ul>
+<p>RT-H还支持语言干预的能力，因为训练过程中把人类纠正的部分作为任务分解的一部分加入数据中微调任务分解的VLM模型
+<a href="#R-image-4955a32cab06833071c17713ca287802" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/1a85e1b61f516c6ae298549a79a1400b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4955a32cab06833071c17713ca287802"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/1a85e1b61f516c6ae298549a79a1400b.png"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2403.01823" target="_blank">RT-H: Action Hierarchies Using Language</a></li>
+</ul>
+<h2 id="openvla">
+  OpenVLA
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p><a href="#R-image-d6b41b6127cc18605bfdc2ee4acd5c4c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/afc402014f26f1763d2495cee18f406b.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d6b41b6127cc18605bfdc2ee4acd5c4c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/afc402014f26f1763d2495cee18f406b.png?width=500px"></a>
+</p>
+<p>OpenVLA可以视作RT-2的开源版本</p>
+<ul>
+<li>视觉编码：DINOv2（底层）、SigLIP（高层）</li>
+<li>transformer采用llama 7B作为backbone</li>
+<li>通过lora进行微调效果最好</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2406.09246" target="_blank">OpenVLA: An Open-Source Vision-Language-Action Model</a></li>
+</ul>
+<h2 id="huge-pi_0">
+  $\huge \pi_0$
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>相比RT系列和OpenVLA将动作看成token处理，$\pi$系列将控制看成一个连续的物理流，采用流匹配技术（flow-matching），类似视频生成中的扩散模型，输出连续动作轨迹，不会像离散token那样机械抖动</p>
+<p>
+
+
+
+<a href="../Answers/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E4%B8%AD%E7%9A%84%E6%B5%81%E5%8C%B9%E9%85%8D.md">机器人技术中的流匹配</a>
+<a href="#R-image-d75fbec40ae6b1fcc96e853df8d9a8df" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6a36608e042fdb9333b9252ed8133cac.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d75fbec40ae6b1fcc96e853df8d9a8df"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6a36608e042fdb9333b9252ed8133cac.png"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/html/2410.24164v1" target="_blank"># π0: A Vision-Language-Action Flow Model for General Robot Control</a></li>
+</ul>
+<h2 id="huge-pi_05">
+  $\huge \pi_{0.5}$
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>在$\pi_0$的基础上，引入以下优化：</p>
+<ul>
+<li>在预训练过程中，引入异构数据协同训练（机器人数据、多模态语义任务等），增加长程复杂任务的泛化性</li>
+<li>类似RT-H，引入层次化推理架构，高层语义子任务预测和底层动作生成</li>
+<li>预训练使用离散action加速训练，后训练引入flow-matching技术生成连续平滑动作</li>
+</ul>
+<p><a href="#R-image-de22df9df432d6a7bbdff22c20f1919a" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/18ae974e13df8db35850434da3396e42.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-de22df9df432d6a7bbdff22c20f1919a"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/18ae974e13df8db35850434da3396e42.png"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2504.16054" target="_blank">π0.5: a Vision-Language-Action Model with Open-World Generalization</a></li>
+<li>
+
+
+
+<a href="https://zhuanlan.zhihu.com/p/1898342958832526408" target="_blank"># pi0.5 技术解读</a></li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1QxB9YuERU" target="_blank">Vision-Language-Action Models for Robot Manipulation</a></li>
+</ul>
+
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Dec 10, 2025
+              <i class='fa-fw fas fa-calendar'></i> Mar 23, 2026
   </footer>
 </article>
         </div>
@@ -287,7 +480,7 @@
           <ul class="enlarge morespace collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
-            <li class="" data-nav-url="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">VLA学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">VLA学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">具身智能学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">世界模型学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"><a class="padding" href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html">FSDP：Pytorch的完全分片数据并行</a></li>
@@ -324,7 +517,7 @@
             <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>

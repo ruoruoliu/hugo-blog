@@ -5,33 +5,36 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
-npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
+    <meta name="description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Javascript包管理 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
-npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">
+    <meta name="twitter:title" content="具身智能学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="Javascript包管理 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
-npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
+    <meta property="og:title" content="具身智能学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-12-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-12-12T00:00:00+00:00">
+    <meta property="article:published_time" content="2026-03-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-23T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta property="article:tag" content="Javascript">
-    <meta itemprop="name" content="Javascript包管理 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="npm npm init在项目中来创建package.json –yes（-y）直接默认 package.json的作用： 管理项目依赖 scripts中支持脚本运行初始化构建项目 package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本 npm install安装依赖，创建node_modules目录存放 –save（-S）可以自动在package.json中记录 –save-dev（-D）表示只用于develop，不用于production -g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server @X.X.X：安装指定版本 ^X.X.X指保持大版本，小版本和patch更新到最新 ~X.X.X指保持大版本和小版本，patch更新到最新 *指更新到最新 npm list列出项目依赖 –depth 0，不显示子依赖，1，显示一级子依赖 –global true，显示全局安装 npm update更新依赖到指定的最新版本 npm prune删除package.json中不存在的已安装依赖 npm run运行package.json中scripts指定的命令 参考链接：
-npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundamentals and basics Yarn yarn add来安装包 yarn.lock对应package-lock.json的作用 yarn set version berry：设置为v2版本 v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装 参考链接：">
-    <meta itemprop="datePublished" content="2025-12-12T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-12-12T00:00:00+00:00">
-    <meta itemprop="wordCount" content="217">
-    <meta itemprop="keywords" content="技术笔记,Javascript">
-    <title>Javascript包管理 :: Ruoruoliu 2.0</title>
+    <meta itemprop="name" content="具身智能学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
+    <meta itemprop="datePublished" content="2026-03-23T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-03-23T00:00:00+00:00">
+    <meta itemprop="wordCount" content="244">
+    <meta itemprop="keywords" content="技术笔记">
+    <title>具身智能学习手册 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1774536776" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1774536776" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1774536776" defer></script>
@@ -57,7 +60,7 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/javascript%E5%8C%85%E7%AE%A1%E7%90%86\/index.html';
+      window.relearn.path='\/blogs\/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -105,7 +108,7 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -135,21 +138,48 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#幻影依赖">幻影依赖</a></li>
-    <li><a href="#用户项目">用户项目</a></li>
-    <li><a href="#peer-dependency">peer Dependency</a></li>
+    <li><a href="#motion-tracking">Motion Tracking</a>
+      <ul>
+        <li><a href="#数据采集">数据采集</a></li>
+        <li><a href="#retargeting">Retargeting</a></li>
+        <li><a href="#仿真环境rl训练">仿真环境RL训练</a></li>
+        <li><a href="#真实环境部署sim2real">真实环境部署（Sim2Real）</a></li>
+        <li><a href="#整体解决方案">整体解决方案</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
-    <li><a href="#基本操作">基本操作</a></li>
-    <li><a href="#bun-13">Bun 1.3</a></li>
+    <li><a href="#场景理解">场景理解</a>
+      <ul>
+        <li><a href="#分割">分割</a></li>
+        <li><a href="#检测">检测</a></li>
+        <li><a href="#多模态grounding">多模态Grounding</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据引导">数据引导</a>
+      <ul>
+        <li><a href="#sim-to-real">Sim-to-Real</a></li>
+      </ul>
+    </li>
+    <li><a href="#动作执行">动作执行</a>
+      <ul>
+        <li><a href="#生成式模仿学习">生成式模仿学习</a></li>
+        <li><a href="#affordance">Affordance</a></li>
+        <li><a href="#query-from-llm">Query from LLM</a></li>
+        <li><a href="#prompt-planning-from-llm">Prompt Planning from LLM</a></li>
+        <li><a href="#language-correction">Language Correction</a></li>
+        <li><a href="#vla">VLA</a></li>
+      </ul>
+    </li>
+    <li><a href="#世界模型">世界模型</a></li>
   </ul>
 </nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">Javascript包管理</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">具身智能学习手册</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -160,7 +190,7 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="HTML学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="VLA学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -170,7 +200,7 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="Javascript学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="世界模型学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -199,77 +229,15 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 <div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
   <i class="fa-fw fas fa-layer-group"></i>
   <ul>
-    <li><a class="term-link" href="/hugo-blog/tags/javascript/index.html">Javascript</a></li>
     <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
   </ul>
 </div>
   </header>
 
-<h1 id="javascript包管理">Javascript包管理</h1>
+<h1 id="具身智能学习手册">具身智能学习手册</h1>
 
-<h1 id="npm">
-  npm
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<ul>
-<li>npm init在项目中来创建package.json
-<ul>
-<li>&ndash;yes（-y）直接默认</li>
-</ul>
-</li>
-<li>package.json的作用：
-<ul>
-<li>管理项目依赖</li>
-<li>scripts中支持脚本运行初始化构建项目</li>
-</ul>
-</li>
-<li>package-lock.json：由于不同时间npm install的包版本不一致，需要用这个文件来固定版本，保证不同人安装同样的版本</li>
-<li>npm install安装依赖，创建node_modules目录存放
-<ul>
-<li>&ndash;save（-S）可以自动在package.json中记录</li>
-<li>&ndash;save-dev（-D）表示只用于develop，不用于production</li>
-<li>-g：全局（global）安装，不会出现在package.json中，可以命令行执行，例如live-server</li>
-<li>@X.X.X：安装指定版本
-<ul>
-<li>^X.X.X指保持大版本，小版本和patch更新到最新</li>
-<li>~X.X.X指保持大版本和小版本，patch更新到最新</li>
-<li>*指更新到最新</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>npm list列出项目依赖
-<ul>
-<li>&ndash;depth 0，不显示子依赖，1，显示一级子依赖</li>
-<li>&ndash;global true，显示全局安装</li>
-</ul>
-</li>
-<li>npm update更新依赖到指定的最新版本</li>
-<li>npm prune删除package.json中不存在的已安装依赖</li>
-<li>npm run运行package.json中scripts指定的命令</li>
-</ul>
-<p>参考链接：</p>
-<ul>
-<li>
-
-
-
-<a href="https://www.youtube.com/playlist?list=PLC3y8-rFHvwhgWwm5J3KqzX47n7dwWNrq" target="_blank">npm Tutorial for Beginners</a></li>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=cjoTTSbOuG0" target="_blank"># NPM Full Course For Beginners - Learn NPM fundamentals and basics</a></li>
-</ul>
-<h1 id="yarn">
-  Yarn
+<h1 id="locomotion">
+  Locomotion
 
 
 
@@ -279,14 +247,176 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
+<h2 id="motion-tracking">
+  Motion Tracking
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>模仿人类动作的步骤，分为以下四步：</p>
+<h3 id="数据采集">
+  数据采集
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>通过遥操获取目标动作的人体motion</p>
+<h3 id="retargeting">
+  Retargeting
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion</p>
+<h4 id="gmr">
+  GMR
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
 <ul>
-<li>yarn add来安装包</li>
-<li>yarn.lock对应package-lock.json的作用</li>
-<li>yarn set version berry：设置为v2版本
-<ul>
-<li>v2版本支持pnp（plug and play）：Yarn 在您的本地文件系统上维护了一个全局缓存目录，所有通过 Yarn 下载的包都会被存储在这个目录中，且是zip压缩的，从而实现离线安装</li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2510.02252" target="_blank">Retargeting Matters: General Motion Retargeting for Humanoid Motion Tracking</a></li>
 </ul>
-</li>
+<h3 id="仿真环境rl训练">
+  仿真环境RL训练
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="deepmimic">
+  DeepMimic
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1804.02717" target="_blank">DeepMimic: Example-Guided Deep Reinforcement Learning of Physics-Based Character Skills</a></li>
+</ul>
+<h4 id="amp">
+  AMP
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2104.02180" target="_blank">AMP: Adversarial Motion Priors for Stylized Physics-Based Character Control</a></li>
+</ul>
+<h3 id="真实环境部署sim2real">
+  真实环境部署（Sim2Real）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h3 id="整体解决方案">
+  整体解决方案
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="rgmt">
+  RGMT
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2601.23080" target="_blank">Robust and Generalized Humanoid Motion Tracking</a></li>
+</ul>
+<h4 id="omniretarget">
+  OmniRetarget
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/html/2509.26633v1" target="_blank"># OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction</a></li>
+</ul>
+<h4 id="humanx">
+  HumanX
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2602.02473" target="_blank">HumanX: Toward Agile and Generalizable Humanoid Interaction Skills from Human Videos</a></li>
 </ul>
 <p>参考链接：</p>
 <ul>
@@ -294,10 +424,10 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 
-<a href="https://www.youtube.com/watch?v=g9_6KmiBISk" target="_blank"># Yarn Package Manager Crash Course</a></li>
+<a href="https://zihao-ai.feishu.cn/docx/ZWVodQcrHoimjqxxD33cuDHwnnh" target="_blank">论文合集：宇树机器人春晚表演背后的算法</a></li>
 </ul>
-<h1 id="pnpm">
-  pnpm
+<h1 id="manipulation">
+  Manipulation
 
 
 
@@ -307,27 +437,8 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
-<ul>
-<li>速度快</li>
-<li>node modules中的包文件基于链接，避免重复的io操作</li>
-<li>支持monorepos</li>
-<li>避免flat结构的node modules带来的幻影依赖问题</li>
-</ul>
-<p>参考链接：</p>
-<ul>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=hiTmX2dW84E" target="_blank"># What Is pnpm?</a></li>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=d1E31WPR70g" target="_blank"># Why I Switched From NPM/Yarn to PNPM And Why You Should Too!</a></li>
-</ul>
-<h1 id="一些概念">
-  一些概念
+<h2 id="场景理解">
+  场景理解
 
 
 
@@ -336,8 +447,8 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><h2 id="幻影依赖">
-  幻影依赖
+</h2><h3 id="分割">
+  分割
 
 
 
@@ -346,13 +457,8 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><ul>
-<li>幻影依赖指的是您的项目代码中直接使用了某个包，但该包并没有在您的package.json文件的dependencies或devDependencies中明确声明。</li>
-<li>比如你的包A依赖B，B依赖C，安装包A的依赖的时候会把B和C都安装到node modules中，是你在开发A时可以直接引用C，但是其实package.json中没有显式写出C。</li>
-<li>这会导致，当后续B不再依赖C的时候，node moduels中将不再有C，你的包A中的对C的引用会突然失效。</li>
-</ul>
-<h2 id="用户项目">
-  用户项目
+</h3><h4 id="samsegment-anything-model">
+  SAM（Segment Anything Model）
 
 
 
@@ -361,24 +467,41 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><ul>
-<li>用户项目就是指最终使用您的代码，并直接在package.json中声明了对您的包依赖的那个应用程序或库。peerDependency就是指</li>
-</ul>
-<h2 id="peer-dependency">
-  peer Dependency
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><p><a href="#R-image-1a9dfb0cbde36357971a90ee49c37d12" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4ffc5613e34ffb7b3793294a57506c02.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1a9dfb0cbde36357971a90ee49c37d12"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/4ffc5613e34ffb7b3793294a57506c02.png"></a>
+</h4><p><a href="#R-image-143cbaca6f7f56ff7dbb6bfea21b4258" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/877fd2df9600bf93b1605729e3507167.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-143cbaca6f7f56ff7dbb6bfea21b4258"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/877fd2df9600bf93b1605729e3507167.png?width=300px"></a>
 </p>
-<h1 id="对比">
-  对比
+<p>通过多种方式引导分割：</p>
+<ul>
+<li>点：在物体上点一下，它就能自动识别出整个物体的边界</li>
+<li>框：拉一个框，它会分割出框内的物体</li>
+<li>文本：根据描述（如“那只猫”）来寻找物体</li>
+<li>遮罩（Mask）：利用已有的粗略遮罩进行精细化调整</li>
+</ul>
+<p><a href="#R-image-1c4486beadbd53638c6221f372ef5876" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/988d145aab074633c48cd72e83ee5d79.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1c4486beadbd53638c6221f372ef5876"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/988d145aab074633c48cd72e83ee5d79.png"></a>
+</p>
+<p>实现原理：</p>
+<ul>
+<li>SAM通过大规模预训练（SA-1B），具有zero-shot的泛化能力</li>
+<li>模型结构基于transformer架构：
+<ul>
+<li>Image Encoder：Transformer (ViT)，负责把图片转化为特征向量</li>
+<li>Prompt Encoder：负责处理用户输入的点、框或文本</li>
+<li>Mask Decoder：轻量级的解码器，能以毫秒级的速度将图像特征和提示结合，实时输出分割结果</li>
+</ul>
+</li>
+</ul>
+<p>SAM 2实现了视频分割，SAM3D实现了三维场景的分割</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2304.02643" target="_blank">Segment Anything</a></li>
+</ul>
+<h3 id="检测">
+  检测
 
 
 
@@ -387,14 +510,48 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<p>处理 Peer Dependency 的方式是包管理工具（npm、Yarn、pnpm）之间差异最大的地方之一：
-<a href="#R-image-745e1ed31116726f180c30da9281f2bc" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/0fb953c96768e918d8929ade4a7ae27e.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-745e1ed31116726f180c30da9281f2bc"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/0fb953c96768e918d8929ade4a7ae27e.png"></a>
+</h3><h4 id="open-voc-detection">
+  Open-Voc Detection
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p><a href="#R-image-a32cc05f65d1689e209e79b0a39a1f8d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cc80605cff2ec7da04635186c7b97777.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a32cc05f65d1689e209e79b0a39a1f8d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cc80605cff2ec7da04635186c7b97777.png?width=500px"></a>
 </p>
-<p>对于幻影依赖：
-<a href="#R-image-004a03db4e9d9d559ee07d6e1441a07f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c0cac025de26f0d010c112dd77c55569.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-004a03db4e9d9d559ee07d6e1441a07f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2025/12/c0cac025de26f0d010c112dd77c55569.png"></a>
+<p>相比于传统的检测，最后一步是Softmax分类，开放词表检测最后一步是特征对齐：</p>
+<ul>
+<li>视觉分支：提取图像中潜在物体的特征向量（Region Embeddings）</li>
+<li>文本分支：利用预训练模型（如 CLIP）的Text Encoder，将你的输入转化为语义向量</li>
+<li>匹配：计算视觉特征和文本特征的余弦相似度，取相似度最高的区域</li>
+</ul>
+<h3 id="多模态grounding">
+  多模态Grounding
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>根据给定的自然语言描述，在图像或视频中精准地找到并标记出对应的目标，打通了nlp和cv之间的桥梁，升级版（像素级）的clip（clip只做整体语义匹配）</p>
+<p><a href="#R-image-5387c0e4013f6f276abc59a9d5288f39" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6be348371b45f35f3a5ff494f4881fb3.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5387c0e4013f6f276abc59a9d5288f39"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6be348371b45f35f3a5ff494f4881fb3.png?width=400px"></a>
+</p>
+<p>进一步的，实现3D环境的多模态Grounding：</p>
+<ul>
+<li>多模态输入：2D视觉、3D点云、系统提示词和用户指令</li>
+<li>特征融合：将输入转化为token序列</li>
+<li>大脑中心：基于LoRA微调的LLM，负责决策和推理</li>
+<li>输出形式：文本响应或者动作响应</li>
+</ul>
+<p><a href="#R-image-6f07c559cffe9a963e4c40420f97b5ac" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/86ad07bf4daeaa41ccab517a5f02bcae.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6f07c559cffe9a963e4c40420f97b5ac"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/86ad07bf4daeaa41ccab517a5f02bcae.png?width=500px"></a>
 </p>
 <p>参考链接：</p>
 <ul>
@@ -402,98 +559,15 @@ npm Tutorial for Beginners # NPM Full Course For Beginners - Learn NPM fundament
 
 
 
-<a href="https://www.youtube.com/watch?v=XyPNw_3jsLY" target="_blank"># How JavaScript package managers work: npm vs. yarn vs. pnpm vs. npx</a></li>
-</ul>
-<h1 id="bun">
-  Bun
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><hr>
-<ul>
-<li>Bun是一个Javascript的运行时工具，包括前端、后端</li>
-<li>包含了bundler、transpiler、任务执行和npm客户端的综合体
-<ul>
-<li>参考链接：
-
-
-
-<a href="../Answers/Javascript%E4%B8%AD%E7%9A%84bundler%E5%92%8Ctranspiler.md">../Answers/Javascript中的bundler和transpiler</a></li>
-</ul>
-</li>
-<li>替代nodejs和npm，并兼容他们</li>
-</ul>
-<h2 id="基本操作">
-  基本操作
-
-
-
-
-
-
-
-<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><ul>
-<li>watch mode：
-<ul>
-<li>bun &ndash;watch index.ts，监控改动反应到页面，类似node的nodemon</li>
-<li>bun &ndash;hot index.ts，相比watch不用手动reload页面</li>
-</ul>
-</li>
-<li>.env：存储环境变量，process.env.XXX或者bun.env.XXX</li>
-<li>bunx：不用安装直接运行，对应npx</li>
-<li>支持sqlite</li>
-<li>文件读写：
-<ul>
-<li>写：
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>const data = &#39;I love Javascript&#39;;
-await Bun.write(&#39;output.txt&#39;, data);</code></pre></div>
-</li>
-<li>读：
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>const file = await Bun.file(&#39;output.txt&#39;);
-console.log(await file.text());</code></pre></div>
-</li>
-</ul>
-</li>
-<li>测试：</li>
-</ul>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>import { describe, expect, test, beforeAll } from &#39;bun:test&#39;
-
-beforeAll(() =&gt; {
-	// setup tests
-});
-
-describe(&#39;math&#39;, () =&gt; {
-	test(&#39;addition&#39;, () =&gt; {
-		expect(2 + 2).toBe(4);
-	})
-})</code></pre></div>
-<ul>
-<li>bundler：将代码打包成可使用的js文件
-<ul>
-<li>bun build ./src/index.ts &ndash;outfile=./dist/bundle.js</li>
-<li>同时支持watch mode
-参考链接：</li>
-</ul>
-</li>
+<a href="https://arxiv.org/pdf/2311.03356" target="_blank">GLaMM: Pixel Grounding Large Multimodal Model</a></li>
 <li>
 
 
 
-<a href="https://bun.com/blog/bun-v1.0" target="_blank">Bun 1.0</a></li>
-<li>
-
-
-
-<a href="https://www.youtube.com/watch?v=U4JVw8K19uY" target="_blank"># Bun Crash Course | JavaScript Runtime, Bundler &amp; Transpiler</a></li>
+<a href="https://arxiv.org/pdf/2311.12871" target="_blank">An Embodied Generalist Agent in 3D World</a></li>
 </ul>
-<h2 id="bun-13">
-  Bun 1.3
+<h2 id="数据引导">
+  数据引导
 
 
 
@@ -502,14 +576,251 @@ describe(&#39;math&#39;, () =&gt; {
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h2><ul>
-<li>bun index.html可以直接起服务</li>
-<li>数据库支持增加redis</li>
-<li>Bun.secrets包裹的部分可以存在keychain中（macOS），提升安全性</li>
+</h2><p>机器人的数据缺失，通过以下方式补充：</p>
+<ul>
+<li>通过人类操作的视频，模仿学习，比如
+
+
+
+<a href="https://arxiv.org/pdf/2302.12422" target="_blank">MimicPlay</a>和
+
+
+
+<a href="https://arxiv.org/pdf/2403.12943" target="_blank">Vid2Robot</a></li>
+<li>轻量级硬件数据采集：通过成本低的硬件设备大量采集数据，比如
+
+
+
+<a href="https://arxiv.org/pdf/2402.10329" target="_blank">UMI</a>（机械爪）、
+
+
+
+<a href="https://arxiv.org/pdf/2403.07788" target="_blank">DexCap</a>（五指手套）、
+
+
+
+<a href="https://arxiv.org/pdf/2309.14860" target="_blank">HIRO Hand</a>（人类手把手握着手套，避免DexCap后续适配机器人的问题）</li>
+<li>重量级硬件数据采集：VR手套+VR眼睛</li>
+<li>生成式仿真：
+
+
+
+<a href="https://arxiv.org/pdf/2311.01455" target="_blank">RoboGen</a>通过基于设定任务生成环境然后进行任务学习；
+
+
+
+<a href="https://arxiv.org/pdf/2310.17596" target="_blank">MimicGen</a>基于少量的人类数据样本，分段后分别进行多样化，从而扩充数据量，相对来说更可控</li>
+</ul>
+<h3 id="sim-to-real">
+  Sim-to-Real
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>#todo sim2real gap部分</p>
+<h2 id="动作执行">
+  动作执行
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="生成式模仿学习">
+  生成式模仿学习
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>基于神经网络学习概率分布 $P(action|observation)$，从而解决传统的模仿学习（如行为克隆 BC）对于多峰分布（同一个动作序列有多种正确解）的缺陷</p>
+<h4 id="actaction-chunking-with-transformers">
+  ACT（Action Chunking with Transformers）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>模型基于训练的解码器，针对某一特定任务，预测生成连续动作序列：</p>
+<ul>
+<li>利用CVAE的思路，基于中间隐状态条件生成</li>
+<li>训练阶段：
+<ul>
+<li>编码器基于当前状态和人类动作序列编码得到Z</li>
+<li>解码器通过encoder先把机器人的状态、图像以及Z编码，然后解码成动作序列，目标与人类动作序列一致</li>
+</ul>
+</li>
+<li>推理阶段：
+<ul>
+<li>让解码器可以基于机器人状态、图像，生成后续动作序列</li>
+</ul>
+</li>
+</ul>
+<p><a href="#R-image-654e289f56ad3ddcdd8e8879e95f6e11" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/3451d7228b500d65270fc5f77821ebb2.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-654e289f56ad3ddcdd8e8879e95f6e11"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/3451d7228b500d65270fc5f77821ebb2.png"></a>
+</p>
+<p>通过将时序预测结果加权平均，使得到的动作序列更平滑</p>
+<p><a href="#R-image-10622f74ee74b969dadf7ed417b24a75" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/1aec8e699700d81886e165a5157ebbc4.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-10622f74ee74b969dadf7ed417b24a75"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/1aec8e699700d81886e165a5157ebbc4.png?width=400px"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2304.13705" target="_blank">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a></li>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1VSi3BLEr5?spm_id_from=333.788.videopod.sections&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># VAE？具身智能ACT算法科普【陈老师Robotics】</a></li>
+</ul>
+<h4 id="diffusion-policy">
+  Diffusion Policy
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p><a href="#R-image-8eb3ad5e274d4aa9ce0e553bb38973a5" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cdb603ffc110c993d21a01f640a20c3b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8eb3ad5e274d4aa9ce0e553bb38973a5"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cdb603ffc110c993d21a01f640a20c3b.png"></a>
+</p>
+<p>策略不直接输出动作，而是学习分数函数（ $\nabla \log P(A|O)$），通过多次迭代优化得到动作：</p>
+<ul>
+<li>加噪阶段：在训练时，将人类真实的动作序列逐渐加入高斯噪声，直到变成纯噪声</li>
+<li>去噪阶段：训练一个神经网络，学习如何根据当前的观察，将噪声一步步剔除，恢复成真实的动作序列</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2303.04137" target="_blank">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</a></li>
+</ul>
+<h3 id="affordance">
+  Affordance
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>预测观察中物品的哪些部分是可以接触的，且接触的方式是什么（扭动、提起等）</p>
+<ul>
+<li>代表有RoboAffordance、AffordPose以及3D场景的SceneFun3D</li>
+</ul>
+<h3 id="query-from-llm">
+  Query from LLM
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>直接基于LLM对物品的接触和使用方式进行询问，得到机器人的动作位置和类型</p>
+<ul>
+<li>代表有ManipLLM和ManipVQA</li>
+</ul>
+<h3 id="prompt-planning-from-llm">
+  Prompt Planning from LLM
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>直接基于LLM进行任务的拆解和规划</p>
+<p><a href="#R-image-c9b46dacfab1928f4e756a88a6fc09f1" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6f331f216e83422ada98a0584248bade.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c9b46dacfab1928f4e756a88a6fc09f1"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6f331f216e83422ada98a0584248bade.png"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2311.17842" target="_blank">Look Before You Leap: Unveiling the Power of GPT-4V in Robotic Vision-Language Planning</a></li>
+</ul>
+<h3 id="language-correction">
+  Language Correction
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>在机器人完成任务的过程中，通过语音或者文本给机器人错误部分纠正</p>
+<ul>
+<li>代表作有OLAF、Yell At Your Robot</li>
+</ul>
+<h3 id="vla">
+  VLA
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>参考 
+
+
+
+    
+<a href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">VLA学习手册</a></p>
+<h2 id="世界模型">
+  世界模型
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>参考 
+
+
+
+    
+<a href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">世界模型学习手册</a></p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1d5ukedEsi/?spm_id_from=333.788.recommend_more_video.0&amp;trackid=web_related_0.router-related-2481894-v7bf2.1774255241265.626&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># 具身智能基础技术路线</a></li>
 </ul>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Dec 12, 2025
+              <i class='fa-fw fas fa-calendar'></i> Mar 23, 2026
   </footer>
 </article>
         </div>
@@ -558,7 +869,7 @@ describe(&#39;math&#39;, () =&gt; {
             <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">VLA学习手册</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">具身智能学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">具身智能学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">世界模型学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"><a class="padding" href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html">FSDP：Pytorch的完全分片数据并行</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html">vLLM：大模型加速推理框架</a></li>
@@ -591,7 +902,7 @@ describe(&#39;math&#39;, () =&gt; {
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>

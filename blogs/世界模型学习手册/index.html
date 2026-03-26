@@ -5,28 +5,36 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
     <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
-    <meta name="description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
+    <meta name="description" content="参考链接：
+# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：
+# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="游戏编程基本概念 :: Ruoruoliu 2.0">
-    <meta name="twitter:description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
-    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+    <meta name="twitter:title" content="世界模型学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="参考链接：
+# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：
+# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <meta property="og:site_name" content="Ruoruoliu 2.0">
-    <meta property="og:title" content="游戏编程基本概念 :: Ruoruoliu 2.0">
-    <meta property="og:description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
+    <meta property="og:title" content="世界模型学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="参考链接：
+# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：
+# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Blogs">
-    <meta property="article:published_time" content="2025-12-10T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-12-10T00:00:00+00:00">
+    <meta property="article:published_time" content="2026-03-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-21T00:00:00+00:00">
     <meta property="article:tag" content="技术笔记">
-    <meta itemprop="name" content="游戏编程基本概念 :: Ruoruoliu 2.0">
-    <meta itemprop="description" content="Game Loop Game Loop的结构通常是以下三步的循环： Process Input Update Game State Draw Game 参考链接： Game Programming Patterns # Game States and Game Loops # Getting The Game Loop Right 扩展阅读">
-    <meta itemprop="datePublished" content="2025-12-10T00:00:00+00:00">
-    <meta itemprop="dateModified" content="2025-12-10T00:00:00+00:00">
-    <meta itemprop="wordCount" content="28">
+    <meta itemprop="name" content="世界模型学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="参考链接：
+# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：
+# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora">
+    <meta itemprop="datePublished" content="2026-03-21T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-03-21T00:00:00+00:00">
+    <meta itemprop="wordCount" content="76">
     <meta itemprop="keywords" content="技术笔记">
-    <title>游戏编程基本概念 :: Ruoruoliu 2.0</title>
+    <title>世界模型学习手册 :: Ruoruoliu 2.0</title>
     <link href="/hugo-blog/images/favicon.png?1774536776" rel="icon" type="image/png">
     <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1774536776" rel="stylesheet">
     <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1774536776" defer></script>
@@ -52,7 +60,7 @@
       window.relearn = window.relearn || {};
       // configuration
       window.relearn.min = `.min`;
-      window.relearn.path='\/blogs\/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5\/index.html';
+      window.relearn.path='\/blogs\/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..\/..';
       window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
@@ -100,7 +108,7 @@
       window.relearn.markVariant();
     </script>
   </head>
-  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -132,7 +140,7 @@
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">游戏编程基本概念</span><meta itemprop="position" content="3"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">世界模型学习手册</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
@@ -143,7 +151,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html" title="像素工具Asperite (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="具身智能学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -153,7 +161,7 @@
 
 
 
-<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html" title="从零开始构建Flappy Bird (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html" title="FSDP：Pytorch的完全分片数据并行 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
 
@@ -187,10 +195,28 @@
 </div>
   </header>
 
-<h1 id="游戏编程基本概念">游戏编程基本概念</h1>
+<h1 id="世界模型学习手册">世界模型学习手册</h1>
 
-<h1 id="game-loop">
-  Game Loop
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1ApfSBZEWw/?spm_id_from=333.1007.tianma.26-4-102.click&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code</a></li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1809.01999" target="_blank">Recurrent World Models Facilitate Policy Evolution</a></li>
+<li>
+
+
+
+<a href="https://worldmodels.github.io/" target="_blank"># World Models: Can agents learn inside of their own dreams?</a></li>
+</ul>
+<h1 id="jepa">
+  JEPA
 
 
 
@@ -199,36 +225,32 @@
 
 
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
-</h1><ul>
-<li>Game Loop的结构通常是以下三步的循环：
-<ul>
-<li>Process Input</li>
-<li>Update Game State</li>
-<li>Draw Game</li>
-</ul>
-</li>
-<li>参考链接：
+</h1><hr>
+<p>参考链接：</p>
 <ul>
 <li>
 
 
 
-<a href="https://gameprogrammingpatterns.com/" target="_blank">Game Programming Patterns</a></li>
+<a href="https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/" target="_blank"># I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI</a></li>
 <li>
 
 
 
-<a href="https://www.youtube.com/watch?v=E0Al0-sOO_c" target="_blank"># Game States and Game Loops</a></li>
+<a href="https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/" target="_blank"># V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI)</a></li>
 <li>
 
 
 
-<a href="https://www.youtube.com/watch?v=lW6ZtvQVzyg" target="_blank"># Getting The Game Loop Right</a></li>
+<a href="https://ai.meta.com/blog/v-jepa-2-world-model-benchmarks/" target="_blank"># Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning</a></li>
+<li>
+
+
+
+<a href="https://www.turingpost.com/p/jepa" target="_blank"># Topic 4: What is JEPA?</a></li>
 </ul>
-</li>
-</ul>
-<h1 id="扩展阅读">
-  扩展阅读
+<h1 id="sora">
+  Sora
 
 
 
@@ -239,7 +261,7 @@
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1>
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> Dec 10, 2025
+              <i class='fa-fw fas fa-calendar'></i> Mar 21, 2026
   </footer>
 </article>
         </div>
@@ -289,7 +311,7 @@
             <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
             <li class="" data-nav-url="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">VLA学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">具身智能学习手册</a></li>
-            <li class="" data-nav-url="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">世界模型学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">世界模型学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"><a class="padding" href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html">FSDP：Pytorch的完全分片数据并行</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html">vLLM：大模型加速推理框架</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html">Ray：分布式计算框架</a></li>
@@ -324,7 +346,7 @@
             <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
-            <li class="active " data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
             <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>

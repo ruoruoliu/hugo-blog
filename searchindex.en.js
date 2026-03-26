@@ -16,16 +16,6 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/blogs/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "DP和DDP DP（数据并行）指多个gpu处理不同batch数据，然后每个step进行梯度的汇总，更新全局模型参数\n最朴素的方法是每个gpu上存一份模型参数，各自直接计算梯度，master汇总更新，这种方法需要全量梯度在gpu之间传递，显卡越多，master越忙，会阻塞\nDDP（分布式数据并行）让每个gpu有自己独立的进程，取消了master，采用分布式，gpu之间平等地交换梯度，all-reduce算法\n不关是DP还是DDP，因为只传递梯度，每个gpu都保存了全量的优化器状态（模型参数的2-3倍）和激活\nSharded 既然DP和DDP为了不传递优化器状态和激活浪费了这么多显存，要就把这些拆分开，多传递数据以减少显存浪费，这就是sharded\n也就是微软ZeRO的想法： # ZeRO: Memory Optimizations Toward Training Trillion Parameter Models\nZeRO-1：只切分优化器状态，每个worker计算全量梯度后，通信梯度，然后利用平均梯度和自己部分的优化器状态更新完参数，然后worker之间通信参数，拿到全量参数 ZeRO-2：再切分梯度，每个worker计算全量梯度，算完一部分梯度之后通信完就把不属于自己的梯度扔掉，然后基于平均梯度更新参数，最终参数更新完后再通信，拿到全量参数 ZeRO-3：模型参数也切分，只有在算子执行的时候，才会通信把当前算子的参数拼接起来，边拉参数边计算，prefetching参数使计算和通信overlapp 参考链接：\n# Sharded: A New Technique To Double The Size Of PyTorch Models FSDP FSDP就是ZeRO3的pytorch官方实现，在ZeRO-3的基础上还支持cpu offloading：\n自己负责的模型参数在加载前会offload在cpu里 汇总完梯度后，自己负责的这部分梯度也offload在cpu里 Pytorch中的两种包装方式：\nAuto Wrapping：对model的layer整体指定包装策略，对于模型内部代码不需要改动： 满足wrapping条件了自动进行wrap，wrap的部分在计算时随算随拉取 如果没有wrap，则整体切分整体拉取（在大模型参数的时候会OOM） from torch.distributed.fsdp import ( FullyShardedDataParallel, CPUOffload, ) from torch.distributed.fsdp.wrap import ( default_auto_wrap_policy, ) import torch.nn as nn class model(nn.Module): def __init__(self): super().__init__() self.layer1 = nn.Linear(8, 4) self.layer2 = nn.Linear(4, 16) self.layer3 = nn.Linear(16, 4) model = DistributedDataParallel(model()) fsdp_model = FullyShardedDataParallel( model(), fsdp_auto_wrap_policy=default_auto_wrap_policy, cpu_offload=CPUOffload(offload_params=True), ) Manual Wrapping：需要更复杂的按层指定的策略时使用 from torch.distributed.fsdp import ( FullyShardedDataParallel, CPUOffload, ) from torch.distributed.fsdp.wrap import ( enable_wrap, wrap, ) import torch.nn as nn from typing import Dict class model(nn.Module): def __init__(self): super().__init__() self.layer1 = wrap(nn.Linear(8, 4)) self.layer2 = nn.Linear(4, 16) self.layer3 = wrap(nn.Linear(16, 4)) wrapper_kwargs = Dict(cpu_offload=CPUOffload(offload_params=True)) with enable_wrap(wrapper_cls=FullyShardedDataParallel, **wrapper_kwargs): fsdp_model = wrap(model()) 包装后模型可以直接训练：\noptim = torch.optim.Adam(fsdp_model.parameters(), lr=0.0001) for sample, label in next_batch(): out = fsdp_model(input) loss = criterion(out, label) loss.backward() optim.step() 参考链接：\n# Introducing PyTorch Fully Sharded Data Parallel (FSDP) API PyTorch FSDP: Experiences on Scaling Fully Sharded Data Parallel FSDP2 Pytorch的FSDP2相比FSDP1有哪些优势\n参考链接：\n# Pytorch FSDP2解析",
-    "description": "DP和DDP DP（数据并行）指多个gpu处理不同batch数据，然后每个step进行梯度的汇总，更新全局模型参数\n最朴素的方法是每个gpu上存一份模型参数，各自直接计算梯度，master汇总更新，这种方法需要全量梯度在gpu之间传递，显卡越多，master越忙，会阻塞\nDDP（分布式数据并行）让每个gpu有自己独立的进程，取消了master，采用分布式，gpu之间平等地交换梯度，all-reduce算法\n不关是DP还是DDP，因为只传递梯度，每个gpu都保存了全量的优化器状态（模型参数的2-3倍）和激活\nSharded 既然DP和DDP为了不传递优化器状态和激活浪费了这么多显存，要就把这些拆分开，多传递数据以减少显存浪费，这就是sharded\n也就是微软ZeRO的想法： # ZeRO: Memory Optimizations Toward Training Trillion Parameter Models\nZeRO-1：只切分优化器状态，每个worker计算全量梯度后，通信梯度，然后利用平均梯度和自己部分的优化器状态更新完参数，然后worker之间通信参数，拿到全量参数 ZeRO-2：再切分梯度，每个worker计算全量梯度，算完一部分梯度之后通信完就把不属于自己的梯度扔掉，然后基于平均梯度更新参数，最终参数更新完后再通信，拿到全量参数 ZeRO-3：模型参数也切分，只有在算子执行的时候，才会通信把当前算子的参数拼接起来，边拉参数边计算，prefetching参数使计算和通信overlapp 参考链接：\n# Sharded: A New Technique To Double The Size Of PyTorch Models FSDP FSDP就是ZeRO3的pytorch官方实现，在ZeRO-3的基础上还支持cpu offloading：",
-    "tags": [
-      "技术笔记"
-    ],
-    "title": "FSDP：Pytorch的完全分片数据并行",
-    "uri": "/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"
-  },
-  {
     "breadcrumb": "Ruoruoliu 2.0",
     "content": "",
     "description": "",
@@ -34,22 +24,24 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/tags/index.html"
   },
   {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 技术笔记",
-    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "具身智能 Manipulation存在的挑战：\n训练数据缺失：人工遥操成本过高 Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题 不同的机器人本体形态导致模型训练无法简单适配 任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的 VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化\nRT-1 从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：\n视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令 指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量 Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作 动作输出：它将动作空间（7 自由度手臂 + 3 自由度底盘 + 终止标志）离散化为256个 bin，以分类任务的形式输出 参考链接：\nRT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE RT-2 基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）\n基于预训练过的VLM得到的模型，可以理解“put strawberry into the correct bowl”以及“pick up the bag about to fall off the table”这样的需要理解的指令\n参考链接：\nRT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control RT-X 在RT-2基础上的改进，引入了跨本体的训练数据，支持不同本体使用\n跨本体训练数据Open X-Embodiment，来自22种本体，100万个episodes，527个技能 通过对自由度归一化到通用空间来进行统一训练 参考链接：\nOpen X-Embodiment: Robotic Learning Datasets and RT-X Models RT-H 提出了Hierarchical的思维方式，将任务拆解为语言任务和动作序列两部分\n任务分解：利用一个 VLM 将复杂的、高层级的文本指令转化为一系列具身的语言指令，比如将洗杯子分解为：移动到水槽、打开水龙头、拿起杯子等 条件化动作执行：基于当前图像和任务分解后的中间指令，执行多模态transformer，生成动作 RT-H还支持语言干预的能力，因为训练过程中把人类纠正的部分作为任务分解的一部分加入数据中微调任务分解的VLM模型 参考链接：\nRT-H: Action Hierarchies Using Language OpenVLA OpenVLA可以视作RT-2的开源版本\n视觉编码：DINOv2（底层）、SigLIP（高层） transformer采用llama 7B作为backbone 通过lora进行微调效果最好 参考链接：\nOpenVLA: An Open-Source Vision-Language-Action Model $\\huge \\pi_0$ 相比RT系列和OpenVLA将动作看成token处理，$\\pi$系列将控制看成一个连续的物理流，采用流匹配技术（flow-matching），类似视频生成中的扩散模型，输出连续动作轨迹，不会像离散token那样机械抖动\n机器人技术中的流匹配 参考链接：\n# π0: A Vision-Language-Action Flow Model for General Robot Control $\\huge \\pi_{0.5}$ 在$\\pi_0$的基础上，引入以下优化：\n在预训练过程中，引入异构数据协同训练（机器人数据、多模态语义任务等），增加长程复杂任务的泛化性 类似RT-H，引入层次化推理架构，高层语义子任务预测和底层动作生成 预训练使用离散action加速训练，后训练引入flow-matching技术生成连续平滑动作 参考链接：\nπ0.5: a Vision-Language-Action Model with Open-World Generalization # pi0.5 技术解读 参考链接：\nVision-Language-Action Models for Robot Manipulation",
+    "description": "具身智能 Manipulation存在的挑战：\n训练数据缺失：人工遥操成本过高 Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题 不同的机器人本体形态导致模型训练无法简单适配 任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的 VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化\nRT-1 从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：\n视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令 指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量 Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作 动作输出：它将动作空间（7 自由度手臂 + 3 自由度底盘 + 终止标志）离散化为256个 bin，以分类任务的形式输出 参考链接：\nRT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE RT-2 基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "VLA学习手册",
+    "uri": "/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 具身智能基础知识",
-    "description": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 具身智能基础知识",
+    "content": "[!note] 总结 世界模型基础知识 [!tip] 知识 [!warning] 待办",
+    "description": "[!note] 总结 世界模型基础知识 [!tip] 知识 [!warning] 待办",
     "tags": [
       "周记"
     ],
-    "title": "Week18 强化学习框架学习",
-    "uri": "/hugo-blog/weekly/week18/index.html"
+    "title": "Week19 世界模型\u0026VLA",
+    "uri": "/hugo-blog/weekly/week19/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0",
@@ -60,12 +52,60 @@ var relearn_searchindex = [
     "uri": "/hugo-blog/weekly/index.html"
   },
   {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：\n数据采集 通过遥操获取目标动作的人体motion\nRetargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion\nGMR 参考链接：\nRetargeting Matters: General Motion Retargeting for Humanoid Motion Tracking 仿真环境RL训练 DeepMimic 参考链接：\nDeepMimic: Example-Guided Deep Reinforcement Learning of Physics-Based Character Skills AMP 参考链接：\nAMP: Adversarial Motion Priors for Stylized Physics-Based Character Control 真实环境部署（Sim2Real） 整体解决方案 RGMT 参考链接：\nRobust and Generalized Humanoid Motion Tracking OmniRetarget 参考链接：\n# OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction HumanX 参考链接：\nHumanX: Toward Agile and Generalizable Humanoid Interaction Skills from Human Videos 参考链接：\n论文合集：宇树机器人春晚表演背后的算法 Manipulation 场景理解 分割 SAM（Segment Anything Model） 通过多种方式引导分割：\n点：在物体上点一下，它就能自动识别出整个物体的边界 框：拉一个框，它会分割出框内的物体 文本：根据描述（如“那只猫”）来寻找物体 遮罩（Mask）：利用已有的粗略遮罩进行精细化调整 实现原理：\nSAM通过大规模预训练（SA-1B），具有zero-shot的泛化能力 模型结构基于transformer架构： Image Encoder：Transformer (ViT)，负责把图片转化为特征向量 Prompt Encoder：负责处理用户输入的点、框或文本 Mask Decoder：轻量级的解码器，能以毫秒级的速度将图像特征和提示结合，实时输出分割结果 SAM 2实现了视频分割，SAM3D实现了三维场景的分割\n参考链接：\nSegment Anything 检测 Open-Voc Detection 相比于传统的检测，最后一步是Softmax分类，开放词表检测最后一步是特征对齐：\n视觉分支：提取图像中潜在物体的特征向量（Region Embeddings） 文本分支：利用预训练模型（如 CLIP）的Text Encoder，将你的输入转化为语义向量 匹配：计算视觉特征和文本特征的余弦相似度，取相似度最高的区域 多模态Grounding 根据给定的自然语言描述，在图像或视频中精准地找到并标记出对应的目标，打通了nlp和cv之间的桥梁，升级版（像素级）的clip（clip只做整体语义匹配）\n进一步的，实现3D环境的多模态Grounding：\n多模态输入：2D视觉、3D点云、系统提示词和用户指令 特征融合：将输入转化为token序列 大脑中心：基于LoRA微调的LLM，负责决策和推理 输出形式：文本响应或者动作响应 参考链接：\nGLaMM: Pixel Grounding Large Multimodal Model An Embodied Generalist Agent in 3D World 数据引导 机器人的数据缺失，通过以下方式补充：\n通过人类操作的视频，模仿学习，比如 MimicPlay和 Vid2Robot 轻量级硬件数据采集：通过成本低的硬件设备大量采集数据，比如 UMI（机械爪）、 DexCap（五指手套）、 HIRO Hand（人类手把手握着手套，避免DexCap后续适配机器人的问题） 重量级硬件数据采集：VR手套+VR眼睛 生成式仿真： RoboGen通过基于设定任务生成环境然后进行任务学习； MimicGen基于少量的人类数据样本，分段后分别进行多样化，从而扩充数据量，相对来说更可控 Sim-to-Real #todo sim2real gap部分\n动作执行 生成式模仿学习 基于神经网络学习概率分布 $P(action|observation)$，从而解决传统的模仿学习（如行为克隆 BC）对于多峰分布（同一个动作序列有多种正确解）的缺陷\nACT（Action Chunking with Transformers） 模型基于训练的解码器，针对某一特定任务，预测生成连续动作序列：\n利用CVAE的思路，基于中间隐状态条件生成 训练阶段： 编码器基于当前状态和人类动作序列编码得到Z 解码器通过encoder先把机器人的状态、图像以及Z编码，然后解码成动作序列，目标与人类动作序列一致 推理阶段： 让解码器可以基于机器人状态、图像，生成后续动作序列 通过将时序预测结果加权平均，使得到的动作序列更平滑\n参考链接：\nLearning Fine-Grained Bimanual Manipulation with Low-Cost Hardware # VAE？具身智能ACT算法科普【陈老师Robotics】 Diffusion Policy 策略不直接输出动作，而是学习分数函数（ $\\nabla \\log P(A|O)$），通过多次迭代优化得到动作：\n加噪阶段：在训练时，将人类真实的动作序列逐渐加入高斯噪声，直到变成纯噪声 去噪阶段：训练一个神经网络，学习如何根据当前的观察，将噪声一步步剔除，恢复成真实的动作序列 参考链接：\nDiffusion Policy: Visuomotor Policy Learning via Action Diffusion Affordance 预测观察中物品的哪些部分是可以接触的，且接触的方式是什么（扭动、提起等）\n代表有RoboAffordance、AffordPose以及3D场景的SceneFun3D Query from LLM 直接基于LLM对物品的接触和使用方式进行询问，得到机器人的动作位置和类型\n代表有ManipLLM和ManipVQA Prompt Planning from LLM 直接基于LLM进行任务的拆解和规划\n参考链接：\nLook Before You Leap: Unveiling the Power of GPT-4V in Robotic Vision-Language Planning Language Correction 在机器人完成任务的过程中，通过语音或者文本给机器人错误部分纠正\n代表作有OLAF、Yell At Your Robot VLA 参考 VLA学习手册\n世界模型 参考 世界模型学习手册\n参考链接：\n# 具身智能基础技术路线",
+    "description": "Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：\n数据采集 通过遥操获取目标动作的人体motion\nRetargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "具身智能学习手册",
+    "uri": "/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
+  },
+  {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Tag :: 周记",
     "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 技术笔记",
+    "uri": "/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "参考链接：\n# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：\n# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora",
+    "description": "参考链接：\n# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：\n# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "世界模型学习手册",
+    "uri": "/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
+    "content": "DP和DDP DP（数据并行）指多个gpu处理不同batch数据，然后每个step进行梯度的汇总，更新全局模型参数\n最朴素的方法是每个gpu上存一份模型参数，各自直接计算梯度，master汇总更新，这种方法需要全量梯度在gpu之间传递，显卡越多，master越忙，会阻塞\nDDP（分布式数据并行）让每个gpu有自己独立的进程，取消了master，采用分布式，gpu之间平等地交换梯度，all-reduce算法\n不关是DP还是DDP，因为只传递梯度，每个gpu都保存了全量的优化器状态（模型参数的2-3倍）和激活\nSharded 既然DP和DDP为了不传递优化器状态和激活浪费了这么多显存，要就把这些拆分开，多传递数据以减少显存浪费，这就是sharded\n也就是微软ZeRO的想法： # ZeRO: Memory Optimizations Toward Training Trillion Parameter Models\nZeRO-1：只切分优化器状态，每个worker计算全量梯度后，通信梯度，然后利用平均梯度和自己部分的优化器状态更新完参数，然后worker之间通信参数，拿到全量参数 ZeRO-2：再切分梯度，每个worker计算全量梯度，算完一部分梯度之后通信完就把不属于自己的梯度扔掉，然后基于平均梯度更新参数，最终参数更新完后再通信，拿到全量参数 ZeRO-3：模型参数也切分，只有在算子执行的时候，才会通信把当前算子的参数拼接起来，边拉参数边计算，prefetching参数使计算和通信overlapp 参考链接：\n# Sharded: A New Technique To Double The Size Of PyTorch Models FSDP FSDP就是ZeRO3的pytorch官方实现，在ZeRO-3的基础上还支持cpu offloading：\n自己负责的模型参数在加载前会offload在cpu里 汇总完梯度后，自己负责的这部分梯度也offload在cpu里 Pytorch中的两种包装方式：\nAuto Wrapping：对model的layer整体指定包装策略，对于模型内部代码不需要改动： 满足wrapping条件了自动进行wrap，wrap的部分在计算时随算随拉取 如果没有wrap，则整体切分整体拉取（在大模型参数的时候会OOM） from torch.distributed.fsdp import ( FullyShardedDataParallel, CPUOffload, ) from torch.distributed.fsdp.wrap import ( default_auto_wrap_policy, ) import torch.nn as nn class model(nn.Module): def __init__(self): super().__init__() self.layer1 = nn.Linear(8, 4) self.layer2 = nn.Linear(4, 16) self.layer3 = nn.Linear(16, 4) model = DistributedDataParallel(model()) fsdp_model = FullyShardedDataParallel( model(), fsdp_auto_wrap_policy=default_auto_wrap_policy, cpu_offload=CPUOffload(offload_params=True), ) Manual Wrapping：需要更复杂的按层指定的策略时使用 from torch.distributed.fsdp import ( FullyShardedDataParallel, CPUOffload, ) from torch.distributed.fsdp.wrap import ( enable_wrap, wrap, ) import torch.nn as nn from typing import Dict class model(nn.Module): def __init__(self): super().__init__() self.layer1 = wrap(nn.Linear(8, 4)) self.layer2 = nn.Linear(4, 16) self.layer3 = wrap(nn.Linear(16, 4)) wrapper_kwargs = Dict(cpu_offload=CPUOffload(offload_params=True)) with enable_wrap(wrapper_cls=FullyShardedDataParallel, **wrapper_kwargs): fsdp_model = wrap(model()) 包装后模型可以直接训练：\noptim = torch.optim.Adam(fsdp_model.parameters(), lr=0.0001) for sample, label in next_batch(): out = fsdp_model(input) loss = criterion(out, label) loss.backward() optim.step() 参考链接：\n# Introducing PyTorch Fully Sharded Data Parallel (FSDP) API PyTorch FSDP: Experiences on Scaling Fully Sharded Data Parallel FSDP2 Pytorch的FSDP2相比FSDP1有哪些优势\n参考链接：\n# Pytorch FSDP2解析",
+    "description": "DP和DDP DP（数据并行）指多个gpu处理不同batch数据，然后每个step进行梯度的汇总，更新全局模型参数\n最朴素的方法是每个gpu上存一份模型参数，各自直接计算梯度，master汇总更新，这种方法需要全量梯度在gpu之间传递，显卡越多，master越忙，会阻塞\nDDP（分布式数据并行）让每个gpu有自己独立的进程，取消了master，采用分布式，gpu之间平等地交换梯度，all-reduce算法\n不关是DP还是DDP，因为只传递梯度，每个gpu都保存了全量的优化器状态（模型参数的2-3倍）和激活\nSharded 既然DP和DDP为了不传递优化器状态和激活浪费了这么多显存，要就把这些拆分开，多传递数据以减少显存浪费，这就是sharded\n也就是微软ZeRO的想法： # ZeRO: Memory Optimizations Toward Training Trillion Parameter Models\nZeRO-1：只切分优化器状态，每个worker计算全量梯度后，通信梯度，然后利用平均梯度和自己部分的优化器状态更新完参数，然后worker之间通信参数，拿到全量参数 ZeRO-2：再切分梯度，每个worker计算全量梯度，算完一部分梯度之后通信完就把不属于自己的梯度扔掉，然后基于平均梯度更新参数，最终参数更新完后再通信，拿到全量参数 ZeRO-3：模型参数也切分，只有在算子执行的时候，才会通信把当前算子的参数拼接起来，边拉参数边计算，prefetching参数使计算和通信overlapp 参考链接：\n# Sharded: A New Technique To Double The Size Of PyTorch Models FSDP FSDP就是ZeRO3的pytorch官方实现，在ZeRO-3的基础上还支持cpu offloading：",
+    "tags": [
+      "技术笔记"
+    ],
+    "title": "FSDP：Pytorch的完全分片数据并行",
+    "uri": "/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
+    "content": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 世界模型\u0026VLA",
+    "description": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 世界模型\u0026VLA",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week18 强化学习框架学习",
+    "uri": "/hugo-blog/weekly/week18/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -257,7 +297,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "经典结构 参考链接：\nAttention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-head attention）：多头注意力，每个head维护自己的KV，在KV-Cache中占用显存很大 MQA（multi-query attention）：所有head共享KV，只有Q会被切分为多份，KV-Cache显存占用减小head-size倍 GQA（Grouped-Query Attention）：在MHA和MQA（效果和缓存）之间折中，KV分为若干份 参考链接：\nFast Transformer Decoding: One Write-Head is All You Need GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints # 理解Attention:从起源到MHA,MQA和GQA MLA KV是从输入 $x$ 线性变换得到的（先得到 $c$， 再得到 $k$ 和 $v$），如果KV-Cache里面只存 $c$（对 $x$ 进行压缩），就可以实现所有头共享（类似MQA，甚至更小）的显存占用： $$q_t^{(s)} k_i^{(s)\\top} = \\boldsymbol{x}_t \\left( W_q^{(s)} W_k^{(s)\\top} \\right) \\mathbf{c}_i^\\top$$ 在推理时，不用从 $c$ 还原 $k$ 和 $v$（会显存爆炸），而是直接对 $q$ 进行映射，然后直接与 $c$ 做乘法： $$\\text{Score} = (q_t^{(s)} W_{uk}^{(s)\\top}) \\cdot c_i^\\top$$ MLA下如何支持RoPE位置编码？ 参考链接：\n缓存与效果的极限拉扯：从MHA、MQA、GQA到MLA 位置编码 原始的位置编码分为：\n绝对位置编码：通过向量表示每个位置，但只能表示有限个（512个），且没有相对位置的概念 sinusoidal编码： 通过向量中每两位表示一个波长的绝对位置$$\\begin{aligned} PE_{(pos, 2i)} = \\sin(pos / 10000^{2i / d_{model}}) \\ PE_{(pos, 2i+1)} = \\cos(pos / 10000^{2i / d_{model}})\\end{aligned}$$ 再利用sin和cos的性质巧妙表示相对位置关系 $$\\begin{bmatrix} \\sin(\\omega_i(pos+k)) \\ \\cos(\\omega_i(pos+k)) \\end{bmatrix} = \\begin{bmatrix} \\cos(\\omega_i k) \u0026 \\sin(\\omega_i k) \\ -\\sin(\\omega_i k) \u0026 \\cos(\\omega_i k) \\end{bmatrix} \\begin{bmatrix} \\sin(\\omega_i pos) \\ \\cos(\\omega_i pos) \\end{bmatrix}$$ 对于远大于训练预料的长文本，编码的组合还是模型没有见过的，由于编码加在词向量上，KQV做点积的时候，score会发生分布偏移 RoPE RoPE的表示：\n和sinusoidal类似，把位置编码两位一组，每两位表示同一个旋转角度 对KV进行位置编码的旋转（V不参与），在KV进行点积的时候，相对位置的差异可以保持 $$f_{{q,k}}(\\mathbf{x}m, m) = \\begin{pmatrix} \\cos m\\theta \u0026 -\\sin m\\theta \\ \\sin m\\theta \u0026 \\cos m\\theta \\end{pmatrix} \\begin{pmatrix} W{{q,k}}^{(11)} \u0026 W_{{q,k}}^{(12)} \\ W_{{q,k}}^{(21)} \u0026 W_{{q,k}}^{(22)} \\end{pmatrix} \\begin{pmatrix} x_m^{(1)} \\ x_m^{(2)} \\end{pmatrix}$$ RoPE通过$W_q$ 和 $W_k$ 这两个参数矩阵学习距离的含义：\n特征解耦：模型发现，如果把某些需要考虑近距离关系的语法特征投影到旋转频率高的维度，那么点积结果就会对位置变化非常敏感 长程依赖：如果把需要长距离关联的语义特征投影到旋转频率低的维度，那么即便 $m$ 和 $n$ 相距很远，旋转后的向量依然能保持较高的相似度 相对位置的含义：由于点积结果严格遵循 $\\cos((m-n)\\theta)$，模型在训练过程中会意识到：“当这个维度的点积达到某个值时，意味着这两个词距离是 $k$“ RoPE对于长距离间的点积，距离越长，结果越小： 参考链接：\nROFORMER: ENHANCED TRANSFORMER WITH ROTARY POSITION EMBEDDING 归一化 Pre-Norm RMSNorm 网络结构 MoE Linear Transformers",
+    "content": "经典结构 参考链接：\nAttention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-head attention）：多头注意力，每个head维护自己的KV，在KV-Cache中占用显存很大 MQA（multi-query attention）：所有head共享KV，只有Q会被切分为多份，KV-Cache显存占用减小head-size倍 GQA（Grouped-Query Attention）：在MHA和MQA（效果和缓存）之间折中，KV分为若干份 参考链接：\nFast Transformer Decoding: One Write-Head is All You Need GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints # 理解Attention:从起源到MHA,MQA和GQA MLA KV是从输入 $x$ 线性变换得到的（先得到 $c$， 再得到 $k$ 和 $v$），如果KV-Cache里面只存 $c$（对 $x$ 进行压缩），就可以实现所有头共享（类似MQA，甚至更小）的显存占用： $$q_t^{(s)} k_i^{(s)\\top} = \\boldsymbol{x}_t \\left( W_q^{(s)} W_k^{(s)\\top} \\right) \\mathbf{c}_i^\\top$$ 在推理时，不用从 $c$ 还原 $k$ 和 $v$（会显存爆炸），而是直接对 $q$ 进行映射，然后直接与 $c$ 做乘法： $$\\text{Score} = (q_t^{(s)} W_{uk}^{(s)\\top}) \\cdot c_i^\\top$$ MLA下如何支持RoPE位置编码？ 参考链接：\n缓存与效果的极限拉扯：从MHA、MQA、GQA到MLA FlashAttention 如果上下文长度为128k，模型维度为4096，head size为32，则attention矩阵的显存占用为：128 * 1024 * 16 * 128 * 1024 * 16 * (4096/32) * (4096/32) / 1024 / 1024 / 1024 = 32G，单层的attention矩阵在标准情况下是随上下文窗口平方增长 把attention矩阵分片计算，在sm中直接处理掉后，再返回HBM（显存）中，显存占用下降到线性 分片过程中会遇到softmax公式中全局最大值的获取问题，通过增加一个局部最大值的统计量，然后再后续汇总中结合不同分片的局部最大值做缩放 在反向传播时，需要使用中间结果，采用重计算的方式，相比显存读写也快得多 整体时间是计算时间+IO时间，通过减少attention矩阵的搬运，大幅减少IO时间，从而加速整体时间 参考链接：\n# 什么是FlashAttention？为什么它能大大减少显存的需要并加快速度？ 位置编码 原始的位置编码分为：\n绝对位置编码：通过向量表示每个位置，但只能表示有限个（512个），且没有相对位置的概念 sinusoidal编码： 通过向量中每两位表示一个波长的绝对位置$$\\begin{aligned} PE_{(pos, 2i)} = \\sin(pos / 10000^{2i / d_{model}}) \\ PE_{(pos, 2i+1)} = \\cos(pos / 10000^{2i / d_{model}})\\end{aligned}$$ 再利用sin和cos的性质巧妙表示相对位置关系 $$\\begin{bmatrix} \\sin(\\omega_i(pos+k)) \\ \\cos(\\omega_i(pos+k)) \\end{bmatrix} = \\begin{bmatrix} \\cos(\\omega_i k) \u0026 \\sin(\\omega_i k) \\ -\\sin(\\omega_i k) \u0026 \\cos(\\omega_i k) \\end{bmatrix} \\begin{bmatrix} \\sin(\\omega_i pos) \\ \\cos(\\omega_i pos) \\end{bmatrix}$$ 对于远大于训练预料的长文本，编码的组合还是模型没有见过的，由于编码加在词向量上，KQV做点积的时候，score会发生分布偏移 RoPE RoPE的表示：\n和sinusoidal类似，把位置编码两位一组，每两位表示同一个旋转角度 对KV进行位置编码的旋转（V不参与），在KV进行点积的时候，相对位置的差异可以保持 $$f_{{q,k}}(\\mathbf{x}m, m) = \\begin{pmatrix} \\cos m\\theta \u0026 -\\sin m\\theta \\ \\sin m\\theta \u0026 \\cos m\\theta \\end{pmatrix} \\begin{pmatrix} W{{q,k}}^{(11)} \u0026 W_{{q,k}}^{(12)} \\ W_{{q,k}}^{(21)} \u0026 W_{{q,k}}^{(22)} \\end{pmatrix} \\begin{pmatrix} x_m^{(1)} \\ x_m^{(2)} \\end{pmatrix}$$ RoPE通过$W_q$ 和 $W_k$ 这两个参数矩阵学习距离的含义：\n特征解耦：模型发现，如果把某些需要考虑近距离关系的语法特征投影到旋转频率高的维度，那么点积结果就会对位置变化非常敏感 长程依赖：如果把需要长距离关联的语义特征投影到旋转频率低的维度，那么即便 $m$ 和 $n$ 相距很远，旋转后的向量依然能保持较高的相似度 相对位置的含义：由于点积结果严格遵循 $\\cos((m-n)\\theta)$，模型在训练过程中会意识到：“当这个维度的点积达到某个值时，意味着这两个词距离是 $k$“ RoPE对于长距离间的点积，距离越长，结果越小： 参考链接：\nROFORMER: ENHANCED TRANSFORMER WITH ROTARY POSITION EMBEDDING 归一化 Pre-Norm RMSNorm 网络结构 MoE Linear Transformers",
     "description": "经典结构 参考链接：\nAttention Is All You Need 进展 注意力机制 MHA、MQA、GQA MHA（multi-head attention）：多头注意力，每个head维护自己的KV，在KV-Cache中占用显存很大 MQA（multi-query attention）：所有head共享KV，只有Q会被切分为多份，KV-Cache显存占用减小head-size倍 GQA（Grouped-Query Attention）：在MHA和MQA（效果和缓存）之间折中，KV分为若干份 参考链接：",
     "tags": [],
     "title": "Transformer学习手册",
