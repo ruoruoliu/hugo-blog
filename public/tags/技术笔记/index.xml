@@ -6,8 +6,29 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ruoruoliu.github.io/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VLA学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>具身智能 Manipulation存在的挑战：&#xA;训练数据缺失：人工遥操成本过高 Sim-to-Real Gap：通过仿真环境训练需要解决与真实环境差异的问题 不同的机器人本体形态导致模型训练无法简单适配 任务的解决方案是多样的，希望模型最终的策略是multi-modality（多峰）的 VLA通过大量的、多样性的、脱离具体任务的数据集上进行训练的基础模型（VLM在输出部分改为action），可以通过zero-shot或者小数据集来解决特定下游任务，避免为每一个任务单独从头训练机器人，基础模型本身可泛化&#xA;RT-1 从零开始训练（或基于ImageNet预训练骨干）的多模态 Transformer策略网络：&#xA;视觉编码器：使用EfficientNet-B3（在 ImageNet 上预训练）编码机器人摄像头图像特征，并通过FiLM（Feature-wise Linear Modulation）层融合语言指令 指令嵌入：通过Universal Sentence Encoder（预训练的语义向量模型），将文本指令转换为向量 Transformer Core：小Transformer（35M参数量），接收压缩后的视觉-语言Token序列，预测下一步的动作 动作输出：它将动作空间（7 自由度手臂 + 3 自由度底盘 + 终止标志）离散化为256个 bin，以分类任务的形式输出 参考链接：&#xA;RT-1: ROBOTICS TRANSFORMER FOR REAL-WORLD CONTROL AT SCALE RT-2 基于VLM预训练大模型进行微调Co-Fine-Tune，Co-Fine-Tune包含VQA和机器人数据，将模型对于文本和action的输出映射到同一个空间，在推理的时候只采样action（mask language token）</description>
+    </item>
+    <item>
+      <title>具身智能学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：&#xA;数据采集 通过遥操获取目标动作的人体motion&#xA;Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion</description>
+    </item>
+    <item>
+      <title>世界模型学习手册</title>
+      <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
+      <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
+      <description>参考链接：&#xA;# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：&#xA;# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora</description>
+    </item>
     <item>
       <title>FSDP：Pytorch的完全分片数据并行</title>
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html</link>

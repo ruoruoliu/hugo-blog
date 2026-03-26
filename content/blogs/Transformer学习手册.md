@@ -41,6 +41,17 @@ $$\text{Score} = (q_t^{(s)} W_{uk}^{(s)\top}) \cdot c_i^\top$$
 参考链接：
 - [缓存与效果的极限拉扯：从MHA、MQA、GQA到MLA](https://spaces.ac.cn/archives/10091)
 
+### FlashAttention
+
+- 如果上下文长度为128k，模型维度为4096，head size为32，则attention矩阵的显存占用为：128 \* 1024 \* 16 \* 128 \* 1024 \* 16 \* (4096/32) \* (4096/32) / 1024 / 1024 / 1024 = 32G，单层的attention矩阵在标准情况下是随上下文窗口平方增长
+- 把attention矩阵分片计算，在sm中直接处理掉后，再返回HBM（显存）中，显存占用下降到线性
+- 分片过程中会遇到softmax公式中全局最大值的获取问题，通过增加一个局部最大值的统计量，然后再后续汇总中结合不同分片的局部最大值做缩放
+- 在反向传播时，需要使用中间结果，采用重计算的方式，相比显存读写也快得多
+- 整体时间是计算时间+IO时间，通过减少attention矩阵的搬运，大幅减少IO时间，从而加速整体时间
+
+参考链接：
+- [# 什么是FlashAttention？为什么它能大大减少显存的需要并加快速度？](https://www.bilibili.com/video/BV1irPTzGEhG?spm_id_from=333.788.videopod.sections&vd_source=c8a3c83e361aa2a357093342a046ceed)
+
 ## 位置编码
 
 原始的位置编码分为：

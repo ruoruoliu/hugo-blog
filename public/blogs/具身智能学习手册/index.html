@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="generator" content="Relearn 8.2.0+740f9bc7eaab0594601604e7f7c29ba660a33b9a">
+    <meta name="description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="具身智能学习手册 :: Ruoruoliu 2.0">
+    <meta name="twitter:description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
+    <meta property="og:url" content="https://ruoruoliu.github.io/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <meta property="og:site_name" content="Ruoruoliu 2.0">
+    <meta property="og:title" content="具身智能学习手册 :: Ruoruoliu 2.0">
+    <meta property="og:description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Blogs">
+    <meta property="article:published_time" content="2026-03-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-23T00:00:00+00:00">
+    <meta property="article:tag" content="技术笔记">
+    <meta itemprop="name" content="具身智能学习手册 :: Ruoruoliu 2.0">
+    <meta itemprop="description" content="Locomotion Motion Tracking 模仿人类动作的步骤，分为以下四步：
+数据采集 通过遥操获取目标动作的人体motion
+Retargeting 将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion">
+    <meta itemprop="datePublished" content="2026-03-23T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2026-03-23T00:00:00+00:00">
+    <meta itemprop="wordCount" content="244">
+    <meta itemprop="keywords" content="技术笔记">
+    <title>具身智能学习手册 :: Ruoruoliu 2.0</title>
+    <link href="/hugo-blog/images/favicon.png?1774536776" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1774536776" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1774536776" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1774536776";
+    </script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1774536776" defer></script>
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.contentLangs=['en'];
+    </script>
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1774536776" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1774536776" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1774536776" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1774536776" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1774536776" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      // configuration
+      window.relearn.min = `.min`;
+      window.relearn.path='\/blogs\/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C\/index.html';
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..\/..';
+      window.relearn.absBaseUri='https:\/\/ruoruoliu.github.io\/hugo-blog';
+      window.relearn.disableInlineCopyToClipboard=false;
+      window.relearn.enableBlockCodeWrap=true;
+      // legal
+      window.relearn.getItem = (s,n) => {return s.getItem(n)};
+      window.relearn.setItem = (s,n,v) => {return s.setItem(n,v)};
+      window.relearn.removeItem = (s,n) => {return s.removeItem(n)};
+      // translations
+      window.T_Copy_to_clipboard = `Copy text to clipboard`;
+      window.T_Copied_to_clipboard = `Text copied to clipboard!`;
+      window.T_Link_copied_to_clipboard = `Link copied to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+      window.T_Browser_unsupported_feature = `This browser doesn't support this feature`;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+          window.relearn.markVariant();
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant");
+        document.querySelectorAll(".R-variantswitcher select").forEach((select) => {select.value = variant;});
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.relearn.getItem(window.localStorage, window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.relearn.setItem(window.localStorage, window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#motion-tracking">Motion Tracking</a>
+      <ul>
+        <li><a href="#数据采集">数据采集</a></li>
+        <li><a href="#retargeting">Retargeting</a></li>
+        <li><a href="#仿真环境rl训练">仿真环境RL训练</a></li>
+        <li><a href="#真实环境部署sim2real">真实环境部署（Sim2Real）</a></li>
+        <li><a href="#整体解决方案">整体解决方案</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#场景理解">场景理解</a>
+      <ul>
+        <li><a href="#分割">分割</a></li>
+        <li><a href="#检测">检测</a></li>
+        <li><a href="#多模态grounding">多模态Grounding</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据引导">数据引导</a>
+      <ul>
+        <li><a href="#sim-to-real">Sim-to-Real</a></li>
+      </ul>
+    </li>
+    <li><a href="#动作执行">动作执行</a>
+      <ul>
+        <li><a href="#生成式模仿学习">生成式模仿学习</a></li>
+        <li><a href="#affordance">Affordance</a></li>
+        <li><a href="#query-from-llm">Query from LLM</a></li>
+        <li><a href="#prompt-planning-from-llm">Prompt Planning from LLM</a></li>
+        <li><a href="#language-correction">Language Correction</a></li>
+        <li><a href="#vla">VLA</a></li>
+      </ul>
+    </li>
+    <li><a href="#世界模型">世界模型</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/index.html"><span itemprop="name">Ruoruoliu 2.0</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/hugo-blog/blogs/index.html"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><span itemprop="name">具身智能学习手册</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="VLA学习手册 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><a href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html" title="世界模型学习手册 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show">
+
+
+
+
+
+
+
+<span class="btn cstyle button link noborder notitle interactive"><button onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable blogs" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="/hugo-blog/tags/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/index.html">技术笔记</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="具身智能学习手册">具身智能学习手册</h1>
+
+<h1 id="locomotion">
+  Locomotion
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="motion-tracking">
+  Motion Tracking
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>模仿人类动作的步骤，分为以下四步：</p>
+<h3 id="数据采集">
+  数据采集
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>通过遥操获取目标动作的人体motion</p>
+<h3 id="retargeting">
+  Retargeting
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>将采集到的motion数据映射、对齐、逆解到机器人的本体的reference motion</p>
+<h4 id="gmr">
+  GMR
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2510.02252" target="_blank">Retargeting Matters: General Motion Retargeting for Humanoid Motion Tracking</a></li>
+</ul>
+<h3 id="仿真环境rl训练">
+  仿真环境RL训练
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="deepmimic">
+  DeepMimic
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/1804.02717" target="_blank">DeepMimic: Example-Guided Deep Reinforcement Learning of Physics-Based Character Skills</a></li>
+</ul>
+<h4 id="amp">
+  AMP
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2104.02180" target="_blank">AMP: Adversarial Motion Priors for Stylized Physics-Based Character Control</a></li>
+</ul>
+<h3 id="真实环境部署sim2real">
+  真实环境部署（Sim2Real）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h3 id="整体解决方案">
+  整体解决方案
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="rgmt">
+  RGMT
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2601.23080" target="_blank">Robust and Generalized Humanoid Motion Tracking</a></li>
+</ul>
+<h4 id="omniretarget">
+  OmniRetarget
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/html/2509.26633v1" target="_blank"># OmniRetarget: Interaction-Preserving Data Generation for Humanoid Whole-Body Loco-Manipulation and Scene Interaction</a></li>
+</ul>
+<h4 id="humanx">
+  HumanX
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2602.02473" target="_blank">HumanX: Toward Agile and Generalizable Humanoid Interaction Skills from Human Videos</a></li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://zihao-ai.feishu.cn/docx/ZWVodQcrHoimjqxxD33cuDHwnnh" target="_blank">论文合集：宇树机器人春晚表演背后的算法</a></li>
+</ul>
+<h1 id="manipulation">
+  Manipulation
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h1><hr>
+<h2 id="场景理解">
+  场景理解
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="分割">
+  分割
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="samsegment-anything-model">
+  SAM（Segment Anything Model）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p><a href="#R-image-143cbaca6f7f56ff7dbb6bfea21b4258" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/877fd2df9600bf93b1605729e3507167.png?width=300px" style="height: auto;width: 300px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-143cbaca6f7f56ff7dbb6bfea21b4258"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/877fd2df9600bf93b1605729e3507167.png?width=300px"></a>
+</p>
+<p>通过多种方式引导分割：</p>
+<ul>
+<li>点：在物体上点一下，它就能自动识别出整个物体的边界</li>
+<li>框：拉一个框，它会分割出框内的物体</li>
+<li>文本：根据描述（如“那只猫”）来寻找物体</li>
+<li>遮罩（Mask）：利用已有的粗略遮罩进行精细化调整</li>
+</ul>
+<p><a href="#R-image-1c4486beadbd53638c6221f372ef5876" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/988d145aab074633c48cd72e83ee5d79.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-1c4486beadbd53638c6221f372ef5876"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/988d145aab074633c48cd72e83ee5d79.png"></a>
+</p>
+<p>实现原理：</p>
+<ul>
+<li>SAM通过大规模预训练（SA-1B），具有zero-shot的泛化能力</li>
+<li>模型结构基于transformer架构：
+<ul>
+<li>Image Encoder：Transformer (ViT)，负责把图片转化为特征向量</li>
+<li>Prompt Encoder：负责处理用户输入的点、框或文本</li>
+<li>Mask Decoder：轻量级的解码器，能以毫秒级的速度将图像特征和提示结合，实时输出分割结果</li>
+</ul>
+</li>
+</ul>
+<p>SAM 2实现了视频分割，SAM3D实现了三维场景的分割</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2304.02643" target="_blank">Segment Anything</a></li>
+</ul>
+<h3 id="检测">
+  检测
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><h4 id="open-voc-detection">
+  Open-Voc Detection
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p><a href="#R-image-a32cc05f65d1689e209e79b0a39a1f8d" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cc80605cff2ec7da04635186c7b97777.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a32cc05f65d1689e209e79b0a39a1f8d"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cc80605cff2ec7da04635186c7b97777.png?width=500px"></a>
+</p>
+<p>相比于传统的检测，最后一步是Softmax分类，开放词表检测最后一步是特征对齐：</p>
+<ul>
+<li>视觉分支：提取图像中潜在物体的特征向量（Region Embeddings）</li>
+<li>文本分支：利用预训练模型（如 CLIP）的Text Encoder，将你的输入转化为语义向量</li>
+<li>匹配：计算视觉特征和文本特征的余弦相似度，取相似度最高的区域</li>
+</ul>
+<h3 id="多模态grounding">
+  多模态Grounding
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>根据给定的自然语言描述，在图像或视频中精准地找到并标记出对应的目标，打通了nlp和cv之间的桥梁，升级版（像素级）的clip（clip只做整体语义匹配）</p>
+<p><a href="#R-image-5387c0e4013f6f276abc59a9d5288f39" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6be348371b45f35f3a5ff494f4881fb3.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5387c0e4013f6f276abc59a9d5288f39"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6be348371b45f35f3a5ff494f4881fb3.png?width=400px"></a>
+</p>
+<p>进一步的，实现3D环境的多模态Grounding：</p>
+<ul>
+<li>多模态输入：2D视觉、3D点云、系统提示词和用户指令</li>
+<li>特征融合：将输入转化为token序列</li>
+<li>大脑中心：基于LoRA微调的LLM，负责决策和推理</li>
+<li>输出形式：文本响应或者动作响应</li>
+</ul>
+<p><a href="#R-image-6f07c559cffe9a963e4c40420f97b5ac" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/86ad07bf4daeaa41ccab517a5f02bcae.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6f07c559cffe9a963e4c40420f97b5ac"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/86ad07bf4daeaa41ccab517a5f02bcae.png?width=500px"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2311.03356" target="_blank">GLaMM: Pixel Grounding Large Multimodal Model</a></li>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2311.12871" target="_blank">An Embodied Generalist Agent in 3D World</a></li>
+</ul>
+<h2 id="数据引导">
+  数据引导
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>机器人的数据缺失，通过以下方式补充：</p>
+<ul>
+<li>通过人类操作的视频，模仿学习，比如
+
+
+
+<a href="https://arxiv.org/pdf/2302.12422" target="_blank">MimicPlay</a>和
+
+
+
+<a href="https://arxiv.org/pdf/2403.12943" target="_blank">Vid2Robot</a></li>
+<li>轻量级硬件数据采集：通过成本低的硬件设备大量采集数据，比如
+
+
+
+<a href="https://arxiv.org/pdf/2402.10329" target="_blank">UMI</a>（机械爪）、
+
+
+
+<a href="https://arxiv.org/pdf/2403.07788" target="_blank">DexCap</a>（五指手套）、
+
+
+
+<a href="https://arxiv.org/pdf/2309.14860" target="_blank">HIRO Hand</a>（人类手把手握着手套，避免DexCap后续适配机器人的问题）</li>
+<li>重量级硬件数据采集：VR手套+VR眼睛</li>
+<li>生成式仿真：
+
+
+
+<a href="https://arxiv.org/pdf/2311.01455" target="_blank">RoboGen</a>通过基于设定任务生成环境然后进行任务学习；
+
+
+
+<a href="https://arxiv.org/pdf/2310.17596" target="_blank">MimicGen</a>基于少量的人类数据样本，分段后分别进行多样化，从而扩充数据量，相对来说更可控</li>
+</ul>
+<h3 id="sim-to-real">
+  Sim-to-Real
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>#todo sim2real gap部分</p>
+<h2 id="动作执行">
+  动作执行
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><h3 id="生成式模仿学习">
+  生成式模仿学习
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>基于神经网络学习概率分布 $P(action|observation)$，从而解决传统的模仿学习（如行为克隆 BC）对于多峰分布（同一个动作序列有多种正确解）的缺陷</p>
+<h4 id="actaction-chunking-with-transformers">
+  ACT（Action Chunking with Transformers）
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p>模型基于训练的解码器，针对某一特定任务，预测生成连续动作序列：</p>
+<ul>
+<li>利用CVAE的思路，基于中间隐状态条件生成</li>
+<li>训练阶段：
+<ul>
+<li>编码器基于当前状态和人类动作序列编码得到Z</li>
+<li>解码器通过encoder先把机器人的状态、图像以及Z编码，然后解码成动作序列，目标与人类动作序列一致</li>
+</ul>
+</li>
+<li>推理阶段：
+<ul>
+<li>让解码器可以基于机器人状态、图像，生成后续动作序列</li>
+</ul>
+</li>
+</ul>
+<p><a href="#R-image-654e289f56ad3ddcdd8e8879e95f6e11" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/3451d7228b500d65270fc5f77821ebb2.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-654e289f56ad3ddcdd8e8879e95f6e11"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/3451d7228b500d65270fc5f77821ebb2.png"></a>
+</p>
+<p>通过将时序预测结果加权平均，使得到的动作序列更平滑</p>
+<p><a href="#R-image-10622f74ee74b969dadf7ed417b24a75" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/1aec8e699700d81886e165a5157ebbc4.png?width=400px" style="height: auto;width: 400px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-10622f74ee74b969dadf7ed417b24a75"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/1aec8e699700d81886e165a5157ebbc4.png?width=400px"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2304.13705" target="_blank">Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware</a></li>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1VSi3BLEr5?spm_id_from=333.788.videopod.sections&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># VAE？具身智能ACT算法科普【陈老师Robotics】</a></li>
+</ul>
+<h4 id="diffusion-policy">
+  Diffusion Policy
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h4><p><a href="#R-image-8eb3ad5e274d4aa9ce0e553bb38973a5" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cdb603ffc110c993d21a01f640a20c3b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-8eb3ad5e274d4aa9ce0e553bb38973a5"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/cdb603ffc110c993d21a01f640a20c3b.png"></a>
+</p>
+<p>策略不直接输出动作，而是学习分数函数（ $\nabla \log P(A|O)$），通过多次迭代优化得到动作：</p>
+<ul>
+<li>加噪阶段：在训练时，将人类真实的动作序列逐渐加入高斯噪声，直到变成纯噪声</li>
+<li>去噪阶段：训练一个神经网络，学习如何根据当前的观察，将噪声一步步剔除，恢复成真实的动作序列</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2303.04137" target="_blank">Diffusion Policy: Visuomotor Policy Learning via Action Diffusion</a></li>
+</ul>
+<h3 id="affordance">
+  Affordance
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>预测观察中物品的哪些部分是可以接触的，且接触的方式是什么（扭动、提起等）</p>
+<ul>
+<li>代表有RoboAffordance、AffordPose以及3D场景的SceneFun3D</li>
+</ul>
+<h3 id="query-from-llm">
+  Query from LLM
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>直接基于LLM对物品的接触和使用方式进行询问，得到机器人的动作位置和类型</p>
+<ul>
+<li>代表有ManipLLM和ManipVQA</li>
+</ul>
+<h3 id="prompt-planning-from-llm">
+  Prompt Planning from LLM
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>直接基于LLM进行任务的拆解和规划</p>
+<p><a href="#R-image-c9b46dacfab1928f4e756a88a6fc09f1" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6f331f216e83422ada98a0584248bade.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c9b46dacfab1928f4e756a88a6fc09f1"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/03/6f331f216e83422ada98a0584248bade.png"></a>
+</p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://arxiv.org/pdf/2311.17842" target="_blank">Look Before You Leap: Unveiling the Power of GPT-4V in Robotic Vision-Language Planning</a></li>
+</ul>
+<h3 id="language-correction">
+  Language Correction
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>在机器人完成任务的过程中，通过语音或者文本给机器人错误部分纠正</p>
+<ul>
+<li>代表作有OLAF、Yell At Your Robot</li>
+</ul>
+<h3 id="vla">
+  VLA
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h3><p>参考 
+
+
+
+    
+<a href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">VLA学习手册</a></p>
+<h2 id="世界模型">
+  世界模型
+
+
+
+
+
+
+
+<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
+</h2><p>参考 
+
+
+
+    
+<a href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/">世界模型学习手册</a></p>
+<p>参考链接：</p>
+<ul>
+<li>
+
+
+
+<a href="https://www.bilibili.com/video/BV1d5ukedEsi/?spm_id_from=333.788.recommend_more_video.0&amp;trackid=web_related_0.router-related-2481894-v7bf2.1774255241265.626&amp;vd_source=c8a3c83e361aa2a357093342a046ceed" target="_blank"># 具身智能基础技术路线</a></li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar'></i> Mar 23, 2026
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="/hugo-blog/index.html">
+            <div class="logo-title">Ruoruoliu 2.0</div>
+          </a>
+        </div>
+        <search><form action="/hugo-blog/search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-homelinks">
+          <ul class="space collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/index.html"><a class="padding" href="/hugo-blog/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-headercontrols">
+          <ul class="">
+          </ul>
+        </div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div class="R-sidebarmenu R-shortcutmenu-main">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/log/index.html"><a class="padding" href="/hugo-blog/log/index.html">Log</a><ul id="R-subsections-23c22f75c84b98545748a65894702014" class="collapsible-menu"></ul></li>
+            <li class="parent " data-nav-url="/hugo-blog/blogs/index.html"><a class="padding" href="/hugo-blog/blogs/index.html">Blogs</a><ul id="R-subsections-0c82701243222eae0a7f46ed20de4880" class="collapsible-menu">
+            <li class="" data-nav-url="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/vla%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">VLA学习手册</a></li>
+            <li class="active " data-nav-url="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">具身智能学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">世界模型学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html"><a class="padding" href="/hugo-blog/blogs/fsdppytorch%E7%9A%84%E5%AE%8C%E5%85%A8%E5%88%86%E7%89%87%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C/index.html">FSDP：Pytorch的完全分片数据并行</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/vllm%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8A%A0%E9%80%9F%E6%8E%A8%E7%90%86%E6%A1%86%E6%9E%B6/index.html">vLLM：大模型加速推理框架</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/ray%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/index.html">Ray：分布式计算框架</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html"><a class="padding" href="/hugo-blog/blogs/verl%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6/index.html">veRL：大模型强化学习框架</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html"><a class="padding" href="/hugo-blog/blogs/deep-reinforcement-learning-doesnt-work-yet/index.html">Deep Reinforcement Learning Doesn&#39;t Work Yet</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/deep-rl%E5%9C%A8%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/deep-rl%E5%9C%A8%E6%B8%B8%E6%88%8F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/index.html">Deep RL在游戏中的应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/gymnasium%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E5%BA%93/index.html"><a class="padding" href="/hugo-blog/blogs/gymnasium%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E4%BA%A4%E4%BA%92%E6%8E%A5%E5%8F%A3%E5%BA%93/index.html">Gymnasium：强化学习交互接口库</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/meta-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/meta-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Meta Learning学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/mpc%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/mpc%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">MPC学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/sim-to-real%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/sim-to-real%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Sim-to-Real学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/world-model%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/world-model%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">World Model学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/langchainagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93/index.html"><a class="padding" href="/hugo-blog/blogs/langchainagent%E9%93%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E5%BA%93/index.html">LangChain：agent链式执行库</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/langgraphagent%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%E5%BA%93/index.html"><a class="padding" href="/hugo-blog/blogs/langgraphagent%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%E5%BA%93/index.html">LangGraph：agent循环执行库</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/python%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Python学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A7%82%E7%82%B9andrej-karpathy%E5%92%8Crichard-sutton/index.html">大模型观点：Andrej Karpathy和Richard Sutton</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html"><a class="padding" href="/hugo-blog/blogs/%E7%AE%80%E5%8E%86%E9%A1%B9%E7%9B%AEqa/index.html">简历项目Q&amp;A</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E6%8E%A8%E7%90%86%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM推理技术学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/reinforcement-learning%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Reinforcement Learning学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html"><a class="padding" href="/hugo-blog/blogs/deepmind-x-ucl-introduction-to-rl-2015-%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">DeepMind x UCL Introduction to RL 2015 课程笔记</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%AE%AD%E7%BB%83%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">LLM训练技术学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%95%86%E5%93%81%E6%94%B6%E8%B4%A7%E7%B3%BB%E7%BB%9F/index.html">从零开始构建商品收货系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html"><a class="padding" href="/hugo-blog/blogs/llm%E8%BF%9B%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">LLM进展与应用</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html"><a class="padding" href="/hugo-blog/blogs/%E9%95%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1deep-agent/index.html">长程任务：Deep Agent</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/agent%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Agent学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/context-engineering%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Context Engineering学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/rag%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">RAG学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html"><a class="padding" href="/hugo-blog/blogs/mcp%E5%92%8Cskills/index.html">MCP和Skills</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/react%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">React学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAtetris/index.html">从零开始构建Tetris</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/css%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">CSS学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/html%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">HTML学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%8C%85%E7%AE%A1%E7%90%86/index.html">Javascript包管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/javascript%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Javascript学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%83%8F%E7%B4%A0%E5%B7%A5%E5%85%B7asperite/index.html">像素工具Asperite</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html"><a class="padding" href="/hugo-blog/blogs/%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">游戏编程基本概念</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html"><a class="padding" href="/hugo-blog/blogs/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BAflappy-bird/index.html">从零开始构建Flappy Bird</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/aerospace%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Aerospace使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"><a class="padding" href="/hugo-blog/blogs/lua%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html">Lua学习手册</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html"><a class="padding" href="/hugo-blog/blogs/terminal%E9%85%8D%E7%BD%AE/index.html">Terminal配置</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html"><a class="padding" href="/hugo-blog/blogs/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">Python项目管理</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html"><a class="padding" href="/hugo-blog/blogs/vim%E5%92%8Cneovim/index.html">Vim和NeoVim</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html"><a class="padding" href="/hugo-blog/blogs/tmux%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">Tmux使用教程</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html"><a class="padding" href="/hugo-blog/blogs/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%81%E7%A8%8B%E5%B9%B3%E5%8F%B0zapier/index.html">自动化流程平台Zapier</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86%E6%96%B9%E5%BC%8F/index.html">内容整理方式</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html"><a class="padding" href="/hugo-blog/blogs/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">内容管理系统</a></li>
+            <li class="" data-nav-url="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html"><a class="padding" href="/hugo-blog/blogs/osi%E6%A8%A1%E5%9E%8B/index.html">OSI模型</a></li></ul></li>
+            <li class="" data-nav-url="/hugo-blog/weekly/index.html"><a class="padding" href="/hugo-blog/weekly/index.html">Weeklies</a><ul id="R-subsections-fa6cd6a93db3107c38820d614c82d18d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-url="/hugo-blog/projects/index.html"><a class="padding" href="/hugo-blog/projects/index.html">Projects</a></li>
+          </ul>
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-shortcuts">
+          <ul class="space collapsible-menu">
+          </ul>
+        </div>
+        <div id="R-footer-margin"></div>
+        <div class="R-menu-divider default-animation">
+          <hr class="padding">
+        </div>
+        <div class="R-sidebarmenu R-shortcutmenu-footercontrols">
+          <ul class="">
+          </ul>
+        </div>
+<div id="R-footer"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
+      </div>
+    </aside>
+    <script>
+      window.MathJax = Object.assign( window.MathJax || {}, {
+        tex: {
+          inlineMath:  [['\\(', '\\)'], ['$',  '$']],  
+          displayMath: [['\\[', '\\]'], ['$$', '$$']], 
+        },
+        options: {
+          enableMenu: false 
+        }
+      }, JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1774536776"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1774536776" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1774536776" defer></script>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
+  </body>
+</html>
