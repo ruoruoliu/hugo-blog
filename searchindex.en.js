@@ -12,16 +12,42 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Blogs",
-    "uri": "/hugo-blog/blogs/index.html"
+    "title": "Tags",
+    "uri": "/hugo-blog/tags/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
+    "content": "总结 世界模型探究 世界模型 世界模型学习手册 [!tip] 知识 [!warning] 待办",
+    "description": "总结 世界模型探究 世界模型 世界模型学习手册 [!tip] 知识 [!warning] 待办",
+    "tags": [
+      "周记"
+    ],
+    "title": "Week20 世界模型探究",
+    "uri": "/hugo-blog/weekly/week20/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0",
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Tags",
-    "uri": "/hugo-blog/tags/index.html"
+    "title": "Weeklies",
+    "uri": "/hugo-blog/weekly/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: 周记",
+    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
+  },
+  {
+    "breadcrumb": "Ruoruoliu 2.0",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Blogs",
+    "uri": "/hugo-blog/blogs/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -35,21 +61,13 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "[!note] 总结 世界模型基础知识 [!tip] 知识 [!warning] 待办",
-    "description": "[!note] 总结 世界模型基础知识 [!tip] 知识 [!warning] 待办",
+    "content": "总结 具身智能基础知识 具身智能 具身智能学习手册 VLA学习手册 知识 具身智能包括两大方向：locomotion和manipulation locomotion指机器人本体的肢体运动控制，主要应用场景在复杂动作，如空翻、跑步、跳跃等，如宇树机器人的舞台表演 manipulation指机器人与物品的交互控制，主要指上肢操控抓取物品的能力，如抓取桌面上的物品，叠衣服等，如figure01等家居和工业应用 以上两者都可以通过数据采集、仿真环境运行以及强化学习优化最终动作输出来完成，其中locomotion需要更小的反应延迟，因此不适合使用vla模型输出动作，而manipulation则通过vla进行高层决策，然后再用policy和rl的方式进行底层动作控制 待办 世界模型探究",
+    "description": "总结 具身智能基础知识 具身智能 具身智能学习手册 VLA学习手册 知识 具身智能包括两大方向：locomotion和manipulation locomotion指机器人本体的肢体运动控制，主要应用场景在复杂动作，如空翻、跑步、跳跃等，如宇树机器人的舞台表演 manipulation指机器人与物品的交互控制，主要指上肢操控抓取物品的能力，如抓取桌面上的物品，叠衣服等，如figure01等家居和工业应用 以上两者都可以通过数据采集、仿真环境运行以及强化学习优化最终动作输出来完成，其中locomotion需要更小的反应延迟，因此不适合使用vla模型输出动作，而manipulation则通过vla进行高层决策，然后再用policy和rl的方式进行底层动作控制 待办 世界模型探究",
     "tags": [
       "周记"
     ],
-    "title": "Week19 世界模型\u0026VLA",
+    "title": "Week19 具身智能基础知识",
     "uri": "/hugo-blog/weekly/week19/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Weeklies",
-    "uri": "/hugo-blog/weekly/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
@@ -60,14 +78,6 @@ var relearn_searchindex = [
     ],
     "title": "具身智能学习手册",
     "uri": "/hugo-blog/blogs/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html"
-  },
-  {
-    "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: 周记",
-    "uri": "/hugo-blog/tags/%E5%91%A8%E8%AE%B0/index.html"
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Tags",
@@ -99,8 +109,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 世界模型\u0026VLA",
-    "description": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 世界模型\u0026VLA",
+    "content": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 具身智能基础知识",
+    "description": "总结 veRL框架学习 veRL框架学习 veRL：大模型强化学习框架 知识 veRL作为字节开源的针对大模型PPO类型的RL训练框架： 采用混合模型编程，hybird engine结合了single controller和multi controller，其中single controller用于规划整体训练流程，multi controller用于并发执行计算 支持在同一个进程（GPU）中同时使用FSDP和megatron作为训练后端、vllm和SGLang作为推理后端 利用Ray的分布式任务框架进行worker的规划，每个gpu上执行一个worker group，worker group包含多个不同的role，实现role与资源的解耦，实现了gpu上的分时复用；每个role又对应多个worker，分别在多个gpu上，实现了任务的并发执行 所有执行单元异步执行，通过resource pool分配资源，执行前判断资源满足要求 通过auto mapping对训练的资源配置进行自动分配，保证计算负载和通信的最优部署 待办 具身智能基础知识",
     "tags": [
       "周记"
     ],
