@@ -1,6 +1,6 @@
 ---
 title: Week20 世界模型探究
-date: 2026-03-30
+date: 2026-04-13
 tags:
   - 周记
 draft: false

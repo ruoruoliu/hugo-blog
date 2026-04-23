@@ -27,7 +27,7 @@
       <link>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</link>
       <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://ruoruoliu.github.io/hugo-blog/blogs/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/index.html</guid>
-      <description>参考链接：&#xA;# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：&#xA;# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora</description>
+      <description>什么是世界模型 “The image of the world around us, which we carry in our head, is just a model. Nobody in his head imagines all the world, government or country. He has only selected concepts, and relationships between them, and uses those to represent the real system.” Jay Wright Forrester</description>
     </item>
     <item>
       <title>FSDP：Pytorch的完全分片数据并行</title>

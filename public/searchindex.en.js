@@ -61,8 +61,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Weeklies",
-    "content": "总结 具身智能基础知识 具身智能 具身智能学习手册 VLA学习手册 知识 具身智能包括两大方向：locomotion和manipulation locomotion指机器人本体的肢体运动控制，主要应用场景在复杂动作，如空翻、跑步、跳跃等，如宇树机器人的舞台表演 manipulation指机器人与物品的交互控制，主要指上肢操控抓取物品的能力，如抓取桌面上的物品，叠衣服等，如figure01等家居和工业应用 以上两者都可以通过数据采集、仿真环境运行以及强化学习优化最终动作输出来完成，其中locomotion需要更小的反应延迟，因此不适合使用vla模型输出动作，而manipulation则通过vla进行高层决策，然后再用policy和rl的方式进行底层动作控制 待办 世界模型探究",
-    "description": "总结 具身智能基础知识 具身智能 具身智能学习手册 VLA学习手册 知识 具身智能包括两大方向：locomotion和manipulation locomotion指机器人本体的肢体运动控制，主要应用场景在复杂动作，如空翻、跑步、跳跃等，如宇树机器人的舞台表演 manipulation指机器人与物品的交互控制，主要指上肢操控抓取物品的能力，如抓取桌面上的物品，叠衣服等，如figure01等家居和工业应用 以上两者都可以通过数据采集、仿真环境运行以及强化学习优化最终动作输出来完成，其中locomotion需要更小的反应延迟，因此不适合使用vla模型输出动作，而manipulation则通过vla进行高层决策，然后再用policy和rl的方式进行底层动作控制 待办 世界模型探究",
+    "content": "总结 具身智能基础知识 具身智能 具身智能学习手册 VLA学习手册 知识 具身智能包括两大方向：locomotion和manipulation locomotion指机器人本体的肢体运动控制，主要应用场景在复杂动作，如空翻、跑步、跳跃等，如宇树机器人的舞台表演 manipulation指机器人与物品的交互控制，主要指上肢操控抓取物品的能力，如抓取桌面上的物品，叠衣服等，如figure01等家居和工业应用 以上两者都可以通过数据采集、仿真环境运行以及强化学习优化最终动作输出来完成，其中locomotion需要更小的反应延迟（200Hz），因此不适合使用vla模型（5Hz）输出动作；而manipulation则通过vla进行高层决策，然后再用policy和rl的方式进行底层动作控制 待办 世界模型探究",
+    "description": "总结 具身智能基础知识 具身智能 具身智能学习手册 VLA学习手册 知识 具身智能包括两大方向：locomotion和manipulation locomotion指机器人本体的肢体运动控制，主要应用场景在复杂动作，如空翻、跑步、跳跃等，如宇树机器人的舞台表演 manipulation指机器人与物品的交互控制，主要指上肢操控抓取物品的能力，如抓取桌面上的物品，叠衣服等，如figure01等家居和工业应用 以上两者都可以通过数据采集、仿真环境运行以及强化学习优化最终动作输出来完成，其中locomotion需要更小的反应延迟（200Hz），因此不适合使用vla模型（5Hz）输出动作；而manipulation则通过vla进行高层决策，然后再用policy和rl的方式进行底层动作控制 待办 世界模型探究",
     "tags": [
       "周记"
     ],
@@ -89,8 +89,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Ruoruoliu 2.0 \u003e Blogs",
-    "content": "参考链接：\n# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：\n# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora",
-    "description": "参考链接：\n# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：\n# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora",
+    "content": "什么是世界模型 “The image of the world around us, which we carry in our head, is just a model. Nobody in his head imagines all the world, government or country. He has only selected concepts, and relationships between them, and uses those to represent the real system.” Jay Wright Forrester 2018年，David Ha提出通过预测动作干预之后的世界状态，来学习物理规律的世界模型：\nVAE处理物理世界的视觉信号输入，抽象为向量表示z MDN-RNN预测状态z：基于上一时刻z以及动作action，来预测下一时刻z，过程中压缩为新的内部状态表示h MDN（mixture density network）通过混合高斯分布来拟合一个z的复杂分布，即同样一个环境（视觉信号），后续的真实事件是不同的，比如一个人正在走路，但是下一秒可能会停下来，也可能会继续走；这种混合高斯分布也使controller的训练减少对于M误差的hack，从而提升真实环境的鲁棒性 controller处理视觉向量z（瞬时）和状态表示h（记忆），生成一个新的动作action，来完成任务 依次训练V（视觉表示）、M（世界逻辑）和C（策略），每一步训练依赖之前的参数 训练C的时候，已经切断了environment的交互，纯粹基于M的内部迭代，即Dreaming 参考链接：\n# 【中配】10分钟看懂世界模型: 它是AI的未来吗 - Caleb Writes Code Recurrent World Models Facilitate Policy Evolution # World Models: Can agents learn inside of their own dreams? JEPA 参考链接：\n# I-JEPA: The first AI model based on Yann LeCun’s vision for more human-like AI # V-JEPA: The next step toward Yann LeCun’s vision of advanced machine intelligence (AMI) # Introducing the V-JEPA 2 world model and new benchmarks for physical reasoning # Topic 4: What is JEPA? Sora",
+    "description": "什么是世界模型 “The image of the world around us, which we carry in our head, is just a model. Nobody in his head imagines all the world, government or country. He has only selected concepts, and relationships between them, and uses those to represent the real system.” Jay Wright Forrester",
     "tags": [
       "技术笔记"
     ],
