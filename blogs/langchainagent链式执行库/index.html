@@ -35,27 +35,27 @@ Structured output 通过response_format对agent的回复进行格式化： 使�
     <meta itemprop="wordCount" content="560">
     <meta itemprop="keywords" content="技术笔记">
     <title>LangChain：agent链式执行库 :: Ruoruoliu 2.0</title>
-    <link href="/hugo-blog/images/favicon.png?1777088538" rel="icon" type="image/png">
-    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1777088538" rel="stylesheet">
-    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1777088538" defer></script>
-    <script src="/hugo-blog/js/search-lunr.min.js?1777088538" defer></script>
-    <script src="/hugo-blog/js/search.min.js?1777088538" defer></script>
+    <link href="/hugo-blog/images/favicon.png?1777088658" rel="icon" type="image/png">
+    <link href="/hugo-blog/css/auto-complete/auto-complete.min.css?1777088658" rel="stylesheet">
+    <script src="/hugo-blog/js/auto-complete/auto-complete.min.js?1777088658" defer></script>
+    <script src="/hugo-blog/js/search-lunr.min.js?1777088658" defer></script>
+    <script src="/hugo-blog/js/search.min.js?1777088658" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1777088538";
+      window.relearn.index_js_url="/hugo-blog/searchindex.en.js?1777088658";
     </script>
-    <script src="/hugo-blog/js/lunr/lunr.min.js?1777088538" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1777088538" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1777088538" defer></script>
-    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1777088538" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.min.js?1777088658" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.stemmer.support.min.js?1777088658" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.multi.min.js?1777088658" defer></script>
+    <script src="/hugo-blog/js/lunr/lunr.en.min.js?1777088658" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['en'];
     </script>
-    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1777088538" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1777088538" rel="stylesheet"></noscript>
-    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1777088538" rel="stylesheet">
-    <link href="/hugo-blog/css/theme.min.css?1777088538" rel="stylesheet">
-    <link href="/hugo-blog/css/format-html.min.css?1777088538" rel="stylesheet" id="R-format-style">
+    <link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1777088658" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/hugo-blog/fonts/fontawesome/css/fontawesome-all.min.css?1777088658" rel="stylesheet"></noscript>
+    <link href="/hugo-blog/css/perfect-scrollbar/perfect-scrollbar.min.css?1777088658" rel="stylesheet">
+    <link href="/hugo-blog/css/theme.min.css?1777088658" rel="stylesheet">
+    <link href="/hugo-blog/css/format-html.min.css?1777088658" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -223,8 +223,8 @@ Structured output 通过response_format对agent的回复进行格式化： 使�
 <span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copy link to clipboard"><i class="fa-fw fas fa-link fa-lg"></i></button></span>
 </h1><hr>
 <p>通过create_agent函数创建，底层通过LangGraph实现基于图的agent运行时，图包含节点（node）和边（edge），agent在节点间移动，包括model、tools和中间件
-<a href="#R-image-5904d45126f3c947bb14a348076544c2" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/9cfc7b50edf44808da5e2d148319e5c2.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5904d45126f3c947bb14a348076544c2"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/9cfc7b50edf44808da5e2d148319e5c2.png"></a>
+<a href="#R-image-a28bfec9f0bf0cd441baab05c083f680" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/9cfc7b50edf44808da5e2d148319e5c2.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a28bfec9f0bf0cd441baab05c083f680"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/9cfc7b50edf44808da5e2d148319e5c2.png"></a>
 </p>
 <p>核心组件包括：</p>
 <ul>
@@ -412,8 +412,8 @@ Structured output 通过response_format对agent的回复进行格式化： 使�
 </li>
 <li>注意：config和runtime是保留关键字，不能用于tool的参数名</li>
 </ul>
-<p><a href="#R-image-7b151840f4ee7bb6368f6416740c2255" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/753b206b40471502c0763bb042b3d2aa.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7b151840f4ee7bb6368f6416740c2255"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/753b206b40471502c0763bb042b3d2aa.png"></a>
+<p><a href="#R-image-b511f35325fd492067d8d14e26a2399c" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/753b206b40471502c0763bb042b3d2aa.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b511f35325fd492067d8d14e26a2399c"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/753b206b40471502c0763bb042b3d2aa.png"></a>
 
 通过ToolRuntime可以获取工具所需要的信息，包括：</p>
 <ul>
@@ -583,8 +583,8 @@ Structured output 通过response_format对agent的回复进行格式化： 使�
 <li>添加rate limit、guardrails、PII检测（personally identifiable information）</li>
 </ul>
 <p>中间件在agent loop中可以在下图紫色部分中使用：
-<a href="#R-image-976c3ede41bd662ca4db779fa5146b17" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/cf01a584cf262de26513c608591a2fe6.png?width=200px" style="height: auto;width: 200px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-976c3ede41bd662ca4db779fa5146b17"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/cf01a584cf262de26513c608591a2fe6.png?width=200px"></a>
+<a href="#R-image-c0a16ecc0ba2c56f846aea988c94c585" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/cf01a584cf262de26513c608591a2fe6.png?width=200px" style="height: auto;width: 200px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c0a16ecc0ba2c56f846aea988c94c585"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/cf01a584cf262de26513c608591a2fe6.png?width=200px"></a>
 </p>
 <h2 id="prebuilt-middleware">
   Prebuilt middleware
@@ -735,8 +735,8 @@ Structured output 通过response_format对agent的回复进行格式化： 使�
 </ul>
 </li>
 <li>Store：长期记忆的存储
-<a href="#R-image-4372e56c4b66a43a37347f4112978124" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/3f1a32f60606bb220c8e1a8999fe98ea.png?width=500px" style="height: auto;width: 500px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4372e56c4b66a43a37347f4112978124"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/3f1a32f60606bb220c8e1a8999fe98ea.png?width=500px"></a>
+<a href="#R-image-da4d578c808e22fd4b72c8600d23edc9" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/3f1a32f60606bb220c8e1a8999fe98ea.png?width=500px" style="height: auto;width: 500px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-da4d578c808e22fd4b72c8600d23edc9"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/3f1a32f60606bb220c8e1a8999fe98ea.png?width=500px"></a>
 </li>
 <li>Stream writer：用于custom模式的agent写出</li>
 </ul>
@@ -1020,20 +1020,20 @@ Structured output 通过response_format对agent的回复进行格式化： 使�
 
 
 <a href="https://docs.langchain.com/oss/python/langchain/rag#rag-chains" target="_blank"># Build a RAG agent with LangChain</a>
-<a href="#R-image-570fe8227588ec8f125aae4fa9281f55" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/5edb35bb74265fe0c6c3f9366bc192c9.png?width=350px" style="height: auto;width: 350px;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-570fe8227588ec8f125aae4fa9281f55"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/5edb35bb74265fe0c6c3f9366bc192c9.png?width=350px"></a>
+<a href="#R-image-a8760a9ab7da349164d175087e103300" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/5edb35bb74265fe0c6c3f9366bc192c9.png?width=350px" style="height: auto;width: 350px;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-a8760a9ab7da349164d175087e103300"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/5edb35bb74265fe0c6c3f9366bc192c9.png?width=350px"></a>
 </li>
 <li>Agentic RAG：通过LLM判断检索的时间点和目标，这种方式与普通agent唯一的差异在于拥有一个能够搜索外界知识的工具
-<a href="#R-image-6e512402161bd5ac83fe61ffe32a1531" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0d1032a67473385851c1831ff058e64c.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6e512402161bd5ac83fe61ffe32a1531"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0d1032a67473385851c1831ff058e64c.png"></a>
+<a href="#R-image-49a491a4e2debab1fd0c862cc284e8fc" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0d1032a67473385851c1831ff058e64c.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-49a491a4e2debab1fd0c862cc284e8fc"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/0d1032a67473385851c1831ff058e64c.png"></a>
 </li>
 <li>Hybrid：加入一些中间步，相比2-step更灵活，相比Agentic更可控
 <ul>
 <li>query预处理：模糊query改写、多query扩展，query细化</li>
 <li>检索验证：判断检索结果是否与query相关，不相关就修改query重新检索</li>
 <li>答案验证：判断答案是否准确、完整且与query相关，如果需要的话就重新生成或修改答案
-<a href="#R-image-eb8dade653e94c620d96288b224739f8" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/a074086b74c1a04516b4d3a017180a18.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-eb8dade653e94c620d96288b224739f8"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/a074086b74c1a04516b4d3a017180a18.png"></a>
+<a href="#R-image-118f532f6bb43fb5252ee3acc7ef223b" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/a074086b74c1a04516b4d3a017180a18.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-118f532f6bb43fb5252ee3acc7ef223b"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="https://images.ruoruoliu.com/2026/02/a074086b74c1a04516b4d3a017180a18.png"></a>
 </li>
 </ul>
 </li>
@@ -1201,9 +1201,9 @@ Structured output 通过response_format对agent的回复进行格式化： 使�
         }
       }, JSON.parse("{}") );
     </script>
-    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1777088538"></script>
-    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1777088538" defer></script>
-    <script src="/hugo-blog/js/theme.min.js?1777088538" defer></script>
+    <script id="MathJax-script" async src="/hugo-blog/js/mathjax/tex-mml-chtml.js?1777088658"></script>
+    <script src="/hugo-blog/js/perfect-scrollbar/perfect-scrollbar.min.js?1777088658" defer></script>
+    <script src="/hugo-blog/js/theme.min.js?1777088658" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>
